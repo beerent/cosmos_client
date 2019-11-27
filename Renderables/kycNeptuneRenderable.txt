@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME kycPlanetSphere
+s TEXTURE_NAME KYCNeptune
+s MATERIAL PlanetMaterial

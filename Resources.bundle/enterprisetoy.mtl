@@ -1,0 +1,13 @@
+# Blender MTL File: 'enterprise5.blend'
+# Material Count: 1
+
+newmtl Material
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.359708 0.359708 0.359708
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/BABY/textures/enterprise1.png

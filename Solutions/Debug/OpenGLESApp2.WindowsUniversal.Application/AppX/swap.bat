@@ -1,0 +1,1 @@
+xcopy /y Resources_staged Resources

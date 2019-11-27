@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8d590c8e-9d79-480c-98f6-b146a4d65c3a}</ProjectGuid>
+    <Keyword>StaticLibrary</Keyword>
+    <RootNamespace>OpenGLESApp2</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.10240.0</WindowsTargetPlatformMinVersion>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+    <Import Project="..\OpenGLESApp2.Shared\OpenGLESApp2.Shared.vcxitems" Label="Shared" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\..\Classes;..\..\..\3rd party software\bullet\src;..\..\..\3rd party software\bullet\src\BulletCollision\BroadphaseCollision;..\..\..\3rd party software\lua-5.3.4\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\..\Classes;..\..\..\3rd party software\bullet\src;..\..\..\3rd party software\bullet\src\BulletCollision\BroadphaseCollision;..\..\..\3rd party software\lua-5.3.4\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Entity\Entities;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Entity;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Debug;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Debug\Logger;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Properties;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\TextureManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\Shaders;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\MeshManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\MaterialManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\LightingManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\FontManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Physics;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Memory;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Input;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState\States\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState\States;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Components;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Generic\StateMachine;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\Renderables;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\OpenSource;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Generic\Patterns;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\StringManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic\EntityControler;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic\ScriptedEventEngine;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Events;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Entity\Entities;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Entity;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Debug;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Debug\Logger;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Properties;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\TextureManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\Shaders;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\MeshManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\MaterialManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\LightingManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\FontManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Physics;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Memory;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Input;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState\States\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState\States;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Components;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Generic\StateMachine;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\Renderables;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\OpenSource;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Generic\Patterns;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\StringManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic\EntityControler;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic\ScriptedEventEngine;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Events;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Entity\Entities;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Entity;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Debug;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Debug\Logger;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Properties;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\TextureManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\Shaders;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\MeshManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\MaterialManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\LightingManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\FontManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Physics;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Memory;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Input;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState\States\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState\States;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Components;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Generic\StateMachine;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\Renderables;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\OpenSource;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Generic\Patterns;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\StringManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic\EntityControler;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic\ScriptedEventEngine;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Events;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Entity\Entities;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Entity;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Debug;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Debug\Logger;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Properties;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\TextureManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\Shaders;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\MeshManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\MaterialManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\LightingManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\FontManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Physics;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Memory;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory\LevelData;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\LevelFactory;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Input;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Widgets;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState\States\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState\States;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\UIState;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GUI\Components;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Generic\StateMachine;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States\PGP;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States\BabyAnouncement;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState\States;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameState;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Rendering\Renderables;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\OpenSource;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Generic\Patterns;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\StringManager;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic\EntityControler;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\GameLogic\ScriptedEventEngine;E:\p4\meatbadnoeatDev\ProjectIOS1\Classes\Core\Events;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\OpenGLESApp2.Shared\pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\OpenGLESApp2.Shared\pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">..\OpenGLESApp2.Shared\pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\OpenGLESApp2.Shared\pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\OpenGLESApp2.Shared\pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\OpenGLESApp2.Shared\pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\packages\ANGLE.WindowsStore.2.1.2\build\native\ANGLE.WindowsStore.targets" Condition="Exists('..\..\packages\ANGLE.WindowsStore.2.1.2\build\native\ANGLE.WindowsStore.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="'$(DesignTimeBuild)' != 'true' and !Exists('..\..\packages\ANGLE.WindowsStore.2.1.2\build\native\ANGLE.WindowsStore.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\ANGLE.WindowsStore.2.1.2\build\native\ANGLE.WindowsStore.targets'))" />
+  </Target>
+</Project>

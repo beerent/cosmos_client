@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME smallProjectile
+s TEXTURE_NAME techionCannon
+s RENDER_GROUP TRANSPARENT

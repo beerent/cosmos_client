@@ -1,0 +1,27 @@
+    #version 100 
+    precision highp float;
+    attribute vec3 coord3d;
+    attribute vec2 mTexCord;
+    attribute vec3 mNormal;
+    attribute vec3 diffuseColor;
+    varying vec2 fTexCord;
+    varying vec3 fNormal;
+    uniform mat4 mMVP;
+    uniform mat3 normalMatrix;
+    uniform vec3 lightPos;
+    attribute vec3 ambientColor;
+    attribute vec3 specularColor;
+    attribute float shininess;
+    void main(void) {
+    vec3 N = normalize(normalMatrix * mNormal);
+    vec3 L = normalize(lightPos);
+    vec3 E = vec3(0,0,1);
+    vec3 H = normalize(L + E);
+    float df = max(0.0, dot(N, L));
+    float sf = max(0.0, dot(N, H));
+    sf = pow(sf, shininess);
+    vec3 color = ambientColor + df * diffuseColor + sf * specularColor;
+    gl_Position = mMVP * vec4(coord3d, 1.0); 
+       fTexCord = mTexCord;                      
+fNormal  = color;                      
+}

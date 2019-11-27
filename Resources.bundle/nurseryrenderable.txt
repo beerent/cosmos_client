@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME nursery
+s TEXTURE_NAME nursery
+s MATERIAL MetalMaterial

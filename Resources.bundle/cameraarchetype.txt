@@ -1,0 +1,2 @@
+s TYPE TYPE_CAMERA
+s RENDERABLE_NAME errorRenderable

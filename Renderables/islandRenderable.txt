@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME island
+s TEXTURE_NAME island
+s MATERIAL MetalMaterial

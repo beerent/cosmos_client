@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME lowBuilding
+s TEXTURE_NAME lowBuilding
+s MATERIAL MetalMaterial

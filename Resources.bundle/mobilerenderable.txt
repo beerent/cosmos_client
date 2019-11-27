@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME mobile
+s TEXTURE_NAME mobile
+s MATERIAL MetalMaterial

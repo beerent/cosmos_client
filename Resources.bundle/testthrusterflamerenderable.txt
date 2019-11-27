@@ -1,0 +1,3 @@
+s TYPE TYPE_MODEL
+s MESH_NAME testThrusterFlame
+s TEXTURE_NAME testFlame

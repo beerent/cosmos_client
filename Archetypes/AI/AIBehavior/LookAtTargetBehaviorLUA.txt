@@ -1,0 +1,2 @@
+s TYPE SCRIPTED_AI_BEHAVIOR
+s SCRIPT_NAME LookAtTargetBehavior

@@ -1,0 +1,5 @@
+s TYPE TYPE_MODEL
+s MESH_NAME XCRXtarsus
+s TEXTURE_NAME XCRXtarsus
+s EMISIVE_TEXTURE_NAME XCRXtarsusEmisive
+s MATERIAL MetalEmisiveMaterial

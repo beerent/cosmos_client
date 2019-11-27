@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME dalekToy
+s TEXTURE_NAME dalekToy
+s MATERIAL MetalMaterial

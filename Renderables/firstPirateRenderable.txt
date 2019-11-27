@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME firstPirate
+s TEXTURE_NAME firstPirate
+s MATERIAL CS_LE_MatteMaterial

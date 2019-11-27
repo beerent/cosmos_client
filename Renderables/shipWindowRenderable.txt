@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME shipWindow
+s TEXTURE_NAME shipWindow
+s MATERIAL CS_MatteMaterial2pass

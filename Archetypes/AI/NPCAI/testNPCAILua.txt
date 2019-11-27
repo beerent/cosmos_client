@@ -1,0 +1,3 @@
+s TYPE TYPE_NPCAI
+s BEHAVIORS LookAtTargetBehaviorLUA
+s GOALS lookAtTargetGoal

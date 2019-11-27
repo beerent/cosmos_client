@@ -1,0 +1,3 @@
+s TYPE TYPE_PHYSICS_ENTITY
+s ENTITY_GROUP cutlassCollision
+d MASS 100.0

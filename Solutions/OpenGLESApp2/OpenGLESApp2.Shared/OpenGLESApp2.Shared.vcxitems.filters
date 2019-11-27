@@ -1,0 +1,1035 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SimpleRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\Debug3DMathVisualizer.cpp">
+      <Filter>Core\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\DebugLogic.cpp">
+      <Filter>Core\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\DebugPrintUtil.cpp">
+      <Filter>Core\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\Logger\Logger.cpp">
+      <Filter>Core\Debug\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\EntityFactory.cpp">
+      <Filter>Core\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\PhysicsEntity.cpp">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Primative.cpp">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\PropulsionEntity.cpp">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\SkyBox.cpp">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\WaterPlaneEntity.cpp">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\WeaponEntity.cpp">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Camera.cpp">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Entity.cpp">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Events\TimeEventGenerator.cpp">
+      <Filter>Core\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Events\EventDispatcher.cpp">
+      <Filter>Core\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\ScriptedShipControler.cpp">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\EntityControler.cpp">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\IScriptedEventEngine.cpp">
+      <Filter>Core\GameLogic\ScriptedEventEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\StateMachine\StateMachine.cpp">
+      <Filter>Core\Generic\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\StateMachine\BaseState.cpp">
+      <Filter>Core\Generic\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UIComponentFactory.cpp">
+      <Filter>Core\GUI\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UILabel.cpp">
+      <Filter>Core\GUI\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UIComponent.cpp">
+      <Filter>Core\GUI\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\UIStateMachine.cpp">
+      <Filter>Core\GUI\UIState</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\DebugOverLayWidget.cpp">
+      <Filter>Core\GUI\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\CameraControlWidget.cpp">
+      <Filter>Core\GUI\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Input\InputManager.cpp">
+      <Filter>Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Input\ActiveCameraController.cpp">
+      <Filter>Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelFactory.cpp">
+      <Filter>Core\LevelFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\Level.cpp">
+      <Filter>Core\LevelFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Memory\DynamicObject.cpp">
+      <Filter>Core\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Memory\DynamicObjectTrackerManager.cpp">
+      <Filter>Core\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsDebugDrawer.cpp">
+      <Filter>Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsManager.cpp">
+      <Filter>Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\IPhysicsManager.cpp">
+      <Filter>Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsCollisionObjectManager.cpp">
+      <Filter>Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Properties\PropertyCollection.cpp">
+      <Filter>Core\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\RenderableManager.cpp">
+      <Filter>Core\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderer.cpp">
+      <Filter>Core\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\FontManager\FontManager.cpp">
+      <Filter>Core\Rendering\FontManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\FontManager\Font.cpp">
+      <Filter>Core\Rendering\FontManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\LightingManager\LightingManager.cpp">
+      <Filter>Core\Rendering\LightingManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MaterialManager\MaterialManager.cpp">
+      <Filter>Core\Rendering\MaterialManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MaterialManager\Material.cpp">
+      <Filter>Core\Rendering\MaterialManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\DynamicMesh.cpp">
+      <Filter>Core\Rendering\MeshManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\Mesh.cpp">
+      <Filter>Core\Rendering\MeshManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\MeshManager.cpp">
+      <Filter>Core\Rendering\MeshManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\TutTexturedRenderable.cpp">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UI9SliceTexturedQuad.cpp">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UIFontRenderable.cpp">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UITexturedQuadRenderable.cpp">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\AxisRenderable.cpp">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\LineRenderable.cpp">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\Model.cpp">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Shaders\ShaderManager.cpp">
+      <Filter>Core\Rendering\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\TextureManager\TextureManager.cpp">
+      <Filter>Core\Rendering\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\TextureManager\Texture.cpp">
+      <Filter>Core\Rendering\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Settings\Settings.cpp">
+      <Filter>Core\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\StringManager\StringManager.cpp">
+      <Filter>Core\StringManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\IEngine.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\OjerAppEngine2d.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)OjerRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\ResourceLoader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\CharacterEntity.cpp">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\CharacterControler.cpp">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\IGameMaster.cpp">
+      <Filter>Core\GameLogic\GameMaster</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\PGPGameMaster.cpp">
+      <Filter>Core\GameLogic\GameMaster</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\GameMaster.cpp">
+      <Filter>Core\GameLogic\GameMaster</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\AICharacterControler.cpp">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\BulletCharacterController.cpp">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\CollisionContactDelegate.cpp">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsObjectFactory.cpp">
+      <Filter>Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\MathGLMBulletConversionHelpers.cpp">
+      <Filter>Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LUA\LuaScriptRepository.cpp">
+      <Filter>Core\LUA</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LUA\CppInterface.cpp">
+      <Filter>Core\LUA</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameState\GameStateMachine.cpp">
+      <Filter>Core\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Style\StyleFactory.cpp">
+      <Filter>Core\GUI\Style</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\KYCPlanetSizeSweepScript.cpp">
+      <Filter>Core\GameLogic\ScriptedEventEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\Json\json11.cpp">
+      <Filter>Core\Net\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UITouchButton.cpp">
+      <Filter>Core\GUI\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\UIStateDebugControls.cpp">
+      <Filter>Core\GUI\UIState\States\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\UIStateMainMenu.cpp">
+      <Filter>Core\GUI\UIState\States\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\AuthenticationResult.cpp">
+      <Filter>Core\GameLogic\Authentication</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\AuthenticationStateTracker.cpp">
+      <Filter>Core\GameLogic\Authentication</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\Authenticator.cpp">
+      <Filter>Core\GameLogic\Authentication</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\MainMenuWidget.cpp">
+      <Filter>Core\GUI\Widgets\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\DebugMenuWidget.cpp">
+      <Filter>Core\GUI\Widgets\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\NPCAI\NCPAIFactory.cpp">
+      <Filter>Core\GameLogic\AI\NPCAI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\NPCAI\NPCAI.cpp">
+      <Filter>Core\GameLogic\AI\NPCAI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\AIGoal.cpp">
+      <Filter>Core\GameLogic\AI\AIGoal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\AIGoalFactory.cpp">
+      <Filter>Core\GameLogic\AI\AIGoal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\LookAtTargetAIGoal.cpp">
+      <Filter>Core\GameLogic\AI\AIGoal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\AIBehaviorFactory.cpp">
+      <Filter>Core\GameLogic\AI\AIBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\LookAtTargetAIBehavior.cpp">
+      <Filter>Core\GameLogic\AI\AIBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\ScriptedAIBehavior.cpp">
+      <Filter>Core\GameLogic\AI\AIBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Authentication\UIStateAuthInput.cpp">
+      <Filter>Core\GUI\UIState\States\Authentication</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Authentication\AuthenticationInputWidget.cpp">
+      <Filter>Core\GUI\Widgets\Authentication</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\User.cpp">
+      <Filter>Core\User</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\UserProvider.cpp">
+      <Filter>Core\User</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\RequestBuilder.cpp">
+      <Filter>Core\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ProjectileManager.cpp">
+      <Filter>Core\GameLogic\ScriptedEventEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Challenge\ChallengeMenuWidget.cpp">
+      <Filter>Core\GUI\Widgets\Challenge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Challenge\UIStateChallengeMainMenu.cpp">
+      <Filter>Core\GUI\UIState\States\Challenge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboard.cpp">
+      <Filter>Core\GameLogic\Challenge\Leaderboard</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardEntry.cpp">
+      <Filter>Core\GameLogic\Challenge\Leaderboard</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardLoader.cpp">
+      <Filter>Core\GameLogic\Challenge\Leaderboard</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardLoadResult.cpp">
+      <Filter>Core\GameLogic\Challenge\Leaderboard</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Challenge\UIStateChallengeMode.cpp">
+      <Filter>Core\GUI\UIState\States\Challenge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Challenge\ChallengeModeWidget.cpp">
+      <Filter>Core\GUI\Widgets\Challenge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Answer.cpp">
+      <Filter>Core\GameLogic\Question</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Question.cpp">
+      <Filter>Core\GameLogic\Question</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeData.cpp">
+      <Filter>Core\GameLogic\Challenge\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeDataProviderFake.cpp">
+      <Filter>Core\GameLogic\Challenge\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeDataProviderLive.cpp">
+      <Filter>Core\GameLogic\Challenge\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\RenderableObj.cpp">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\User\UserProfileWidget.cpp">
+      <Filter>Core\GUI\Widgets\User</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UIUsernameLabel.cpp">
+      <Filter>Core\GUI\Widgets\User</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\User\UsernameWidget.cpp">
+      <Filter>Core\GUI\Widgets\User</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameState\States\GameMainMenuState.cpp">
+      <Filter>Core\GameState\States</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\Profile\UserProfile.cpp">
+      <Filter>Core\User\Profile</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\User\UserProfileLoader.cpp">
+      <Filter>Core\GameLogic\User</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Flag\QuestionFlagger.cpp">
+      <Filter>Core\GameLogic\Question\Flag</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SimpleRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\Debug3DMathVisualizer.h">
+      <Filter>Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\DebugLogic.h">
+      <Filter>Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\DebugPrintUtil.h">
+      <Filter>Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\Logger\Logger.h">
+      <Filter>Core\Debug\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\EntityFactory.h">
+      <Filter>Core\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Entity.h">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\PhysicsEntity.h">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Primative.h">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\PropulsionEntity.h">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\SkyBox.h">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\WaterPlaneEntity.h">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\WeaponEntity.h">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Camera.h">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Events\GameEvents.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Events\TimeEventGenerator.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Events\EventDispatcher.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ProjectileManager.h">
+      <Filter>Core\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\EntityControler.h">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\ScriptedShipControler.h">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\IScriptedEventEngine.h">
+      <Filter>Core\GameLogic\ScriptedEventEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameState\GameStateMachine.h">
+      <Filter>Core\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\Patterns\Singleton.h">
+      <Filter>Core\Generic\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\StateMachine\StateMachine.h">
+      <Filter>Core\Generic\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\StateMachine\BaseState.h">
+      <Filter>Core\Generic\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UIComponent.h">
+      <Filter>Core\GUI\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UIComponentFactory.h">
+      <Filter>Core\GUI\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UILabel.h">
+      <Filter>Core\GUI\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\UIStateMachine.h">
+      <Filter>Core\GUI\UIState</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\DebugOverLayWidget.h">
+      <Filter>Core\GUI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\CameraControlWidget.h">
+      <Filter>Core\GUI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Input\ActiveCameraController.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Input\InputManager.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\Level.h">
+      <Filter>Core\LevelFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelFactory.h">
+      <Filter>Core\LevelFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\GameTestLevelData.h">
+      <Filter>Core\LevelFactory\LevelData</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\LevelData.h">
+      <Filter>Core\LevelFactory\LevelData</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\MainMenuLevelData.h">
+      <Filter>Core\LevelFactory\LevelData</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\ArtTestLevelData.h">
+      <Filter>Core\LevelFactory\LevelData</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Memory\DynamicObject.h">
+      <Filter>Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Memory\DynamicObjectTrackerManager.h">
+      <Filter>Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsCollisionObjectManager.h">
+      <Filter>Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsDebugDrawer.h">
+      <Filter>Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsManager.h">
+      <Filter>Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\IPhysicsManager.h">
+      <Filter>Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Properties\PropertyCollection.h">
+      <Filter>Core\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\RenderableManager.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderer.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\IRenderTarget.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\FontManager\Font.h">
+      <Filter>Core\Rendering\FontManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\FontManager\FontManager.h">
+      <Filter>Core\Rendering\FontManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\LightingManager\LightingManager.h">
+      <Filter>Core\Rendering\LightingManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MaterialManager\MaterialManager.h">
+      <Filter>Core\Rendering\MaterialManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MaterialManager\Material.h">
+      <Filter>Core\Rendering\MaterialManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\DynamicMesh.h">
+      <Filter>Core\Rendering\MeshManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\Mesh.h">
+      <Filter>Core\Rendering\MeshManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\MeshManager.h">
+      <Filter>Core\Rendering\MeshManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\TutTexturedRenderable.h">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UI9SliceTexturedQuad.h">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UIFontRenderable.h">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UITexturedQuadRenderable.h">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\AxisRenderable.h">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\LineRenderable.h">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\Model.h">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Shaders\ShaderManager.h">
+      <Filter>Core\Rendering\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\TextureManager\Texture.h">
+      <Filter>Core\Rendering\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\TextureManager\TextureManager.h">
+      <Filter>Core\Rendering\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Settings\Settings.h">
+      <Filter>Core\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\StringManager\StringManager.h">
+      <Filter>Core\StringManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\IEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)OjerRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\ResourceLoader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\CharacterEntity.h">
+      <Filter>Core\Entity\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\CharacterControler.h">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\IGameMaster.h">
+      <Filter>Core\GameLogic\GameMaster</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\PGPGameMaster.h">
+      <Filter>Core\GameLogic\GameMaster</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\GameMaster.h">
+      <Filter>Core\GameLogic\GameMaster</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\RunningAverage.h">
+      <Filter>Core\Generic</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Input\InputDataTypes.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\AICharacterControler.h">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\ILevelView.h">
+      <Filter>Core\LevelFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Math\OjerMath.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\BulletCharacterController.h">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\CollisionContactDelegate.h">
+      <Filter>Core\GameLogic\EntityControler</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsInterfaces.h">
+      <Filter>Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsObjectFactory.h">
+      <Filter>Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\MathGLMBulletConversionHelpers.h">
+      <Filter>Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LUA\LuaScriptRepository.h">
+      <Filter>Core\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LUA\LuaPrintOutputRedirect.h">
+      <Filter>Core\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LUA\CppInterface.h">
+      <Filter>Core\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Style\StyleFactory.h">
+      <Filter>Core\GUI\Style</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\KYCPlanetSizeSweepScript.h">
+      <Filter>Core\GameLogic\ScriptedEventEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\KYCPlanetSizeSweepLevelData.h">
+      <Filter>Core\LevelFactory\LevelData</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\Json\JsonProvider.h">
+      <Filter>Core\Net\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\IRestConnector.h">
+      <Filter>Core\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\Json\json11.hpp">
+      <Filter>Core\Net\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\IRestReceiver.h">
+      <Filter>Core\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UITouchButton.h">
+      <Filter>Core\GUI\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\LoginLevelData.h">
+      <Filter>Core\LevelFactory\LevelData</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\UIStateDebugControls.h">
+      <Filter>Core\GUI\UIState\States\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\UIStateMainMenu.h">
+      <Filter>Core\GUI\UIState\States\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\AuthenticationResult.h">
+      <Filter>Core\GameLogic\Authentication</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\AuthenticationStateTracker.h">
+      <Filter>Core\GameLogic\Authentication</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\Authenticator.h">
+      <Filter>Core\GameLogic\Authentication</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\MainMenuWidget.h">
+      <Filter>Core\GUI\Widgets\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\DebugMenuWidget.h">
+      <Filter>Core\GUI\Widgets\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\NPCProperties.h">
+      <Filter>Core\GameLogic\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\NPCAI\NCPAIFactory.h">
+      <Filter>Core\GameLogic\AI\NPCAI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\NPCAI\NPCAI.h">
+      <Filter>Core\GameLogic\AI\NPCAI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\AIGoal.h">
+      <Filter>Core\GameLogic\AI\AIGoal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\AIGoalFactory.h">
+      <Filter>Core\GameLogic\AI\AIGoal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\IAIGoal.h">
+      <Filter>Core\GameLogic\AI\AIGoal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\LookAtTargetAIGoal.h">
+      <Filter>Core\GameLogic\AI\AIGoal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\AIBehavior.h">
+      <Filter>Core\GameLogic\AI\AIBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\AIBehaviorFactory.h">
+      <Filter>Core\GameLogic\AI\AIBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\IAIBehavior.h">
+      <Filter>Core\GameLogic\AI\AIBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\IAIBehaviorListener.h">
+      <Filter>Core\GameLogic\AI\AIBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\LookAtTargetAIBehavior.h">
+      <Filter>Core\GameLogic\AI\AIBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\ScriptedAIBehavior.h">
+      <Filter>Core\GameLogic\AI\AIBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Authentication\UIStateAuthInput.h">
+      <Filter>Core\GUI\UIState\States\Authentication</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Authentication\AuthenticationInputWidget.h">
+      <Filter>Core\GUI\Widgets\Authentication</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\User.h">
+      <Filter>Core\User</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\UserProvider.h">
+      <Filter>Core\User</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\RequestBuilder.h">
+      <Filter>Core\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Challenge\ChallengeMenuWidget.h">
+      <Filter>Core\GUI\Widgets\Challenge</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Challenge\UIStateChallengeMainMenu.h">
+      <Filter>Core\GUI\UIState\States\Challenge</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboard.h">
+      <Filter>Core\GameLogic\Challenge\Leaderboard</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardEntry.h">
+      <Filter>Core\GameLogic\Challenge\Leaderboard</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardLoader.h">
+      <Filter>Core\GameLogic\Challenge\Leaderboard</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardLoadResult.h">
+      <Filter>Core\GameLogic\Challenge\Leaderboard</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Challenge\UIStateChallengeMode.h">
+      <Filter>Core\GUI\UIState\States\Challenge</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Challenge\ChallengeModeWidget.h">
+      <Filter>Core\GUI\Widgets\Challenge</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Answer.h">
+      <Filter>Core\GameLogic\Question</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Question.h">
+      <Filter>Core\GameLogic\Question</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeData.h">
+      <Filter>Core\GameLogic\Challenge\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeDataProviderFake.h">
+      <Filter>Core\GameLogic\Challenge\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\EntityAnimators\BasicMovementEntityAnimator.h">
+      <Filter>Core\GameLogic\ScriptedEventEngine\EntityAnimators</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\EntityAnimators\EntityAnimatorFactory.h">
+      <Filter>Core\GameLogic\ScriptedEventEngine\EntityAnimators</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\EntityAnimators\IEntityAnimator.h">
+      <Filter>Core\GameLogic\ScriptedEventEngine\EntityAnimators</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\EntityAnimators\RotationEntityAnimator.h">
+      <Filter>Core\GameLogic\ScriptedEventEngine\EntityAnimators</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\IChallengeDataProvider.h">
+      <Filter>Core\GameLogic\Challenge\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\IChallengeDataProviderReceiver.h">
+      <Filter>Core\GameLogic\Challenge\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\IQuestionsReadyReceiver.h">
+      <Filter>Core\GameLogic\Question</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\IAnswerSelectedReceiver.h">
+      <Filter>Core\GameLogic\Question</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeDataProviderLive.h">
+      <Filter>Core\GameLogic\Challenge\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\OjerAppEngine2d.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\RenderableObj.h">
+      <Filter>Core\Rendering\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Keyboard\IKeyboardActivator.h">
+      <Filter>Core\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Keyboard\IKeyboardListener.h">
+      <Filter>Core\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Keyboard\KeyboardManager.h">
+      <Filter>Core\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\IUserMemory.h">
+      <Filter>Core\User</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\User\UserProfileWidget.h">
+      <Filter>Core\GUI\Widgets\User</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\User\UserProfileAccessor.h">
+      <Filter>Core\GUI\UIState\States\User</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\UIUsernameLabel.h">
+      <Filter>Core\GUI\Widgets\User</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\User\IUserProfileDisplayListener.h">
+      <Filter>Core\GUI\Widgets\User</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\User\UsernameWidget.h">
+      <Filter>Core\GUI\Widgets\User</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameState\States\GameMainMenuState.h">
+      <Filter>Core\GameState\States</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\Profile\UserProfile.h">
+      <Filter>Core\User\Profile</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\User\UserProfileLoader.h">
+      <Filter>Core\GameLogic\User</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Flag\QuestionFlagger.h">
+      <Filter>Core\GameLogic\Question\Flag</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{b7f2ca53-6865-4f44-8535-0f671ac9a147}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Debug">
+      <UniqueIdentifier>{abeafce2-3605-4630-ad88-336c0d866f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Debug\Logger">
+      <UniqueIdentifier>{0424f271-7c92-40a5-ae67-40b74e286dba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Entity">
+      <UniqueIdentifier>{7d2915a0-d431-4917-bab6-17b9b6dc83b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Entity\Entities">
+      <UniqueIdentifier>{57bd476c-55b7-42ff-bfa2-394c0f42bc15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Events">
+      <UniqueIdentifier>{31757a4b-65a1-47fb-98da-0aeac09d42a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameState">
+      <UniqueIdentifier>{5bac1422-1945-4350-a924-b14ee3c2b80a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameState\States">
+      <UniqueIdentifier>{698fadf8-61f3-4882-8442-13af6616e2ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Generic">
+      <UniqueIdentifier>{83947c50-f1bd-4c82-8c06-e672a57abca8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Generic\Patterns">
+      <UniqueIdentifier>{f87c5a1d-e2e6-464b-81e2-ba1fceb355f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Generic\StateMachine">
+      <UniqueIdentifier>{e502b416-8f2d-4bea-8376-b6216b862940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI">
+      <UniqueIdentifier>{49bbbbb4-d01a-47bd-a369-0b335d533597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\Components">
+      <UniqueIdentifier>{3566cfc1-383a-4b72-9a22-add39fd198ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\UIState">
+      <UniqueIdentifier>{24fd050e-1f50-4d69-be0a-a8af084c52ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\Widgets">
+      <UniqueIdentifier>{39e1011f-118c-4823-90ad-0577bdf588dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\UIState\States">
+      <UniqueIdentifier>{dfacf1fb-d6ef-4128-88c5-971c70828e01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Input">
+      <UniqueIdentifier>{1a8759d6-685b-41e0-a4a0-b9093dc2e8ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\LevelFactory">
+      <UniqueIdentifier>{189d4b27-68b6-46e3-9ca9-0b3800636411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\LevelFactory\LevelData">
+      <UniqueIdentifier>{dc0d1666-f71d-4c2a-b0d8-bdba382f4236}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Memory">
+      <UniqueIdentifier>{08d4c99a-072e-4626-b1eb-8767df723367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics">
+      <UniqueIdentifier>{adc419ad-aaae-4c25-af7c-960c4a136178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Properties">
+      <UniqueIdentifier>{60f7a222-7daa-46d8-9528-0001ef32572a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Rendering">
+      <UniqueIdentifier>{9f76a678-82e0-4079-864a-b437bfc367a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Rendering\FontManager">
+      <UniqueIdentifier>{2cc13f55-c309-41f8-a43e-0ecf3e9465e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Rendering\LightingManager">
+      <UniqueIdentifier>{be91d7e7-2ac6-4502-8be6-55978f6ea9f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Rendering\MaterialManager">
+      <UniqueIdentifier>{9e9fe42e-61f0-402a-9446-5e83a48efef9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Rendering\MeshManager">
+      <UniqueIdentifier>{e2877df8-3543-4e91-9f4d-d4fdf683f74b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Rendering\Renderables">
+      <UniqueIdentifier>{856e2c02-4230-4790-83ba-dd354f8b09ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Rendering\Shaders">
+      <UniqueIdentifier>{0b9dd816-5a35-4f02-af8b-8c72174f58c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Rendering\TextureManager">
+      <UniqueIdentifier>{10c82394-3af1-48b5-9031-8b77d1b4dae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Settings">
+      <UniqueIdentifier>{c5ed17c8-2b4b-4561-9d8b-6aae1d4df01e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\StringManager">
+      <UniqueIdentifier>{66c3070f-ee0f-4578-ae5e-d9911b18114d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math">
+      <UniqueIdentifier>{78d7be62-e16c-4098-afcf-196b6359c20f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\LUA">
+      <UniqueIdentifier>{2c1fb095-5984-4cd0-985d-6ad26cfe683b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\Style">
+      <UniqueIdentifier>{3c483a42-aebf-4588-8d0a-0b5892d93eab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Net">
+      <UniqueIdentifier>{fc2ba156-0d8f-4166-bb65-22db600c05e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Net\Json">
+      <UniqueIdentifier>{2cf79005-ba25-4f72-9c43-4537060cccf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\UIState\States\Authentication">
+      <UniqueIdentifier>{3b41bba3-fffe-4a8f-979e-eb80f4e16138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\UIState\States\Debug">
+      <UniqueIdentifier>{cc1d0e67-d29a-4415-8935-a06f8e638a0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\UIState\States\Menu">
+      <UniqueIdentifier>{6f1dea65-1513-401e-9143-2cf213fb4af3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\User">
+      <UniqueIdentifier>{b03def1c-cbf0-41e8-9309-c71abb4c3b93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\Widgets\Authentication">
+      <UniqueIdentifier>{cea799b2-c705-455d-93a9-3f4a30ce43ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\Widgets\Menu">
+      <UniqueIdentifier>{c44119b1-4101-4dd5-b79d-5ec75168548d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\UIState\States\Challenge">
+      <UniqueIdentifier>{8bc007f6-ffa8-4e0a-b191-22d257453668}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\Widgets\Challenge">
+      <UniqueIdentifier>{30301375-0c22-429f-910f-199516a305e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic">
+      <UniqueIdentifier>{59216f4d-7452-4983-94c7-12ac6bba9357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\EntityControler">
+      <UniqueIdentifier>{f1a305a9-8213-4978-8705-9f0d42597af4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\ScriptedEventEngine">
+      <UniqueIdentifier>{40e3231d-3791-4d30-8f9f-a1fe9f9cd919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\GameMaster">
+      <UniqueIdentifier>{a3026166-339b-40d8-9f7a-afb10d45f7f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\Authentication">
+      <UniqueIdentifier>{2021d0b3-fb04-48d6-a297-e1adb01905a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\AI">
+      <UniqueIdentifier>{d6469dd1-dc0e-4177-9723-71a4f35d26c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\AI\AIBehavior">
+      <UniqueIdentifier>{7e4ddfd2-e7d1-4ed1-a2f7-2ccead80ca8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\AI\AIGoal">
+      <UniqueIdentifier>{1bed3620-66c5-404a-869e-e2cffd537486}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\AI\NPCAI">
+      <UniqueIdentifier>{40d49e6a-b0e4-40f3-9130-398ade7c1baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\Challenge">
+      <UniqueIdentifier>{167f5f06-28a3-476f-b0d9-4b48765bebf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\ScriptedEventEngine\EntityAnimators">
+      <UniqueIdentifier>{6d3fd005-49e3-484d-a294-04aff121efb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\Challenge\Leaderboard">
+      <UniqueIdentifier>{69d94b01-3eaf-41fd-a53d-8a4798920ba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\Challenge\Gameplay">
+      <UniqueIdentifier>{13ecda6d-6068-4779-880b-31689238f365}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\Question">
+      <UniqueIdentifier>{b0ddcbba-02ba-4ad0-9918-0d4bca488684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Keyboard">
+      <UniqueIdentifier>{305bbcbb-44ec-415d-a82f-f3be568c4499}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\UIState\States\User">
+      <UniqueIdentifier>{2e7bc4ba-838e-4227-87a9-63b270bb7a58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\Widgets\User">
+      <UniqueIdentifier>{ab09c0a4-264e-4348-be32-224bdceef035}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\User\Profile">
+      <UniqueIdentifier>{dadaa175-b96a-4466-9e15-148d6308a02b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\User">
+      <UniqueIdentifier>{edb2cf8a-ca1e-44e6-937f-efc6b51f5c6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameLogic\Question\Flag">
+      <UniqueIdentifier>{9710ff20-2c3b-4c36-98ae-34474915ab3e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

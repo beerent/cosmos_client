@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME debugPoint
+s TEXTURE_NAME debugColorRed
+

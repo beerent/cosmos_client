@@ -1,0 +1,33 @@
+#version 100 
+precision highp float;
+
+varying vec2 fTexCord;
+varying vec3 EyespaceNormal;
+varying vec3 Diffuse;
+varying vec3 Ambient;
+varying vec3 Specular;
+varying float Shine;
+varying float Edge;
+
+uniform sampler2D mytexture;
+uniform vec3 lightPos;
+
+void main(void) {
+
+vec3 N = normalize(EyespaceNormal);
+vec3 L = normalize(lightPos);
+vec3 E = vec3(0,0,1);
+vec3 H = normalize(L + E);
+float df = max(0.0, dot(N, L));
+float sf = max(0.0, dot(N, H));
+sf = pow(sf, Shine);    
+if(df < 0.2) df = 0.0;
+else if(df < 0.7) df = 0.7;
+else df = 1.0;
+
+sf = step(0.1, sf);
+
+vec3 color = Ambient + df * Diffuse + sf * Specular;
+
+gl_FragColor = texture2D(mytexture, fTexCord  * vec2(1.0, -1.0)) * vec4(color, 1.0);
+}

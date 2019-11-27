@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME anchor
+s TEXTURE_NAME anchor
+s MATERIAL CS_MatteMaterial2pass

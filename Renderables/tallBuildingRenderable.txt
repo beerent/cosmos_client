@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME tallBuilding
+s TEXTURE_NAME tallBuilding
+s MATERIAL MetalMaterial

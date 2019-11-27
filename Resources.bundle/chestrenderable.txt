@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME chest
+s TEXTURE_NAME chest
+s MATERIAL CS_MatteMaterial2pass

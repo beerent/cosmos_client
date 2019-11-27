@@ -1,0 +1,123 @@
+# Blender MTL File: 'firstIsland.blend'
+# Material Count: 11
+
+newmtl Chest_Wood
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.205469 0.092868 0.020207
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd  /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/tempTreasureChestModel/Chest.png
+
+newmtl Island
+Ns 7.843137
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.400000 0.346668 0.229918
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd  /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/tempIslandModel/island.png
+
+newmtl Material
+Ns 82.352941
+Ka 1.000000 1.000000 1.000000
+Kd 0.138684 0.138684 0.138684
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd  /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/tempDolphinModel/uvsimpleDolphin5.png
+
+newmtl Material.001
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.059161 0.059161 0.059161
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd  /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/TempCannonBall/cannonball.png
+
+newmtl Material.002
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.573353 0.617568
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd  /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/tempPlayer/PirateCube.png
+
+newmtl Material.004
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/TempCannonModel/tempCannonModel.png
+
+newmtl Material.005
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/tempShipModel/tempShipModel.png
+
+newmtl Material.006
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ke 0.400000 0.400000 0.400000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/pixietyger/Dropbox/barrelMap.png
+
+newmtl Material.008
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.143090 0.080769 0.057421
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/Pirate/pirateTextures/pirateblocks3.png
+
+newmtl Material.009
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.048575 0.017559 0.005848
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/Pirate/pirateTextures/piratehairB.png
+
+newmtl palm
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.400000 0.400000 0.400000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/tempPalmTree/palmTrunkUVmap.png

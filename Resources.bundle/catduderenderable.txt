@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME catDude
+s TEXTURE_NAME catDude
+s MATERIAL CS_LE_MatteMaterial

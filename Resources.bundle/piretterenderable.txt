@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME pirette
+s TEXTURE_NAME pirette
+s MATERIAL CS_LE_MatteMaterial

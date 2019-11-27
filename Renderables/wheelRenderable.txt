@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME wheel
+s TEXTURE_NAME wheel
+s MATERIAL CS_MatteMaterial2pass

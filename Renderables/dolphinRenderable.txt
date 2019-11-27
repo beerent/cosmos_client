@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME dolphin
+s TEXTURE_NAME dolphin
+s MATERIAL CS_MatteMaterial2pass

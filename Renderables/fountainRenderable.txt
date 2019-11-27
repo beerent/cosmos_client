@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME fountain
+s TEXTURE_NAME fountain
+s MATERIAL MetalMaterial

@@ -1,0 +1,3 @@
+s TYPE TYPE_MODEL
+s MESH_NAME earth
+s TEXTURE_NAME earth

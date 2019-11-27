@@ -1,0 +1,13 @@
+# Blender MTL File: 'tardis.blend'
+# Material Count: 1
+
+newmtl Material
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.006095 0.342383
+Ks 0.000000 0.012995 0.343284
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/BABY/textures/Tardis.png

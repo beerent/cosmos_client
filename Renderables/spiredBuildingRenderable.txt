@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME spiredBuilding
+s TEXTURE_NAME cubeBuildingglow
+s MATERIAL MetalMaterial

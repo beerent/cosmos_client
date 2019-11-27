@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME shipDoor
+s TEXTURE_NAME shipDoor
+s MATERIAL CS_MatteMaterial2pass

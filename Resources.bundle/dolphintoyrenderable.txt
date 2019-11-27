@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME dolphinToy
+s TEXTURE_NAME dolphinToy
+s MATERIAL MetalMaterial

@@ -1,0 +1,3 @@
+#include "Core/GameLogic/AI/AIGoal/LookAtTargetAIGoal.h"
+CONST_STRING_DEF(LookAtTargetAIGoal, TARGET_PROPERTY_NAME)
+CONST_STRING_DEF(LookAtTargetAIGoal, OWNER_PROPERTY_NAME)

@@ -1,0 +1,7 @@
+s TYPE TYPE_MODEL
+s MESH_NAME tempWaterModel
+s TEXTURE_NAME tempWater
+s TEXTURE2_NAME waterFade
+s TEXTURE3_NAME waterCellShadeSteps
+s MESH_TYPE dynamic
+s MATERIAL WaterMaterial

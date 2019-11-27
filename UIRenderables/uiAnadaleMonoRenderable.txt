@@ -1,0 +1,5 @@
+s TYPE UI_FONT
+s TEXTURE_NAME AnadaleMonoAtlas
+s FONT_NAME AnadaleMonoArchetype
+s RENDER_GROUP TRANSPARENT
+l FONT_3D 0

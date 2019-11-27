@@ -1,0 +1,3 @@
+s TYPE TYPE_MODEL
+s MESH_NAME debugArrow
+s TEXTURE_NAME debugColorRed

@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME cannonball
+s TEXTURE_NAME cannonball
+s MATERIAL CS_LE_MatteMaterial

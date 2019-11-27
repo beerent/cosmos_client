@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME plazaGround
+s TEXTURE_NAME plazaGround
+s MATERIAL MetalMaterial

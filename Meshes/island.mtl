@@ -1,0 +1,13 @@
+# Blender MTL File: 'island.blend'
+# Material Count: 1
+
+newmtl Island
+Ns 7.843137
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.400000 0.346668 0.229918
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\\p4\\ProjectIOS1\\SourceArt\\tempIslandModel\\just the Island blends\\island.png

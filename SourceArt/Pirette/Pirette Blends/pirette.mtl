@@ -1,0 +1,22 @@
+# Blender MTL File: 'pirette4.blend'
+# Material Count: 2
+
+newmtl Material
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.729115 0.306779 0.022154
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/Pirette/Pirette Textures/pirette.png
+
+newmtl Material.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.171228 0.076702 0.030856
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/Pirette/Pirette Textures/pirette.png

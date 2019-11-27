@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME tempCannonModel
+s TEXTURE_NAME tempCannonModel
+s MATERIAL CS_MatteMaterial2pass

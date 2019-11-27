@@ -1,0 +1,5 @@
+s TYPE TYPE_MODEL
+s MESH_NAME starDestroyer
+s TEXTURE_NAME starDestroyer
+s EMISIVE_TEXTURE_NAME starDestroyerEmisive
+s MATERIAL MetalEmisiveMaterial

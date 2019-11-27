@@ -1,0 +1,12 @@
+# Blender MTL File: 'tarsus.blend'
+# Material Count: 1
+
+newmtl Material
+Ns 258.823529
+Ka 0.000000 0.000000 0.000000
+Kd 0.226094 0.226094 0.226094
+Ks 0.059055 0.059055 0.059055
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd TarsusTexture6.png

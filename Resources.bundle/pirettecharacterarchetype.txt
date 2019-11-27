@@ -1,0 +1,2 @@
+s TYPE TYPE_CHARACTER_ENTITY
+s RENDERABLE_NAME firstPirateRenderable

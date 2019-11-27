@@ -1,0 +1,4 @@
+s TYPE TYPE_PHYSICS_ENTITY
+s RENDERABLE_NAMEdisabled collisionBoxRenderable
+s RENDERABLE_NAME collisionBarrelRenderable
+s SHAPE_TYPE CONVEX_HULL

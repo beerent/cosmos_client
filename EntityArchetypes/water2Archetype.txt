@@ -1,0 +1,2 @@
+s TYPE TYPE_WATER_PLANE
+s RENDERABLE_NAME waterRenderable

@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME roundedDoor
+s TEXTURE_NAME roundedDoor
+s MATERIAL CS_MatteMaterial2pass

@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{f925c3cf-d53b-412c-9dc8-401ba577b303}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\Debug3DMathVisualizer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\DebugLogic.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\DebugPrintUtil.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\Logger\Logger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Camera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\CharacterEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Entity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\PhysicsEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Primative.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\PropulsionEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\SkyBox.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\WaterPlaneEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\WeaponEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\EntityFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Events\EventDispatcher.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Events\GameEvents.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Events\TimeEventGenerator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\AIBehavior.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\AIBehaviorFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\IAIBehavior.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\IAIBehaviorListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\LookAtTargetAIBehavior.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\ScriptedAIBehavior.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\AIGoal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\AIGoalFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\IAIGoal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\LookAtTargetAIGoal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\NPCAI\NCPAIFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\NPCAI\NPCAI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\NPCProperties.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\AuthenticationResult.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\AuthenticationStateTracker.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\Authenticator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeData.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeDataProviderFake.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeDataProviderLive.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\IChallengeDataProvider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\IChallengeDataProviderReceiver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboard.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardEntry.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardLoader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardLoadResult.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\AICharacterControler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\CharacterControler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\EntityControler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\ScriptedShipControler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\GameMaster.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\IGameMaster.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\PGPGameMaster.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ProjectileManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Answer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Flag\QuestionFlagger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\IAnswerSelectedReceiver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\IQuestionsReadyReceiver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Question.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\EntityAnimators\BasicMovementEntityAnimator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\EntityAnimators\EntityAnimatorFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\EntityAnimators\IEntityAnimator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\EntityAnimators\RotationEntityAnimator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\IScriptedEventEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\KYCPlanetSizeSweepScript.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\User\UserProfileLoader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameState\GameStateMachine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameState\States\GameMainMenuState.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\Patterns\Singleton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\RunningAverage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\StateMachine\BaseState.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\StateMachine\StateMachine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UIComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UIComponentFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UILabel.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UITouchButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Style\StyleFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Authentication\UIStateAuthInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Challenge\UIStateChallengeMainMenu.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Challenge\UIStateChallengeMode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\UIStateDebugControls.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\UIStateMainMenu.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\User\UserProfileAccessor.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\UIStateMachine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Authentication\AuthenticationInputWidget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\CameraControlWidget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Challenge\ChallengeMenuWidget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Challenge\ChallengeModeWidget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\DebugMenuWidget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\DebugOverLayWidget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\MainMenuWidget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\User\IUserProfileDisplayListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\User\UsernameWidget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\User\UserProfileWidget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Input\ActiveCameraController.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Input\InputDataTypes.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Input\InputManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Keyboard\IKeyboardActivator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Keyboard\IKeyboardListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Keyboard\KeyboardManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\ILevelView.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\Level.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\ArtTestLevelData.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\GameTestLevelData.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\KYCPlanetSizeSweepLevelData.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\LevelData.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\LoginLevelData.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelData\MainMenuLevelData.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LUA\CppInterface.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LUA\LuaPrintOutputRedirect.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LUA\LuaScriptRepository.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Math\OjerMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Memory\DynamicObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Memory\DynamicObjectTrackerManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\IRestConnector.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\IRestReceiver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\Json\json11.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\Json\JsonProvider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\RequestBuilder.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\BulletCharacterController.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\CollisionContactDelegate.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\IPhysicsManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\MathGLMBulletConversionHelpers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsCollisionObjectManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsDebugDrawer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsInterfaces.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsObjectFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Properties\PropertyCollection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\FontManager\Font.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\FontManager\FontManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\IRenderTarget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\LightingManager\LightingManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MaterialManager\Material.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MaterialManager\MaterialManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\DynamicMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\Mesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\MeshManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\RenderableManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\AxisRenderable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\LineRenderable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\Model.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\RenderableObj.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\TutTexturedRenderable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UI9SliceTexturedQuad.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UIFontRenderable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UITexturedQuadRenderable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Shaders\ShaderManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\TextureManager\Texture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\TextureManager\TextureManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Settings\Settings.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\StringManager\StringManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\IUserMemory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\Profile\UserProfile.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\UIUsernameLabel.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\User.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\UserProvider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\IEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\OjerAppEngine2d.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\Classes\ResourceLoader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MathHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)OjerRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SimpleRenderer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\Debug3DMathVisualizer.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\DebugLogic.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\DebugPrintUtil.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Debug\Logger\Logger.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Camera.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\CharacterEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Entity.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\PhysicsEntity.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\Primative.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\PropulsionEntity.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\SkyBox.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\WaterPlaneEntity.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\Entities\WeaponEntity.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Entity\EntityFactory.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Events\EventDispatcher.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Events\TimeEventGenerator.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\AIBehaviorFactory.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\LookAtTargetAIBehavior.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIBehavior\ScriptedAIBehavior.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\AIGoal.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\AIGoalFactory.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\AIGoal\LookAtTargetAIGoal.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\NPCAI\NCPAIFactory.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\AI\NPCAI\NPCAI.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\AuthenticationResult.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\AuthenticationStateTracker.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Authentication\Authenticator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeData.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeDataProviderFake.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Gameplay\ChallengeDataProviderLive.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboard.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardEntry.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardLoader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Challenge\Leaderboard\ChallengeLeaderboardLoadResult.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\AICharacterControler.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\CharacterControler.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\EntityControler.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\EntityControler\ScriptedShipControler.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\GameMaster.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\IGameMaster.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\GameMaster\PGPGameMaster.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ProjectileManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Answer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Flag\QuestionFlagger.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\Question\Question.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\IScriptedEventEngine.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\ScriptedEventEngine\KYCPlanetSizeSweepScript.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameLogic\User\UserProfileLoader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameState\GameStateMachine.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GameState\States\GameMainMenuState.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\StateMachine\BaseState.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Generic\StateMachine\StateMachine.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UIComponent.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UIComponentFactory.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UILabel.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UITouchButton.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Components\UIUsernameLabel.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Style\StyleFactory.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Authentication\UIStateAuthInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Challenge\UIStateChallengeMainMenu.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\Challenge\UIStateChallengeMode.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\UIStateDebugControls.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\States\UIStateMainMenu.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\UIState\UIStateMachine.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Authentication\AuthenticationInputWidget.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\CameraControlWidget.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Challenge\ChallengeMenuWidget.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\Challenge\ChallengeModeWidget.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\DebugMenuWidget.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\DebugOverLayWidget.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\MainMenuWidget.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\User\UsernameWidget.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\GUI\Widgets\User\UserProfileWidget.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Input\ActiveCameraController.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Input\InputManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\Level.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LevelFactory\LevelFactory.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LUA\CppInterface.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\LUA\LuaScriptRepository.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Memory\DynamicObject.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Memory\DynamicObjectTrackerManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\Json\json11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Net\RequestBuilder.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\BulletCharacterController.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\CollisionContactDelegate.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\IPhysicsManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\MathGLMBulletConversionHelpers.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsCollisionObjectManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsDebugDrawer.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Physics\PhysicsObjectFactory.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Properties\PropertyCollection.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\FontManager\Font.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\FontManager\FontManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\LightingManager\LightingManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MaterialManager\Material.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MaterialManager\MaterialManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\DynamicMesh.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\Mesh.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\MeshManager\MeshManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\RenderableManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\AxisRenderable.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\LineRenderable.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\Model.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\RenderableObj.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\TutTexturedRenderable.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UI9SliceTexturedQuad.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UIFontRenderable.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderables\UITexturedQuadRenderable.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Renderer.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\Shaders\ShaderManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\TextureManager\Texture.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Rendering\TextureManager\TextureManager.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\Settings\Settings.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\StringManager\StringManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\Profile\UserProfile.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\User.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\Core\User\UserProvider.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\IEngine.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\OjerAppEngine2d.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\Classes\ResourceLoader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)OjerRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SimpleRenderer.cpp" />
+  </ItemGroup>
+</Project>

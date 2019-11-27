@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME tallLadder
+s TEXTURE_NAME ladder
+s MATERIAL CS_MatteMaterial2pass

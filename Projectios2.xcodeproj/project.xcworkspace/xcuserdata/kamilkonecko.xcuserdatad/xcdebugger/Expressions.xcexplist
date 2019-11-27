@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "OjerAppEngine2d::Initialize(int, int, IResourceLoader*):OjerAppEngine2d.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "mp_uiRoot">
+            </PersistentString>
+            <PersistentString
+               value = "m_resourceLoader">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Mesh::init(int, unsigned int*, unsigned int, Vector3&lt;float&gt;*, unsigned int):Mesh.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_vertices">
+            </PersistentString>
+            <PersistentString
+               value = "*m_indexes">
+            </PersistentString>
+            <PersistentString
+               value = "pVertices">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Renderer::PreInitialize():Renderer.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "RenderableManager::getRenderable(int):RenderableManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "StringManager::getStringFromID(name)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Mesh::init(int, Vector3&lt;int&gt;*, unsigned int, Vector3&lt;float&gt;*, unsigned int, Vector2&lt;float&gt;*, unsigned int):Mesh.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "*pVertices">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UIFontRenderable::OnRender(Renderer&amp;, glm::detail::tvec3&lt;float&gt; const&amp;, char const*):UIFontRenderable.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Entity::init(PropertyCollection const&amp;):Entity.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_namePlate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PropertyCollection::findIndexOfProperty(int) const:PropertyCollection.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_properties">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RenderableManager::releaseRenderable(int):RenderableManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "StringManager::getStringFromID(name)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Entity::release():Entity.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "StringManager::getStringFromID(157)">
+            </PersistentString>
+            <PersistentString
+               value = "StringManager::getStringFromID(180)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Model::init(PropertyCollection const&amp;):Model.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_pMesh">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Renderer::onBeginRender():Renderer.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Renderer::Initialize():Renderer.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "err">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UIFontRenderable::init(PropertyCollection const&amp;):UIFontRenderable.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "StringManager::getStringFromID(property-&gt;m_name )">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "btMatrix3x3::getOpenGLSubMatrix(float*) const:btMatrix3x3.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "m[15]">
+            </PersistentString>
+            <PersistentString
+               value = "m[1]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MeshManager::readOBJMesh(int):MeshManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "sizeof(&amp;m_charBuffer)">
+            </PersistentString>
+            <PersistentString
+               value = "m_faceBuffer[2]">
+            </PersistentString>
+            <PersistentString
+               value = "m_faceBuffer[0]">
+            </PersistentString>
+            <PersistentString
+               value = "m_faceBuffer[1]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MeshRenderable::init(Mesh*):MeshRenderable.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_pMesh-&gt;getVertexCount()">
+            </PersistentString>
+            <PersistentString
+               value = "m_pMesh-&gt;getVertexData()) * m_pMesh-&gt;getVertexCount()">
+            </PersistentString>
+            <PersistentString
+               value = "sizeof(Mesh::VertexData) * m_pMesh-&gt;getIndexCount()">
+            </PersistentString>
+            <PersistentString
+               value = "sizeof(m_pMesh-&gt;getVertexData()) * m_pMesh-&gt;getVertexCount()">
+            </PersistentString>
+            <PersistentString
+               value = "sizeof(m_pMesh-&gt;getIndexes()) * m_pMesh-&gt;getIndexCount()">
+            </PersistentString>
+            <PersistentString
+               value = "sizeof(m_pMesh-&gt;getVertexData())">
+            </PersistentString>
+            <PersistentString
+               value = "m_pMesh">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MeshManager::readObjFaceLine(unsigned int*):MeshManager.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "EntityFactory::createEntities(int, std::vector&lt;Entity*, std::allocator&lt;Entity*&gt; &gt;&amp;, Entity*):EntityFactory.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "StringManager::getStringFromID(name)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UILabel::onRender(Renderer&amp;):UILabel.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_textWidth">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "btTransform::getOpenGLMatrix(float*) const:btTransform.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "m[15]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Entity::removeChild(Entity const*):Entity.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "(*it)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PropertyCollection::addPropertyFromStream(char*):PropertyCollection.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "STRING_ID">
+            </PersistentString>
+            <PersistentString
+               value = "m_propertyCount">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ResourceLoader::loadPngImage(std::string const&amp;, int&amp;, int&amp;, void*, int&amp;):IResourceLoader.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_imageData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Renderable::_release():Renderable.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "StringManager::getStringFromID(m_renderableType)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Texture::init(Texture::TextureFormat, unsigned char*, unsigned int, unsigned int, unsigned int):Texture.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_data">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EntityFactory::readEntityNameInfo(char const*, int&amp;, int&amp;, int&amp;):EntityFactory.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "StringManager::getStringFromID(instanceName)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UITuchButton::handleOnRelease():UITuchButton.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "TextureManager::getInstance():TextureManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "this">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DynamicObjectTrackerManager::printDebugInfoForObject(DynamicObjectTrackerManager::DynamicObjectTracker const&amp;) const:DynamicObjectTrackerManager.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "TutTexturedRenderable::init():TutTexturedRenderable.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "sizeof(vertexData3d)">
+            </PersistentString>
+            <PersistentString
+               value = "sizeof(cubeIndexes)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LevelFactory::getActiveLevel():LevelFactory.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_instance">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Renderable::release():Renderable.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "StringManager::getStringFromID(m_renderableType)">
+            </PersistentString>
+            <PersistentString
+               value = "StringManager::getStringFromID(m_classID)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Logger::Error(std::string const&amp;):Logger.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "ResourceLoader::loadPngImage(std::string const&amp;, int&amp;, int&amp;, void**, int&amp;):IResourceLoader.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_imageData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UILabel::setText(char const*):UILabel.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_textWidth">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

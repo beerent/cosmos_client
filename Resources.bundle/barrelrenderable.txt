@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME barrel
+s TEXTURE_NAME barrel
+s MATERIAL CS_MatteMaterial2pass

@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME crib
+s TEXTURE_NAME crib
+s MATERIAL MetalMaterial

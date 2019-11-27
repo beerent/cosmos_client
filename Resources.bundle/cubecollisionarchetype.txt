@@ -1,0 +1,2 @@
+s TYPE TYPE_PHYSICS_ENTITY
+s RENDERABLE_NAME collisionCubeRenderable

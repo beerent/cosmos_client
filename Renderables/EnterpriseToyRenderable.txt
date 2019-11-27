@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME enterpriseToy
+s TEXTURE_NAME enterpriseToy
+s MATERIAL MetalMaterial

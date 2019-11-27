@@ -1,0 +1,4 @@
+s TYPE TYPE_ENTITY
+s ENTITY_GROUP lightingTest
+s PHYSICS_TYPE PHYSICS_ENTITY
+s PHYSICS_ENTITY_NAME tarsusGroupCollisionArchetype

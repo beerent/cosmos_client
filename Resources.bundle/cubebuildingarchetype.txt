@@ -1,0 +1,2 @@
+s TYPE TYPE_ENTITY
+s RENDERABLE_NAME cubeBuildingRenderable

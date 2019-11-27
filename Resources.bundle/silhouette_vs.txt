@@ -1,0 +1,13 @@
+#version 100
+precision highp float;
+attribute vec3 coord3d;
+attribute vec3 mNormal;
+attribute vec3 eyePos;
+uniform mat4 mMVP;
+uniform mat4 ModelView;
+void main(void) {
+float dist = distance(vec4(eyePos, 1.0), mMVP * vec4(coord3d, 1.0));
+float lineWidth = sqrt(dist) * 0.002 + dist * 0.0004;
+lineWidth = lineWidth;
+gl_Position = mMVP * vec4(coord3d + mNormal * lineWidth, 1.0);
+}

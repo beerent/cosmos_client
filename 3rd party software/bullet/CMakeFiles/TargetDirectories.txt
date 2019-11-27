@@ -1,0 +1,14 @@
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/src/BulletCollision/CMakeFiles/BulletCollision.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/src/BulletDynamics/CMakeFiles/BulletDynamics.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/Extras/Serialize/BulletFileLoader/CMakeFiles/BulletFileLoader.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/src/BulletMultiThreaded/CMakeFiles/BulletMultiThreaded.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/src/BulletSoftBody/CMakeFiles/BulletSoftBody.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/src/BulletMultiThreaded/GpuSoftBodySolvers/OpenCL/MiniCL/CMakeFiles/BulletSoftBodySolvers_OpenCL_Mini.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/Extras/Serialize/BulletWorldImporter/CMakeFiles/BulletWorldImporter.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/Extras/Serialize/BulletXmlWorldImporter/CMakeFiles/BulletXmlWorldImporter.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/Extras/ConvexDecomposition/CMakeFiles/ConvexDecomposition.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/Extras/GIMPACTUtils/CMakeFiles/GIMPACTUtils.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/Extras/glui/CMakeFiles/GLUI.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/Extras/HACD/CMakeFiles/HACD.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/src/LinearMath/CMakeFiles/LinearMath.dir
+/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd party software/bullet/src/MiniCL/CMakeFiles/MiniCL.dir

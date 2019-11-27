@@ -1,0 +1,5 @@
+s TYPE TYPE_MODEL
+s MESH_NAME dalek
+s TEXTURE_NAME dalek
+s EMISIVE_TEXTURE_NAME dalekEmisive
+s MATERIAL MetalEmisiveMaterial

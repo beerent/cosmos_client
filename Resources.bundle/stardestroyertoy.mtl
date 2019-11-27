@@ -1,0 +1,24 @@
+# Blender MTL File: 'starDestroyer.blend'
+# Material Count: 2
+
+newmtl Material
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/BABY/textures/starDestroyer.png
+
+newmtl Material_starDestroyer1.png
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/pixietyger/Perforce/pixietyger_Ashleys-Mini_2179/ProjectIOS1_Stable/SourceArt/BABY/textures/starDestroyer1.png

@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME tempShipModel
+s TEXTURE_NAME shipTexture9
+s MATERIAL CS_MatteMaterial2Pass

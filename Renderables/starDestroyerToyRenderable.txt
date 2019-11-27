@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME starDestroyerToy
+s TEXTURE_NAME starDestroyerToy
+s MATERIAL MetalMaterial

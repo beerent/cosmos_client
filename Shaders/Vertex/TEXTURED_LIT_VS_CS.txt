@@ -1,0 +1,37 @@
+#version 100
+precision highp float;
+attribute vec3 coord3d;
+attribute vec2 mTexCord;
+attribute vec3 mNormal;
+attribute vec3 diffuseColor;
+attribute vec3 ambientColor;
+attribute vec3 specularColor;
+attribute float shininess;
+
+uniform vec3 eyePos;
+uniform mat4 mMVP;
+uniform mat4 ModelView;
+uniform mat3 normalMatrix;
+
+varying vec2 fTexCord;
+varying vec3 EyespaceNormal;
+varying vec3 Diffuse;
+varying vec3 Ambient;
+varying vec3 Specular;
+varying float Shine;
+varying float Edge;
+
+void main(void) {
+EyespaceNormal = normalMatrix * mNormal;
+vec4 pos = vec4(0.0,0.0,0.0,1.0);
+vec4 eyeVec = ModelView * pos;
+vec3 eyeVec3 = vec3(eyeVec.x, eyeVec.y, eyeVec.z);
+Diffuse = diffuseColor;
+Ambient = ambientColor;
+Specular = specularColor;
+Shine = shininess;
+
+fTexCord = mTexCord;                      
+gl_Position = mMVP * vec4(coord3d, 1.0);
+Edge = max(dot(EyespaceNormal, normalize(eyePos - eyeVec3)), 0.0);
+}

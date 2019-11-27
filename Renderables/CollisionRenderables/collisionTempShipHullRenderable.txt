@@ -1,0 +1,3 @@
+s TYPE TYPE_MODEL
+s MESH_NAME collisionTempShipHull
+s TEXTURE_NAME redBlack

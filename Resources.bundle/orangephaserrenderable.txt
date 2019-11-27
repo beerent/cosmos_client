@@ -1,0 +1,4 @@
+s TYPE TYPE_MODEL
+s MESH_NAME largeProjectile
+s TEXTURE_NAME orangePhaser
+s RENDER_GROUP TRANSPARENT
