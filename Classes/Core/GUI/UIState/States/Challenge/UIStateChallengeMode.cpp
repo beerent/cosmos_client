@@ -44,6 +44,8 @@ void UIStateChallengeMode::QuestionsReady() {
 }
 
 void UIStateChallengeMode::OnAnswerSelected(const Answer& answer) {
+    m_challengeModeWidget->TakeDownFlag();
+    m_challengeModeWidget->TakeDownFlagged();
 	m_challengeData.RecordAnswer(answer);
 	m_challengeModeWidget->UpdatePoints(m_challengeData.GetAmountCorrect() * 10);
 	HandleAnswerByCorrectness(answer.IsCorrect());

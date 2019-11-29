@@ -71,6 +71,18 @@ void ChallengeModeWidget::TakeDownLoading() {
 	m_loadingLabel->release();
 }
 
+void ChallengeModeWidget::TakeDownFlag() {
+    if (m_flagQuestion != nullptr) {
+        m_flagQuestion->release();
+    }
+}
+
+void ChallengeModeWidget::TakeDownFlagged() {
+    if (m_questionFlagged != nullptr) {
+        m_questionFlagged->release();
+    }
+}
+
 void ChallengeModeWidget::UpdatePoints(int points) {
 	TakeDownPoints();
 	DisplayPoints(points);
@@ -100,11 +112,6 @@ void ChallengeModeWidget::TakeDownQuestion() {
 
 	for (auto& answerLabel : m_answers) {
 		answerLabel->release();
-	}
-
-	m_flagQuestion->release();
-	if (m_questionFlagged != nullptr) {
-		m_questionFlagged->release();
 	}
 }
 
@@ -159,6 +166,8 @@ void ChallengeModeWidget::TakeDownEntireChallenge() {
 
 	TakeDownPoints();
 	TakeDownQuestion();
+    TakeDownFlag();
+    TakeDownFlagged();
 	m_challengeOverMainMenuButtonLabel->release();
 }
 

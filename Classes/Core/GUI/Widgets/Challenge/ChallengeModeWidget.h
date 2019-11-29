@@ -32,6 +32,9 @@ public:
 
 	void DisplayQuestion(const Question& question);
 	void TakeDownQuestion();
+    
+    void TakeDownFlag();
+    void TakeDownFlagged();
 
 	void GameOver();
 	void TakeDownEntireChallenge();
