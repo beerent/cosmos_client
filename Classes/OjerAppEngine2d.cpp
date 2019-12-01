@@ -136,7 +136,7 @@ void OjerAppEngine2d::OnInputEvent(InputManager::InputEvent event, InputManager:
             break;
     }
     
-    ////DEBUG: std::cout << "OnInputEvent " << event << std::endl;
+    //std::cout << "OnInputEvent " << event << std::endl;
     return;
 }
 
@@ -190,7 +190,7 @@ void OjerAppEngine2d::Initialize(int width, int height, IResourceLoader* resourc
 	float uiScale = m_uiScale * m_scaleFactor;
 
 	m_renderer.Initialize();
-    ////DEBUG: std::cout << "Resource Loader " << m_resourceLoader->getResourcePath() << std::endl;
+    //std::cout << "Resource Loader " << m_resourceLoader->getResourcePath() << std::endl;
 
     //m_stringManager.init();
     mMaterialManager.init(m_resourceLoader);
@@ -251,37 +251,25 @@ void OjerAppEngine2d::Initialize(int width, int height, IResourceLoader* resourc
 }
 
 void OjerAppEngine2d::LoginUserIfRemembered() {
-    /*ADAPTED FOR INITIAL RELEASE - NO ACTUAL LOGGING IN. */
     const std::string username = GetUserMemory()->RetrieveUsername();
     const std::string password = GetUserMemory()->RetrievePassword();
     
-    
-     if (username == "" || password == "") {
-        return;
-    }
-    
     User user(username, password, UserAccessLevel::INVALID);
     m_authenticator.SetUser(user);
-    
     Authenticator::AuthenticationResultListener callback;
     callback.bind(this, &OjerAppEngine2d::AuthenticationResultReceived);
     m_authenticator.RegisterAuthenticationResultListener(callback);
     m_authenticator.SetRestConnector(GetRestConnector());
     m_authenticator.SendAuthenticationRequest();
 	m_authenticationRequestActive = true;
-    
-    
-    //fake a successful login
-    m_authenticationRequestActive = true;
-    AuthenticationResultReceived(Authenticator::AuthenticationResult::SUCCESS);
 }
 
 void OjerAppEngine2d::AuthenticationResultReceived(Authenticator::AuthenticationResult result) {
     if (Authenticator::AuthenticationResult::SUCCESS == result) {
 		if (m_authenticationRequestActive) {
 			m_authenticationRequestActive = false;
-			m_userProvider->SetUser(m_authenticator.GetUser());
-			m_userProvider->LogIn();
+			//m_userProvider->SetUser(m_authenticator.GetUser());
+			//m_userProvider->LogIn();
 			mGameStateMachine->SetState(GameMainMenuState::MAIN_MENU_STATE);
 		}
 
@@ -363,9 +351,9 @@ void OjerAppEngine2d::registerForDeltaTimeEvents(onDeltaTimeEventCallBack callBa
     {
         if(*it == callBack)
         {
-            //DEBUG: std::cout << "***********************************************************" << std::endl;
-            //DEBUG: std::cout << "Warning Adding Duplicate Entry In registerForDeltaTimeEvents" << std::endl;
-            //DEBUG: std::cout << "***********************************************************" << std::endl;
+            std::cout << "***********************************************************" << std::endl;
+            std::cout << "Warning Adding Duplicate Entry In registerForDeltaTimeEvents" << std::endl;
+            std::cout << "***********************************************************" << std::endl;
         }
         it++;
     }
@@ -511,7 +499,7 @@ int OjerAppEngine2d::getInputID(ivec2 position)
     inputIDPosition.m_position = position;
     m_activeTuchInputs.push_back(inputIDPosition);
     
-    //DEBUG: std::cout << "getInputID id " << inputIDPosition.m_id << " count " << m_activeTuchInputs.size() << std::endl;
+    std::cout << "getInputID id " << inputIDPosition.m_id << " count " << m_activeTuchInputs.size() << std::endl;
 
     return m_currentInputID;
 }
@@ -531,7 +519,7 @@ void OjerAppEngine2d::updateInputID(ivec2 position, int id)
         it++;
     }
 
-    //DEBUG: std::cout << "Failed to update position for input ID  " << id << std::endl;
+    std::cout << "Failed to update position for input ID  " << id << std::endl;
 }
 
 void OjerAppEngine2d::deleteInputID(int id)
@@ -558,14 +546,14 @@ int OjerAppEngine2d::findInputID(ivec2 position, int minDistance)
     std::vector<InputIDPosition>::iterator it = m_activeTuchInputs.begin();
     std::vector<InputIDPosition>::iterator closest = it;
 
-    //DEBUG: std::cout << "findInputID id count " << m_activeTuchInputs.size() << std::endl;
+    std::cout << "findInputID id count " << m_activeTuchInputs.size() << std::endl;
     
     while(it != m_activeTuchInputs.end())
     {
         ivec2 distaceFromInput = (*it).m_position - position;
         int distance = std::sqrt(std::abs(distaceFromInput.x * distaceFromInput.x + distaceFromInput.y * distaceFromInput.y));
         
-        //DEBUG: std::cout << "Comparing id " << (*it).m_id <<  " x " << (*it).m_position.x << " y " << (*it).m_position.y <<  " distance " << distance << std::endl;
+        std::cout << "Comparing id " << (*it).m_id <<  " x " << (*it).m_position.x << " y " << (*it).m_position.y <<  " distance " << distance << std::endl;
 
         if(distance < closestDistance && distance < minDistance)
         {
@@ -579,21 +567,21 @@ int OjerAppEngine2d::findInputID(ivec2 position, int minDistance)
 
     if(!found)
     {
-        //DEBUG: std::cout << "Failed to find any inputs " << std::endl;
+        std::cout << "Failed to find any inputs " << std::endl;
         return -1;
     }
     
-    //DEBUG: std::cout << "***************************** " << closestDistance << std::endl;
-    //DEBUG: std::cout << "closestDistance " << closestDistance << std::endl;
-    //DEBUG: std::cout << "***************************** " << closestDistance << std::endl;
+    std::cout << "***************************** " << closestDistance << std::endl;
+    std::cout << "closestDistance " << closestDistance << std::endl;
+    std::cout << "***************************** " << closestDistance << std::endl;
 
     return (*closest).m_id;
 }
 
 void OjerAppEngine2d::OnFingerUp(ivec2 oldLocation, ivec2 location)
 {
-    //DEBUG: std::cout << "***************************** " << std::endl;
-    //DEBUG: std::cout << "OnFingerUp location x " << location.x << " y " << location.y << std::endl;
+    std::cout << "***************************** " << std::endl;
+    std::cout << "OnFingerUp location x " << location.x << " y " << location.y << std::endl;
     
     InputManager::InputEventData eD;
     eD.setPosition(location);
@@ -604,19 +592,19 @@ void OjerAppEngine2d::OnFingerUp(ivec2 oldLocation, ivec2 location)
     {
         deleteInputID(id);
         eD.setID(id);
-        //DEBUG: std::cout << "Deleting id " << eD.getID() << std::endl;
+        std::cout << "Deleting id " << eD.getID() << std::endl;
 
         m_inputManager.onHardwareInputEvent(InputManager::DEVICE_TOUCH_UP, eD);
         id =findInputID(location, 100);
     }
     
-    //DEBUG: std::cout << "***************************** " << std::endl;
+    std::cout << "***************************** " << std::endl;
 
 }
 
 void OjerAppEngine2d::OnFingerDown(ivec2 location)
 {
-    //DEBUG: std::cout << "***************************** " << std::endl;
+    std::cout << "***************************** " << std::endl;
 
     int id = findInputID(location, 100);
     if(id != -1)
@@ -627,15 +615,15 @@ void OjerAppEngine2d::OnFingerDown(ivec2 location)
     InputManager::InputEventData eD;
     eD.setPosition(location);
     eD.setID(getInputID(location));
-    //DEBUG: std::cout << "OnFingerDown location x " << location.x << " y " << location.y << " id " << eD.getID() << std::endl;
+    std::cout << "OnFingerDown location x " << location.x << " y " << location.y << " id " << eD.getID() << std::endl;
     m_inputManager.onHardwareInputEvent(InputManager::DEVICE_TOUCH_DOWN, eD);
-    //DEBUG: std::cout << "***************************** " << std::endl;
+    std::cout << "***************************** " << std::endl;
 
 }
 
 void OjerAppEngine2d::OnFingerMove(ivec2 oldLocation, ivec2 newLocation)
 {
-    ////DEBUG: std::cout << "OnFingerMove location x " << oldLocation.x << " y " << oldLocation.y << std::endl;
+    //std::cout << "OnFingerMove location x " << oldLocation.x << " y " << oldLocation.y << std::endl;
     updateInputID(newLocation, findInputID(oldLocation, 5));
     
     InputManager::InputEventData eD;

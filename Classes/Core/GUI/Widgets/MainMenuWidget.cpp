@@ -24,8 +24,7 @@ void MainMenuWidget::init() {
     m_menu->setHeight(460);
     
 	m_parentComponent->addChild(m_menu);
-	
-    /* COMMENTED OUT LOGIN LOGIC */
+    
 	UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
 	if (!userProvider->IsLoggedIn()) {
 		AddLoginButton(m_parentComponent);

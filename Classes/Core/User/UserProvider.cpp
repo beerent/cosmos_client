@@ -16,8 +16,8 @@ void UserProvider::SetUser(const User& user) {
 void UserProvider::LogIn() {
 	m_isLoggedIn = true;
 	m_isLogoutQueued = false;
-    IEngine::getEngine()->GetUserMemory()->StoreUsername(IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername());
-    IEngine::getEngine()->GetUserMemory()->StorePassword(IEngine::getEngine()->GetUserProvider()->GetUser().GetPasswordHash());
+    IEngine::getEngine()->GetUserMemory()->StoreUsername(m_user.GetUsername());
+    IEngine::getEngine()->GetUserMemory()->StorePassword(m_user.GetPasswordHash());
 }
 
 void UserProvider::LogOut() {
