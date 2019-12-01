@@ -268,8 +268,6 @@ void OjerAppEngine2d::AuthenticationResultReceived(Authenticator::Authentication
     if (Authenticator::AuthenticationResult::SUCCESS == result) {
 		if (m_authenticationRequestActive) {
 			m_authenticationRequestActive = false;
-			//m_userProvider->SetUser(m_authenticator.GetUser());
-			//m_userProvider->LogIn();
 			mGameStateMachine->SetState(GameMainMenuState::MAIN_MENU_STATE);
 		}
 
