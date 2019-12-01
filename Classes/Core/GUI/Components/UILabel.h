@@ -28,6 +28,7 @@ public:
     UILabel(PropertyCollection &propertyCollection);
     virtual void onBeginRender(Renderer& renderer);
     void setText(const char *text);
+    std::string GetText();
 	void setTextString(const std::string& text);
     void setTextLayout(AnchorType anchorType);
     void setFontSize(float size){m_fontSize = size;}

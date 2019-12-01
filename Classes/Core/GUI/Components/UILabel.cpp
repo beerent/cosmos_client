@@ -141,6 +141,10 @@ void UILabel::setText(const char *text)
     m_textWidth = m_fontRenderable->getFont()->getWidthForString(text);
 }
 
+std::string UILabel::GetText() {
+    return m_text;
+}
+
 void UILabel::setTextString(const std::string& text) {
 	m_text_backing = text;
 	//This is terrible we are leaking string IDs, but we need to do this

@@ -6,7 +6,7 @@ const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 const float LABEL_HEIGHT = 90.0;
 const float LABEL_WIDTH = 585.0;
 
-UserProfileWidget::UserProfileWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_user("", ""), m_challengeCount(nullptr), m_challengeHighScore(nullptr), m_challengeLeaderboardPosition(nullptr) {
+UserProfileWidget::UserProfileWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_user("", "", UserAccessLevel::INVALID), m_challengeCount(nullptr), m_challengeHighScore(nullptr), m_challengeLeaderboardPosition(nullptr) {
     
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;

@@ -2,7 +2,7 @@
 #include <Core/Net/RequestBuilder.h>
 #include "IEngine.h"
 
-Authenticator::Authenticator() : m_user(User("", "")) {}
+Authenticator::Authenticator() : m_user(User("", "", UserAccessLevel::INVALID)) {}
 
 Authenticator::~Authenticator() {
 	m_restConnector->CloseRequest(m_authenticationRequestId);

@@ -1,7 +1,6 @@
 #include <Core/GUI/Widgets/Authentication/AuthenticationInputWidget.h>
 
 const float LABEL_HEIGHT = 90.0;
-const float LABEL_SPACING = 0.0 + LABEL_HEIGHT;
 //const float LABEL_FONT_SIXE = 35.0;
 const float LABEL_WIDTH = 585.0;
 
@@ -65,6 +64,14 @@ void AuthenticationInputWidget::UnregisterForMenuItemSelectedEvent(onButtonState
 	m_buttonPressListeners.remove(callBack);
 }
 
+void AuthenticationInputWidget::RegisterUsernameFocusCallback(UILabel::onButtonStateChangedCallBack callback) {
+    m_username->registerForButtonEvent(UITouchButton::ButtonState::DEPRESSED, callback);
+}
+
+void AuthenticationInputWidget::RegisterPasswordFocusCallback(UILabel::onButtonStateChangedCallBack callback) {
+    m_password->registerForButtonEvent(UITouchButton::ButtonState::DEPRESSED, callback);
+}
+
 void AuthenticationInputWidget::AddFailure() {
 	m_failure = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "login failed, try again.");
     m_failure->setDropShadowColor(dropShadowColor);
@@ -72,7 +79,8 @@ void AuthenticationInputWidget::AddFailure() {
 }
 
 void AuthenticationInputWidget::AddUsername() {
-	m_username = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "enter username...");
+	m_username = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "enter username...");    
+    
     m_username->setDropShadowColor(dropShadowColor);
 	m_username->setY(30);
 	m_parentComponent->addChild(m_username);

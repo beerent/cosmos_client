@@ -61,7 +61,7 @@ ChallengeLeaderboard ChallengeLeaderboardLoader::JsonToChallengeLeaderboard(cons
 		int id = entry["id"].int_value();
 		int points = entry["points"].int_value();
 
-		User user(username, "");
+		User user(username, "", UserAccessLevel::INVALID);
 		ChallengeLeaderboardEntry leaderboardEntry(user, id, points);
 		leaderboard.AddEntry(leaderboardEntry);
 	}

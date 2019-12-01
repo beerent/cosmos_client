@@ -1,0 +1,42 @@
+#pragma once
+
+#include <set>
+#include <map>
+#include <IEngine.h>
+#include <chrono>
+
+namespace Timer {
+
+enum class TimerType {
+    INVALID = -1,
+     CURSOR_BLINK_500_MS
+};
+
+
+
+class SimpleTimerListener {
+public:
+    virtual void OnTimerEvent(TimerType type) = 0;
+};
+
+class SimpleTimer {
+public:
+    
+    SimpleTimer(SimpleTimerListener* listener);
+    ~SimpleTimer();
+    
+    void RegisterTimer(TimerType type);
+    void DeregisterTimer(TimerType type);
+    
+    void ResetTimer(TimerType type);
+    
+private:
+    
+    IEngine::onDeltaTimeEventCallBack m_onDeltaTimeCallBack;
+    std::map<TimerType, std::chrono::steady_clock::time_point> m_registeredTimers;
+    SimpleTimerListener* m_timerListener;
+    
+    void OnTimerIteration(float duration);
+};
+
+}

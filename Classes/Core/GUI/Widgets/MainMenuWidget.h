@@ -5,6 +5,7 @@
 
 #include <Core/GUI/Components/UITouchButton.h>
 #include <Core/GUI/Components/UILabel.h>
+#include <Core/Util/SimpleTimer.h>
 
 class UIComponentFactory;
 class UIComponent;
@@ -20,6 +21,10 @@ public:
 	void release();
 	void registerForMenuItemSelectedEvent(onMenuItemSelectedCallBack callBack);
 	void unregisterForMenuItemSelectedEvent(onMenuItemSelectedCallBack callBack);
+    
+    void RegisterUsernameFocusCallback(UILabel::onButtonStateChangedCallBack callback);
+    
+    void SetGuestUsernameDisplay(const std::string& displayUsername);
 
 private:
     std::list<onMenuItemSelectedCallBack> m_onMenuItemSelectedListeners;
@@ -28,13 +33,15 @@ private:
 	void onLogin(UITouchButton::ButtonState state);
 
 	void AddLoginButton(UIComponent *parentComponent);
-	void AddRegisterButton(UIComponent *parentComponent);
+    
+	//void AddRegisterButton(UIComponent *parentComponent);
 
 	UIComponentFactory* m_uiComponentFactory;
 	UIComponent* m_parentComponent;
 
-	UIComponent *m_menu;
+	UIComponent* m_menu;
+    UILabel* m_usernameInputBox;
 	UILabel* m_loginButton;
-	UILabel* m_registerButton;
-
+    
+	//UILabel* m_registerButton;
 };

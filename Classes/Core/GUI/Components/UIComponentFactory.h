@@ -16,7 +16,7 @@
 #include "Core/StringManager/StringManager.h"
 #include "Core/GUI/Components/UIComponent.h"
 #include "Core/Properties/PropertyCollection.h"
-#include "Core/GUI/Components/UILabel.h"
+#include <Core/GUI/Components/UILabel.h>
 
 class UIComponentFactory
 {
@@ -33,11 +33,15 @@ private:
     
 public:
     void init(IResourceLoader *resourceLoader);
+    
     UIComponent* createUIComponent(StringManager::StringID name);
 	UIComponent* createUIComponent(const std::string& name, float width, float height, UIComponent::AnchorType anchorType);
+    
 	UITouchButton* createUITouchButton(const std::string& name, UIComponent::AnchorType anchorType);
+    
 	UILabel* createUILabel(StringManager::StringID name, float width, float height, UIComponent::AnchorType anchorType, const std::string& text);
 	UILabel* createUILabel(const std::string& name, float width, float height, UIComponent::AnchorType anchorType, const std::string& text);
+    
 
     void release();
     static UIComponentFactory* getInstance();

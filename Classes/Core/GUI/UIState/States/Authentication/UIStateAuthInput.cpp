@@ -13,13 +13,10 @@
 CONST_STRING_DEF(UIStateAuthInput, UI_STATE_AUTH_INPUT)
 
 void UIStateAuthInput::OnEnterState() {
-	m_currentSelectedOption = KeyboardSelectedOption::USERNAME;
-
 	m_authenticationInputWidget = new AuthenticationInputWidget();
 	m_authenticationInputWidget->init(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
 	m_authenticationInputWidget->ShowLoginFields();
     IEngine::getEngine()->GetKeyboardManager()->RegisterKeyboardListener(this);
-    IEngine::getEngine()->GetKeyboardManager()->ActivateKeyboard();
 
 	AuthenticationInputWidget::onButtonStateChangedCallBack callBack;
 	callBack.bind(this, &UIStateAuthInput::OnInputButtonPressed);
@@ -31,60 +28,63 @@ void UIStateAuthInput::OnEnterState() {
 	m_authenticator.SetRestConnector(IEngine::getEngine()->GetRestConnector());
 	m_authenticator.SetUser(IEngine::getEngine()->GetUserProvider()->GetUser());
 	m_authenticator.RegisterAuthenticationResultListener(callback);
+    
+    RegisterUsernameListener();
+    RegisterPasswordListener();
 
 	BaseStateDepricated::OnEnterState();
 }
 
 void UIStateAuthInput::OnExitState() {
     IEngine::getEngine()->GetKeyboardManager()->UnregisterKeyboardListener();
-    IEngine::getEngine()->GetKeyboardManager()->DeactivateKeyboard();
 	m_authenticationInputWidget->Release();
 	delete m_authenticationInputWidget;
 	BaseStateDepricated::OnExitState();
 }
 
 void UIStateAuthInput::OnCharacterPressed(char c) {
-	switch (m_currentSelectedOption) {
+	switch (m_currentEditField) {
 	case (KeyboardSelectedOption::USERNAME):
 		AddCharacterToUsername(c);
 		break;
 	case (KeyboardSelectedOption::PASSWORD):
 		AddCharacterToPassword(c);
 		break;
+    default:
+        break;
 	}
 }
 
 void UIStateAuthInput::OnDeletePressed() {
-	switch (m_currentSelectedOption) {
+	switch (m_currentEditField) {
 	case (KeyboardSelectedOption::USERNAME):
 		RemoveCharacterFromUsername();
 		break;
 	case (KeyboardSelectedOption::PASSWORD):
 		RemoveCharacterFromPassword();
 		break;
+    default:
+        break;
 	}
 }
 
 void UIStateAuthInput::OnEnterPressed() {
-	switch (m_currentSelectedOption) {
-	case (KeyboardSelectedOption::USERNAME):
-		m_currentSelectedOption = KeyboardSelectedOption::PASSWORD;
-		break;
-	case (KeyboardSelectedOption::PASSWORD):
-		m_currentSelectedOption = KeyboardSelectedOption::USERNAME;
-		OnInputButtonPressed(AuthenticationInputWidget::AuthenticationInputButtons::SUBMIT_AUTH_REQUEST);
-		break;
-	}
+    m_currentEditField = KeyboardSelectedOption::INVALID;
+    OnUsernameLostFocus();
+    OnPasswordLostFocus();
+    RegisterUsernameListener();
+    RegisterPasswordListener();
+    m_keyboardManager->DeactivateKeyboard();
 }
 
 void UIStateAuthInput::AddCharacterToUsername(char c) {
 	m_username.push_back(c);
-	m_authenticationInputWidget->UpdateUsername(m_username);
+    DisplayUsernameCursor(); //updates the username with added char 'c'
 }
 
 void UIStateAuthInput::AddCharacterToPassword(char c) {
 	m_password.push_back(c);
-	m_authenticationInputWidget->UpdatePassword(m_password);
+    DisplayPasswordCursor(); //updates the password with added char 'c'
 }
 
 void UIStateAuthInput::RemoveCharacterFromUsername() {
@@ -93,7 +93,7 @@ void UIStateAuthInput::RemoveCharacterFromUsername() {
 	}
 
 	m_username.pop_back();
-	m_authenticationInputWidget->UpdateUsername(m_username);
+    DisplayUsernameCursor(); //updates the username with the removed char
 }
 
 void UIStateAuthInput::RemoveCharacterFromPassword() {
@@ -102,11 +102,13 @@ void UIStateAuthInput::RemoveCharacterFromPassword() {
 	}
 
 	m_password.pop_back();
-	m_authenticationInputWidget->UpdatePassword(m_password);
+    DisplayPasswordCursor(); //updates the password with the removed char
 }
 
 void UIStateAuthInput::OnInputButtonPressed(AuthenticationInputWidget::AuthenticationInputButtons button) {
-	User user(m_username, m_password);
+    m_timer.DeregisterTimer(Timer::TimerType::CURSOR_BLINK_500_MS);
+    m_keyboardManager->DeactivateKeyboard();
+	User user(m_username, m_password, UserAccessLevel::INVALID);
 
 	m_authenticator.SetUser(user);
 	SubmitAuthenticationRequest();
@@ -128,7 +130,7 @@ void UIStateAuthInput::OnAuthenticationResult(Authenticator::AuthenticationResul
 		break;
             
 	case Authenticator::AuthenticationResult::FAILURE:
-		m_currentSelectedOption = KeyboardSelectedOption::USERNAME;
+		m_currentEditField = KeyboardSelectedOption::USERNAME;
 
 		m_username.clear();
 		m_password.clear();
@@ -143,4 +145,102 @@ void UIStateAuthInput::OnAuthenticationResult(Authenticator::AuthenticationResul
 	default:
 		break;
 	}
+}
+
+void UIStateAuthInput::OnTimerEvent(Timer::TimerType type) {
+    switch(type) {
+        case Timer::TimerType::CURSOR_BLINK_500_MS:            
+            if (m_currentEditField == KeyboardSelectedOption::USERNAME) {
+                if (m_cursorOn) {
+                    HideUsernameCursor();
+                    m_cursorOn = false;
+                } else {
+                    DisplayUsernameCursor();
+                    m_cursorOn = true;
+                }
+                
+            } else if (m_currentEditField == KeyboardSelectedOption::PASSWORD) {
+                if (m_cursorOn) {
+                    HidePasswordCursor();
+                    m_cursorOn = false;
+                } else {
+                    DisplayPasswordCursor();
+                    m_cursorOn = true;
+                }
+            }
+            
+            break;
+        default:
+            break;
+    }
+}
+
+void UIStateAuthInput::DisplayUsernameCursor() {
+    m_authenticationInputWidget->UpdateUsername(m_username + "|");
+    RegisterUsernameListener();
+}
+
+void UIStateAuthInput::DisplayPasswordCursor() {
+    m_authenticationInputWidget->UpdatePassword(m_password + "|");
+    RegisterPasswordListener();
+}
+
+void UIStateAuthInput::HideUsernameCursor() {
+    m_authenticationInputWidget->UpdateUsername(m_username);
+    RegisterUsernameListener();
+}
+
+void UIStateAuthInput::HidePasswordCursor() {
+    m_authenticationInputWidget->UpdatePassword(m_password);
+    RegisterPasswordListener();
+}
+
+void UIStateAuthInput::OnUsernameLostFocus() {
+    if (m_username.empty()) {
+        m_authenticationInputWidget->UpdateUsername("enter username...");
+    } else {
+        HideUsernameCursor();
+    }
+    
+    RegisterUsernameListener();
+}
+
+void UIStateAuthInput::OnPasswordLostFocus() {
+    if (m_password.empty()) {
+        m_authenticationInputWidget->UpdatePassword("enter password...");
+    } else {
+        HidePasswordCursor();
+    }
+    
+    RegisterPasswordListener();
+}
+
+void UIStateAuthInput::OnUsernamePressed(UITouchButton::ButtonState state) {
+    OnPasswordLostFocus();
+    DisplayUsernameCursor();
+    
+    m_keyboardManager->ActivateKeyboard();
+    m_currentEditField = KeyboardSelectedOption::USERNAME;
+    m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_500_MS);
+}
+
+void UIStateAuthInput::OnPasswordPressed(UITouchButton::ButtonState state) {
+    OnUsernameLostFocus();
+    DisplayPasswordCursor();
+    
+    m_keyboardManager->ActivateKeyboard();
+    m_currentEditField = KeyboardSelectedOption::PASSWORD;
+    m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_500_MS);
+}
+
+void UIStateAuthInput::RegisterUsernameListener() {
+    UILabel::onButtonStateChangedCallBack usernameCallback;
+    usernameCallback.bind(this, &::UIStateAuthInput::OnUsernamePressed);
+    m_authenticationInputWidget->RegisterUsernameFocusCallback(usernameCallback);
+}
+
+void UIStateAuthInput::RegisterPasswordListener() {
+    UILabel::onButtonStateChangedCallBack passwordCallback;
+    passwordCallback.bind(this, &::UIStateAuthInput::OnPasswordPressed);
+    m_authenticationInputWidget->RegisterPasswordFocusCallback(passwordCallback);
 }

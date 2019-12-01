@@ -1,11 +1,3 @@
-//
-//  DebugMenuWidget.cpp
-//  Projectios1
-//
-//  Created by Kamil Konecko on 6/3/14.
-//
-//
-
 #include "Core/GUI/Widgets/DebugMenuWidget.h"
 #include "Core/Input/ActiveCameraController.h"
 #include "Core/GUI/Components/UIComponentFactory.h"

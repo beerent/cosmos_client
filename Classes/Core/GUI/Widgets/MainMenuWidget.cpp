@@ -1,11 +1,3 @@
-//
-//  MainMenuWidget.cpp
-//  Projectios1
-//
-//  Created by Kamil Konecko on 6/16/13.
-//
-//
-
 #include "Core/GUI/Widgets/MainMenuWidget.h"
 #include "Core/GUI/Components/UIComponentFactory.h"
 #include "Core/Debug/DebugLogic.h"
@@ -16,15 +8,14 @@ float labelYPosition = 100.0;
 float labelXPosition = 5.0f;
 const float LABEL_HEIGHT = 90.0;
 const float LABEL_SPACING = 0.0 + LABEL_HEIGHT;
-const float LABEL_FONT_SIXE = 35.0;
 const float LABEL_WIDTH = 585.0;
 
-float labelCount = 0;
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
-MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_loginButton(nullptr), m_registerButton(nullptr) {
+MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_usernameInputBox(nullptr), m_loginButton(nullptr)/*, m_registerButton(nullptr)*/ {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
+   
 }
 void MainMenuWidget::init() {
 	m_menu = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
@@ -34,10 +25,11 @@ void MainMenuWidget::init() {
     
 	m_parentComponent->addChild(m_menu);
 	
+    /* COMMENTED OUT LOGIN LOGIC */
 	UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
 	if (!userProvider->IsLoggedIn()) {
 		AddLoginButton(m_parentComponent);
-		AddRegisterButton(m_parentComponent);
+		//AddRegisterButton(m_parentComponent);
 	}
 
 	UITouchButton::onButtonStateChangedCallBack callBack;
@@ -47,10 +39,19 @@ void MainMenuWidget::init() {
     label->setY(12.0);   
     m_menu->addChild(label);
     
+    SetGuestUsernameDisplay("Apple Boy 6");
+
+    /* Blank Label */
+    label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "");
+    label->setDropShadowColor(dropShadowColor);
+    label->setX(labelXPosition);
+    label->setY(labelYPosition + LABEL_SPACING );
+    m_menu->addChild(label);
+    
     label = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Challenge Mode");
     label->setDropShadowColor(dropShadowColor);
     label->setX(labelXPosition);
-    label->setY(labelYPosition + LABEL_SPACING * labelCount++);
+    label->setY(labelYPosition + LABEL_SPACING * 2);
 	callBack.bind(this, &MainMenuWidget::OnLoadChallengeMenu);
 	label->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
     m_menu->addChild(label);
@@ -67,7 +68,7 @@ void MainMenuWidget::AddLoginButton(UIComponent *parentComponent) {
 	parentComponent->addChild(m_loginButton);
 }
 
-void MainMenuWidget::AddRegisterButton(UIComponent *parentComponent) {
+/*void MainMenuWidget::AddRegisterButton(UIComponent *parentComponent) {
 	//UITouchButton::onButtonStateChangedCallBack callBack;
 
 	m_registerButton = UIComponentFactory::getInstance()->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH / 2 - 10, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Register");
@@ -77,7 +78,7 @@ void MainMenuWidget::AddRegisterButton(UIComponent *parentComponent) {
 	//parentComponent->addChild(m_registerButton);
 	//callBack.bind(this, &MainMenuWidget::onLogin);
 	//m_registerButton->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
-}
+}*/
 
 void MainMenuWidget::OnLoadChallengeMenu(UITouchButton::ButtonState state) {
     std::list<onMenuItemSelectedCallBack>::iterator it = m_onMenuItemSelectedListeners.begin();
@@ -107,15 +108,32 @@ void MainMenuWidget::release() {
     m_menu->release();
     delete(m_menu);
 
-	if (m_loginButton != nullptr) {
+
+ if (m_loginButton != nullptr) {
 		m_loginButton->release();
 		delete(m_loginButton);
 	}
-
+/*
 	if (m_registerButton != nullptr) {
 		m_registerButton->release();
 		delete(m_registerButton);
 	}
+ */
+}
 
-	labelCount = 0;
+void MainMenuWidget::SetGuestUsernameDisplay(const std::string& displayUsername) {
+    if (m_usernameInputBox != nullptr) {
+        m_usernameInputBox->release();
+    }
+        
+    /* Non Logged In Option */
+    m_usernameInputBox = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, displayUsername);
+    m_usernameInputBox->setDropShadowColor(dropShadowColor);
+    m_usernameInputBox->setX(labelXPosition);
+    m_usernameInputBox->setY(labelYPosition);
+    m_menu->addChild(m_usernameInputBox);
+}
+
+void MainMenuWidget::RegisterUsernameFocusCallback(UILabel::onButtonStateChangedCallBack callback) {
+    m_usernameInputBox->registerForButtonEvent(UITouchButton::DEPRESSED, callback);
 }

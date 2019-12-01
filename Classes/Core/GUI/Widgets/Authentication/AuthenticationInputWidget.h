@@ -18,6 +18,9 @@ public:
 
 	void RegisterForMenuItemSelectedEvent(onButtonStateChangedCallBack callBack);
 	void UnregisterForMenuItemSelectedEvent(onButtonStateChangedCallBack callBack);
+    
+    void RegisterUsernameFocusCallback(UILabel::onButtonStateChangedCallBack callback);
+    void RegisterPasswordFocusCallback(UILabel::onButtonStateChangedCallBack callback);
 
 	void UpdateUsername(const std::string& username);
 	void UpdatePassword(const std::string& password);

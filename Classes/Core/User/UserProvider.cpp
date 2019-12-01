@@ -1,7 +1,7 @@
 #include <Core/User/UserProvider.h>
 #include <IEngine.h>
 
-User INVALID_USER("", "");
+User INVALID_USER("", "", UserAccessLevel::INVALID);
 
 UserProvider::UserProvider() : m_user(INVALID_USER), m_isLoggedIn(false), m_isLogoutQueued(false) {}
 
