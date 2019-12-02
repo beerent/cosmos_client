@@ -7,19 +7,23 @@
 
 CONST_STRING_DEF(UIStateMainMenu, UI_STATE_MAINMENU)
 
+const std::string GUEST_USER_PREFIX = "guest username: ";
 
-UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_timer(this), m_cursorOn(false), m_editingGuestUsername(false) {
-    m_keyboardManager = IEngine::getEngine()->GetKeyboardManager();
-    m_keyboardManager->RegisterKeyboardListener(this);
-}
+UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_timer(this), m_cursorOn(false), m_editingGuestUsername(false) {}
 
-UIStateMainMenu::~UIStateMainMenu() {
-    m_keyboardManager->UnregisterKeyboardListener();
-}
+UIStateMainMenu::~UIStateMainMenu() {}
 
 void UIStateMainMenu::OnEnterState() {
+    m_keyboardManager = IEngine::getEngine()->GetKeyboardManager();
+    m_keyboardManager->RegisterKeyboardListener(this);
+    
     m_mainMenuWidget = new MainMenuWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
+    
+    LogOutGuestUser();
+    
     m_mainMenuWidget->init();
+    m_guestUsername = "1N00BYGUEST";
+    HideCursor();
     
     MainMenuWidget::onMenuItemSelectedCallBack callback;
     callback.bind(this, &UIStateMainMenu::onMainMenuItemSelected);
@@ -31,6 +35,7 @@ void UIStateMainMenu::OnEnterState() {
 }
 
 void UIStateMainMenu::OnExitState() {
+    m_keyboardManager->UnregisterKeyboardListener();
     m_mainMenuWidget->release();
     delete(m_mainMenuWidget);
     BaseStateDepricated::OnExitState();
@@ -42,6 +47,12 @@ void UIStateMainMenu::onMainMenuItemSelected(MainMenuWidget::MainMenuItems selec
 	}
 
 	else if (selectedItem == MainMenuWidget::LOAD_CHALLENGE_MENU_LEVEL) {
+        UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
+        if (userProvider->IsLoggedIn() == false) {
+            User guestUser(m_guestUsername, "guest", UserAccessLevel::GUEST);
+            userProvider->SetUser(guestUser);
+        }
+        
 		ChangeState(UIStateChallengeMainMenu::UI_STATE_CHALLENGE_MAIN_MENU);
 	}
 }
@@ -69,10 +80,6 @@ void UIStateMainMenu::OnCharacterPressed(char c) {
 }
 
 void UIStateMainMenu::OnEnterPressed() {
-    //UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
-    //User user(m_usernameInputBox->GetText(), "", UserAccessLevel::INVALID);
-    //userProvider->SetUser(user);
-    //userProvider->LogIn();
     m_editingGuestUsername = false;
     HideCursor();
     m_keyboardManager->DeactivateKeyboard();
@@ -105,15 +112,23 @@ bool UIStateMainMenu::IsEditingGuestUsername() {
 
 void UIStateMainMenu::DisplayCursor() {
     std::string displayGuestUsername = m_guestUsername + "|";
-    m_mainMenuWidget->SetGuestUsernameDisplay(displayGuestUsername);
+    m_mainMenuWidget->SetGuestUsernameDisplay(GUEST_USER_PREFIX + displayGuestUsername);
 }
 
 void UIStateMainMenu::HideCursor() {
-    m_mainMenuWidget->SetGuestUsernameDisplay(m_guestUsername);
+    m_mainMenuWidget->SetGuestUsernameDisplay(GUEST_USER_PREFIX + m_guestUsername);
 }
 
 void UIStateMainMenu::OnPressed(UITouchButton::ButtonState state) {
     m_keyboardManager->ActivateKeyboard();
     m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_500_MS);
     m_editingGuestUsername = true;
+}
+
+void UIStateMainMenu::LogOutGuestUser() {
+    UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
+    if (userProvider->IsLoggedIn() && userProvider->GetUser().GetAccessLevel() == UserAccessLevel::GUEST) {
+        IEngine::getEngine()->TakeDownActiveUser();
+        userProvider->LogOut();
+    }
 }

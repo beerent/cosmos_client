@@ -4,7 +4,7 @@
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
-ChallengeMenuWidget::ChallengeMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : IUserProfileDisplayListener(uiComponentFactory, parentComponent), m_home(nullptr) {
+ChallengeMenuWidget::ChallengeMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : IUserProfileDisplayListener(uiComponentFactory, parentComponent), m_home(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
@@ -15,7 +15,7 @@ void ChallengeMenuWidget::Init() {
 	AddLeaderboardFrame();
 	AddLeaderboardTitle();
 	AddLeaderboardContents();
-	AddNewGameButton();
+	//AddNewGameButton(); - added after we've established a login
 }
 
 void ChallengeMenuWidget::Release() {
@@ -39,11 +39,15 @@ void ChallengeMenuWidget::Release() {
 		delete usernameLabel;
 	}
 
-	m_leaderboard->release();
-	delete m_leaderboard;
-
-	m_newGameButton->release();
-	delete m_newGameButton;
+    if (m_leaderboard != nullptr) {
+        m_leaderboard->release();
+        delete m_leaderboard;
+    }
+    
+    if (m_newGameButton != nullptr) {
+        m_newGameButton->release();
+        delete m_newGameButton;
+    }
 }
 
 void ChallengeMenuWidget::RegisterForChallengeMenuItemSelectedEvent(onChallengeMenuItemSelectedCallBack callback) {

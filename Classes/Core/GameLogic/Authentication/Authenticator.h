@@ -21,7 +21,9 @@ public:
 	void SetRestConnector(IRestConnector* connector);
 	void SetUser(const User& user);
 	User GetUser() const;
-	void SendAuthenticationRequest();
+    
+    void SendGuestAuthenticationRequest();
+    void SendAuthenticationRequest();
 
 	void RegisterAuthenticationResultListener(AuthenticationResultListener listener);
 	void UnregisterAuthenticationResultListener(AuthenticationResultListener listener);

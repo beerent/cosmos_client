@@ -7,7 +7,7 @@
 #include <Core/GameLogic/Challenge/Leaderboard/ChallengeLeaderboardLoader.h>
 #include <Core/GameLogic/Challenge/Leaderboard/ChallengeLeaderboardLoadResult.h>
 #include <Core/GUI/Widgets/Challenge/ChallengeMenuWidget.h>
-
+#include <Core/GameLogic/Authentication/Authenticator.h>
 class UIStateChallengeMainMenu : public BaseStateDepricated {
 
 public:
@@ -24,8 +24,12 @@ private:
 
 	ChallengeLeaderboardLoader m_leaderboardLoader;
 	ChallengeLeaderboard m_leaderboard;
+    
+    Authenticator m_authenticator;
 
-	void SubmitLoadChallengeLeaderboardRequest();
+    void SubmitLoadChallengeLeaderboardRequest();
 	void OnChallengeLeaderboardLoaded(ChallengeLeaderboardLoadResult result);
-	void OnChallengeMainMenuItemSelected(ChallengeMenuWidget::MenuItems selectedItem);
+    void SubmitGuestLoginRequest();
+    void AuthenticationResultReceived(Authenticator::AuthenticationResult result);
+    void OnChallengeMainMenuItemSelected(ChallengeMenuWidget::MenuItems selectedItem);
 };

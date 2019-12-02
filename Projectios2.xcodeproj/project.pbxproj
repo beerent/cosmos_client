@@ -236,6 +236,7 @@
 		8109EB6D222B52D600E1FCD7 /* UserProfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8109EB69222B52D600E1FCD7 /* UserProfile.cpp */; };
 		8127CFFC220B78A900C6BD2D /* RenderableObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8127CFFB220B78A900C6BD2D /* RenderableObj.cpp */; };
 		812F51AD222CD78100520939 /* QuestionFlagger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812F51AC222CD78100520939 /* QuestionFlagger.cpp */; };
+		814BB90C239345D80045CDC1 /* SimpleTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 814BB90A239345D80045CDC1 /* SimpleTimer.cpp */; };
 		818BF7882219F18000DD45B6 /* PDKeychainBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BF7852219F17F00DD45B6 /* PDKeychainBindingsController.m */; };
 		818BF7892219F18000DD45B6 /* PDKeychainBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BF7862219F17F00DD45B6 /* PDKeychainBindings.m */; };
 		818BF78B2219F3F600DD45B6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818BF78A2219F3F600DD45B6 /* Security.framework */; };
@@ -854,6 +855,8 @@
 		8127D009220D968F00C6BD2D /* IOSKeyboardActivator.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSKeyboardActivator.mm; path = Core/IOS/IOSKeyboardActivator.mm; sourceTree = "<group>"; };
 		812F51AB222CD78100520939 /* QuestionFlagger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionFlagger.h; path = Core/GameLogic/Question/Flag/QuestionFlagger.h; sourceTree = "<group>"; };
 		812F51AC222CD78100520939 /* QuestionFlagger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuestionFlagger.cpp; path = Core/GameLogic/Question/Flag/QuestionFlagger.cpp; sourceTree = "<group>"; };
+		814BB90A239345D80045CDC1 /* SimpleTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimpleTimer.cpp; path = Core/Util/SimpleTimer.cpp; sourceTree = "<group>"; };
+		814BB90B239345D80045CDC1 /* SimpleTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleTimer.h; path = Core/Util/SimpleTimer.h; sourceTree = "<group>"; };
 		818BF7842219F17F00DD45B6 /* PDKeychainBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PDKeychainBindings.h; path = Core/IOS/Keychain/PDKeychainBindings.h; sourceTree = "<group>"; };
 		818BF7852219F17F00DD45B6 /* PDKeychainBindingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDKeychainBindingsController.m; path = Core/IOS/Keychain/PDKeychainBindingsController.m; sourceTree = "<group>"; };
 		818BF7862219F17F00DD45B6 /* PDKeychainBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDKeychainBindings.m; path = Core/IOS/Keychain/PDKeychainBindings.m; sourceTree = "<group>"; };
@@ -1271,6 +1274,7 @@
 		1A82112C1571400C00F9F792 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				814BB909239345C60045CDC1 /* Util */,
 				8127D004220C44FA00C6BD2D /* Keyboard */,
 				81F0D66021DC0F6E00A81D1F /* User */,
 				81B30E402181465A008A2638 /* Net */,
@@ -2109,6 +2113,15 @@
 			name = Flag;
 			sourceTree = "<group>";
 		};
+		814BB909239345C60045CDC1 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				814BB90A239345D80045CDC1 /* SimpleTimer.cpp */,
+				814BB90B239345D80045CDC1 /* SimpleTimer.h */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		818BF7832219EFA300DD45B6 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
@@ -2733,6 +2746,7 @@
 				1A675A031EF22DF1006F32FF /* CharacterEntity.cpp in Sources */,
 				1A8BD11F18A32D30000D10C0 /* btFixedConstraint.cpp in Sources */,
 				1AFB25B51D0C87AD00C5BFFB /* FontManager.cpp in Sources */,
+				814BB90C239345D80045CDC1 /* SimpleTimer.cpp in Sources */,
 				1A8BD39718A3312D000D10C0 /* btMultiSphereShape.cpp in Sources */,
 				1A8BD37518A3312D000D10C0 /* btConvexConvexAlgorithm.cpp in Sources */,
 				81B4717921EA115500F067D5 /* UIStateChallengeMainMenu.cpp in Sources */,

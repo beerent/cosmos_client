@@ -71,3 +71,12 @@ void Authenticator::SendAuthenticationRequest() {
 	std::string requestString = requestBuilder.GetRequestString();
 	m_authenticationRequestId = m_restConnector->SendRequest(requestString, this);
 }
+
+void Authenticator::SendGuestAuthenticationRequest() {
+    RequestBuilder requestBuilder;
+    requestBuilder.SetEndpoint("guestAuthenticate");
+    requestBuilder.AddUser(m_user);
+
+    std::string requestString = requestBuilder.GetRequestString();
+    m_authenticationRequestId = m_restConnector->SendRequest(requestString, this);
+}

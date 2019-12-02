@@ -41,6 +41,8 @@ private:
     void HideCursor();
     void OnPressed(UITouchButton::ButtonState state);
     
+    void LogOutGuestUser();
+    
     void onMainMenuItemSelected(MainMenuWidget::MainMenuItems selectedItem);
 
 };

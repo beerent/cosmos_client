@@ -270,10 +270,19 @@ void OjerAppEngine2d::AuthenticationResultReceived(Authenticator::Authentication
 			m_authenticationRequestActive = false;
 			mGameStateMachine->SetState(GameMainMenuState::MAIN_MENU_STATE);
 		}
-
-		m_usernameWidget = new UsernameWidget(&m_uiComponentFactory, m_pUIGameLayerRoot);
-		m_usernameWidget->Init();
+        
+        DisplayActiveUser();
     }
+}
+
+void OjerAppEngine2d::DisplayActiveUser() {
+    m_usernameWidget = new UsernameWidget(&m_uiComponentFactory, m_pUIGameLayerRoot);
+    m_usernameWidget->Init();
+}
+
+void OjerAppEngine2d::TakeDownActiveUser() {
+    m_usernameWidget->Release();
+    delete m_usernameWidget;
 }
 
 void OjerAppEngine2d::DisplayUIBlockingComponent(UIComponent* component) {
@@ -285,7 +294,7 @@ void OjerAppEngine2d::DisplayUIBlockingComponent(UIComponent* component) {
 void OjerAppEngine2d::CompleteUIBlockingComponent() {
 	if (m_userProvider->IsLogOutQueued()) {
 		m_userProvider->LogOut();
-		m_usernameWidget->Release();
+        TakeDownActiveUser();
 		mGameStateMachine->SetState(GameMainMenuState::MAIN_MENU_STATE);
 	}
 

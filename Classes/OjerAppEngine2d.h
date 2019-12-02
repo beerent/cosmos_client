@@ -116,6 +116,8 @@ public:
 	void CompleteUIBlockingComponent();
     
     void AuthenticationResultReceived(Authenticator::AuthenticationResult result);
+    void DisplayActiveUser();
+    void TakeDownActiveUser();
 
 private:
 

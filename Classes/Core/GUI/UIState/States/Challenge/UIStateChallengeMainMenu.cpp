@@ -19,6 +19,12 @@ void UIStateChallengeMainMenu::OnEnterState() {
 
 	BaseStateDepricated::OnEnterState();
 	SubmitLoadChallengeLeaderboardRequest();
+    
+    if (IEngine::getEngine()->GetUserProvider()->IsLoggedIn() == false) {
+        SubmitGuestLoginRequest();
+    } else {
+        m_challengeMenuWidget->AddNewGameButton();
+    }
 }
 
 void UIStateChallengeMainMenu::OnExitState() {
@@ -43,9 +49,25 @@ void UIStateChallengeMainMenu::OnChallengeLeaderboardLoaded(ChallengeLeaderboard
 	}
 }
 
+void UIStateChallengeMainMenu::SubmitGuestLoginRequest() {
+    m_authenticator.SetUser(IEngine::getEngine()->GetUserProvider()->GetUser());
+    
+    Authenticator::AuthenticationResultListener callback;
+    callback.bind(this, &UIStateChallengeMainMenu::AuthenticationResultReceived);
+    m_authenticator.RegisterAuthenticationResultListener(callback);
+    m_authenticator.SetRestConnector(IEngine::getEngine()->GetRestConnector());
+    m_authenticator.SendGuestAuthenticationRequest();
+}
+
+void UIStateChallengeMainMenu::AuthenticationResultReceived(Authenticator::AuthenticationResult result) {
+    if (Authenticator::AuthenticationResult::SUCCESS == result) {
+        //TODO: display username widget
+        IEngine::getEngine()->DisplayActiveUser();
+        m_challengeMenuWidget->AddNewGameButton();
+    }
+}
+
 void UIStateChallengeMainMenu::OnChallengeMainMenuItemSelected(ChallengeMenuWidget::MenuItems selectedItem) {
-	STRING_ID levelID = StringManager::UNDEFINED;
-	
 	if (selectedItem == ChallengeMenuWidget::LOAD_CHALLENGE_LEVEL) {
 		ChangeState(UIStateChallengeMode::UI_STATE_CHALLENGE_MODE);
 	} else if (selectedItem == ChallengeMenuWidget::LOAD_MAIN_MENU) {

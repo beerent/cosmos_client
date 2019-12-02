@@ -23,6 +23,8 @@ public:
 	void Release();
 	void RegisterForChallengeMenuItemSelectedEvent(onChallengeMenuItemSelectedCallBack callback);
 	void UnregisterForChallengeMenuItemSelectedEvent(onChallengeMenuItemSelectedCallBack callback);
+    
+    void AddNewGameButton();
 
 	void SetLeaderboardContents(const ChallengeLeaderboard& leaderboard);
 	void SetLeaderboardContentsLoadFailed();
@@ -51,7 +53,6 @@ private:
 	void AddLeaderboardFrame();
 	void AddLeaderboardTitle();
 	void AddLeaderboardContents();
-	void AddNewGameButton();
 
 	void OnHomePressed(UITouchButton::ButtonState state);
 	void OnNewGamePressed(UITouchButton::ButtonState state);
