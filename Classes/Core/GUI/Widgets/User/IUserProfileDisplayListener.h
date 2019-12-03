@@ -25,6 +25,7 @@ public:
 	}
 
 	virtual void CloseUserProfile() {
+        m_userProfileLoader->UnregisterProfileLoadedListener();
 		IEngine::getEngine()->CompleteUIBlockingComponent();
 	}
     

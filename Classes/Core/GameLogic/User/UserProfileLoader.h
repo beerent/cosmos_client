@@ -18,6 +18,7 @@ public:
     ~UserProfileLoader();
     void LoadUserProfile();
     void RegisterProfileLoadedListener(IUserProfileReceiver* userProfileReceiver);
+    void UnregisterProfileLoadedListener();
     void SetRestConnector(IRestConnector* connector);
     
     virtual void RestReceived(const std::string& rest);

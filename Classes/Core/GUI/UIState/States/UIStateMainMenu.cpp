@@ -22,16 +22,19 @@ void UIStateMainMenu::OnEnterState() {
     LogOutGuestUser();
     
     m_mainMenuWidget->init();
-    m_guestUsername = "1N00BYGUEST";
-    HideCursor();
+    
+    if (IEngine::getEngine()->GetUserProvider()->IsLoggedIn() == false) {
+        m_guestUsername = "MegaNOOB";
+        HideCursor();
+        
+        UILabel::onButtonStateChangedCallBack guestUsernameCallback;
+        guestUsernameCallback.bind(this, &::UIStateMainMenu::OnPressed);
+        m_mainMenuWidget->RegisterUsernameFocusCallback(guestUsernameCallback);
+    }
     
     MainMenuWidget::onMenuItemSelectedCallBack callback;
     callback.bind(this, &UIStateMainMenu::onMainMenuItemSelected);
     m_mainMenuWidget->registerForMenuItemSelectedEvent(callback);
-    
-    UILabel::onButtonStateChangedCallBack guestUsernameCallback;
-    guestUsernameCallback.bind(this, &::UIStateMainMenu::OnPressed);
-    m_mainMenuWidget->RegisterUsernameFocusCallback(guestUsernameCallback);
 }
 
 void UIStateMainMenu::OnExitState() {

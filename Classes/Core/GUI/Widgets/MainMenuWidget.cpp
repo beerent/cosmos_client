@@ -24,12 +24,6 @@ void MainMenuWidget::init() {
     m_menu->setHeight(460);
     
 	m_parentComponent->addChild(m_menu);
-    
-	UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
-	if (!userProvider->IsLoggedIn()) {
-		AddLoginButton(m_parentComponent);
-		//AddRegisterButton(m_parentComponent);
-	}
 
 	UITouchButton::onButtonStateChangedCallBack callBack;
 
@@ -38,7 +32,6 @@ void MainMenuWidget::init() {
     label->setY(12.0);   
     m_menu->addChild(label);
     
-    SetGuestUsernameDisplay("Apple Boy 6");
 
     /* Blank Label */
     label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "");
@@ -54,6 +47,12 @@ void MainMenuWidget::init() {
 	callBack.bind(this, &MainMenuWidget::OnLoadChallengeMenu);
 	label->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
     m_menu->addChild(label);
+    
+    UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
+    if (!userProvider->IsLoggedIn()) {
+        SetGuestUsernameDisplay("");
+        AddLoginButton(m_parentComponent);
+    }
 }
 
 void MainMenuWidget::AddLoginButton(UIComponent *parentComponent) {

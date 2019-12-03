@@ -19,7 +19,10 @@ void UserProfileLoader::LoadUserProfile() {
 void UserProfileLoader::RestReceived(const std::string& rest) {
     json11::Json json = JsonProvider::ParseString(rest);
     UserProfile profile = JsonToUserProfile(json);
-    m_userProfileReceiver->OnProfileLoaded(profile);
+    
+    if (m_userProfileReceiver != nullptr) {
+        m_userProfileReceiver->OnProfileLoaded(profile);
+    }
 }
 
 UserProfile UserProfileLoader::JsonToUserProfile(json11::Json& json) const {
@@ -36,6 +39,10 @@ UserProfile UserProfileLoader::JsonToUserProfile(json11::Json& json) const {
 
 void UserProfileLoader::RegisterProfileLoadedListener(IUserProfileReceiver* userProfileReceiver) {
     m_userProfileReceiver = userProfileReceiver;
+}
+
+void UserProfileLoader::UnregisterProfileLoadedListener() {
+    m_userProfileReceiver = nullptr;
 }
 
 void UserProfileLoader::SetRestConnector(IRestConnector* connector) {
