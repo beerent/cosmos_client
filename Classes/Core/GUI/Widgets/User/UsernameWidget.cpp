@@ -21,6 +21,9 @@ void UsernameWidget::Release() {
 void UsernameWidget::AddUsername() {
 	UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
 	std::string username = userProvider->GetUser().GetUsername();
+    if (userProvider->GetUser().GetAccessLevel() == UserAccessLevel::GUEST) {
+        username += " (guest)";
+    }
 
 	float width = 12.5 * username.size();
 
