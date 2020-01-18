@@ -131,7 +131,6 @@ void UIStateMainMenu::OnPressed(UITouchButton::ButtonState state) {
 void UIStateMainMenu::LogOutGuestUser() {
     UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
     if (userProvider->IsLoggedIn() && userProvider->GetUser().GetAccessLevel() == UserAccessLevel::GUEST) {
-        IEngine::getEngine()->TakeDownActiveUser();
         userProvider->LogOut();
     }
 }

@@ -2,7 +2,7 @@
 #include <Core/Net/RequestBuilder.h>
 #include "IEngine.h"
 
-Authenticator::Authenticator() : m_user(User("", "", UserAccessLevel::INVALID)) {}
+Authenticator::Authenticator() : m_user(User("", "", UserAccessLevel::INVALID)), m_authenticationResultListener(nullptr) {}
 
 Authenticator::~Authenticator() {
 	m_restConnector->CloseRequest(m_authenticationRequestId);
@@ -20,18 +20,18 @@ User Authenticator::GetUser() const {
 	return m_user;
 }
 
-void Authenticator::RegisterAuthenticationResultListener(AuthenticationResultListener listener) {
-	m_authenticationResultListeners.push_back(listener);
+void Authenticator::RegisterAuthenticationResultListener(IAuthenticationResultListener* listener) {
+    m_authenticationResultListener = listener;
 }
 
-void Authenticator::UnregisterAuthenticationResultListener(AuthenticationResultListener listener) {
-	m_authenticationResultListeners.remove(listener);
+void Authenticator::UnregisterAuthenticationResultListener() {
+    m_authenticationResultListener = nullptr;
 }
 
 void Authenticator::NotifyAuthenticationResultListeners(AuthenticationResult result) const {
-	for (auto listener : m_authenticationResultListeners) {
-		(listener)(result);
-	}
+    if (nullptr != m_authenticationResultListener) {
+        m_authenticationResultListener->OnAuthenticationResultReceived(result);
+    }
 }
 
 void Authenticator::RestReceived(const std::string& rest) {

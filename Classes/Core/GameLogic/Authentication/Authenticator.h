@@ -8,12 +8,18 @@
 
 #include <list>
 
+enum AuthenticationResult {
+    FAILURE,
+    SUCCESS
+};
+
+class IAuthenticationResultListener {
+public:
+    virtual void OnAuthenticationResultReceived(AuthenticationResult result) = 0;
+};
+
 class Authenticator : public IRestReceiver {
 public:
-	enum AuthenticationResult {
-		FAILURE,
-		SUCCESS
-	};
 	typedef fastdelegate::FastDelegate1<AuthenticationResult> AuthenticationResultListener;
 
 	Authenticator();
@@ -25,8 +31,8 @@ public:
     void SendGuestAuthenticationRequest();
     void SendAuthenticationRequest();
 
-	void RegisterAuthenticationResultListener(AuthenticationResultListener listener);
-	void UnregisterAuthenticationResultListener(AuthenticationResultListener listener);
+	void RegisterAuthenticationResultListener(IAuthenticationResultListener* listener);
+	void UnregisterAuthenticationResultListener();
 
 	virtual void RestReceived(const std::string& rest);
 
@@ -36,7 +42,7 @@ private:
 
 	std::string m_authenticationRequestId;
 
-	std::list<AuthenticationResultListener> m_authenticationResultListeners;
+	IAuthenticationResultListener* m_authenticationResultListener;
 
 	bool JsonToAuthenticationResult(const json11::Json json) const;
 	void NotifyAuthenticationResultListeners(AuthenticationResult result) const;

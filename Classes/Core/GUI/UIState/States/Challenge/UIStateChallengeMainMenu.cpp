@@ -19,6 +19,7 @@ void UIStateChallengeMainMenu::OnEnterState() {
 
 	BaseStateDepricated::OnEnterState();
 	SubmitLoadChallengeLeaderboardRequest();
+    m_challengeMenuWidget->WaitingForLeaderboard();
     
     if (IEngine::getEngine()->GetUserProvider()->IsLoggedIn() == false) {
         SubmitGuestLoginRequest();
@@ -29,19 +30,18 @@ void UIStateChallengeMainMenu::OnEnterState() {
 
 void UIStateChallengeMainMenu::OnExitState() {
 	m_challengeMenuWidget->Release();
+    m_leaderboardLoader.UnregisterLoadLeaderboardListener();
+    m_authenticator.UnregisterAuthenticationResultListener();
 	BaseStateDepricated::OnExitState();
 }
 
 void UIStateChallengeMainMenu::SubmitLoadChallengeLeaderboardRequest() {
-	ChallengeLeaderboardLoader::LoadLeaderboardListener callback;
-	callback.bind(this, &UIStateChallengeMainMenu::OnChallengeLeaderboardLoaded);
-
+    m_leaderboardLoader.RegisterLoadLeaderboardListener(this);
 	m_leaderboardLoader.SetRestConnector(IEngine::getEngine()->GetRestConnector());
-	m_leaderboardLoader.RegisterLoadLeaderboardListener(callback);
 	m_leaderboardLoader.SendLoadLeaderboardRequest();
 }
 
-void UIStateChallengeMainMenu::OnChallengeLeaderboardLoaded(ChallengeLeaderboardLoadResult result) {
+void UIStateChallengeMainMenu::OnLeaderboardLoaded(const ChallengeLeaderboardLoadResult& result) {
 	if (result.Success()) {
 		m_challengeMenuWidget->SetLeaderboardContents(result.GetLeaderboard());
 	} else {
@@ -52,17 +52,13 @@ void UIStateChallengeMainMenu::OnChallengeLeaderboardLoaded(ChallengeLeaderboard
 void UIStateChallengeMainMenu::SubmitGuestLoginRequest() {
     m_authenticator.SetUser(IEngine::getEngine()->GetUserProvider()->GetUser());
     
-    Authenticator::AuthenticationResultListener callback;
-    callback.bind(this, &UIStateChallengeMainMenu::AuthenticationResultReceived);
-    m_authenticator.RegisterAuthenticationResultListener(callback);
+    m_authenticator.RegisterAuthenticationResultListener(this);
     m_authenticator.SetRestConnector(IEngine::getEngine()->GetRestConnector());
     m_authenticator.SendGuestAuthenticationRequest();
 }
 
-void UIStateChallengeMainMenu::AuthenticationResultReceived(Authenticator::AuthenticationResult result) {
-    if (Authenticator::AuthenticationResult::SUCCESS == result) {
-        //TODO: display username widget
-        IEngine::getEngine()->DisplayActiveUser();
+void UIStateChallengeMainMenu::OnAuthenticationResultReceived(AuthenticationResult result) {
+    if (AuthenticationResult::SUCCESS == result) {
         m_challengeMenuWidget->AddNewGameButton();
     }
 }

@@ -61,9 +61,7 @@ public:
 	virtual UserProvider* GetUserProvider() = 0;
     virtual IUserMemory* GetUserMemory() = 0;
 
-	virtual void AuthenticationResultReceived(Authenticator::AuthenticationResult result) = 0;
-    virtual void DisplayActiveUser() = 0;
-    virtual void TakeDownActiveUser() = 0;
+	virtual void OnAuthenticationResultReceived(AuthenticationResult result) = 0;
 	
 	virtual void DisplayUIBlockingComponent(UIComponent* component) = 0;
 	virtual void CompleteUIBlockingComponent() = 0;

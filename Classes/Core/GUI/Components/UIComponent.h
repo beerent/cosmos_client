@@ -20,6 +20,8 @@
 class UIComponent : public DynamicObject
 {
 public:
+    
+    
     enum AnchorType {ANCHOR_TOP_LEFT = 0, ANCHOR_TOP_CENTER, ANCHOR_TOP_RIGHT, ANCHOR_LEFT, ANCHOR_CENTER,
         ANCHOR_RIGHT, ANCHOR_BOTTOM_LEFT, ANCHOR_BOTTOM_CENTER, ANCHOR_BOTTOM_RIGHT};
     enum LayoutScheme {ANCHOR = 0};
@@ -44,6 +46,7 @@ private:
     glm::mat4 m_transformation;
     std::map<StringManager::StringID, UIComponent*> m_children;
     std::list<UIComponent*> m_listOfChildren;
+    bool m_processingRender;
     
     int m_tuchID = 0;
 
@@ -62,6 +65,7 @@ protected:
     RenderableObj* m_visual;
     
     
+    
 public:
     void init(PropertyCollection &propertyCollection);
     UIComponent(PropertyCollection &propertyCollection);
@@ -69,6 +73,8 @@ public:
     
     bool addChild(UIComponent * component);
     bool removeChild(StringManager::StringID componentID);
+    
+    bool ProcessingRender() const;// { return m_processingRender; }
 
     virtual void onBeginRender(Renderer& renderer);
     virtual void onLayout();

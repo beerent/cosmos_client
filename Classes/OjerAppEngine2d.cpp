@@ -232,7 +232,8 @@ void OjerAppEngine2d::Initialize(int width, int height, IResourceLoader* resourc
     mGameStateMachine = GameStateMachine::GetInstance();
     mGameStateMachine->SetState(GameMainMenuState::MAIN_MENU_STATE);
     
-    LoginUserIfRemembered();
+    /* REMOVED LOGIN FEATURE FOR INITIAL RELEASE */
+    //LoginUserIfRemembered();
     
     //mDebugMenuWidget = new DebugMenuWidget();
     //mDebugMenuWidget->init(&m_uiComponentFactory, m_pUIDebugLayerRoot);
@@ -250,39 +251,13 @@ void OjerAppEngine2d::Initialize(int width, int height, IResourceLoader* resourc
 	mArchetypeRepository = new PropertyCollectionRepository(*m_resourceLoader);
 }
 
-void OjerAppEngine2d::LoginUserIfRemembered() {
-    const std::string username = GetUserMemory()->RetrieveUsername();
-    const std::string password = GetUserMemory()->RetrievePassword();
-    
-    User user(username, password, UserAccessLevel::INVALID);
-    m_authenticator.SetUser(user);
-    Authenticator::AuthenticationResultListener callback;
-    callback.bind(this, &OjerAppEngine2d::AuthenticationResultReceived);
-    m_authenticator.RegisterAuthenticationResultListener(callback);
-    m_authenticator.SetRestConnector(GetRestConnector());
-    m_authenticator.SendAuthenticationRequest();
-	m_authenticationRequestActive = true;
-}
-
-void OjerAppEngine2d::AuthenticationResultReceived(Authenticator::AuthenticationResult result) {
-    if (Authenticator::AuthenticationResult::SUCCESS == result) {
+void OjerAppEngine2d::OnAuthenticationResultReceived(AuthenticationResult result) {
+    if (AuthenticationResult::SUCCESS == result) {
 		if (m_authenticationRequestActive) {
 			m_authenticationRequestActive = false;
 			mGameStateMachine->SetState(GameMainMenuState::MAIN_MENU_STATE);
 		}
-        
-        DisplayActiveUser();
     }
-}
-
-void OjerAppEngine2d::DisplayActiveUser() {
-    m_usernameWidget = new UsernameWidget(&m_uiComponentFactory, m_pUIGameLayerRoot);
-    m_usernameWidget->Init();
-}
-
-void OjerAppEngine2d::TakeDownActiveUser() {
-    m_usernameWidget->Release();
-    delete m_usernameWidget;
 }
 
 void OjerAppEngine2d::DisplayUIBlockingComponent(UIComponent* component) {
@@ -294,7 +269,6 @@ void OjerAppEngine2d::DisplayUIBlockingComponent(UIComponent* component) {
 void OjerAppEngine2d::CompleteUIBlockingComponent() {
 	if (m_userProvider->IsLogOutQueued()) {
 		m_userProvider->LogOut();
-        TakeDownActiveUser();
 		mGameStateMachine->SetState(GameMainMenuState::MAIN_MENU_STATE);
 	}
 

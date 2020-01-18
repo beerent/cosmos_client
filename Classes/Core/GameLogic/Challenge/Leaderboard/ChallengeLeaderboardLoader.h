@@ -9,26 +9,30 @@
 
 const std::string GET_CHALLENGE_LEADERBOARD = "getChallengeLeaderboard";
 
+class ILeaderboardListener {
+public:
+    virtual void OnLeaderboardLoaded(const ChallengeLeaderboardLoadResult& result) = 0;
+};
+
 class ChallengeLeaderboardLoader : public IRestReceiver {
 public:
-	typedef fastdelegate::FastDelegate1<ChallengeLeaderboardLoadResult> LoadLeaderboardListener;
 
 	ChallengeLeaderboardLoader();
 	~ChallengeLeaderboardLoader();
 	void SetRestConnector(IRestConnector* connector);
 	void SendLoadLeaderboardRequest();
 
-	void RegisterLoadLeaderboardListener(LoadLeaderboardListener listener);
-	void UnregisterLoadLeaderboardListener(LoadLeaderboardListener listener);
+	void RegisterLoadLeaderboardListener(ILeaderboardListener* listener);
+	void UnregisterLoadLeaderboardListener();
 
 	virtual void RestReceived(const std::string& rest);
 
 private:
 	IRestConnector* m_restConnector;
 	std::string m_loadleaderboardRequestId;
-
-	std::list<LoadLeaderboardListener> m_loadLeaderboardListeners;
-
+    
+    ILeaderboardListener* m_leaderboardListener;
+    
 	ChallengeLeaderboardLoadResult JsonToLoadLeaderboardResult(const json11::Json json) const;
 	ChallengeLeaderboard JsonToChallengeLeaderboard(const json11::Json json) const;
 	void NotifyLoadLeaderboardListeners(ChallengeLeaderboardLoadResult result) const;

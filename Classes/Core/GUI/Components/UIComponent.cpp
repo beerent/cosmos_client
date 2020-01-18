@@ -31,12 +31,12 @@ StringManager::StringID UIComponent::getID()
     return m_id;
 }
 
-UIComponent::UIComponent(PropertyCollection &propertyCollection):DynamicObject(CLASS_ID_UI_COMPONENT)
+UIComponent::UIComponent(PropertyCollection &propertyCollection):DynamicObject(CLASS_ID_UI_COMPONENT), m_processingRender(false)
 {
     init(propertyCollection);
 }
 
-UIComponent::UIComponent(PropertyCollection &propertyCollection, StringManager::StringID classTypeID):DynamicObject(classTypeID)
+UIComponent::UIComponent(PropertyCollection &propertyCollection, StringManager::StringID classTypeID):DynamicObject(classTypeID), m_processingRender(false)
 {
     init(propertyCollection);
 }
@@ -122,6 +122,8 @@ void UIComponent::onBeginRender(Renderer& renderer)
         m_visual->onRender(renderer, renderer.getCurrentModelViewProjectionMatrix(), glm::vec3(m_width, m_height, 1.0f));
     }
     
+    m_processingRender = true;
+    
     std::list<UIComponent*>::iterator it = m_listOfChildren.begin();
     while(it != m_listOfChildren.end())
     {
@@ -130,7 +132,10 @@ void UIComponent::onBeginRender(Renderer& renderer)
         renderer.popTransformation();
         it++;
     }
+    m_processingRender = false;
 }
+
+bool UIComponent::ProcessingRender() const { return m_processingRender; }
 
 void UIComponent::onLayout()
 {
@@ -318,6 +323,10 @@ bool UIComponent::containsPoint(double x, double y)
 
 void UIComponent::release()
 {
+    if (m_parent != NULL && m_parent->ProcessingRender()) {
+        return;
+    }
+
     if(m_waitingForReleaseEvent)
     {
         m_waitingForReleaseEvent = false;

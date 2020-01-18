@@ -3,7 +3,7 @@
 #include <Core/GameLogic/Challenge/Leaderboard/ChallengeLeaderboardEntry.h>
 #include <Core/User/User.h>
 
-ChallengeLeaderboardLoader::ChallengeLeaderboardLoader() {}
+ChallengeLeaderboardLoader::ChallengeLeaderboardLoader() : m_leaderboardListener(nullptr) {}
 
 ChallengeLeaderboardLoader::~ChallengeLeaderboardLoader() {
 	m_restConnector->CloseRequest(m_loadleaderboardRequestId);
@@ -13,18 +13,18 @@ void ChallengeLeaderboardLoader::SetRestConnector(IRestConnector* connector) {
 	m_restConnector = connector;
 }
 
-void ChallengeLeaderboardLoader::RegisterLoadLeaderboardListener(LoadLeaderboardListener listener) {
-	m_loadLeaderboardListeners.push_back(listener);
+void ChallengeLeaderboardLoader::RegisterLoadLeaderboardListener(ILeaderboardListener* listener) {
+    m_leaderboardListener = listener;
 }
 
-void ChallengeLeaderboardLoader::UnregisterLoadLeaderboardListener(LoadLeaderboardListener listener) {
-	m_loadLeaderboardListeners.remove(listener);
+void ChallengeLeaderboardLoader::UnregisterLoadLeaderboardListener() {
+    m_leaderboardListener = nullptr;
 }
 
 void ChallengeLeaderboardLoader::NotifyLoadLeaderboardListeners(ChallengeLeaderboardLoadResult result) const {
-	for (auto listener : m_loadLeaderboardListeners) {
-		(listener)(result);
-	}
+    if (nullptr != m_leaderboardListener) {
+        m_leaderboardListener->OnLeaderboardLoaded(result);
+    }
 }
 
 void ChallengeLeaderboardLoader::RestReceived(const std::string& rest) {

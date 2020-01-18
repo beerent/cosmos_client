@@ -22,12 +22,10 @@ void UIStateAuthInput::OnEnterState() {
 	callBack.bind(this, &UIStateAuthInput::OnInputButtonPressed);
 	m_authenticationInputWidget->RegisterForMenuItemSelectedEvent(callBack);
 
-	Authenticator::AuthenticationResultListener callback;
-	callback.bind(this, &UIStateAuthInput::OnAuthenticationResult);
 
 	m_authenticator.SetRestConnector(IEngine::getEngine()->GetRestConnector());
 	m_authenticator.SetUser(IEngine::getEngine()->GetUserProvider()->GetUser());
-	m_authenticator.RegisterAuthenticationResultListener(callback);
+	m_authenticator.RegisterAuthenticationResultListener(this);
     
     RegisterUsernameListener();
     RegisterPasswordListener();
@@ -37,6 +35,7 @@ void UIStateAuthInput::OnEnterState() {
 
 void UIStateAuthInput::OnExitState() {
     IEngine::getEngine()->GetKeyboardManager()->UnregisterKeyboardListener();
+    m_authenticator.UnregisterAuthenticationResultListener();
 	m_authenticationInputWidget->Release();
 	delete m_authenticationInputWidget;
 	BaseStateDepricated::OnExitState();
@@ -122,14 +121,14 @@ void UIStateAuthInput::SubmitAuthenticationRequest() {
 	m_authenticator.SendAuthenticationRequest();
 }
 
-void UIStateAuthInput::OnAuthenticationResult(Authenticator::AuthenticationResult result) {
+void UIStateAuthInput::OnAuthenticationResultReceived(AuthenticationResult result) {
 	switch (result) {
-	case Authenticator::AuthenticationResult::SUCCESS:
-		IEngine::getEngine()->AuthenticationResultReceived(result);
+	case AuthenticationResult::SUCCESS:
+		IEngine::getEngine()->OnAuthenticationResultReceived(result);
 		UIStateMachine::GetInstance()->SetState(UIStateMainMenu::UI_STATE_MAINMENU);
 		break;
             
-	case Authenticator::AuthenticationResult::FAILURE:
+	case AuthenticationResult::FAILURE:
 		m_currentEditField = KeyboardSelectedOption::USERNAME;
 
 		m_username.clear();

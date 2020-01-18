@@ -58,9 +58,8 @@
 #include <Core/User/IUserMemory.h>
 #include <Core/Keyboard/KeyboardManager.h>
 #include <Core/GameLogic/Authentication/Authenticator.h>
-#include <Core/GUI/Widgets/User/UsernameWidget.h>
 
-class OjerAppEngine2d : public IOjerAppEngine2d, public IEngine {
+class OjerAppEngine2d : public IOjerAppEngine2d, public IEngine, IAuthenticationResultListener {
 
 public:
 
@@ -90,6 +89,7 @@ public:
 	void registerForDeltaTimeEvents(IEventHandler* handler);
 	void unregisterForDeltaTimeEvents(IEventHandler* handler);
 
+    virtual void OnAuthenticationResultReceived(AuthenticationResult result);
 
 	Camera* getActiveCamera();
 	ActiveCameraController* getActiveCameraController();
@@ -114,10 +114,6 @@ public:
 
 	void DisplayUIBlockingComponent(UIComponent* component);
 	void CompleteUIBlockingComponent();
-    
-    void AuthenticationResultReceived(Authenticator::AuthenticationResult result);
-    void DisplayActiveUser();
-    void TakeDownActiveUser();
 
 private:
 
@@ -153,11 +149,11 @@ private:
     KeyboardManager m_keyboardManager;
 	UserProvider* m_userProvider;
     IUserMemory* m_userMemory;
-
+    
+    bool m_authenticationRequestActive;
 	GameStateMachine *mGameStateMachine;
 
 	LightingManager mLightingManager;
-    Authenticator m_authenticator;
 
 	float m_scaleFactor;
 	float m_uiScale;
@@ -169,14 +165,12 @@ private:
 
 	DebugMenuWidget *mDebugMenuWidget;
 	DebugOverLayWidget *mDebugOverLayWidget;
-	UsernameWidget* m_usernameWidget;
 	GameState mRequestedTransitionState;
 	STRING_ID mRequestedTransitionLevel;
 	bool mRequestPending;
 	int m_currentInputID = 0;
 	int m_activeInputCount = 0;
 	unsigned long mFrameCount = 0;
-	bool m_authenticationRequestActive;
 
 	struct InputIDPosition
 	{
@@ -189,7 +183,6 @@ private:
 	EventDispatcher mDispatcher;
 
 	void updateAccumulatedDeltaTime(float deltaTime);
-    void LoginUserIfRemembered();
 
 	int getInputID(ivec2 position);
 	int findInputID(ivec2 position, int minDistance);

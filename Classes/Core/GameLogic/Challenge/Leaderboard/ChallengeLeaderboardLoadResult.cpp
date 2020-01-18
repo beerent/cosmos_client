@@ -7,10 +7,10 @@ ChallengeLeaderboardLoadResult::ChallengeLeaderboardLoadResult() : m_success(fal
 ChallengeLeaderboardLoadResult::ChallengeLeaderboardLoadResult(ChallengeLeaderboard leaderboard)
   : m_success(true), m_leaderboard(leaderboard) {}
 
-bool ChallengeLeaderboardLoadResult::Success() {
+bool ChallengeLeaderboardLoadResult::Success() const {
 	return m_success;
 }
 
-ChallengeLeaderboard ChallengeLeaderboardLoadResult::GetLeaderboard() {
+ChallengeLeaderboard ChallengeLeaderboardLoadResult::GetLeaderboard() const {
 	return m_leaderboard;
 }

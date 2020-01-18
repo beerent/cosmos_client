@@ -10,7 +10,7 @@
 #include <Core/Util/SimpleTimer.h>
 #include <Core/Keyboard/IKeyboardListener.h>
 
-class UIStateAuthInput : public BaseStateDepricated, IKeyboardListener, Timer::SimpleTimerListener {
+class UIStateAuthInput : public BaseStateDepricated, IKeyboardListener, Timer::SimpleTimerListener, IAuthenticationResultListener {
 	enum class KeyboardSelectedOption {
         INVALID = -1,
 		USERNAME,
@@ -51,7 +51,7 @@ private:
 	void RemoveCharacterFromPassword();
 
 	void SubmitAuthenticationRequest();
-	void OnAuthenticationResult(Authenticator::AuthenticationResult result);
+	void OnAuthenticationResultReceived(AuthenticationResult result);
 
 	void OnInputButtonPressed(AuthenticationInputWidget::AuthenticationInputButtons button);
     

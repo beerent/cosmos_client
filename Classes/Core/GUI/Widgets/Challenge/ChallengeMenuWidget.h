@@ -28,6 +28,14 @@ public:
 
 	void SetLeaderboardContents(const ChallengeLeaderboard& leaderboard);
 	void SetLeaderboardContentsLoadFailed();
+    
+    void WaitingForLeaderboard() {
+        m_waitingForLeaderboard = true;
+    }
+    
+    void FinishWaitingForLeaderboard() {
+        m_waitingForLeaderboard = false;
+    }
 
 private:
 	std::list<onChallengeMenuItemSelectedCallBack> m_onChallengeMenuItemSelectedListeners;
@@ -43,6 +51,11 @@ private:
 	UILabel* m_newGameButton;
 
 	UILabel* m_loadingLabel;
+    
+    bool m_waitingForLeaderboard;
+    bool IsWaitingForLeaderboard() {
+        return m_waitingForLeaderboard;
+    }
 
 	std::vector<UILabel*> m_leaderboardEntries;
 	std::vector<UIUsernameLabel*> m_leaderboardClickListeners;

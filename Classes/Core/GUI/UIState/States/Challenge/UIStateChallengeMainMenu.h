@@ -8,7 +8,8 @@
 #include <Core/GameLogic/Challenge/Leaderboard/ChallengeLeaderboardLoadResult.h>
 #include <Core/GUI/Widgets/Challenge/ChallengeMenuWidget.h>
 #include <Core/GameLogic/Authentication/Authenticator.h>
-class UIStateChallengeMainMenu : public BaseStateDepricated {
+
+class UIStateChallengeMainMenu : public BaseStateDepricated, ILeaderboardListener, IAuthenticationResultListener {
 
 public:
 	UIStateChallengeMainMenu(IStateChanageListenerDepricated* stateChangeListener) : BaseStateDepricated(stateChangeListener) {};
@@ -16,7 +17,9 @@ public:
 
 	virtual void OnEnterState();
 	virtual void OnExitState();
-
+    
+    virtual void OnAuthenticationResultReceived(AuthenticationResult result);
+    
 	virtual STRING_ID GetStateID() { return UI_STATE_CHALLENGE_MAIN_MENU; }
 
 private:
@@ -28,8 +31,7 @@ private:
     Authenticator m_authenticator;
 
     void SubmitLoadChallengeLeaderboardRequest();
-	void OnChallengeLeaderboardLoaded(ChallengeLeaderboardLoadResult result);
+    virtual void OnLeaderboardLoaded(const ChallengeLeaderboardLoadResult& result);
     void SubmitGuestLoginRequest();
-    void AuthenticationResultReceived(Authenticator::AuthenticationResult result);
     void OnChallengeMainMenuItemSelected(ChallengeMenuWidget::MenuItems selectedItem);
 };

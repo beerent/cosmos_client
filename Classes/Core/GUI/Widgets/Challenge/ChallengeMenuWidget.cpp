@@ -4,21 +4,25 @@
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
-ChallengeMenuWidget::ChallengeMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : IUserProfileDisplayListener(uiComponentFactory, parentComponent), m_home(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr) {
+ChallengeMenuWidget::ChallengeMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : IUserProfileDisplayListener(uiComponentFactory, parentComponent), m_home(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr), m_waitingForLeaderboard(false) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
 
 void ChallengeMenuWidget::Init() {
+    m_parentComponent->setVisible(false);
 	AddHomeButton();
 	AddChallengeTitle();
 	AddLeaderboardFrame();
 	AddLeaderboardTitle();
 	AddLeaderboardContents();
+    m_parentComponent->setVisible(true);
 	//AddNewGameButton(); - added after we've established a login
 }
 
 void ChallengeMenuWidget::Release() {
+    FinishWaitingForLeaderboard();
+    
 	if (m_home != nullptr) {
 		m_home->release();
 		delete m_home;
@@ -117,6 +121,9 @@ void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& lea
         label->setDropShadowColor(dropShadowColor);
 		label->setY(LEADERBOARD_ENTRY_PADDING + calculatedY);
 		label->setX(-100);
+        if (IsWaitingForLeaderboard() == false) {
+            return;
+        }
 		m_leaderboard->addChild(label);
 
 		label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 200.0, 40.0, UIComponent::ANCHOR_TOP_CENTER, leaderboard.GetEntryInPlace(i).GetUser().GetUsername());
@@ -128,6 +135,9 @@ void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& lea
 		m_leaderboardEntries.push_back(label);
 		m_leaderboardClickListeners.push_back(usernameLabel);
 
+        if (IsWaitingForLeaderboard() == false) {
+            return;
+        }
 		m_leaderboard->addChild(label);
 
 		label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0 / 6, 90.0, UIComponent::ANCHOR_TOP_CENTER, std::to_string(leaderboard.GetEntryInPlace(i).GetPoints()));
@@ -135,6 +145,9 @@ void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& lea
 		label->setY(LEADERBOARD_ENTRY_PADDING + calculatedY);
 		label->setX(100);
 
+        if (IsWaitingForLeaderboard() == false) {
+            return;
+        }
 		m_leaderboard->addChild(label);
 	}
 }

@@ -7,8 +7,8 @@ public:
 	ChallengeLeaderboardLoadResult();
 	ChallengeLeaderboardLoadResult(ChallengeLeaderboard leaderboard);
 
-	bool Success();
-	ChallengeLeaderboard GetLeaderboard();
+	bool Success() const;
+	ChallengeLeaderboard GetLeaderboard() const;
 
 private:
 	bool m_success;

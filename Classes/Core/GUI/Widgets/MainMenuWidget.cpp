@@ -48,11 +48,12 @@ void MainMenuWidget::init() {
 	label->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
     m_menu->addChild(label);
     
-    UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
-    if (!userProvider->IsLoggedIn()) {
-        SetGuestUsernameDisplay("");
-        AddLoginButton(m_parentComponent);
-    }
+    /* REMOVED LOGIN FEATURE FOR INITIAL RELEASE */
+    //UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
+    //if (!userProvider->IsLoggedIn()) {
+    //    SetGuestUsernameDisplay("");
+    //    AddLoginButton(m_parentComponent);
+    //}
 }
 
 void MainMenuWidget::AddLoginButton(UIComponent *parentComponent) {
