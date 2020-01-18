@@ -23,10 +23,13 @@ void UIStateMainMenu::OnEnterState() {
     
     m_mainMenuWidget->init();
     
+    m_guestUsername = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
+    if (m_guestUsername.empty()) {
+      m_guestUsername = "MegaNOOB";
+    }
+    HideCursor();
+    
     if (IEngine::getEngine()->GetUserProvider()->IsLoggedIn() == false) {
-        m_guestUsername = "MegaNOOB";
-        HideCursor();
-        
         UILabel::onButtonStateChangedCallBack guestUsernameCallback;
         guestUsernameCallback.bind(this, &::UIStateMainMenu::OnPressed);
         m_mainMenuWidget->RegisterUsernameFocusCallback(guestUsernameCallback);
