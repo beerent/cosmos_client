@@ -4,29 +4,31 @@
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
-ChallengeMenuWidget::ChallengeMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : IUserProfileDisplayListener(uiComponentFactory, parentComponent), m_home(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr), m_waitingForLeaderboard(false) {
+ChallengeMenuWidget::ChallengeMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : IUserProfileDisplayListener(uiComponentFactory, parentComponent),
+      m_home(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr), m_currentUsername(nullptr), m_waitingForLeaderboard(false) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
 
 void ChallengeMenuWidget::Init() {
     m_parentComponent->setVisible(false);
+    AddCurrentUserUsername();
 	AddHomeButton();
 	AddChallengeTitle();
 	AddLeaderboardFrame();
 	AddLeaderboardTitle();
 	AddLeaderboardContents();
     m_parentComponent->setVisible(true);
-	//AddNewGameButton(); - added after we've established a login
 }
 
 void ChallengeMenuWidget::Release() {
     FinishWaitingForLeaderboard();
+
+    m_home->release();
+	delete m_home;
     
-	if (m_home != nullptr) {
-		m_home->release();
-		delete m_home;
-	}
+    m_currentUsername->release();
+    delete m_currentUsername;
 
 	m_leaderboardTitle->release();
 	delete m_leaderboardTitle;
@@ -60,6 +62,15 @@ void ChallengeMenuWidget::RegisterForChallengeMenuItemSelectedEvent(onChallengeM
 
 void ChallengeMenuWidget::UnregisterForChallengeMenuItemSelectedEvent(onChallengeMenuItemSelectedCallBack callback) {
 	m_onChallengeMenuItemSelectedListeners.remove(callback);
+}
+
+void ChallengeMenuWidget::AddCurrentUserUsername() {
+    const std::string username = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
+    float usernameWidth = 12.5 * username.size();
+    m_currentUsername = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameWidth, 40, UIComponent::ANCHOR_TOP_RIGHT, username);
+    m_currentUsername->setDropShadowColor(dropShadowColor);
+    m_currentUsername->setX(50);
+    m_parentComponent->addChild(m_currentUsername);
 }
 
 void ChallengeMenuWidget::AddHomeButton() {
@@ -131,9 +142,9 @@ void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& lea
 		label->setY(LEADERBOARD_ENTRY_PADDING + 24 + calculatedY);
 
 		usernameLabel = new UIUsernameLabel(leaderboard.GetEntryInPlace(i).GetUser(), label);
-		usernameLabel->RegisterUserProfileDisplayListener(this);
+		//usernameLabel->RegisterUserProfileDisplayListener(this);
 		m_leaderboardEntries.push_back(label);
-		m_leaderboardClickListeners.push_back(usernameLabel);
+		//m_leaderboardClickListeners.push_back(usernameLabel);
 
         if (IsWaitingForLeaderboard() == false) {
             return;

@@ -49,6 +49,7 @@ private:
 	UILabel* m_leaderboardTitle;
 	UIComponent* m_leaderboard;
 	UILabel* m_newGameButton;
+    UILabel* m_currentUsername;
 
 	UILabel* m_loadingLabel;
     
@@ -60,6 +61,7 @@ private:
 	std::vector<UILabel*> m_leaderboardEntries;
 	std::vector<UIUsernameLabel*> m_leaderboardClickListeners;
 
+    void AddCurrentUserUsername();
 	void AddHomeButton();
 
 	void AddChallengeTitle();

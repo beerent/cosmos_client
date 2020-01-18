@@ -14,6 +14,8 @@ void UIStateChallengeMode::OnEnterState() {
 	UITouchButton::onButtonStateChangedCallBack callBack;
 	callBack.bind(this, &UIStateChallengeMode::OnMainMenuPressed);
 	m_challengeModeWidget->RegisterMainMenuPressedCallback(callBack);
+    
+    m_challengeModeWidget->DisplayCurrentUsername();
 
 	m_challengeModeWidget->DisplayLoading();
 	m_challengeModeWidget->DisplayPoints(m_challengeData.GetAmountCorrect() * 10);

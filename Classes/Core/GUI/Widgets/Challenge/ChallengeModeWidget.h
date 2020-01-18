@@ -38,6 +38,8 @@ public:
 
 	void GameOver();
 	void TakeDownEntireChallenge();
+    
+    void DisplayCurrentUsername();
 
 private:
 	int m_currentQuestionId;
@@ -49,6 +51,7 @@ private:
 	UIComponent* m_parentComponent;
 
 	UIComponent *m_centerContainer;
+    UILabel* m_currentUsername;
 	UILabel* m_loadingLabel;
 	UILabel* m_pointsLabel;
 	UILabel* m_challengeOverLabel;
@@ -66,7 +69,6 @@ private:
 	IAnswerSelectedReceiver* m_answerSelectedReceiver;
 
 	QuestionFlagger m_questionFlagger;
-
 
 	void DisplayLoadingScheme();
 	void DisplayQuestionScheme(const Question& question);

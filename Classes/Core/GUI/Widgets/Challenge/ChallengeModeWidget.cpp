@@ -11,7 +11,6 @@ namespace {
 	std::vector<std::string> SplitQuestionOnLength(const std::string& question) {
 		std::vector<std::string> splitQuestion;
 		const int max = 90;
-		const int min = 80;
 
 		if (question.size() <= max) {
 			splitQuestion.push_back(question);
@@ -40,7 +39,7 @@ namespace {
 	}
 }
 
-ChallengeModeWidget::ChallengeModeWidget() : m_currentQuestionId(-1), m_flagQuestion(nullptr), m_questionFlagged(nullptr) {}
+ChallengeModeWidget::ChallengeModeWidget() : m_currentQuestionId(-1), m_flagQuestion(nullptr), m_questionFlagged(nullptr), m_currentUsername(nullptr) {}
 
 void ChallengeModeWidget::Init(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) {
 	m_uiComponentFactory = uiComponentFactory;
@@ -51,6 +50,9 @@ void ChallengeModeWidget::Init(UIComponentFactory *uiComponentFactory, UICompone
 }
 
 void ChallengeModeWidget::Release() {
+    m_currentUsername->release();
+    delete m_currentUsername;
+    
 	m_centerContainer->release();
 	delete(m_centerContainer);
 }
@@ -61,6 +63,15 @@ void ChallengeModeWidget::RegisterAnswerSelectedReceiver(IAnswerSelectedReceiver
 
 void ChallengeModeWidget::RegisterMainMenuPressedCallback(UITouchButton::onButtonStateChangedCallBack callBack) {
 	m_mainMenuPressedCallback = callBack;
+}
+
+void ChallengeModeWidget::DisplayCurrentUsername() {
+    const std::string username = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
+    float usernameWidth = 12.5 * username.size();
+    m_currentUsername = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameWidth, 40, UIComponent::ANCHOR_TOP_RIGHT, username);
+    m_currentUsername->setDropShadowColor(dropShadowColor);
+    m_currentUsername->setX(50);
+    m_parentComponent->addChild(m_currentUsername);
 }
 
 void ChallengeModeWidget::DisplayLoading() {

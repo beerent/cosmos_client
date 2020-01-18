@@ -1619,8 +1619,8 @@
             filePath = "Classes/Core/GUI/Widgets/Challenge/ChallengeMenuWidget.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "ChallengeMenuWidget::SetLeaderboardContents(leaderboard)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1635,8 +1635,8 @@
             filePath = "Classes/Core/GUI/Widgets/Challenge/ChallengeMenuWidget.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "ChallengeMenuWidget::SetLeaderboardContents(leaderboard)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1651,8 +1651,8 @@
             filePath = "Classes/Core/GUI/Widgets/Challenge/ChallengeMenuWidget.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "ChallengeMenuWidget::SetLeaderboardContents(leaderboard)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1814,6 +1814,38 @@
             startingLineNumber = "255"
             endingLineNumber = "255"
             landmarkName = "OjerAppEngine2d::OnAuthenticationResultReceived(result)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D7F06588-3872-4E10-B9D7-FB9F8F880F13"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Core/GUI/Widgets/MainMenuWidget.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "MainMenuWidget::release()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3900DFB-4862-4AD1-B454-7981517C3D0F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Core/GUI/UIState/States/Challenge/UIStateChallengeMode.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "UIStateChallengeMode::OnEnterState()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
