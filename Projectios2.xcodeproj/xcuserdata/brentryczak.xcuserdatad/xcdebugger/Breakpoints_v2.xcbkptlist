@@ -932,8 +932,8 @@
             timestampString = "572182357.552092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "MainMenuWidget::AddLoginButton(parentComponent)"
             landmarkType = "7">
          </BreakpointContent>
@@ -949,8 +949,8 @@
             timestampString = "572182357.552137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -1127,8 +1127,8 @@
             filePath = "Classes/Core/GUI/Widgets/MainMenuWidget.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "MainMenuWidget::release()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1191,8 +1191,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141">
+            startingLineNumber = "159"
+            endingLineNumber = "159">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1205,8 +1205,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "UIStateMainMenu::OnTimerEvent(type)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1237,8 +1237,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "UIStateMainMenu::OnEnterState()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1253,8 +1253,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "UIStateMainMenu::OnEnterState()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1317,8 +1317,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "UIStateMainMenu::onMainMenuItemSelected(selectedItem)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1365,8 +1365,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141">
+            startingLineNumber = "159"
+            endingLineNumber = "159">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1411,8 +1411,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -1427,8 +1427,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "UIStateMainMenu::OnEnterPressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1507,8 +1507,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -1523,8 +1523,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "UIStateMainMenu::OnDeletePressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1539,8 +1539,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "UIStateMainMenu::onMainMenuItemSelected(selectedItem)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1555,8 +1555,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -1811,8 +1811,8 @@
             filePath = "Classes/Core/GUI/Widgets/MainMenuWidget.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "MainMenuWidget::release()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1843,8 +1843,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "UIStateMainMenu::OnEnterState()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1863,6 +1863,38 @@
             endingLineNumber = "1019"
             landmarkName = "GetRandomUsername()"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8C480BF1-B51A-4024-B313-B37FFB17168A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Core/GUI/Components/UITouchButton.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "UITouchButton::handleOnPress()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4B6ED0CD-4D3B-467E-B43B-4D485BD55732"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Core/GUI/Components/UITouchButton.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "UITouchButton::handleOnRelease()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

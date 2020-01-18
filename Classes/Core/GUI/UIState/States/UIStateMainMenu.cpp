@@ -8,7 +8,7 @@
 
 CONST_STRING_DEF(UIStateMainMenu, UI_STATE_MAINMENU)
 
-const std::string GUEST_USER_PREFIX = "guest username: ";
+const std::string GUEST_USER_PREFIX = "username: ";
 
 UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_timer(this), m_cursorOn(false), m_editingGuestUsername(false) {}
 
@@ -19,6 +19,7 @@ void UIStateMainMenu::OnEnterState() {
     m_keyboardManager->RegisterKeyboardListener(this);
     
     m_mainMenuWidget = new MainMenuWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
+    m_mainMenuWidget->RegisterUsernameRefreshListener(this);
     
     LogOutGuestUser();
     
@@ -79,9 +80,12 @@ void UIStateMainMenu::OnDeletePressed() {
 void UIStateMainMenu::OnCharacterPressed(char c) {
     
     std::string currentUsername = m_guestUsername;
-    currentUsername += c;
     
-    m_guestUsername = currentUsername;
+    if (currentUsername.size() < 20) {
+        currentUsername += c;
+        m_guestUsername = currentUsername;
+    }
+    
     DisplayCursor();
     m_timer.ResetTimer(Timer::TimerType::CURSOR_BLINK_500_MS);
 }
@@ -90,6 +94,10 @@ void UIStateMainMenu::OnEnterPressed() {
     m_editingGuestUsername = false;
     HideCursor();
     m_keyboardManager->DeactivateKeyboard();
+    
+    UILabel::onButtonStateChangedCallBack guestUsernameCallback;
+    guestUsernameCallback.bind(this, &::UIStateMainMenu::OnPressed);
+    m_mainMenuWidget->RegisterUsernameFocusCallback(guestUsernameCallback);
 }
 
 void UIStateMainMenu::OnTimerEvent(Timer::TimerType type) {
@@ -128,6 +136,7 @@ void UIStateMainMenu::HideCursor() {
 
 void UIStateMainMenu::OnPressed(UITouchButton::ButtonState state) {
     m_keyboardManager->ActivateKeyboard();
+    DisplayCursor();
     m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_500_MS);
     m_editingGuestUsername = true;
 }
@@ -137,4 +146,13 @@ void UIStateMainMenu::LogOutGuestUser() {
     if (userProvider->IsLoggedIn() && userProvider->GetUser().GetAccessLevel() == UserAccessLevel::GUEST) {
         userProvider->LogOut();
     }
+}
+
+void UIStateMainMenu::OnUsernameRefresh() {
+    m_guestUsername = GetRandomUsername();
+    HideCursor();
+    
+    UILabel::onButtonStateChangedCallBack guestUsernameCallback;
+    guestUsernameCallback.bind(this, &::UIStateMainMenu::OnPressed);
+    m_mainMenuWidget->RegisterUsernameFocusCallback(guestUsernameCallback);
 }

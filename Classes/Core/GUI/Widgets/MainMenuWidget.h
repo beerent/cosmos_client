@@ -10,6 +10,11 @@
 class UIComponentFactory;
 class UIComponent;
 
+class IUsernameRefreshListener {
+public:
+    virtual void OnUsernameRefresh() = 0;
+};
+
 class MainMenuWidget {
 
 public:
@@ -25,6 +30,9 @@ public:
     void RegisterUsernameFocusCallback(UILabel::onButtonStateChangedCallBack callback);
     
     void SetGuestUsernameDisplay(const std::string& displayUsername);
+    void RegisterUsernameRefreshListener(IUsernameRefreshListener* listener) {
+        m_usernameRefreshListener = listener;
+    }
 
 private:
     std::list<onMenuItemSelectedCallBack> m_onMenuItemSelectedListeners;
@@ -33,7 +41,8 @@ private:
 	void onLogin(UITouchButton::ButtonState state);
 
 	void AddLoginButton(UIComponent *parentComponent);
-    
+    void AddUsernameRefreshButton();
+    void OnRefreshUsername(UITouchButton::ButtonState state);
 	//void AddRegisterButton(UIComponent *parentComponent);
 
 	UIComponentFactory* m_uiComponentFactory;
@@ -41,7 +50,10 @@ private:
 
 	UIComponent* m_menu;
     UILabel* m_usernameInputBox;
+    UILabel* m_usernameRefreshButton;
 	UILabel* m_loginButton;
+    
+    IUsernameRefreshListener* m_usernameRefreshListener;
     
 	//UILabel* m_registerButton;
 };

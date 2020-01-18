@@ -12,7 +12,7 @@ const float LABEL_WIDTH = 585.0;
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
-MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_usernameInputBox(nullptr), m_loginButton(nullptr)/*, m_registerButton(nullptr)*/ {
+MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_usernameInputBox(nullptr), m_loginButton(nullptr), m_usernameRefreshButton(nullptr), m_usernameRefreshListener(nullptr)/*, m_registerButton(nullptr)*/ {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
    
@@ -48,6 +48,8 @@ void MainMenuWidget::init() {
 	label->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
     m_menu->addChild(label);
     
+    AddUsernameRefreshButton();
+    
     /* REMOVED LOGIN FEATURE FOR INITIAL RELEASE */
     //UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
     //if (!userProvider->IsLoggedIn()) {
@@ -66,6 +68,27 @@ void MainMenuWidget::AddLoginButton(UIComponent *parentComponent) {
 
 	parentComponent->addChild(m_loginButton);
 }
+
+void MainMenuWidget::AddUsernameRefreshButton() {
+    UITouchButton::onButtonStateChangedCallBack callBack;
+    
+    m_usernameRefreshButton = UIComponentFactory::getInstance()->createUILabel("KYCHeaderLabelArchetype", 80, 60, UIComponent::ANCHOR_CENTER, "<*>");
+    m_usernameRefreshButton->setDropShadowColor(dropShadowColor);
+    callBack.bind(this, &MainMenuWidget::OnRefreshUsername);
+    m_usernameRefreshButton->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+
+    m_usernameRefreshButton->setY(-50);
+    m_usernameRefreshButton->setX(300);
+    
+    m_parentComponent->addChild(m_usernameRefreshButton);
+}
+
+void MainMenuWidget::OnRefreshUsername(UITouchButton::ButtonState state) {
+    if (nullptr != m_usernameRefreshListener) {
+        m_usernameRefreshListener->OnUsernameRefresh();
+    }
+}
+    
 
 /*void MainMenuWidget::AddRegisterButton(UIComponent *parentComponent) {
 	//UITouchButton::onButtonStateChangedCallBack callBack;
@@ -118,6 +141,9 @@ void MainMenuWidget::release() {
 		delete(m_registerButton);
 	}
  */
+    
+    m_usernameRefreshButton->release();
+    delete m_usernameRefreshButton;
 }
 
 void MainMenuWidget::SetGuestUsernameDisplay(const std::string& displayUsername) {
@@ -126,10 +152,10 @@ void MainMenuWidget::SetGuestUsernameDisplay(const std::string& displayUsername)
     }
         
     /* Non Logged In Option */
-    m_usernameInputBox = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, displayUsername);
+    m_usernameInputBox = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 400, 60, UIComponent::ANCHOR_CENTER, displayUsername);
     m_usernameInputBox->setDropShadowColor(dropShadowColor);
-    m_usernameInputBox->setX(labelXPosition);
-    m_usernameInputBox->setY(labelYPosition);
+    //m_usernameInputBox->setX(labelXPosition);
+    m_usernameInputBox->setY(-50);
     m_menu->addChild(m_usernameInputBox);
 }
 

@@ -7,7 +7,7 @@
 #include <Core/Util/SimpleTimer.h>
 #include <Core/Keyboard/IKeyboardListener.h>
 
-class UIStateMainMenu : public BaseStateDepricated, IKeyboardListener, Timer::SimpleTimerListener  {
+class UIStateMainMenu : public BaseStateDepricated, IKeyboardListener, Timer::SimpleTimerListener, IUsernameRefreshListener  {
 public:
     UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener);
     ~UIStateMainMenu();
@@ -23,6 +23,8 @@ public:
     virtual void OnTimerEvent(Timer::TimerType type);
     
     virtual STRING_ID GetStateID(){return UI_STATE_MAINMENU;}
+    
+    virtual void OnUsernameRefresh();
     
 private:
     
