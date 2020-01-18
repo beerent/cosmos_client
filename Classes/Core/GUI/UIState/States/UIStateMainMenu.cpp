@@ -4,6 +4,7 @@
 #include "IEngine.h"
 #include "Core/GUI/UIState/States/Authentication/UIStateAuthInput.h"
 #include "Core/GUI/UIState/States/Challenge/UIStateChallengeMainMenu.h"
+#include <Core/Util/UsernameGenerator.h>
 
 CONST_STRING_DEF(UIStateMainMenu, UI_STATE_MAINMENU)
 
@@ -25,7 +26,7 @@ void UIStateMainMenu::OnEnterState() {
     
     m_guestUsername = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
     if (m_guestUsername.empty()) {
-      m_guestUsername = "MegaNOOB";
+        m_guestUsername = GetRandomUsername();
     }
     HideCursor();
     
