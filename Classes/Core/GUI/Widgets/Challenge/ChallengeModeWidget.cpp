@@ -3,7 +3,7 @@
 
 #include <string>
 
-const glm::vec3 GREEN_TEXT_COLOR(0.0f, 225.0f, 0.0f);
+const glm::vec3 GREEN_TEXT_COLOR(0.0f / 255.0f, 255.0f / 255.0f, 128.0f / 255.0f);
 const glm::vec3 RED_TEXT_COLOR(255.0f , 0.0f, 0.0f);
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 

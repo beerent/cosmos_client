@@ -1,3 +1,4 @@
 s TYPE TYPE_PHYSICS_ENTITY
-s ENTITY_GROUP barrelCollision
-d MASS 200.0
+s RENDERABLE_NAMEdisabled collisionBoxRenderable
+s RENDERABLE_NAME collisionBarrelRenderable
+s SHAPE_TYPE CONVEX_HULL

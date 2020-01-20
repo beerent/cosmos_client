@@ -16,16 +16,16 @@ public:
 class KYCQuestionHeaderStyle : public Style {
 public:
 	int getFontSize() const {
-		return 25;
+		return 30;
 	}
 	
 	glm::vec3 getFontColor() const {
-		const glm::vec3 labelColor(255.0f / 255.0f, 220.0f / 255.0f, 10.0f / 255.0f);
+		const glm::vec3 labelColor(204.0f / 255.0f, 51.0f / 255.0f, 255.0f / 255.0f);
 		return labelColor;
 	}
 
 	glm::vec4 getDropShadowColor() const {
-		const glm::vec4 dropShadowColor(255.0f / 455.0f, 180.0f / 455.0f, 0.0f / 255.0f, 0.5);
+		const glm::vec4 dropShadowColor(0.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 0);
 		return dropShadowColor;
 	}
 	
