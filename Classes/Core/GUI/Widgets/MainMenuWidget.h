@@ -29,6 +29,7 @@ public:
     
     void RegisterUsernameFocusCallback(UILabel::onButtonStateChangedCallBack callback);
     
+    void SetUsernameText();
     void SetGuestUsernameDisplay(const std::string& displayUsername);
     void RegisterUsernameRefreshListener(IUsernameRefreshListener* listener) {
         m_usernameRefreshListener = listener;
@@ -49,6 +50,7 @@ private:
 	UIComponent* m_parentComponent;
 
 	UIComponent* m_menu;
+    UILabel* m_username;
     UILabel* m_usernameInputBox;
     UILabel* m_usernameRefreshButton;
 	UILabel* m_loginButton;

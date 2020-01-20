@@ -425,7 +425,7 @@ void KYCPlanetSizeSweepScript::start()
 	offset += timeAtPlanet;
 	offset += timeAtPlanet;
 	offset += timeAtPlanet;
-	mTimeEventGen.setupTimeEvent(RESET_SCRIPT, offset, 0, 0);
+	//mTimeEventGen.setupTimeEvent(RESET_SCRIPT, offset, 0, 0);
 	return;
 }
 

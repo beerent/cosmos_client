@@ -8,8 +8,6 @@
 
 CONST_STRING_DEF(UIStateMainMenu, UI_STATE_MAINMENU)
 
-const std::string GUEST_USER_PREFIX = "username: ";
-
 UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_timer(this), m_cursorOn(false), m_editingGuestUsername(false) {}
 
 UIStateMainMenu::~UIStateMainMenu() {}
@@ -127,11 +125,11 @@ bool UIStateMainMenu::IsEditingGuestUsername() {
 
 void UIStateMainMenu::DisplayCursor() {
     std::string displayGuestUsername = m_guestUsername + "|";
-    m_mainMenuWidget->SetGuestUsernameDisplay(GUEST_USER_PREFIX + displayGuestUsername);
+    m_mainMenuWidget->SetGuestUsernameDisplay(displayGuestUsername);
 }
 
 void UIStateMainMenu::HideCursor() {
-    m_mainMenuWidget->SetGuestUsernameDisplay(GUEST_USER_PREFIX + m_guestUsername);
+    m_mainMenuWidget->SetGuestUsernameDisplay(m_guestUsername);
 }
 
 void UIStateMainMenu::OnPressed(UITouchButton::ButtonState state) {

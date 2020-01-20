@@ -131,7 +131,7 @@ void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& lea
 		label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0/6, 90.0, UIComponent::ANCHOR_TOP_CENTER, std::to_string(i + 1));
         label->setDropShadowColor(dropShadowColor);
 		label->setY(LEADERBOARD_ENTRY_PADDING + calculatedY);
-		label->setX(-100);
+		label->setX(-160);
         if (IsWaitingForLeaderboard() == false) {
             return;
         }
@@ -154,7 +154,7 @@ void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& lea
 		label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0 / 6, 90.0, UIComponent::ANCHOR_TOP_CENTER, std::to_string(leaderboard.GetEntryInPlace(i).GetPoints()));
         label->setDropShadowColor(dropShadowColor);
 		label->setY(LEADERBOARD_ENTRY_PADDING + calculatedY);
-		label->setX(100);
+		label->setX(160);
 
         if (IsWaitingForLeaderboard() == false) {
             return;

@@ -12,7 +12,9 @@ const float LABEL_WIDTH = 585.0;
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
-MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_usernameInputBox(nullptr), m_loginButton(nullptr), m_usernameRefreshButton(nullptr), m_usernameRefreshListener(nullptr)/*, m_registerButton(nullptr)*/ {
+const std::string USERNAME = "username: ";
+
+MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_usernameInputBox(nullptr), m_loginButton(nullptr), m_usernameRefreshButton(nullptr), m_usernameRefreshListener(nullptr), m_username(nullptr)/*, m_registerButton(nullptr)*/ {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
    
@@ -78,9 +80,11 @@ void MainMenuWidget::AddUsernameRefreshButton() {
     m_usernameRefreshButton->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
 
     m_usernameRefreshButton->setY(-50);
-    m_usernameRefreshButton->setX(300);
+    m_usernameRefreshButton->setX(-240);
     
     m_parentComponent->addChild(m_usernameRefreshButton);
+    
+    SetUsernameText();
 }
 
 void MainMenuWidget::OnRefreshUsername(UITouchButton::ButtonState state) {
@@ -146,15 +150,29 @@ void MainMenuWidget::release() {
     delete m_usernameRefreshButton;
 }
 
+void MainMenuWidget::SetUsernameText() {
+    m_username = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 1, 10, UIComponent::ANCHOR_CENTER, USERNAME);
+    m_username->setDropShadowColor(dropShadowColor);
+    m_username->setX(-100);
+    m_username->setY(-50);
+    m_menu->addChild(m_username);
+}
+
 void MainMenuWidget::SetGuestUsernameDisplay(const std::string& displayUsername) {
     if (m_usernameInputBox != nullptr) {
         m_usernameInputBox->release();
     }
+    
+    std::string s;
+    for (int i = 0; i < displayUsername.size(); i++) {
+        s += " ";
+    }
+    
+    s += displayUsername;
         
     /* Non Logged In Option */
-    m_usernameInputBox = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 400, 60, UIComponent::ANCHOR_CENTER, displayUsername);
+    m_usernameInputBox = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 450, 80, UIComponent::ANCHOR_CENTER, s);
     m_usernameInputBox->setDropShadowColor(dropShadowColor);
-    //m_usernameInputBox->setX(labelXPosition);
     m_usernameInputBox->setY(-50);
     m_menu->addChild(m_usernameInputBox);
 }

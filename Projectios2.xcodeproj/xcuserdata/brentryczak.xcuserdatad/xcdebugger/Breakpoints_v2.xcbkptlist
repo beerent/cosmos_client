@@ -934,7 +934,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
             endingLineNumber = "61"
-            landmarkName = "MainMenuWidget::AddLoginButton(parentComponent)"
+            landmarkName = "MainMenuWidget::init()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -951,8 +951,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
             endingLineNumber = "60"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "MainMenuWidget::init()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1191,8 +1191,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159">
+            startingLineNumber = "157"
+            endingLineNumber = "157">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1365,8 +1365,8 @@
             filePath = "Classes/Core/GUI/UIState/States/UIStateMainMenu.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159">
+            startingLineNumber = "157"
+            endingLineNumber = "157">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1413,8 +1413,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
             endingLineNumber = "102"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "UIStateMainMenu::OnTimerEvent(type)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1429,7 +1429,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
             endingLineNumber = "101"
-            landmarkName = "UIStateMainMenu::OnEnterPressed()"
+            landmarkName = "UIStateMainMenu::OnTimerEvent(type)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1509,8 +1509,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "UIStateMainMenu::OnExitState()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1557,8 +1557,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
             endingLineNumber = "79"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "UIStateMainMenu::OnCharacterPressed(c)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1813,7 +1813,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
             endingLineNumber = "130"
-            landmarkName = "MainMenuWidget::release()"
+            landmarkName = "MainMenuWidget::unregisterForMenuItemSelectedEvent(callBack)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2006,6 +2006,38 @@
             startingLineNumber = "53"
             endingLineNumber = "53"
             landmarkName = "UILabel::setStyle(style)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7AF6690-96C0-4CFD-AC17-CE1D4CF85CAA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Core/GUI/Widgets/MainMenuWidget.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "MainMenuWidget::SetUsernameText()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B0C0FF09-3BA5-4D57-BD8A-1B471CBD4955"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Core/GUI/Widgets/MainMenuWidget.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "MainMenuWidget::SetGuestUsernameDisplay(displayUsername)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
