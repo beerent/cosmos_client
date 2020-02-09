@@ -144,8 +144,6 @@ void ChallengeModeWidget::DisplayQuestionScheme(const Question& question) {
     m_questionLabelLineTwo->setDropShadowColor(dropShadowColor);
 	m_questionLabelLineTwo->setY(80);
 	m_centerContainer->addChild(m_questionLabelLineTwo);
-
-	DisplayFlagQuestionButton();
 }
 
 void ChallengeModeWidget::DisplayAnswerScheme(const Question& question) {

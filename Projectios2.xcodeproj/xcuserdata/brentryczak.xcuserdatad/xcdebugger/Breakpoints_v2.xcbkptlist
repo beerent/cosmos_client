@@ -1955,8 +1955,8 @@
             filePath = "Classes/Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "602"
-            endingLineNumber = "602"
+            startingLineNumber = "612"
+            endingLineNumber = "612"
             landmarkName = "KYCPlanetSizeSweepScript::OnHandleEvent(event)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2038,6 +2038,54 @@
             startingLineNumber = "162"
             endingLineNumber = "162"
             landmarkName = "MainMenuWidget::SetGuestUsernameDisplay(displayUsername)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1550F9D1-BDF3-405C-9F05-A5311CD78FB0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "505"
+            endingLineNumber = "505"
+            landmarkName = "KYCPlanetSizeSweepScript::OnHandleEvent(event)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2F33183-FB9D-4388-B76F-9089FB67501C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "506"
+            endingLineNumber = "506"
+            landmarkName = "KYCPlanetSizeSweepScript::OnHandleEvent(event)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A78105B1-3481-4832-87D7-88E2C0CC4747"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "726"
+            endingLineNumber = "726"
+            landmarkName = "KYCPlanetSizeSweepScript::AddPlanetOrbitAnimation(targetEntity, degreesPerSecond)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

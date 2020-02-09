@@ -51,6 +51,7 @@ private:
 		CONST_STRING_DEC(MOVE_PLANETS_TO_TRANSITION_BY_RELATIVE_POSITION)
 
 		CONST_STRING_DEC(ORBIT_URANUS)
+        CONST_STRING_DEC(STOP_ORBIT)
 
 		CONST_STRING_DEC(RESET_SCRIPT)
 
@@ -68,4 +69,5 @@ private:
 
 	void AddPlanetRotationAnimation(STRING_ID targetEntity, float degreesPerSecond);
 	void AddPlanetOrbitAnimation(STRING_ID targetEntity, float degreesPerSecond);
+    void StopPlanetOrbitAnimation(STRING_ID targetEntity, float location);
 };
