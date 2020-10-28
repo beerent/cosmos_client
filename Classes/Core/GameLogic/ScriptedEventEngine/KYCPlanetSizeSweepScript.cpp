@@ -397,6 +397,7 @@ void KYCPlanetSizeSweepScript::start()
 	mTimeEventGen.setupTimeEvent(INTERPOLATE_TO_SUN_SWEEP_BY_SIZE, offset, 0, 0);
 	offset += timeAtPlanet;
 	offset += timeAtPlanet;
+
 	mTimeEventGen.setupTimeEvent(MOVE_PLANETS_TO_TRANSITION_BY_RELATIVE_POSITION, offset, 0, 0);
 	offset += timeAtPlanet;
 	offset += timeAtPlanet;
@@ -424,15 +425,7 @@ void KYCPlanetSizeSweepScript::start()
 	offset += timeAtPlanet;
 	offset += timeAtPlanet;
 	offset += timeAtPlanet;
-    offset += timeAtPlanet;
-    offset += timeAtPlanet;
-    offset += timeAtPlanet;
-    offset += timeAtPlanet;
-    offset += timeAtPlanet;
-    offset += timeAtPlanet;
-    offset += timeAtPlanet;
-    offset += timeAtPlanet;
-	mTimeEventGen.setupTimeEvent(RESET_SCRIPT, offset, 0, 0);
+	//mTimeEventGen.setupTimeEvent(RESET_SCRIPT, offset, 0, 0);
 	return;
 }
 

@@ -7,6 +7,8 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    
     [super viewDidLoad];
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     //have to reverse the bounds - probably similar reasoning to why we're reversing things in
