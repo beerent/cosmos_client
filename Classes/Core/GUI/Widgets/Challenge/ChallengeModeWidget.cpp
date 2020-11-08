@@ -10,7 +10,7 @@ const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 namespace {
 	std::vector<std::string> SplitQuestionOnLength(const std::string& question) {
 		std::vector<std::string> splitQuestion;
-		const int max = 90;
+		const int max = 60;
 
 		if (question.size() <= max) {
 			splitQuestion.push_back(question);
@@ -101,8 +101,10 @@ void ChallengeModeWidget::UpdatePoints(int points) {
 
 void ChallengeModeWidget::DisplayPoints(int points) {
 	std::string pointsAsString = std::to_string(points) + " points";
+    float pointsWidth = 12.5 * pointsAsString.size();
 
-	m_pointsLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_LEFT, pointsAsString);
+	m_pointsLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", pointsWidth, 40.0, UIComponent::ANCHOR_TOP_LEFT, pointsAsString);
+    m_pointsLabel->setX(50);
     m_pointsLabel->setDropShadowColor(dropShadowColor);
 	m_parentComponent->addChild(m_pointsLabel);
 }
