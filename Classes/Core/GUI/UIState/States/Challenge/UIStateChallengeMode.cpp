@@ -3,6 +3,7 @@
 #include "Core/GUI/Components/UIComponentFactory.h"
 
 #include "IEngine.h"
+#include <math.h>
 
 CONST_STRING_DEF(UIStateChallengeMode, UI_STATE_CHALLENGE_MODE)
 
@@ -19,6 +20,7 @@ void UIStateChallengeMode::OnEnterState() {
 
 	m_challengeModeWidget->DisplayLoading();
 	m_challengeModeWidget->DisplayPoints(m_challengeData.GetAmountCorrect() * 10);
+    m_challengeData.RegisterChallengeTimerReceiver(this);
 
 	BaseStateDepricated::OnEnterState();
 	
@@ -37,6 +39,8 @@ void UIStateChallengeMode::RegisterQuestionsReadyReceiver() {
 
 void UIStateChallengeMode::StartGame() {
 	m_challengeData.StartNewGame();
+    m_lastTimeCheck = Timer::SimpleTimer::GetCurrentTime();
+    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_250_MS);
 }
 
 void UIStateChallengeMode::QuestionsReady() {
@@ -67,6 +71,10 @@ void UIStateChallengeMode::HandleCorrectAnswer() {
 	if (m_challengeData.ChallengeQuestionAvailable()) {
 		const Question& question = m_challengeData.GetNextQuestion();
 		m_challengeModeWidget->DisplayQuestion(question);
+        m_lastTimeCheck = Timer::SimpleTimer::GetCurrentTime();
+        m_timerSecondsRemaining = m_challengeModeTimerSeconds;
+        m_challengeModeWidget->UpdateTimer(m_timerSecondsRemaining);
+        m_challengeModeWidget->SetTimerColor(TextColor::GREEN_TEXT_COLOR);
 	} else {
 		m_challengeModeWidget->DisplayLoading();
 		m_challengeData.ChallengeQuestionsRequested();
@@ -75,9 +83,63 @@ void UIStateChallengeMode::HandleCorrectAnswer() {
 
 void UIStateChallengeMode::HandleWrongAnswer() {
 	m_challengeModeWidget->GameOver();
+    m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_250_MS);
 }
 
 void UIStateChallengeMode::OnMainMenuPressed(UITouchButton::ButtonState state) {
 	m_challengeModeWidget->TakeDownEntireChallenge();
 	ChangeState(UIStateChallengeMainMenu::UI_STATE_CHALLENGE_MAIN_MENU);
+}
+
+void UIStateChallengeMode::OnTimerEvent(Timer::TimerType type) {
+    switch (type) {
+        case Timer::TimerType::CHALLENGE_QUESTION_TIMER_250_MS:
+            if (TimerIsExpired()) {
+                m_challengeModeWidget->SetTimerColor(TextColor::RED_TEXT_COLOR);
+                HandleWrongAnswer();
+            } else {
+                UpdateTimer();
+            }
+
+            break;
+        default:
+            break;
+    }
+}
+
+void UIStateChallengeMode::UpdateTimer() {
+    std::chrono::steady_clock::time_point currentTime = Timer::SimpleTimer::GetCurrentTime();
+    std::chrono::steady_clock::time_point lastTimeCheck = m_lastTimeCheck;
+    auto elapsedTimeSeconds = GetTimeDifferenceInMilliseconds(lastTimeCheck, currentTime) / 1000;
+    
+    if (ElapsedTimeIsGreaterThanOneSecond(elapsedTimeSeconds)) {
+        UpdateRemainingSeconds(elapsedTimeSeconds);
+        m_challengeModeWidget->UpdateTimer(m_timerSecondsRemaining);
+        m_challengeModeWidget->UpdateTimerColor(m_timerSecondsRemaining, m_challengeModeTimerSeconds);
+        m_lastTimeCheck = currentTime;
+    }
+}
+
+bool UIStateChallengeMode::ElapsedTimeIsGreaterThanOneSecond(long long elapsedTimeSeconds) const {
+    return elapsedTimeSeconds >= 1;
+}
+
+long long UIStateChallengeMode::GetTimeDifferenceInMilliseconds(std::chrono::steady_clock::time_point a, std::chrono::steady_clock::time_point b) const {
+    return std::chrono::duration_cast<std::chrono::milliseconds>(b - a).count();
+}
+
+void UIStateChallengeMode::UpdateRemainingSeconds(long long elapsedTimeSeconds) {
+    int secondsToRemove = floor(elapsedTimeSeconds);
+    m_timerSecondsRemaining -= secondsToRemove;
+}
+
+bool UIStateChallengeMode::TimerIsExpired() const {
+    return m_timerSecondsRemaining < 0;
+}
+
+void UIStateChallengeMode::OnChallengeTimerReceived(int timerSeconds) {
+    m_challengeModeTimerSeconds = timerSeconds;
+    m_timerSecondsRemaining = m_challengeModeTimerSeconds;
+    m_challengeModeWidget->DisplayTimer(m_timerSecondsRemaining);
+    m_challengeModeWidget->SetTimerColor(TextColor::GREEN_TEXT_COLOR);
 }

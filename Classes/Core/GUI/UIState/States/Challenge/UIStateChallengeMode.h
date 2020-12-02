@@ -11,12 +11,13 @@
 #include <Core/GameLogic/Question/Question.h>
 #include <Core/GameLogic/Question/Answer.h>
 #include <Core/GameLogic/Challenge/Gameplay/ChallengeData.h>
+#include <Core/Util/SimpleTimer.h>
 
 
-class UIStateChallengeMode : public BaseStateDepricated, IQuestionsReadyReceiver, IAnswerSelectedReceiver {
+class UIStateChallengeMode : public BaseStateDepricated, IQuestionsReadyReceiver, IAnswerSelectedReceiver, Timer::SimpleTimerListener, IChallengeTimerReceiver {
 
 public:
-	UIStateChallengeMode(IStateChanageListenerDepricated* stateChangeListener) : BaseStateDepricated(stateChangeListener) {};
+	UIStateChallengeMode(IStateChanageListenerDepricated* stateChangeListener) : BaseStateDepricated(stateChangeListener), m_timerSecondsRemaining(0), m_challengeModeTimerSeconds(0), m_timer(this) {};
 	CONST_STRING_DEC(UI_STATE_CHALLENGE_MODE)
 
 	virtual void OnEnterState();
@@ -25,6 +26,8 @@ public:
 
 	virtual void QuestionsReady();
 	virtual void OnAnswerSelected(const Answer& answer);
+    virtual void OnTimerEvent(Timer::TimerType type);
+    virtual void OnChallengeTimerReceived(int timerSeconds);
 	void OnMainMenuPressed(UITouchButton::ButtonState state);
 
 private:
@@ -33,6 +36,11 @@ private:
 
 	//interface handles all business around the actual questions. i.e. getting questions, is question right, register user answer, etc.
 	ChallengeData m_challengeData;
+    
+    Timer::SimpleTimer m_timer;
+    int m_challengeModeTimerSeconds;
+    int m_timerSecondsRemaining;
+    std::chrono::steady_clock::time_point m_lastTimeCheck;
 
 	void RegisterQuestionsReadyReceiver();
 	void StartGame();
@@ -40,5 +48,13 @@ private:
 	void HandleAnswerByCorrectness(bool isCorrect);
 	void HandleCorrectAnswer();
 	void HandleWrongAnswer();
+    
+    void UpdateTimer();
+    bool ElapsedTimeIsGreaterThanOneSecond(long long elapsedTime) const;
+    long long GetTimeDifferenceInMilliseconds(std::chrono::steady_clock::time_point a, std::chrono::steady_clock::time_point b) const;
+    void UpdateRemainingSeconds(long long elapsedTime);
+    
+    bool TimerIsExpired() const;
+    
 
 };

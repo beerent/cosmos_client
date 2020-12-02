@@ -3,8 +3,6 @@
 
 #include <string>
 
-const glm::vec3 GREEN_TEXT_COLOR(0.0f / 255.0f, 255.0f / 255.0f, 128.0f / 255.0f);
-const glm::vec3 RED_TEXT_COLOR(255.0f , 0.0f, 0.0f);
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
 namespace {
@@ -113,6 +111,43 @@ void ChallengeModeWidget::TakeDownPoints() {
 	m_pointsLabel->release();
 }
 
+void ChallengeModeWidget::UpdateTimer(int seconds) {
+    TakeDownTimer();
+    
+    if (seconds < 0) {
+        seconds = 0;
+    }
+    
+    DisplayTimer(seconds);
+}
+
+void ChallengeModeWidget::UpdateTimerColor(double secondsRemaining, double totalSecondsAllowed) {
+    double secondsRemainingPrecentage = secondsRemaining / totalSecondsAllowed;
+    if (secondsRemainingPrecentage >= .60) {
+        SetTimerColor(TextColor::GREEN_TEXT_COLOR);
+    } else {
+        SetTimerColor(TextColor::YELLOW_TEXT_COLOR);
+    }
+}
+
+void ChallengeModeWidget::SetTimerColor(glm::vec3 color) {
+    m_timerLabel->setColor(color);
+}
+
+void ChallengeModeWidget::DisplayTimer(int seconds) {
+    std::string timerAsString = std::to_string(seconds) + " seconds";
+    float timerWidth = 12.5 * timerAsString.size();
+
+    m_timerLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", timerWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, timerAsString);
+    m_timerLabel->setY(15);
+    m_timerLabel->setDropShadowColor(dropShadowColor);
+    m_parentComponent->addChild(m_timerLabel);
+}
+
+void ChallengeModeWidget::TakeDownTimer() {
+    m_timerLabel->release();
+}
+
 void ChallengeModeWidget::DisplayQuestion(const Question& question) {
 	m_currentQuestionId = question.GetQuestionId();
 	DisplayQuestionScheme(question);
@@ -176,6 +211,7 @@ void ChallengeModeWidget::TakeDownEntireChallenge() {
 	//}
 
 	TakeDownPoints();
+    TakeDownTimer();
 	TakeDownQuestion();
     TakeDownFlag();
     TakeDownFlagged();
@@ -221,6 +257,7 @@ void ChallengeModeWidget::DisplayQuestionFlagged() {
 
 void ChallengeModeWidget::GameOver() {
 	DisableAnswerButtons();
+    TearDownAnswers();
 	SetCorrectnessRevealingColors();
 	DisplayMainMenuButton();
 }
@@ -237,9 +274,9 @@ void ChallengeModeWidget::SetCorrectnessRevealingColors() {
 		Answer& answer = m_answersForCallback[i];
 
 		if (answer.IsCorrect()) {
-			m_answers[i]->setColor(GREEN_TEXT_COLOR);
+			m_answers[i]->setColor(TextColor::GREEN_TEXT_COLOR);
 		} else {
-			m_answers[i]->setColor(RED_TEXT_COLOR);
+			m_answers[i]->setColor(TextColor::RED_TEXT_COLOR);
 		}
 	}
 }
@@ -297,13 +334,13 @@ void ChallengeModeWidget::OnAnswer3(UITouchButton::ButtonState state) {
 }
 
 void ChallengeModeWidget::OnAnswer(int index) {
-	//this is the worst place to handle this but the button onclick is iterating over listeners.
-	//if you delete the button before it finishes iterating over listeners an exception is thrown.
-	while (m_answers.size() > m_answersForCallback.size()) {
-		auto it = m_answers.begin();
-		delete (*it);
-		m_answers.erase(it);
-	}
-
 	m_answerSelectedReceiver->OnAnswerSelected(m_answersForCallback[index]);
+}
+
+void ChallengeModeWidget::TearDownAnswers() {
+    while (m_answers.size() > m_answersForCallback.size()) {
+        auto it = m_answers.begin();
+        delete (*it);
+        m_answers.erase(it);
+    }
 }

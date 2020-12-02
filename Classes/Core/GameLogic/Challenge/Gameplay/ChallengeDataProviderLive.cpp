@@ -9,6 +9,7 @@ namespace requests {
 	const std::string GET_CHALLENGE_QUESTIONS = "getChallengeQuestions";
 	const std::string REGISTER_CHALLENGE_ANSWER = "registerChallengeAnswer";
 }
+
 ChallengeDataProviderLive::ChallengeDataProviderLive() {
 	m_restConnector = IEngine::getEngine()->GetRestConnector();
 }
@@ -30,6 +31,10 @@ void ChallengeDataProviderLive::RequestChallengeId() {
 
 void ChallengeDataProviderLive::ChallengeIdReceived(int challengeId) {
 	m_challengeDataProviderReceiver->ChallengeIdReceived(challengeId);
+}
+
+void ChallengeDataProviderLive::ChallengeTimerReceived(int timerSeconds) {
+    m_challengeDataProviderReceiver->ChallengeTimerReceived(timerSeconds);
 }
 
 void ChallengeDataProviderLive::RequestChallengeQuestions(int challengeId) {
@@ -63,6 +68,7 @@ void ChallengeDataProviderLive::RestReceived(const std::string& rest) {
 	std::string request = json["request"].string_value();
 
 	if (request == requests::NEW_CHALLENGE) {
+        ChallengeTimerReceived(json["payload"]["challenge_mode_timer_length"].int_value());
 		ChallengeIdReceived(json["payload"]["attempt_id"].int_value());
 	} else if (request == requests::GET_CHALLENGE_QUESTIONS) {
 		std::queue<Question> questions = JsonToQuestions(json["payload"]);

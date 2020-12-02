@@ -3,12 +3,17 @@
 #include <Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.h>
 
 ChallengeData::ChallengeData() : m_questionsReadyReceiverWaiting(false), m_amountCorrect(0) {
-	m_challengeDataProvider = new ChallengeDataProviderLive();
+    //m_challengeDataProvider = new ChallengeDataProviderFake();
+    m_challengeDataProvider = new ChallengeDataProviderLive();
 	m_challengeDataProvider->RegisterChallengeDataReceiver(this);
 }
 
 void ChallengeData::RegisterQuestionsReadyReceiver(IQuestionsReadyReceiver* questionsReadyReceiver) {
 	m_questionsReadyReceiver = questionsReadyReceiver;
+}
+
+void ChallengeData::RegisterChallengeTimerReceiver(IChallengeTimerReceiver* challengeTimerReciever) {
+    m_challengeTimerReciever = challengeTimerReciever;
 }
 
 void ChallengeData::StartNewGame() {
@@ -19,6 +24,10 @@ void ChallengeData::StartNewGame() {
 void ChallengeData::ChallengeIdReceived(int challengeId) {
 	m_challengeId = challengeId;
 	m_challengeDataProvider->RequestChallengeQuestions(challengeId);
+}
+
+void ChallengeData::ChallengeTimerReceived(int timerSeconds) {
+    m_challengeTimerReciever->OnChallengeTimerReceived(timerSeconds);
 }
 
 void ChallengeData::ChallengeQuestionsReceived(std::queue<Question> questions) {

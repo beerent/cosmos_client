@@ -17,6 +17,7 @@ protected:
 
 private:
 	virtual void ChallengeIdReceived(int challengeId) = 0;
+    virtual void ChallengeTimerReceived(int timerSeconds) = 0;
 	virtual void ChallengeQuestionsReceived(const std::queue<Question>& questions) = 0;
 
 };

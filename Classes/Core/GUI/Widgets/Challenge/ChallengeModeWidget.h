@@ -12,6 +12,12 @@
 
 #include <Core/GameLogic/Question/Flag/QuestionFlagger.h>
 
+namespace TextColor {
+    const glm::vec3 GREEN_TEXT_COLOR(0.0f / 255.0f, 255.0f / 255.0f, 128.0f / 255.0f);
+    const glm::vec3 YELLOW_TEXT_COLOR(255.0f , 255.0f, 0.0f);
+    const glm::vec3 RED_TEXT_COLOR(255.0f , 0.0f, 0.0f);
+}
+
 class ChallengeModeWidget {
 public:
 
@@ -29,6 +35,12 @@ public:
 	void UpdatePoints(int points);
 	void DisplayPoints(int points);
 	void TakeDownPoints();
+    
+    void UpdateTimer(int points);
+    void DisplayTimer(int points);
+    void TakeDownTimer();
+    void UpdateTimerColor(double secondsRemaining, double totalSecondsAllowed);
+    void SetTimerColor(glm::vec3 color);
 
 	void DisplayQuestion(const Question& question);
 	void TakeDownQuestion();
@@ -54,6 +66,7 @@ private:
     UILabel* m_currentUsername;
 	UILabel* m_loadingLabel;
 	UILabel* m_pointsLabel;
+    UILabel* m_timerLabel;
 	UILabel* m_challengeOverLabel;
 	UILabel* m_challengeOverMainMenuButtonLabel;
 	UILabel* m_questionLabelLineOne;
@@ -91,6 +104,7 @@ private:
 	void OnAnswer2(UITouchButton::ButtonState state);
 	void OnAnswer3(UITouchButton::ButtonState state);
 	void OnAnswer(int index);
+    void TearDownAnswers();
 
 	void OnQuestionFlagged(UITouchButton::ButtonState state);
 };

@@ -9,7 +9,8 @@ namespace Timer {
 
 enum class TimerType {
     INVALID = -1,
-     CURSOR_BLINK_500_MS
+    CURSOR_BLINK_500_MS,
+    CHALLENGE_QUESTION_TIMER_250_MS
 };
 
 
@@ -30,11 +31,14 @@ public:
     
     void ResetTimer(TimerType type);
     
+    static std::chrono::steady_clock::time_point GetCurrentTime();
+    
 private:
     
     IEngine::onDeltaTimeEventCallBack m_onDeltaTimeCallBack;
     std::map<TimerType, std::chrono::steady_clock::time_point> m_registeredTimers;
     SimpleTimerListener* m_timerListener;
+    bool m_timersAltered;
     
     void OnTimerIteration(float duration);
 };

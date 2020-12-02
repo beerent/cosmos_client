@@ -12,5 +12,6 @@ public:
 private:
 
 	virtual void ChallengeIdReceived(int challengeId);
+    virtual void ChallengeTimerReceived(int timerSeconds);
 	virtual void ChallengeQuestionsReceived(const std::queue<Question>& questions);
 };

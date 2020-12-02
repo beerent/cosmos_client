@@ -6,15 +6,15 @@
 
 namespace Timer {
 
-std::chrono::steady_clock::time_point GetCurrentTime() {
+std::chrono::steady_clock::time_point SimpleTimer::GetCurrentTime() {
     return std::chrono::steady_clock::now();
 }
 
 std::map<TimerType, double> TIMER_MAP = {
-    { TimerType::CURSOR_BLINK_500_MS, 550 }
+    { TimerType::CURSOR_BLINK_500_MS, 550 }, { TimerType::CHALLENGE_QUESTION_TIMER_250_MS, 250 }
 };
 
-SimpleTimer::SimpleTimer(SimpleTimerListener* listener) : m_timerListener(listener) {
+SimpleTimer::SimpleTimer(SimpleTimerListener* listener) : m_timerListener(listener), m_timersAltered(false) {
     m_onDeltaTimeCallBack.bind(this, &SimpleTimer::OnTimerIteration);
     IEngine::getEngine()->registerForDeltaTimeEvents(m_onDeltaTimeCallBack);
 }
@@ -30,6 +30,7 @@ void SimpleTimer::RegisterTimer(TimerType type) {
 void SimpleTimer::DeregisterTimer(TimerType type) {
     auto timerIt = m_registeredTimers.find(type);
     if (timerIt != m_registeredTimers.end()) {
+        m_timersAltered = true;
         m_registeredTimers.erase(timerIt);
     }
 }
@@ -45,8 +46,15 @@ void SimpleTimer::OnTimerIteration(float duration) {
         auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(GetCurrentTime() - typeTime).count();
         if (elapsedTime > TIMER_MAP[type]) {
             m_timerListener->OnTimerEvent(type);
-            m_registeredTimers[type] = GetCurrentTime();
+            if (m_timersAltered) {
+                m_timersAltered = false;
+                return;
+            }
+            if (m_registeredTimers.count(type)) {
+                m_registeredTimers[type] = GetCurrentTime();
+            }
         }
     }
+    m_timersAltered = false;
 }
 }

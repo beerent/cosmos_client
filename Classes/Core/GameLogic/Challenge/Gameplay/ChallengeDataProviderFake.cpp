@@ -13,6 +13,9 @@ void ChallengeDataProviderFake::ChallengeIdReceived(int challengeId) {
 	m_challengeDataProviderReceiver->ChallengeIdReceived(challengeId);
 }
 
+void ChallengeDataProviderFake::ChallengeTimerReceived(int timerSeconds) {
+}
+
 void ChallengeDataProviderFake::RequestChallengeQuestions(int challengeId) {
 	std::queue<Question> questions;
 

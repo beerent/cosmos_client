@@ -25,6 +25,7 @@ private:
 	std::string m_submitChallengeAnswerRequestId;
 
 	virtual void ChallengeIdReceived(int challengeId);
+    virtual void ChallengeTimerReceived(int challengeId);
 	virtual void ChallengeQuestionsReceived(const std::queue<Question>& questions);
 
 	std::queue<Question> JsonToQuestions(const json11::Json& json);
