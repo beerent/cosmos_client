@@ -135,7 +135,11 @@ void ChallengeModeWidget::SetTimerColor(glm::vec3 color) {
 }
 
 void ChallengeModeWidget::DisplayTimer(int seconds) {
-    std::string timerAsString = std::to_string(seconds) + " seconds";
+    std::string secondString = "seconds";
+    if (seconds == 1) {
+        secondString = "second";
+    }
+    std::string timerAsString = std::to_string(seconds) + " " + secondString;
     float timerWidth = 12.5 * timerAsString.size();
 
     m_timerLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", timerWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, timerAsString);
