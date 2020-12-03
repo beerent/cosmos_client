@@ -268,7 +268,7 @@
 		81F0D66A21DC0FFA00A81D1F /* AuthenticationInputWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81F0D66821DC0FFA00A81D1F /* AuthenticationInputWidget.cpp */; };
 		81F0D66E21DC104D00A81D1F /* AuthenticationState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81F0D66D21DC104D00A81D1F /* AuthenticationState.cpp */; };
 		81FDE8D521FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */; };
-		874FED6325789B07005B2059 /* Asset 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 874FED6225789B07005B2059 /* Asset 2.png */; };
+		874FED6325789B07005B2059 /* LoadingScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 874FED6225789B07005B2059 /* LoadingScreenImage.png */; };
 		87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CA14FA2578849600E18697 /* Launch Screen.storyboard */; };
 		BA6D85EA216EF22100943989 /* KYCPlanetSizeSweepScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */; };
 		BA7229622165B79A00DF0F5A /* StyleFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA7229602165B79A00DF0F5A /* StyleFactory.cpp */; };
@@ -929,7 +929,7 @@
 		81FD1A3E23D367ED00C3BA0C /* UsernameGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UsernameGenerator.h; path = Core/Util/UsernameGenerator.h; sourceTree = "<group>"; };
 		81FDE8D321FA6C1D00F2BBB2 /* ChallengeDataProviderLive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChallengeDataProviderLive.h; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.h; sourceTree = "<group>"; };
 		81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChallengeDataProviderLive.cpp; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.cpp; sourceTree = "<group>"; };
-		874FED6225789B07005B2059 /* Asset 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Asset 2.png"; sourceTree = "<group>"; };
+		874FED6225789B07005B2059 /* LoadingScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreenImage.png; sourceTree = "<group>"; };
 		87CA14FA2578849600E18697 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KYCPlanetSizeSweepScript.cpp; path = Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.cpp; sourceTree = "<group>"; };
@@ -2315,7 +2315,7 @@
 		874FED6125789AEF005B2059 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				874FED6225789B07005B2059 /* Asset 2.png */,
+				874FED6225789B07005B2059 /* LoadingScreenImage.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -2530,7 +2530,7 @@
 				1A48DF1D1CB08F1400E81981 /* Main.storyboard in Resources */,
 				1A198C561AF99DA900D4CBF7 /* Images.xcassets in Resources */,
 				1AB1B42419F0BC97005DD99E /* Resources.bundle in Resources */,
-				874FED6325789B07005B2059 /* Asset 2.png in Resources */,
+				874FED6325789B07005B2059 /* LoadingScreenImage.png in Resources */,
 				87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
