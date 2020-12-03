@@ -39,14 +39,14 @@ void UIStateChallengeMode::RegisterQuestionsReadyReceiver() {
 
 void UIStateChallengeMode::StartGame() {
 	m_challengeData.StartNewGame();
-    m_lastTimeCheck = Timer::SimpleTimer::GetCurrentTime();
-    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_250_MS);
 }
 
 void UIStateChallengeMode::QuestionsReady() {
 	const Question& question = m_challengeData.GetNextQuestion();
 	m_challengeModeWidget->TakeDownLoading();
-	m_challengeModeWidget->DisplayQuestion(question);
+    DisplayQuestion(question);
+    
+    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_250_MS);
 }
 
 void UIStateChallengeMode::OnAnswerSelected(const Answer& answer) {
@@ -70,15 +70,26 @@ void UIStateChallengeMode::HandleCorrectAnswer() {
 
 	if (m_challengeData.ChallengeQuestionAvailable()) {
 		const Question& question = m_challengeData.GetNextQuestion();
-		m_challengeModeWidget->DisplayQuestion(question);
-        m_lastTimeCheck = Timer::SimpleTimer::GetCurrentTime();
-        m_timerSecondsRemaining = m_challengeModeTimerSeconds;
-        m_challengeModeWidget->UpdateTimer(m_timerSecondsRemaining);
-        m_challengeModeWidget->SetTimerColor(TextColor::GREEN_TEXT_COLOR);
+        DisplayQuestion(question);
 	} else {
-		m_challengeModeWidget->DisplayLoading();
+        m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_250_MS);
+
+        m_challengeModeWidget->DisplayLoading();
 		m_challengeData.ChallengeQuestionsRequested();
 	}
+}
+
+void UIStateChallengeMode::DisplayQuestion(const Question& question) {
+    ResetGameTimer();
+    m_challengeModeWidget->DisplayQuestion(question);
+}
+
+void UIStateChallengeMode::ResetGameTimer() {
+    m_timerSecondsRemaining = m_challengeModeTimerSeconds;
+    m_challengeModeWidget->UpdateTimer(m_timerSecondsRemaining);
+    m_challengeModeWidget->SetTimerColor(TextColor::GREEN_TEXT_COLOR);
+
+    m_lastTimeCheck = Timer::SimpleTimer::GetCurrentTime();
 }
 
 void UIStateChallengeMode::HandleWrongAnswer() {

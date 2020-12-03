@@ -49,6 +49,9 @@ private:
 	void HandleCorrectAnswer();
 	void HandleWrongAnswer();
     
+    void DisplayQuestion(const Question& question);
+    void ResetGameTimer();
+    
     void UpdateTimer();
     bool ElapsedTimeIsGreaterThanOneSecond(long long elapsedTime) const;
     long long GetTimeDifferenceInMilliseconds(std::chrono::steady_clock::time_point a, std::chrono::steady_clock::time_point b) const;
