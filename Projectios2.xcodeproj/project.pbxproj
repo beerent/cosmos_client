@@ -232,7 +232,6 @@
 		4D27E3B30F9ACD8200447247 /* OjerAppEngine2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D27E3B20F9ACD8200447247 /* OjerAppEngine2d.cpp */; };
 		4D27E4840F9AD71900447247 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4830F9AD71900447247 /* OpenGLES.framework */; };
 		4D27E4B50F9AD7D600447247 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4B40F9AD7D600447247 /* QuartzCore.framework */; };
-		4D8FB2C30F9EB4740055EDDB /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FB2C20F9EB4740055EDDB /* Icon.png */; };
 		8109EB6D222B52D600E1FCD7 /* UserProfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8109EB69222B52D600E1FCD7 /* UserProfile.cpp */; };
 		8127CFFC220B78A900C6BD2D /* RenderableObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8127CFFB220B78A900C6BD2D /* RenderableObj.cpp */; };
 		812F51AD222CD78100520939 /* QuestionFlagger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812F51AC222CD78100520939 /* QuestionFlagger.cpp */; };
@@ -841,8 +840,6 @@
 		4D27E3B20F9ACD8200447247 /* OjerAppEngine2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OjerAppEngine2d.cpp; sourceTree = "<group>"; };
 		4D27E4830F9AD71900447247 /* OpenGLES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4D27E4B40F9AD7D600447247 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4D77F28E10793BEB002D74C3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Textures/Default.png; sourceTree = "<group>"; };
-		4D8FB2C20F9EB4740055EDDB /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Textures/Icon.png; sourceTree = "<group>"; };
 		8109EB69222B52D600E1FCD7 /* UserProfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UserProfile.cpp; path = Core/User/Profile/UserProfile.cpp; sourceTree = "<group>"; };
 		8109EB6C222B52D600E1FCD7 /* UserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfile.h; path = Core/User/Profile/UserProfile.h; sourceTree = "<group>"; };
 		8127CFFA220B78A900C6BD2D /* RenderableObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderableObj.h; path = Core/Rendering/Renderables/RenderableObj.h; sourceTree = "<group>"; };
@@ -2066,9 +2063,7 @@
 			children = (
 				1A198C551AF99DA900D4CBF7 /* Images.xcassets */,
 				1AB1B42319F0BC97005DD99E /* Resources.bundle */,
-				4D8FB2C20F9EB4740055EDDB /* Icon.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				4D77F28E10793BEB002D74C3 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2524,7 +2519,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D8FB2C30F9EB4740055EDDB /* Icon.png in Resources */,
 				1A48DF1D1CB08F1400E81981 /* Main.storyboard in Resources */,
 				1A198C561AF99DA900D4CBF7 /* Images.xcassets in Resources */,
 				1A48DF1F1CB08F2200E81981 /* LaunchScreen.storyboard in Resources */,
