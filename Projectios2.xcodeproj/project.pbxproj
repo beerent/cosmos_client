@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1A0095511B3CE3A400FC7139 /* Debug3DMathVisualizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A00954F1B3CE3A400FC7139 /* Debug3DMathVisualizer.cpp */; };
-		1A150D821AD75A850026D507 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A150D811AD75A850026D507 /* Default-568h@2x.png */; };
 		1A1523271A8C4B92003F7F81 /* DebugOverLayWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A1523261A8C4B92003F7F81 /* DebugOverLayWidget.cpp */; };
 		1A198C561AF99DA900D4CBF7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A198C551AF99DA900D4CBF7 /* Images.xcassets */; };
 		1A2F15561BD30CFB0057BD1A /* EntityControler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F15541BD30CFB0057BD1A /* EntityControler.cpp */; };
 		1A2F15591BD30E680057BD1A /* ScriptedShipControler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F15571BD30E680057BD1A /* ScriptedShipControler.cpp */; };
 		1A48DF1D1CB08F1400E81981 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A48DF1C1CB08F1400E81981 /* Main.storyboard */; };
-		1A48DF1F1CB08F2200E81981 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A48DF1E1CB08F2200E81981 /* LaunchScreen.storyboard */; };
 		1A5C7A011FD8EE5B00CD9788 /* BulletCharacterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A5C79F81FD8EE5B00CD9788 /* BulletCharacterController.cpp */; };
 		1A5C7A021FD8EE5B00CD9788 /* CollisionContactDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A5C79FA1FD8EE5B00CD9788 /* CollisionContactDelegate.cpp */; };
 		1A5C7A031FD8EE5B00CD9788 /* MathGLMBulletConversionHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A5C79FC1FD8EE5B00CD9788 /* MathGLMBulletConversionHelpers.cpp */; };
@@ -270,6 +268,8 @@
 		81F0D66A21DC0FFA00A81D1F /* AuthenticationInputWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81F0D66821DC0FFA00A81D1F /* AuthenticationInputWidget.cpp */; };
 		81F0D66E21DC104D00A81D1F /* AuthenticationState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81F0D66D21DC104D00A81D1F /* AuthenticationState.cpp */; };
 		81FDE8D521FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */; };
+		874FED6325789B07005B2059 /* Asset 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 874FED6225789B07005B2059 /* Asset 2.png */; };
+		87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CA14FA2578849600E18697 /* Launch Screen.storyboard */; };
 		BA6D85EA216EF22100943989 /* KYCPlanetSizeSweepScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */; };
 		BA7229622165B79A00DF0F5A /* StyleFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA7229602165B79A00DF0F5A /* StyleFactory.cpp */; };
 		BABA366E20B64E1900E312A8 /* NCPAIFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BABA366A20B64E1800E312A8 /* NCPAIFactory.cpp */; };
@@ -322,7 +322,6 @@
 		1A00954F1B3CE3A400FC7139 /* Debug3DMathVisualizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Debug3DMathVisualizer.cpp; path = Core/Debug/Debug3DMathVisualizer.cpp; sourceTree = "<group>"; };
 		1A0095501B3CE3A400FC7139 /* Debug3DMathVisualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Debug3DMathVisualizer.h; path = Core/Debug/Debug3DMathVisualizer.h; sourceTree = "<group>"; };
 		1A0095531B3CE43400FC7139 /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Singleton.h; path = Core/Generic/Patterns/Singleton.h; sourceTree = "<group>"; };
-		1A150D811AD75A850026D507 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1A1523251A8C4AFC003F7F81 /* DebugOverLayWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DebugOverLayWidget.h; path = Core/GUI/Widgets/DebugOverLayWidget.h; sourceTree = "<group>"; };
 		1A1523261A8C4B92003F7F81 /* DebugOverLayWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DebugOverLayWidget.cpp; path = Core/GUI/Widgets/DebugOverLayWidget.cpp; sourceTree = "<group>"; };
 		1A198C551AF99DA900D4CBF7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Projectios2/Images.xcassets; sourceTree = "<group>"; };
@@ -331,7 +330,6 @@
 		1A2F15571BD30E680057BD1A /* ScriptedShipControler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScriptedShipControler.cpp; path = Core/GameLogic/EntityControler/ScriptedShipControler.cpp; sourceTree = "<group>"; };
 		1A2F15581BD30E680057BD1A /* ScriptedShipControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptedShipControler.h; path = Core/GameLogic/EntityControler/ScriptedShipControler.h; sourceTree = "<group>"; };
 		1A48DF1C1CB08F1400E81981 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		1A48DF1E1CB08F2200E81981 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A5C79F81FD8EE5B00CD9788 /* BulletCharacterController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BulletCharacterController.cpp; path = Core/Physics/BulletCharacterController.cpp; sourceTree = "<group>"; };
 		1A5C79F91FD8EE5B00CD9788 /* BulletCharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BulletCharacterController.h; path = Core/Physics/BulletCharacterController.h; sourceTree = "<group>"; };
 		1A5C79FA1FD8EE5B00CD9788 /* CollisionContactDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionContactDelegate.cpp; path = Core/Physics/CollisionContactDelegate.cpp; sourceTree = "<group>"; };
@@ -931,6 +929,8 @@
 		81FD1A3E23D367ED00C3BA0C /* UsernameGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UsernameGenerator.h; path = Core/Util/UsernameGenerator.h; sourceTree = "<group>"; };
 		81FDE8D321FA6C1D00F2BBB2 /* ChallengeDataProviderLive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChallengeDataProviderLive.h; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.h; sourceTree = "<group>"; };
 		81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChallengeDataProviderLive.cpp; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.cpp; sourceTree = "<group>"; };
+		874FED6225789B07005B2059 /* Asset 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Asset 2.png"; sourceTree = "<group>"; };
+		87CA14FA2578849600E18697 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KYCPlanetSizeSweepScript.cpp; path = Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.cpp; sourceTree = "<group>"; };
 		BA6D85E9216EF22100943989 /* KYCPlanetSizeSweepScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCPlanetSizeSweepScript.h; path = Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.h; sourceTree = "<group>"; };
@@ -2047,8 +2047,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				1A150D811AD75A850026D507 /* Default-568h@2x.png */,
-				1A48DF1E1CB08F2200E81981 /* LaunchScreen.storyboard */,
+				87CA14FA2578849600E18697 /* Launch Screen.storyboard */,
 				1A48DF1C1CB08F1400E81981 /* Main.storyboard */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -2061,6 +2060,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				874FED6125789AEF005B2059 /* images */,
 				1A198C551AF99DA900D4CBF7 /* Images.xcassets */,
 				1AB1B42319F0BC97005DD99E /* Resources.bundle */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -2312,6 +2312,14 @@
 			name = Authentication;
 			sourceTree = "<group>";
 		};
+		874FED6125789AEF005B2059 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				874FED6225789B07005B2059 /* Asset 2.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		BA72295F2165B76F00DF0F5A /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -2521,9 +2529,9 @@
 			files = (
 				1A48DF1D1CB08F1400E81981 /* Main.storyboard in Resources */,
 				1A198C561AF99DA900D4CBF7 /* Images.xcassets in Resources */,
-				1A48DF1F1CB08F2200E81981 /* LaunchScreen.storyboard in Resources */,
 				1AB1B42419F0BC97005DD99E /* Resources.bundle in Resources */,
-				1A150D821AD75A850026D507 /* Default-568h@2x.png in Resources */,
+				874FED6325789B07005B2059 /* Asset 2.png in Resources */,
+				87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2872,7 +2880,7 @@
 					"./\"3rd party software\"/lua-5.3.4/src",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0.6;
 				NEW_SETTING = "";
 				New_Setting = "";
@@ -2916,7 +2924,7 @@
 					"./\"3rd party software\"/lua-5.3.4/src",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0.6;
 				NEW_SETTING = "";
 				New_Setting = "";
@@ -2948,7 +2956,7 @@
 					"./\"3rd party software\"/googletest/googletest/include",
 				);
 				"INFOPLIST_PREPROCESSOR_DEFINITIONS[sdk=*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				New_Setting = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "e4471655-98bb-422b-92b9-6ba77ed2ade0";
@@ -2974,7 +2982,7 @@
 					"./\"3rd party software\"/googletest/googlemock/include",
 					"./\"3rd party software\"/googletest/googletest/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				New_Setting = "";
 				PROVISIONING_PROFILE = "e4471655-98bb-422b-92b9-6ba77ed2ade0";
 				SDKROOT = iphoneos;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Asset 2" translatesAutoresizingMaskIntoConstraints="NO" id="hPN-dE-wa3">
+                                <rect key="frame" x="44" y="0.0" width="808" height="393"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="hPN-dE-wa3" secondAttribute="trailing" id="AWf-WG-pO6"/>
+                            <constraint firstItem="hPN-dE-wa3" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="MHB-xJ-oZe"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="hPN-dE-wa3" secondAttribute="bottom" id="bZ5-Ei-7CK"/>
+                            <constraint firstItem="hPN-dE-wa3" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="m6T-oi-BSD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="51.5625" y="373.91304347826087"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Asset 2" width="128" height="128"/>
+    </resources>
+</document>
