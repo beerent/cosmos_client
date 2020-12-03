@@ -57,6 +57,9 @@ private:
     long long GetTimeDifferenceInMilliseconds(std::chrono::steady_clock::time_point a, std::chrono::steady_clock::time_point b) const;
     void UpdateRemainingSeconds(long long elapsedTime);
     
+    void RegisterTimers();
+    void DeregisterTimers();
+    
     bool TimerIsExpired() const;
     
 

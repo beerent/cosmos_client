@@ -46,7 +46,7 @@ void UIStateChallengeMode::QuestionsReady() {
 	m_challengeModeWidget->TakeDownLoading();
     DisplayQuestion(question);
     
-    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_250_MS);
+    RegisterTimers();
 }
 
 void UIStateChallengeMode::OnAnswerSelected(const Answer& answer) {
@@ -72,7 +72,7 @@ void UIStateChallengeMode::HandleCorrectAnswer() {
 		const Question& question = m_challengeData.GetNextQuestion();
         DisplayQuestion(question);
 	} else {
-        m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_250_MS);
+        DeregisterTimers();
 
         m_challengeModeWidget->DisplayLoading();
 		m_challengeData.ChallengeQuestionsRequested();
@@ -94,7 +94,7 @@ void UIStateChallengeMode::ResetGameTimer() {
 
 void UIStateChallengeMode::HandleWrongAnswer() {
 	m_challengeModeWidget->GameOver();
-    m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_250_MS);
+    DeregisterTimers();
 }
 
 void UIStateChallengeMode::OnMainMenuPressed(UITouchButton::ButtonState state) {
@@ -104,15 +104,17 @@ void UIStateChallengeMode::OnMainMenuPressed(UITouchButton::ButtonState state) {
 
 void UIStateChallengeMode::OnTimerEvent(Timer::TimerType type) {
     switch (type) {
-        case Timer::TimerType::CHALLENGE_QUESTION_TIMER_250_MS:
+        case Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS:
             if (TimerIsExpired()) {
                 m_challengeModeWidget->SetTimerColor(TextColor::RED_TEXT_COLOR);
                 HandleWrongAnswer();
-            } else {
-                UpdateTimer();
             }
-
             break;
+            
+        case Timer::TimerType::CHALLENGE_QUESTION_TIMER_1000_MS:
+                UpdateTimer();
+            break;
+
         default:
             break;
     }
@@ -153,4 +155,14 @@ void UIStateChallengeMode::OnChallengeTimerReceived(int timerSeconds) {
     m_timerSecondsRemaining = m_challengeModeTimerSeconds;
     m_challengeModeWidget->DisplayTimer(m_timerSecondsRemaining);
     m_challengeModeWidget->SetTimerColor(TextColor::GREEN_TEXT_COLOR);
+}
+
+void UIStateChallengeMode::RegisterTimers() {
+    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS);
+    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_1000_MS);
+}
+
+void UIStateChallengeMode::DeregisterTimers() {
+    m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS);
+    m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_1000_MS);
 }
