@@ -118,6 +118,8 @@ void ChallengeMenuWidget::AddLeaderboardContents() {
 
 void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& leaderboard) {
 	if (m_loadingLabel != nullptr) {
+        std::string emptyString("");
+        m_loadingLabel->setTextString(emptyString);
 		m_loadingLabel->release();
 	}
 
