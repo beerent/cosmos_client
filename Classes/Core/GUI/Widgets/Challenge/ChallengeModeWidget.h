@@ -36,6 +36,9 @@ public:
 	void DisplayPoints(int points);
 	void TakeDownPoints();
     
+    std::string GetPointsString(int points) const;
+    std::string GetTimerString(int seconds) const;
+    
     void UpdateTimer(int points);
     void DisplayTimer(int points);
     void TakeDownTimer();

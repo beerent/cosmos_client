@@ -37,7 +37,7 @@ namespace {
 	}
 }
 
-ChallengeModeWidget::ChallengeModeWidget() : m_currentQuestionId(-1), m_flagQuestion(nullptr), m_questionFlagged(nullptr), m_currentUsername(nullptr) {}
+ChallengeModeWidget::ChallengeModeWidget() : m_currentQuestionId(-1), m_flagQuestion(nullptr), m_questionFlagged(nullptr), m_currentUsername(nullptr), m_timerLabel(nullptr) {}
 
 void ChallengeModeWidget::Init(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) {
 	m_uiComponentFactory = uiComponentFactory;
@@ -93,12 +93,11 @@ void ChallengeModeWidget::TakeDownFlagged() {
 }
 
 void ChallengeModeWidget::UpdatePoints(int points) {
-	TakeDownPoints();
-	DisplayPoints(points);
+    m_pointsLabel->setTextString(GetPointsString(points));
 }
 
 void ChallengeModeWidget::DisplayPoints(int points) {
-	std::string pointsAsString = std::to_string(points) + " points";
+    std::string pointsAsString = GetPointsString(points);
     float pointsWidth = 12.5 * pointsAsString.size();
 
 	m_pointsLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", pointsWidth, 40.0, UIComponent::ANCHOR_TOP_LEFT, pointsAsString);
@@ -107,18 +106,35 @@ void ChallengeModeWidget::DisplayPoints(int points) {
 	m_parentComponent->addChild(m_pointsLabel);
 }
 
+std::string ChallengeModeWidget::GetPointsString(int points) const {
+    return std::to_string(points) + " points";
+}
+
 void ChallengeModeWidget::TakeDownPoints() {
 	m_pointsLabel->release();
 }
 
 void ChallengeModeWidget::UpdateTimer(int seconds) {
-    TakeDownTimer();
-    
-    if (seconds < 0) {
-        seconds = 0;
+    m_timerLabel->setTextString(GetTimerString(seconds));
+}
+
+void ChallengeModeWidget::DisplayTimer(int seconds) {
+    std::string timerString = GetTimerString(seconds);
+    float timerWidth = 12.5 * timerString.size();
+
+    m_timerLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", timerWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, timerString);
+    m_timerLabel->setY(15);
+    m_timerLabel->setDropShadowColor(dropShadowColor);
+    m_parentComponent->addChild(m_timerLabel);
+}
+
+std::string ChallengeModeWidget::GetTimerString(int seconds) const {
+    std::string secondString = "seconds";
+    if (seconds == 1) {
+        secondString = "second";
     }
     
-    DisplayTimer(seconds);
+    return std::to_string(seconds) + " " + secondString;
 }
 
 void ChallengeModeWidget::UpdateTimerColor(double secondsRemaining, double totalSecondsAllowed) {
@@ -132,20 +148,6 @@ void ChallengeModeWidget::UpdateTimerColor(double secondsRemaining, double total
 
 void ChallengeModeWidget::SetTimerColor(glm::vec3 color) {
     m_timerLabel->setColor(color);
-}
-
-void ChallengeModeWidget::DisplayTimer(int seconds) {
-    std::string secondString = "seconds";
-    if (seconds == 1) {
-        secondString = "second";
-    }
-    std::string timerAsString = std::to_string(seconds) + " " + secondString;
-    float timerWidth = 12.5 * timerAsString.size();
-
-    m_timerLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", timerWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, timerAsString);
-    m_timerLabel->setY(15);
-    m_timerLabel->setDropShadowColor(dropShadowColor);
-    m_parentComponent->addChild(m_timerLabel);
 }
 
 void ChallengeModeWidget::TakeDownTimer() {
