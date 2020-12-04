@@ -115,6 +115,10 @@ void ChallengeModeWidget::TakeDownPoints() {
 }
 
 void ChallengeModeWidget::UpdateTimer(int seconds) {
+    if (seconds < 0) {
+        seconds = 0;
+    }
+    
     m_timerLabel->setTextString(GetTimerString(seconds));
 }
 
