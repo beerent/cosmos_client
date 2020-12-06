@@ -931,11 +931,11 @@
 		81FD1A3E23D367ED00C3BA0C /* UsernameGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UsernameGenerator.h; path = Core/Util/UsernameGenerator.h; sourceTree = "<group>"; };
 		81FDE8D321FA6C1D00F2BBB2 /* ChallengeDataProviderLive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChallengeDataProviderLive.h; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.h; sourceTree = "<group>"; };
 		81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChallengeDataProviderLive.cpp; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.cpp; sourceTree = "<group>"; };
+		8714E889257D108500BD37F0 /* IRateAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRateAppController.h; path = Core/GameLogic/Rate/IRateAppController.h; sourceTree = "<group>"; };
 		874FED6225789B07005B2059 /* LoadingScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreenImage.png; sourceTree = "<group>"; };
 		87551C8A257C77EC00F23E57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		87551C8E257C78AF00F23E57 /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = SDKROOT; };
 		87551C98257C7D7D00F23E57 /* IOSRateAppController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IOSRateAppController.h; path = Core/IOS/IOSRateAppController.h; sourceTree = "<group>"; };
-		87551C9D257C800900F23E57 /* IRateAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRateAppController.h; path = Classes/Core/GameLogic/Rate/IRateAppController.h; sourceTree = SOURCE_ROOT; };
 		87551CA1257C8C5300F23E57 /* IOSRateAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSRateAppController.mm; path = Core/IOS/IOSRateAppController.mm; sourceTree = "<group>"; };
 		87CA14FA2578849600E18697 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1217,7 +1217,7 @@
 		1A727EC2193FF141001D8111 /* GameLogic */ = {
 			isa = PBXGroup;
 			children = (
-				87551C9B257C7E2700F23E57 /* Rate */,
+				8714E886257D0E0F00BD37F0 /* Rate */,
 				81D747652228A8C7001CBB95 /* User */,
 				81DB2FBC21F5FB82000F4135 /* Question */,
 				81B4717A21EA11D500F067D5 /* Challenge */,
@@ -1281,6 +1281,7 @@
 		1A82112C1571400C00F9F792 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8714E885257D0D4D00BD37F0 /* Rate */,
 				814BB909239345C60045CDC1 /* Util */,
 				8127D004220C44FA00C6BD2D /* Keyboard */,
 				81F0D66021DC0F6E00A81D1F /* User */,
@@ -2325,20 +2326,27 @@
 			name = Authentication;
 			sourceTree = "<group>";
 		};
+		8714E885257D0D4D00BD37F0 /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Rate;
+			sourceTree = "<group>";
+		};
+		8714E886257D0E0F00BD37F0 /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				8714E889257D108500BD37F0 /* IRateAppController.h */,
+			);
+			name = Rate;
+			sourceTree = "<group>";
+		};
 		874FED6125789AEF005B2059 /* images */ = {
 			isa = PBXGroup;
 			children = (
 				874FED6225789B07005B2059 /* LoadingScreenImage.png */,
 			);
 			name = images;
-			sourceTree = "<group>";
-		};
-		87551C9B257C7E2700F23E57 /* Rate */ = {
-			isa = PBXGroup;
-			children = (
-				87551C9D257C800900F23E57 /* IRateAppController.h */,
-			);
-			path = Rate;
 			sourceTree = "<group>";
 		};
 		BA72295F2165B76F00DF0F5A /* Style */ = {
