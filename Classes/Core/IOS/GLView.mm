@@ -73,9 +73,17 @@
         m_timestamp = displayLink.timestamp;
         m_ojerEngine2d->OnDeltaTime(elapsedSeconds);
     }
+    
+    //this is a hack to delay rendering until the UI had time to initialize.
+    if ([self ShouldRender]) {
+        m_ojerEngine2d->Render();
+        [m_context presentRenderbuffer:GL_RENDERBUFFER];
+    }
+}
 
-    m_ojerEngine2d->Render();
-    [m_context presentRenderbuffer:GL_RENDERBUFFER];
+//this is a hack to delay rendering until the UI had time to initialize.
+- (bool) ShouldRender {
+    return renderDelayCount++ > 5;
 }
 
 - (void) touchesBegan: (NSSet*) touches withEvent: (UIEvent*) event

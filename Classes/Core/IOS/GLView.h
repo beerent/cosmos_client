@@ -25,6 +25,7 @@
     IOSUserMemory m_userMemory;
     
     float m_timestamp;
+    int renderDelayCount;
 }
 
 - (void) drawView: (CADisplayLink*) displayLink;
@@ -35,5 +36,6 @@
 - (void) OnCharacterPressed: (char) c;
 - (void) OnEnterPressed;
 - (void) OnDeletePressed;
+- (bool) ShouldRender;
 
 @end
