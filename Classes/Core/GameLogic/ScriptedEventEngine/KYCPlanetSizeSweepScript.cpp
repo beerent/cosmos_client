@@ -667,14 +667,14 @@ void KYCPlanetSizeSweepScript::OnHandleEvent(const Event& event)
 		}
 		else if (eventName == ORBIT_URANUS)
 		{
-			AddPlanetOrbitAnimation(STRING_TO_ID("MERCURY"), 9.0f);
-			AddPlanetOrbitAnimation(STRING_TO_ID("MARS"), 14.0f);
-			AddPlanetOrbitAnimation(STRING_TO_ID("VENUS"), 13.0f);
-			AddPlanetOrbitAnimation(STRING_TO_ID("EARTH"), 21.0f);
-			AddPlanetOrbitAnimation(STRING_TO_ID("NEPTUNE"), 17.0f);
-			AddPlanetOrbitAnimation(STRING_TO_ID("URANUS"), 22.0f);
-			AddPlanetOrbitAnimation(STRING_TO_ID("SATURN"), 25.0f);
-			AddPlanetOrbitAnimation(STRING_TO_ID("JUPITER"), 10.0f);
+			AddPlanetOrbitAnimation(STRING_TO_ID("MERCURY"), -9.0f);
+			AddPlanetOrbitAnimation(STRING_TO_ID("MARS"), -14.0f);
+			AddPlanetOrbitAnimation(STRING_TO_ID("VENUS"), -13.0f);
+			AddPlanetOrbitAnimation(STRING_TO_ID("EARTH"), -21.0f);
+			AddPlanetOrbitAnimation(STRING_TO_ID("NEPTUNE"), -17.0f);
+			AddPlanetOrbitAnimation(STRING_TO_ID("URANUS"), -22.0f);
+			AddPlanetOrbitAnimation(STRING_TO_ID("SATURN"), -25.0f);
+			AddPlanetOrbitAnimation(STRING_TO_ID("JUPITER"), -10.0f);
 		}
 		else if (eventName == INTERPOLATE_TO_SUN_ORBIT_POSITIZON) {
 			Entity* entity = LevelFactory::getActiveLevel()->getEntityByName(STRING_TO_ID("SUN"));
