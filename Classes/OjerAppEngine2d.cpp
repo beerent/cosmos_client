@@ -661,3 +661,11 @@ KeyboardManager* OjerAppEngine2d::GetKeyboardManager() {
 UserProvider* OjerAppEngine2d::GetUserProvider() {
 	return m_userProvider;
 }
+
+void OjerAppEngine2d::SetRateAppController(IRateAppController* rateAppController) {
+    m_rateAppController = rateAppController;
+}
+
+IRateAppController* OjerAppEngine2d::GetRateAppController() {
+    return m_rateAppController;
+}

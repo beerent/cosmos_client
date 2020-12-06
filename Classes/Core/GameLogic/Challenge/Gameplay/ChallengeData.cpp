@@ -1,6 +1,9 @@
 #include <Core/GameLogic/Challenge/Gameplay/ChallengeData.h>
 #include <Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderFake.h>
 #include <Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.h>
+#include "IEngine.h"
+
+static const int MIN_CORRECT_QUESTIONS_TO_REQUEST_REVIEW(4);
 
 ChallengeData::ChallengeData() : m_questionsReadyReceiverWaiting(false), m_amountCorrect(0) {
     //m_challengeDataProvider = new ChallengeDataProviderFake();
@@ -19,6 +22,20 @@ void ChallengeData::RegisterChallengeTimerReceiver(IChallengeTimerReceiver* chal
 void ChallengeData::StartNewGame() {
 	m_questionsReadyReceiverWaiting = true;
 	m_challengeDataProvider->RequestChallengeId();
+}
+
+void ChallengeData::GameOver() const {
+    if (ShouldRequestReview()) {
+        RequestReview();
+    }
+}
+
+bool ChallengeData::ShouldRequestReview() const {
+    return GetAmountCorrect() >= MIN_CORRECT_QUESTIONS_TO_REQUEST_REVIEW;
+}
+
+bool ChallengeData::RequestReview() const {
+    IEngine::getEngine()->GetRateAppController()->RateAppRequest();
 }
 
 void ChallengeData::ChallengeIdReceived(int challengeId) {

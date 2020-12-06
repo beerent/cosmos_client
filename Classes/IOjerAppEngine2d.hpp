@@ -4,6 +4,7 @@
 #include "Core/Net/IRestConnector.h"
 #include <Core/Keyboard/KeyboardManager.h>
 #include <Core/User/IUserMemory.h>
+#include <Core/GameLogic/Rate/IRateAppController.h>
 
 enum DeviceOrientation {
     DeviceOrientationUnknown,
@@ -30,6 +31,7 @@ struct IOjerAppEngine2d {
     
     virtual void SetRestConnector(IRestConnector* restConnector) = 0;
     virtual void SetUserMemory(IUserMemory* userMemory) = 0;
+    virtual void SetRateAppController(IRateAppController* rateAppController) = 0;
     virtual KeyboardManager* GetKeyboardManager() = 0;
     virtual ~IOjerAppEngine2d() {}
 };

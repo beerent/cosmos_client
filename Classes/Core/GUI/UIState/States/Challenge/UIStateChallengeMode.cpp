@@ -98,6 +98,7 @@ void UIStateChallengeMode::HandleWrongAnswer() {
 }
 
 void UIStateChallengeMode::OnMainMenuPressed(UITouchButton::ButtonState state) {
+    m_challengeData.GameOver();
 	m_challengeModeWidget->TakeDownEntireChallenge();
 	ChangeState(UIStateChallengeMainMenu::UI_STATE_CHALLENGE_MAIN_MENU);
 }

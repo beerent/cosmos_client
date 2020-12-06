@@ -43,6 +43,7 @@
         m_keyboardActivator.SetView(self);
         m_ojerEngine2d->GetKeyboardManager()->RegisterKeyboardActivator(&m_keyboardActivator);
         m_ojerEngine2d->SetUserMemory(&m_userMemory);
+        m_ojerEngine2d->SetRateAppController(&m_rateAppController);
         
         [m_context
             renderbufferStorage:GL_RENDERBUFFER
@@ -83,7 +84,11 @@
 
 //this is a hack to delay rendering until the UI had time to initialize.
 - (bool) ShouldRender {
-    return renderDelayCount++ > 5;
+    if (renderDelayCount <= 5) {
+        renderDelayCount++;
+    }
+    
+    return renderDelayCount > 5;
 }
 
 - (void) touchesBegan: (NSSet*) touches withEvent: (UIEvent*) event

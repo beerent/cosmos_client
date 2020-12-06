@@ -269,6 +269,8 @@
 		81F0D66E21DC104D00A81D1F /* AuthenticationState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81F0D66D21DC104D00A81D1F /* AuthenticationState.cpp */; };
 		81FDE8D521FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */; };
 		874FED6325789B07005B2059 /* LoadingScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 874FED6225789B07005B2059 /* LoadingScreenImage.png */; };
+		87551C92257C78BF00F23E57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87551C8A257C77EC00F23E57 /* StoreKit.framework */; };
+		87551CA2257C8C5300F23E57 /* IOSRateAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87551CA1257C8C5300F23E57 /* IOSRateAppController.mm */; };
 		87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CA14FA2578849600E18697 /* Launch Screen.storyboard */; };
 		BA6D85EA216EF22100943989 /* KYCPlanetSizeSweepScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */; };
 		BA7229622165B79A00DF0F5A /* StyleFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA7229602165B79A00DF0F5A /* StyleFactory.cpp */; };
@@ -930,6 +932,11 @@
 		81FDE8D321FA6C1D00F2BBB2 /* ChallengeDataProviderLive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChallengeDataProviderLive.h; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.h; sourceTree = "<group>"; };
 		81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChallengeDataProviderLive.cpp; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.cpp; sourceTree = "<group>"; };
 		874FED6225789B07005B2059 /* LoadingScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreenImage.png; sourceTree = "<group>"; };
+		87551C8A257C77EC00F23E57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		87551C8E257C78AF00F23E57 /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = SDKROOT; };
+		87551C98257C7D7D00F23E57 /* IOSRateAppController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IOSRateAppController.h; path = Core/IOS/IOSRateAppController.h; sourceTree = "<group>"; };
+		87551C9D257C800900F23E57 /* IRateAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRateAppController.h; path = Classes/Core/GameLogic/Rate/IRateAppController.h; sourceTree = SOURCE_ROOT; };
+		87551CA1257C8C5300F23E57 /* IOSRateAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSRateAppController.mm; path = Core/IOS/IOSRateAppController.mm; sourceTree = "<group>"; };
 		87CA14FA2578849600E18697 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KYCPlanetSizeSweepScript.cpp; path = Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.cpp; sourceTree = "<group>"; };
@@ -1036,6 +1043,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				818BF78B2219F3F600DD45B6 /* Security.framework in Frameworks */,
+				87551C92257C78BF00F23E57 /* StoreKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -1209,6 +1217,7 @@
 		1A727EC2193FF141001D8111 /* GameLogic */ = {
 			isa = PBXGroup;
 			children = (
+				87551C9B257C7E2700F23E57 /* Rate */,
 				81D747652228A8C7001CBB95 /* User */,
 				81DB2FBC21F5FB82000F4135 /* Question */,
 				81B4717A21EA11D500F067D5 /* Challenge */,
@@ -1968,6 +1977,8 @@
 		1AD3F88E16CC67000006B0B8 /* IOS */ = {
 			isa = PBXGroup;
 			children = (
+				87551CA1257C8C5300F23E57 /* IOSRateAppController.mm */,
+				87551C98257C7D7D00F23E57 /* IOSRateAppController.h */,
 				818BF78D2219F56500DD45B6 /* IOSUserMemory.h */,
 				818BF78E2219F56500DD45B6 /* IOSUserMemory.mm */,
 				818BF7832219EFA300DD45B6 /* Keychain */,
@@ -2071,6 +2082,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87551C8E257C78AF00F23E57 /* StoreKitTest.framework */,
+				87551C8A257C77EC00F23E57 /* StoreKit.framework */,
 				818BF78A2219F3F600DD45B6 /* Security.framework */,
 				4D27E4B40F9AD7D600447247 /* QuartzCore.framework */,
 				4D27E4830F9AD71900447247 /* OpenGLES.framework */,
@@ -2318,6 +2331,14 @@
 				874FED6225789B07005B2059 /* LoadingScreenImage.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		87551C9B257C7E2700F23E57 /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				87551C9D257C800900F23E57 /* IRateAppController.h */,
+			);
+			path = Rate;
 			sourceTree = "<group>";
 		};
 		BA72295F2165B76F00DF0F5A /* Style */ = {
@@ -2832,6 +2853,7 @@
 				BABA36D520B6528F00E312A8 /* ldo.c in Sources */,
 				1A6759FD1EF22C1F006F32FF /* PGPGameMaster.cpp in Sources */,
 				818BF7892219F18000DD45B6 /* PDKeychainBindings.m in Sources */,
+				87551CA2257C8C5300F23E57 /* IOSRateAppController.mm in Sources */,
 				1AFB25BD1D0C881600C5BFFB /* GameMainMenuState.cpp in Sources */,
 				1A8BD38718A3312D000D10C0 /* btCollisionShape.cpp in Sources */,
 				1AFB26001D0C8E8B00C5BFFB /* UIComponentFactory.cpp in Sources */,
@@ -2868,6 +2890,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_KERNEL_DEVELOPMENT = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Projectios2_Prefix.pch;
@@ -2915,6 +2938,7 @@
 					"/Users/kamilkonecko/p4/meatbadnoeat_retina/ProjectIOS1/3rd\\ party\\ software/bullet/src/BulletCollision",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_KERNEL_DEVELOPMENT = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Projectios2_Prefix.pch;
 				HEADER_SEARCH_PATHS = (

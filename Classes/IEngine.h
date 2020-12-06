@@ -15,6 +15,7 @@
 #include <Core/User/IUserMemory.h>
 #include <Core/Keyboard/KeyboardManager.h>
 #include <Core/GameLogic/Authentication/Authenticator.h>
+#include <Core/GameLogic/Rate/IRateAppController.h>
 
 class Camera;
 class ActiveCameraController;
@@ -59,6 +60,7 @@ public:
 	virtual IRestConnector* GetRestConnector() = 0;
     virtual KeyboardManager* GetKeyboardManager() = 0;
 	virtual UserProvider* GetUserProvider() = 0;
+    virtual IRateAppController* GetRateAppController() = 0;
     virtual IUserMemory* GetUserMemory() = 0;
 
 	virtual void OnAuthenticationResultReceived(AuthenticationResult result) = 0;

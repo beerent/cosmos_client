@@ -16,6 +16,7 @@ class ChallengeData : public IChallengeDataProviderReceiver {
 public:
 	ChallengeData();
 	void StartNewGame();
+    void GameOver() const;
 	void RegisterQuestionsReadyReceiver(IQuestionsReadyReceiver* questionReadyReceiver);
     void RegisterChallengeTimerReceiver(IChallengeTimerReceiver* challengeTimerReceiver);
 
@@ -29,6 +30,7 @@ public:
 	int GetAmountCorrect() const;
 
 	void RecordAnswer(const Answer& answer);
+    
 private:
 	IChallengeDataProvider* m_challengeDataProvider;
     IChallengeTimerReceiver* m_challengeTimerReciever;
@@ -39,4 +41,7 @@ private:
 	int m_challengeId;
 	std::queue<Question> m_questionQueue;
 	int m_amountCorrect;
+    
+    bool ShouldRequestReview() const;
+    bool RequestReview() const;
 };

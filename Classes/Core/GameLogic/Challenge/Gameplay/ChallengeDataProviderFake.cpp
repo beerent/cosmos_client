@@ -6,7 +6,8 @@
 #include <vector>
 
 void ChallengeDataProviderFake::RequestChallengeId() {
-	ChallengeIdReceived(1);
+    ChallengeTimerReceived(15);
+    ChallengeIdReceived(1);
 }
 
 void ChallengeDataProviderFake::ChallengeIdReceived(int challengeId) {
@@ -14,6 +15,7 @@ void ChallengeDataProviderFake::ChallengeIdReceived(int challengeId) {
 }
 
 void ChallengeDataProviderFake::ChallengeTimerReceived(int timerSeconds) {
+    m_challengeDataProviderReceiver->ChallengeTimerReceived(timerSeconds);
 }
 
 void ChallengeDataProviderFake::RequestChallengeQuestions(int challengeId) {
