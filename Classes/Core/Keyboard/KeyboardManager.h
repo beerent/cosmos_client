@@ -5,7 +5,7 @@
 
 class KeyboardManager {
 public:
-	KeyboardManager() : m_listenerSet(false), m_activatorSet(false) {}
+	KeyboardManager() : m_listenerSet(false), m_activatorSet(false), m_keyboardIsActive(false) {}
 
     void RegisterKeyboardListener(IKeyboardListener* keyboardListener) {
         m_keyboardListener = keyboardListener;
@@ -48,13 +48,19 @@ public:
     void ActivateKeyboard() {
 		if (m_activatorSet) {
 			m_keyboardActivator->ActivateKeyboard();
+            m_keyboardIsActive = true;
 		}
     }
     
     void DeactivateKeyboard() {
 		if (m_activatorSet) {
 			m_keyboardActivator->DeactivateKeyboard();
+            m_keyboardIsActive = false;
 		}
+    }
+    
+    bool KeyboardIsActive() const {
+        return m_keyboardIsActive;
     }
     
 private:
@@ -63,4 +69,5 @@ private:
 
 	bool m_listenerSet;
 	bool m_activatorSet;
+    bool m_keyboardIsActive;
 };

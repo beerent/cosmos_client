@@ -22,6 +22,8 @@ public:
     typedef fastdelegate::FastDelegate1<MainMenuItems> onMenuItemSelectedCallBack;
 
 	MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent);
+    ~MainMenuWidget();
+    
 	void init();
 	void release();
 	void registerForMenuItemSelectedEvent(onMenuItemSelectedCallBack callBack);
@@ -44,6 +46,10 @@ private:
 	void AddLoginButton(UIComponent *parentComponent);
     void AddUsernameRefreshButton();
     void OnRefreshUsername(UITouchButton::ButtonState state);
+    
+    //we're using input event callback to close the keyboard if the screen is touched.
+    void onInputEvent(InputManager::InputEvent event, InputManager::InputEventData data);
+    InputManager::onInputEventCallBack m_closeKeyboardCallback;
 	//void AddRegisterButton(UIComponent *parentComponent);
 
 	UIComponentFactory* m_uiComponentFactory;

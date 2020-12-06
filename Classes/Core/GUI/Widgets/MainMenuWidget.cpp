@@ -17,8 +17,15 @@ const std::string USERNAME = "username: ";
 MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_usernameInputBox(nullptr), m_loginButton(nullptr), m_usernameRefreshButton(nullptr), m_usernameRefreshListener(nullptr), m_username(nullptr)/*, m_registerButton(nullptr)*/ {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
-   
+    
+    m_closeKeyboardCallback.bind(this, &MainMenuWidget::onInputEvent);
+    InputManager::getInstance()->registerForInputEvents(m_closeKeyboardCallback);
 }
+
+MainMenuWidget::~MainMenuWidget() {
+    InputManager::getInstance()->unregisterForInputEvents(m_closeKeyboardCallback);
+}
+
 void MainMenuWidget::init() {
 	m_menu = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
     m_menu->setAnchor(UIComponent::ANCHOR_CENTER);
@@ -58,6 +65,13 @@ void MainMenuWidget::init() {
     //    SetGuestUsernameDisplay("");
     //    AddLoginButton(m_parentComponent);
     //}
+}
+
+void MainMenuWidget::onInputEvent(InputManager::InputEvent event, InputManager::InputEventData data)
+{
+    if (IEngine::getEngine()->GetKeyboardManager()->KeyboardIsActive()) {
+        IEngine::getEngine()->GetKeyboardManager()->OnEnterPressed();
+    }
 }
 
 void MainMenuWidget::AddLoginButton(UIComponent *parentComponent) {
