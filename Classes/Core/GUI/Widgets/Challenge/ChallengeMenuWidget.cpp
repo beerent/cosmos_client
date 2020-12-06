@@ -69,7 +69,7 @@ void ChallengeMenuWidget::AddCurrentUserUsername() {
     float usernameWidth = 12.5 * username.size();
     m_currentUsername = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameWidth, 40, UIComponent::ANCHOR_TOP_RIGHT, username);
     m_currentUsername->setDropShadowColor(dropShadowColor);
-    m_currentUsername->setX(50);
+    m_currentUsername->setX(80);
     m_parentComponent->addChild(m_currentUsername);
 }
 
@@ -78,7 +78,7 @@ void ChallengeMenuWidget::AddHomeButton() {
 
 	m_home = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 50, 40, UIComponent::ANCHOR_TOP_LEFT, "home");
 	m_home->setDropShadowColor(dropShadowColor);
-	m_home->setX(50);
+	m_home->setX(80);
 
 	callBack.bind(this, &ChallengeMenuWidget::OnHomePressed);
 	m_home->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);

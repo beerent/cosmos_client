@@ -68,7 +68,7 @@ void ChallengeModeWidget::DisplayCurrentUsername() {
     float usernameWidth = 12.5 * username.size();
     m_currentUsername = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameWidth, 40, UIComponent::ANCHOR_TOP_RIGHT, username);
     m_currentUsername->setDropShadowColor(dropShadowColor);
-    m_currentUsername->setX(50);
+    m_currentUsername->setX(80);
     m_parentComponent->addChild(m_currentUsername);
 }
 
@@ -101,7 +101,7 @@ void ChallengeModeWidget::DisplayPoints(int points) {
     float pointsWidth = 12.5 * pointsAsString.size();
 
 	m_pointsLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", pointsWidth, 40.0, UIComponent::ANCHOR_TOP_LEFT, pointsAsString);
-    m_pointsLabel->setX(50);
+    m_pointsLabel->setX(80);
     m_pointsLabel->setDropShadowColor(dropShadowColor);
 	m_parentComponent->addChild(m_pointsLabel);
 }
