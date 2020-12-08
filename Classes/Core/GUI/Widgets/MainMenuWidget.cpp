@@ -14,7 +14,7 @@ const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
 const std::string USERNAME = "username: ";
 
-MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_usernameInputBox(nullptr), m_loginButton(nullptr), m_usernameRefreshButton(nullptr), m_usernameRefreshListener(nullptr), m_username(nullptr)/*, m_registerButton(nullptr)*/ {
+MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_usernameInputBox(nullptr), m_loginButton(nullptr), m_usernameRefreshButton(nullptr), m_usernameRefreshListener(nullptr), m_username(nullptr), m_appVersion(nullptr)/*, m_registerButton(nullptr)*/ {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
     
@@ -58,6 +58,7 @@ void MainMenuWidget::init() {
     m_menu->addChild(label);
     
     AddUsernameRefreshButton();
+    DisplayAppVersion();
     
     /* REMOVED LOGIN FEATURE FOR INITIAL RELEASE */
     //UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
@@ -105,6 +106,22 @@ void MainMenuWidget::OnRefreshUsername(UITouchButton::ButtonState state) {
     if (nullptr != m_usernameRefreshListener) {
         m_usernameRefreshListener->OnUsernameRefresh();
     }
+}
+
+void MainMenuWidget::DisplayAppVersion() {
+    std::string appVersion = IEngine::getEngine()->GetDeviceUtil()->GetBuildVersion();
+    float offset = appVersion.size() * 12.5;
+    m_appVersion = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", offset, 10, UIComponent::ANCHOR_BOTTOM_RIGHT, appVersion);
+    m_appVersion->setDropShadowColor(dropShadowColor);
+    m_appVersion->setX(80);
+    //m_appVersion->setY(-50);
+    m_parentComponent->addChild(m_appVersion);
+}
+
+void MainMenuWidget::TakeDownAppVersion() {
+    m_appVersion->release();
+    delete m_appVersion;
+    m_appVersion = nullptr;
 }
     
 
@@ -162,6 +179,8 @@ void MainMenuWidget::release() {
     
     m_usernameRefreshButton->release();
     delete m_usernameRefreshButton;
+    
+    TakeDownAppVersion();
 }
 
 void MainMenuWidget::SetUsernameText() {

@@ -47,6 +47,9 @@ private:
     void AddUsernameRefreshButton();
     void OnRefreshUsername(UITouchButton::ButtonState state);
     
+    void DisplayAppVersion();
+    void TakeDownAppVersion();
+    
     //we're using input event callback to close the keyboard if the screen is touched.
     void onInputEvent(InputManager::InputEvent event, InputManager::InputEventData data);
     InputManager::onInputEventCallBack m_closeKeyboardCallback;
@@ -60,6 +63,7 @@ private:
     UILabel* m_usernameInputBox;
     UILabel* m_usernameRefreshButton;
 	UILabel* m_loginButton;
+    UILabel* m_appVersion;
     
     IUsernameRefreshListener* m_usernameRefreshListener;
     
