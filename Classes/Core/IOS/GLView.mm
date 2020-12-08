@@ -43,7 +43,7 @@
         m_keyboardActivator.SetView(self);
         m_ojerEngine2d->GetKeyboardManager()->RegisterKeyboardActivator(&m_keyboardActivator);
         m_ojerEngine2d->SetUserMemory(&m_userMemory);
-        m_ojerEngine2d->SetRateAppController(&m_rateAppController);
+        m_ojerEngine2d->SetDeviceUtil(&m_deviceUtil);
         
         [m_context
             renderbufferStorage:GL_RENDERBUFFER

@@ -662,10 +662,10 @@ UserProvider* OjerAppEngine2d::GetUserProvider() {
 	return m_userProvider;
 }
 
-void OjerAppEngine2d::SetRateAppController(IRateAppController* rateAppController) {
-    m_rateAppController = rateAppController;
+void OjerAppEngine2d::SetDeviceUtil(IDeviceUtil* deviceUtil) {
+    m_deviceUtil = deviceUtil;
 }
 
-IRateAppController* OjerAppEngine2d::GetRateAppController() {
-    return m_rateAppController;
+IDeviceUtil* OjerAppEngine2d::GetDeviceUtil() {
+    return m_deviceUtil;
 }

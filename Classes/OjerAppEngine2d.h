@@ -56,7 +56,7 @@
 #include <Core/Net/IRestConnector.h>
 #include <Core/User/UserProvider.h>
 #include <Core/User/IUserMemory.h>
-#include <Core/GameLogic/Rate/IRateAppController.h>
+#include <Core/General/IDeviceUtil.h>
 #include <Core/Keyboard/KeyboardManager.h>
 #include <Core/GameLogic/Authentication/Authenticator.h>
 
@@ -82,7 +82,7 @@ public:
 
 	void SetRestConnector(IRestConnector* restConnector);
     void SetUserMemory(IUserMemory* userMemory);
-    void SetRateAppController(IRateAppController* rateAppController);
+    void SetDeviceUtil(IDeviceUtil* deviceUtil);
 
 	float getLoopingAccumulatedDeltaTime();
 	void registerForDeltaTimeEvents(onDeltaTimeEventCallBack callBack);
@@ -111,7 +111,7 @@ public:
 	IRestConnector* GetRestConnector();
     KeyboardManager* GetKeyboardManager();
     IUserMemory* GetUserMemory();
-    IRateAppController* GetRateAppController();
+    IDeviceUtil* GetDeviceUtil();
 	UserProvider* GetUserProvider();
 	NPCAIFactory& getNPCFactory();
 
@@ -152,7 +152,7 @@ private:
     KeyboardManager m_keyboardManager;
 	UserProvider* m_userProvider;
     IUserMemory* m_userMemory;
-    IRateAppController* m_rateAppController;
+    IDeviceUtil* m_deviceUtil;
     
     bool m_authenticationRequestActive;
 	GameStateMachine *mGameStateMachine;

@@ -3,7 +3,7 @@
 #include <IOSRestConnector.h>
 #include <IOSKeyboardActivator.h>
 #include <IOSUserMemory.h>
-#include <IOSRateAppController.h>
+#include <IOSDeviceUtil.h>
 
 @interface kbv : UIView <UIKeyInput>
 
@@ -23,7 +23,7 @@
     IOjerAppEngine2d* m_ojerEngine2d;
     IOSRestConnector m_restConnector;
     IOSKeyboardActivator m_keyboardActivator;
-    IOSRateAppController m_rateAppController;
+    IOSDeviceUtil m_deviceUtil;
     IOSUserMemory m_userMemory;
     
     float m_timestamp;

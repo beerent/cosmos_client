@@ -35,7 +35,7 @@ bool ChallengeData::ShouldRequestReview() const {
 }
 
 bool ChallengeData::RequestReview() const {
-    IEngine::getEngine()->GetRateAppController()->RateAppRequest();
+    IEngine::getEngine()->GetDeviceUtil()->RateAppRequest();
 }
 
 void ChallengeData::ChallengeIdReceived(int challengeId) {

@@ -1,6 +1,6 @@
 #pragma once
 
-class IRateAppController {
+class IDeviceUtil {
 public:
     virtual void RateAppRequest() = 0;
 };

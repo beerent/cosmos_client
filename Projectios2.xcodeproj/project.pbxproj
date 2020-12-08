@@ -270,8 +270,8 @@
 		81FDE8D521FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */; };
 		874FED6325789B07005B2059 /* LoadingScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 874FED6225789B07005B2059 /* LoadingScreenImage.png */; };
 		87551C92257C78BF00F23E57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87551C8A257C77EC00F23E57 /* StoreKit.framework */; };
-		87551CA2257C8C5300F23E57 /* IOSRateAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87551CA1257C8C5300F23E57 /* IOSRateAppController.mm */; };
 		87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CA14FA2578849600E18697 /* Launch Screen.storyboard */; };
+		87E3B8A9257F3864007C63D1 /* IOSDeviceUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87E3B8A8257F3864007C63D1 /* IOSDeviceUtil.mm */; };
 		BA6D85EA216EF22100943989 /* KYCPlanetSizeSweepScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */; };
 		BA7229622165B79A00DF0F5A /* StyleFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA7229602165B79A00DF0F5A /* StyleFactory.cpp */; };
 		BABA366E20B64E1900E312A8 /* NCPAIFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BABA366A20B64E1800E312A8 /* NCPAIFactory.cpp */; };
@@ -931,13 +931,13 @@
 		81FD1A3E23D367ED00C3BA0C /* UsernameGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UsernameGenerator.h; path = Core/Util/UsernameGenerator.h; sourceTree = "<group>"; };
 		81FDE8D321FA6C1D00F2BBB2 /* ChallengeDataProviderLive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChallengeDataProviderLive.h; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.h; sourceTree = "<group>"; };
 		81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChallengeDataProviderLive.cpp; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.cpp; sourceTree = "<group>"; };
-		8714E889257D108500BD37F0 /* IRateAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRateAppController.h; path = Core/GameLogic/Rate/IRateAppController.h; sourceTree = "<group>"; };
 		874FED6225789B07005B2059 /* LoadingScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreenImage.png; sourceTree = "<group>"; };
 		87551C8A257C77EC00F23E57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		87551C8E257C78AF00F23E57 /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = SDKROOT; };
-		87551C98257C7D7D00F23E57 /* IOSRateAppController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IOSRateAppController.h; path = Core/IOS/IOSRateAppController.h; sourceTree = "<group>"; };
-		87551CA1257C8C5300F23E57 /* IOSRateAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSRateAppController.mm; path = Core/IOS/IOSRateAppController.mm; sourceTree = "<group>"; };
 		87CA14FA2578849600E18697 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		87E3B89D257F33E6007C63D1 /* IOSDeviceUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IOSDeviceUtil.h; path = Core/IOS/IOSDeviceUtil.h; sourceTree = "<group>"; };
+		87E3B8A4257F36CE007C63D1 /* IDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDeviceUtil.h; path = Core/General/IDeviceUtil.h; sourceTree = "<group>"; };
+		87E3B8A8257F3864007C63D1 /* IOSDeviceUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSDeviceUtil.mm; path = Core/IOS/IOSDeviceUtil.mm; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KYCPlanetSizeSweepScript.cpp; path = Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.cpp; sourceTree = "<group>"; };
 		BA6D85E9216EF22100943989 /* KYCPlanetSizeSweepScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCPlanetSizeSweepScript.h; path = Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.h; sourceTree = "<group>"; };
@@ -1217,7 +1217,6 @@
 		1A727EC2193FF141001D8111 /* GameLogic */ = {
 			isa = PBXGroup;
 			children = (
-				8714E886257D0E0F00BD37F0 /* Rate */,
 				81D747652228A8C7001CBB95 /* User */,
 				81DB2FBC21F5FB82000F4135 /* Question */,
 				81B4717A21EA11D500F067D5 /* Challenge */,
@@ -1281,7 +1280,7 @@
 		1A82112C1571400C00F9F792 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				8714E885257D0D4D00BD37F0 /* Rate */,
+				87E3B89F257F344B007C63D1 /* Generic */,
 				814BB909239345C60045CDC1 /* Util */,
 				8127D004220C44FA00C6BD2D /* Keyboard */,
 				81F0D66021DC0F6E00A81D1F /* User */,
@@ -1978,8 +1977,8 @@
 		1AD3F88E16CC67000006B0B8 /* IOS */ = {
 			isa = PBXGroup;
 			children = (
-				87551CA1257C8C5300F23E57 /* IOSRateAppController.mm */,
-				87551C98257C7D7D00F23E57 /* IOSRateAppController.h */,
+				87E3B8A8257F3864007C63D1 /* IOSDeviceUtil.mm */,
+				87E3B89D257F33E6007C63D1 /* IOSDeviceUtil.h */,
 				818BF78D2219F56500DD45B6 /* IOSUserMemory.h */,
 				818BF78E2219F56500DD45B6 /* IOSUserMemory.mm */,
 				818BF7832219EFA300DD45B6 /* Keychain */,
@@ -2326,27 +2325,20 @@
 			name = Authentication;
 			sourceTree = "<group>";
 		};
-		8714E885257D0D4D00BD37F0 /* Rate */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Rate;
-			sourceTree = "<group>";
-		};
-		8714E886257D0E0F00BD37F0 /* Rate */ = {
-			isa = PBXGroup;
-			children = (
-				8714E889257D108500BD37F0 /* IRateAppController.h */,
-			);
-			name = Rate;
-			sourceTree = "<group>";
-		};
 		874FED6125789AEF005B2059 /* images */ = {
 			isa = PBXGroup;
 			children = (
 				874FED6225789B07005B2059 /* LoadingScreenImage.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		87E3B89F257F344B007C63D1 /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				87E3B8A4257F36CE007C63D1 /* IDeviceUtil.h */,
+			);
+			name = Generic;
 			sourceTree = "<group>";
 		};
 		BA72295F2165B76F00DF0F5A /* Style */ = {
@@ -2622,6 +2614,7 @@
 				1AFB25911D0C848200C5BFFB /* DebugMenuWidget.cpp in Sources */,
 				1AFB25711D0C7FD900C5BFFB /* UIFontRenderable.cpp in Sources */,
 				1AFB25B81D0C880500C5BFFB /* GameStateMachine.cpp in Sources */,
+				87E3B8A9257F3864007C63D1 /* IOSDeviceUtil.mm in Sources */,
 				1A8BD18018A32D4F000D10C0 /* btSerializer.cpp in Sources */,
 				1A8BD12118A32D30000D10C0 /* btGeneric6DofConstraint.cpp in Sources */,
 				1A5C7A031FD8EE5B00CD9788 /* MathGLMBulletConversionHelpers.cpp in Sources */,
@@ -2861,7 +2854,6 @@
 				BABA36D520B6528F00E312A8 /* ldo.c in Sources */,
 				1A6759FD1EF22C1F006F32FF /* PGPGameMaster.cpp in Sources */,
 				818BF7892219F18000DD45B6 /* PDKeychainBindings.m in Sources */,
-				87551CA2257C8C5300F23E57 /* IOSRateAppController.mm in Sources */,
 				1AFB25BD1D0C881600C5BFFB /* GameMainMenuState.cpp in Sources */,
 				1A8BD38718A3312D000D10C0 /* btCollisionShape.cpp in Sources */,
 				1AFB26001D0C8E8B00C5BFFB /* UIComponentFactory.cpp in Sources */,
@@ -2887,7 +2879,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 1.1.2;
 				DEVELOPMENT_TEAM = F2DR84DKST;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2912,7 +2904,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				NEW_SETTING = "";
 				New_Setting = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barzak.$(PRODUCT_NAME:identifier)";
@@ -2936,7 +2928,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 1.1.2;
 				DEVELOPMENT_TEAM = F2DR84DKST;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2957,7 +2949,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				NEW_SETTING = "";
 				New_Setting = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barzak.$(PRODUCT_NAME:identifier)";
