@@ -76,4 +76,8 @@ private:
     void OnEditPressed(UITouchButton::ButtonState state);
     void OnRandomPressed(UITouchButton::ButtonState state);
 	void OnExitPressed(UITouchButton::ButtonState state);
+    
+    //we're using input event callback to close the keyboard if the screen is touched.
+    InputManager::onInputEventCallBack m_closeKeyboardCallback;
+    void OnBackgroundPressed(InputManager::InputEvent event, InputManager::InputEventData data);
 };

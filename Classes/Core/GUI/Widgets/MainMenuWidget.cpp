@@ -15,14 +15,9 @@ const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_username(nullptr), m_appVersion(nullptr), m_usernamePressedCallback(nullptr) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
-    
-    m_closeKeyboardCallback.bind(this, &MainMenuWidget::onInputEvent);
-    InputManager::getInstance()->registerForInputEvents(m_closeKeyboardCallback);
 }
 
-MainMenuWidget::~MainMenuWidget() {
-    InputManager::getInstance()->unregisterForInputEvents(m_closeKeyboardCallback);
-}
+MainMenuWidget::~MainMenuWidget() {}
 
 void MainMenuWidget::init() {
 	m_menu = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
@@ -50,12 +45,6 @@ void MainMenuWidget::init() {
 
     DisplayUsername();
     DisplayAppVersion();
-}
-
-void MainMenuWidget::onInputEvent(InputManager::InputEvent event, InputManager::InputEventData data) {
-    if (IEngine::getEngine()->GetKeyboardManager()->KeyboardIsActive()) {
-        IEngine::getEngine()->GetKeyboardManager()->OnEnterPressed();
-    }
 }
 
 void MainMenuWidget::DisplayAppVersion() {

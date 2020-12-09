@@ -16,6 +16,9 @@ void UsernameEditWidget::Init() {
     m_keyboardManager = IEngine::getEngine()->GetKeyboardManager();
     m_keyboardManager->RegisterKeyboardListener(this);
     
+    m_closeKeyboardCallback.bind(this, &UsernameEditWidget::OnBackgroundPressed);
+    InputManager::getInstance()->registerForInputEvents(m_closeKeyboardCallback);
+    
     m_username = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
     
 	AddProfileWindow();
@@ -174,6 +177,12 @@ void UsernameEditWidget::OnExitPressed(UITouchButton::ButtonState state) {
     m_editUsernameCloser->CloseEditUsername();
 }
 
+void UsernameEditWidget::OnBackgroundPressed(InputManager::InputEvent event, InputManager::InputEventData data) {
+    if (IEngine::getEngine()->GetKeyboardManager()->KeyboardIsActive()) {
+        IEngine::getEngine()->GetKeyboardManager()->OnEnterPressed();
+    }
+}
+
 void UsernameEditWidget::RegisterEditUsernameCloser(IEditUsernameCloser* editUsernameCloser) {
     m_editUsernameCloser = editUsernameCloser;
 }
@@ -232,6 +241,7 @@ void UsernameEditWidget::OnTimerEvent(Timer::TimerType type) {
 
 void UsernameEditWidget::Release() {
     m_closeButton->unregisterForButtonEvent(UITouchButton::DEPRESSED, m_closeButtonCallback);
+    InputManager::getInstance()->unregisterForInputEvents(m_closeKeyboardCallback);
     m_keyboardManager->UnregisterKeyboardListener();
     
     if (m_profileWindow != nullptr) {
