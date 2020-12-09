@@ -59,6 +59,7 @@ void UIStateChallengeMainMenu::SubmitGuestLoginRequest() {
 
 void UIStateChallengeMainMenu::OnAuthenticationResultReceived(AuthenticationResult result) {
     if (AuthenticationResult::SUCCESS == result) {
+        IEngine::getEngine()->GetUserProvider()->LogIn();
         m_challengeMenuWidget->AddNewGameButton();
     }
 }

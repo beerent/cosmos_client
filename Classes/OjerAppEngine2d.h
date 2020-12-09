@@ -55,7 +55,6 @@
 #include "Core/LUA/LuaScriptRepository.h"
 #include <Core/Net/IRestConnector.h>
 #include <Core/User/UserProvider.h>
-#include <Core/User/IUserMemory.h>
 #include <Core/General/IDeviceUtil.h>
 #include <Core/Keyboard/KeyboardManager.h>
 #include <Core/GameLogic/Authentication/Authenticator.h>
@@ -81,7 +80,6 @@ public:
 	void OnInputEvent(InputManager::InputEvent event, InputManager::InputEventData data);
 
 	void SetRestConnector(IRestConnector* restConnector);
-    void SetUserMemory(IUserMemory* userMemory);
     void SetDeviceUtil(IDeviceUtil* deviceUtil);
 
 	float getLoopingAccumulatedDeltaTime();
@@ -110,7 +108,6 @@ public:
 	Lua::ScriptRepository& getLuaScriptRepository();
 	IRestConnector* GetRestConnector();
     KeyboardManager* GetKeyboardManager();
-    IUserMemory* GetUserMemory();
     IDeviceUtil* GetDeviceUtil();
 	UserProvider* GetUserProvider();
 	NPCAIFactory& getNPCFactory();
@@ -151,7 +148,6 @@ private:
 	IRestConnector* mRestConnector;
     KeyboardManager m_keyboardManager;
 	UserProvider* m_userProvider;
-    IUserMemory* m_userMemory;
     IDeviceUtil* m_deviceUtil;
     
     bool m_authenticationRequestActive;

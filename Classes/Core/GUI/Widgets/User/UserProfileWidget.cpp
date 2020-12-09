@@ -20,10 +20,6 @@ void UserProfileWidget::Init(const User& user, IProfileCloser* profileCloser) {
 	AddExitButton();
 	AddProfileFrame();
 	AddUsernameLabel();
-	
-	if (IEngine::getEngine()->GetUserProvider()->IsLoggedIn() && IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername() == m_user.GetUsername()) {
-		AddLogoutButton();
-	}
 }
 
 void UserProfileWidget::Release() {
@@ -148,6 +144,5 @@ void UserProfileWidget::OnExitPressed(UITouchButton::ButtonState state) {
 }
 
 void UserProfileWidget::OnLogoutPressed(UITouchButton::ButtonState state) {
-	IEngine::getEngine()->GetUserProvider()->QueueLogOut();
 	m_profileCloser->CloseUserProfile();
 }

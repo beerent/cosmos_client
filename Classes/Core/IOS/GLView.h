@@ -2,7 +2,6 @@
 #import <QuartzCore/QuartzCore.h>
 #include <IOSRestConnector.h>
 #include <IOSKeyboardActivator.h>
-#include <IOSUserMemory.h>
 #include <IOSDeviceUtil.h>
 
 @interface kbv : UIView <UIKeyInput>
@@ -24,7 +23,6 @@
     IOSRestConnector m_restConnector;
     IOSKeyboardActivator m_keyboardActivator;
     IOSDeviceUtil m_deviceUtil;
-    IOSUserMemory m_userMemory;
     
     float m_timestamp;
     int renderDelayCount;

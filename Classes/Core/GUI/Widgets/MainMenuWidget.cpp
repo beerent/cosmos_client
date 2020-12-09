@@ -12,9 +12,7 @@ const float LABEL_WIDTH = 585.0;
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
-const std::string USERNAME = "username: ";
-
-MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_usernameInputBox(nullptr), m_loginButton(nullptr), m_usernameRefreshButton(nullptr), m_usernameRefreshListener(nullptr), m_username(nullptr), m_appVersion(nullptr)/*, m_registerButton(nullptr)*/ {
+MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_username(nullptr), m_appVersion(nullptr), m_usernamePressedCallback(nullptr) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
     
@@ -34,8 +32,6 @@ void MainMenuWidget::init() {
     
 	m_parentComponent->addChild(m_menu);
 
-	UITouchButton::onButtonStateChangedCallBack callBack;
-
 	UILabel* label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_CENTER, "Know Your Cosmos");
     label->setDropShadowColor(dropShadowColor);
     label->setY(12.0);   
@@ -53,58 +49,20 @@ void MainMenuWidget::init() {
     label->setDropShadowColor(dropShadowColor);
     label->setX(labelXPosition);
     label->setY(labelYPosition + LABEL_SPACING * 2);
+    
+    UITouchButton::onButtonStateChangedCallBack callBack;
 	callBack.bind(this, &MainMenuWidget::OnLoadChallengeMenu);
 	label->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+    
     m_menu->addChild(label);
-    
-    AddUsernameRefreshButton();
+
+    DisplayUsername();
     DisplayAppVersion();
-    
-    /* REMOVED LOGIN FEATURE FOR INITIAL RELEASE */
-    //UserProvider* userProvider = IEngine::getEngine()->GetUserProvider();
-    //if (!userProvider->IsLoggedIn()) {
-    //    SetGuestUsernameDisplay("");
-    //    AddLoginButton(m_parentComponent);
-    //}
 }
 
-void MainMenuWidget::onInputEvent(InputManager::InputEvent event, InputManager::InputEventData data)
-{
+void MainMenuWidget::onInputEvent(InputManager::InputEvent event, InputManager::InputEventData data) {
     if (IEngine::getEngine()->GetKeyboardManager()->KeyboardIsActive()) {
         IEngine::getEngine()->GetKeyboardManager()->OnEnterPressed();
-    }
-}
-
-void MainMenuWidget::AddLoginButton(UIComponent *parentComponent) {
-	UITouchButton::onButtonStateChangedCallBack callBack;
-
-	m_loginButton = UIComponentFactory::getInstance()->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH / 2 - 10, LABEL_HEIGHT, UIComponent::ANCHOR_BOTTOM_CENTER, "Login");
-    m_loginButton->setDropShadowColor(dropShadowColor);
-	callBack.bind(this, &MainMenuWidget::onLogin);
-	m_loginButton->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
-
-	parentComponent->addChild(m_loginButton);
-}
-
-void MainMenuWidget::AddUsernameRefreshButton() {
-    UITouchButton::onButtonStateChangedCallBack callBack;
-    
-    m_usernameRefreshButton = UIComponentFactory::getInstance()->createUILabel("KYCHeaderLabelArchetype", 80, 60, UIComponent::ANCHOR_CENTER, "<*>");
-    m_usernameRefreshButton->setDropShadowColor(dropShadowColor);
-    callBack.bind(this, &MainMenuWidget::OnRefreshUsername);
-    m_usernameRefreshButton->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
-
-    m_usernameRefreshButton->setY(-50);
-    m_usernameRefreshButton->setX(-240);
-    
-    m_parentComponent->addChild(m_usernameRefreshButton);
-    
-    SetUsernameText();
-}
-
-void MainMenuWidget::OnRefreshUsername(UITouchButton::ButtonState state) {
-    if (nullptr != m_usernameRefreshListener) {
-        m_usernameRefreshListener->OnUsernameRefresh();
     }
 }
 
@@ -114,7 +72,6 @@ void MainMenuWidget::DisplayAppVersion() {
     m_appVersion = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", offset, 10, UIComponent::ANCHOR_BOTTOM_RIGHT, appVersion);
     m_appVersion->setDropShadowColor(dropShadowColor);
     m_appVersion->setX(80);
-    //m_appVersion->setY(-50);
     m_parentComponent->addChild(m_appVersion);
 }
 
@@ -123,19 +80,6 @@ void MainMenuWidget::TakeDownAppVersion() {
     delete m_appVersion;
     m_appVersion = nullptr;
 }
-    
-
-/*void MainMenuWidget::AddRegisterButton(UIComponent *parentComponent) {
-	//UITouchButton::onButtonStateChangedCallBack callBack;
-
-	m_registerButton = UIComponentFactory::getInstance()->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH / 2 - 10, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Register");
-	m_registerButton->setDropShadowColor(dropShadowColor);
-	m_registerButton->setX(740);
-	m_registerButton->setY(650);
-	//parentComponent->addChild(m_registerButton);
-	//callBack.bind(this, &MainMenuWidget::onLogin);
-	//m_registerButton->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
-}*/
 
 void MainMenuWidget::OnLoadChallengeMenu(UITouchButton::ButtonState state) {
     std::list<onMenuItemSelectedCallBack>::iterator it = m_onMenuItemSelectedListeners.begin();
@@ -145,12 +89,14 @@ void MainMenuWidget::OnLoadChallengeMenu(UITouchButton::ButtonState state) {
     }
 }
 
-void MainMenuWidget::onLogin(UITouchButton::ButtonState state) {
-	std::list<onMenuItemSelectedCallBack>::iterator it = m_onMenuItemSelectedListeners.begin();
-	while (it != m_onMenuItemSelectedListeners.end()) {
-		(*it)(LOAD_LOGIN_LEVEL);
-		it++;
-	}
+void MainMenuWidget::registerUsernamePressedCallback(UITouchButton::onButtonStateChangedCallBack usernamePressedCallback) {
+    m_usernamePressedCallback = usernamePressedCallback;
+}
+
+void MainMenuWidget::OnUsernamePressed(UITouchButton::ButtonState state) {
+    if (m_usernamePressedCallback != nullptr) {
+        m_usernamePressedCallback(state);
+    }
 }
 
 void MainMenuWidget::registerForMenuItemSelectedEvent(onMenuItemSelectedCallBack callBack) {
@@ -162,54 +108,41 @@ void MainMenuWidget::unregisterForMenuItemSelectedEvent(onMenuItemSelectedCallBa
 }
 
 void MainMenuWidget::release() {
+    m_username->release();
+    m_appVersion->release();
+    
     m_menu->release();
-    delete(m_menu);
-
-
- if (m_loginButton != nullptr) {
-		m_loginButton->release();
-		delete(m_loginButton);
-	}
-/*
-	if (m_registerButton != nullptr) {
-		m_registerButton->release();
-		delete(m_registerButton);
-	}
- */
-    
-    m_usernameRefreshButton->release();
-    delete m_usernameRefreshButton;
-    
     TakeDownAppVersion();
 }
 
-void MainMenuWidget::SetUsernameText() {
-    m_username = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 1, 10, UIComponent::ANCHOR_CENTER, USERNAME);
+void MainMenuWidget::DisplayUsername() {
+    if (m_username != nullptr) {
+        m_username->release();
+    }
+    
+    std::string username = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
+    
+    float displaySize = 12.5 * username.size();
+
+    m_username = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", displaySize, 40, UIComponent::ANCHOR_TOP_RIGHT, username);
     m_username->setDropShadowColor(dropShadowColor);
-    m_username->setX(-100);
-    m_username->setY(-50);
-    m_menu->addChild(m_username);
+    m_username->setX(80);
+    
+    UITouchButton::onButtonStateChangedCallBack callBack;
+    callBack.bind(this, &MainMenuWidget::OnUsernamePressed);
+    m_username->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+    
+    m_parentComponent->addChild(m_username);
 }
 
-void MainMenuWidget::SetGuestUsernameDisplay(const std::string& displayUsername) {
-    if (m_usernameInputBox != nullptr) {
-        m_usernameInputBox->release();
+void MainMenuWidget::SetVisible(bool visible) {
+    if (visible) {
+        DisplayAppVersion();
+        DisplayUsername();
+    } else {
+        m_username->setTextString("");
+        m_appVersion->setTextString("");
     }
     
-    std::string s;
-    for (int i = 0; i < displayUsername.size(); i++) {
-        s += " ";
-    }
-    
-    s += displayUsername;
-        
-    /* Non Logged In Option */
-    m_usernameInputBox = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 450, 80, UIComponent::ANCHOR_CENTER, s);
-    m_usernameInputBox->setDropShadowColor(dropShadowColor);
-    m_usernameInputBox->setY(-50);
-    m_menu->addChild(m_usernameInputBox);
-}
-
-void MainMenuWidget::RegisterUsernameFocusCallback(UILabel::onButtonStateChangedCallBack callback) {
-    m_usernameInputBox->registerForButtonEvent(UITouchButton::DEPRESSED, callback);
+    m_menu->setVisible(visible);
 }

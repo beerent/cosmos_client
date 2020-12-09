@@ -155,7 +155,7 @@ void UITouchButton::handleOnRelease() {
     }
     
     std::list<onButtonStateChangedCallBack>::iterator it = m_onReleasedListeners.begin();
-    while(it != m_onReleasedListeners.end()) {
+    while(it != m_onReleasedListeners.end() && !m_onReleasedListeners.empty()) {
         (*it)(m_state);
         it++;
     }

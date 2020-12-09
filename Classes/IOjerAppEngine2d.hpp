@@ -3,7 +3,6 @@
 #include "Core/OpenSource/Vector.hpp"
 #include "Core/Net/IRestConnector.h"
 #include <Core/Keyboard/KeyboardManager.h>
-#include <Core/User/IUserMemory.h>
 #include <Core/General/IDeviceUtil.h>
 
 enum DeviceOrientation {
@@ -30,7 +29,6 @@ struct IOjerAppEngine2d {
     virtual void OnFingerMove(ivec2 oldLocation, ivec2 newLocation) = 0;
     
     virtual void SetRestConnector(IRestConnector* restConnector) = 0;
-    virtual void SetUserMemory(IUserMemory* userMemory) = 0;
     virtual void SetDeviceUtil(IDeviceUtil* deviceUtil) = 0;
     virtual KeyboardManager* GetKeyboardManager() = 0;
     virtual ~IOjerAppEngine2d() {}

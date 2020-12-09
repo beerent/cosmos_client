@@ -267,12 +267,7 @@ void OjerAppEngine2d::DisplayUIBlockingComponent(UIComponent* component) {
 }
 
 void OjerAppEngine2d::CompleteUIBlockingComponent() {
-	if (m_userProvider->IsLogOutQueued()) {
-		m_userProvider->LogOut();
-		mGameStateMachine->SetState(GameMainMenuState::MAIN_MENU_STATE);
-	}
-
-	m_UIBlockingComponent->setVisible(false);
+    m_UIBlockingComponent->setVisible(false);
 	m_pUIGameLayerRoot->setVisible(true);
 }
 
@@ -644,14 +639,6 @@ void OjerAppEngine2d::SetRestConnector(IRestConnector* restConnector) {
 
 IRestConnector* OjerAppEngine2d::GetRestConnector() {
 	return mRestConnector;
-}
-
-void OjerAppEngine2d::SetUserMemory(IUserMemory* userMemory) {
-    m_userMemory = userMemory;
-}
-
-IUserMemory* OjerAppEngine2d::GetUserMemory() {
-    return m_userMemory;
 }
 
 KeyboardManager* OjerAppEngine2d::GetKeyboardManager() {

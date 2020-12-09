@@ -6,8 +6,9 @@ class UserProvider {
 public:
 
 	UserProvider();
-	User GetUser() const;
+	User GetUser();
 	void SetUser(const User& user);
+    void ResetUser();
 
 	void LogIn();
 	void LogOut();
@@ -16,6 +17,8 @@ public:
 	bool IsLoggedIn();
 
 private:
+    void InitUser();
+    
 	User m_user;
 	bool m_isLoggedIn;
 	bool m_isLogoutQueued;

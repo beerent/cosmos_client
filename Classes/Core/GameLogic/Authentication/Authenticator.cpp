@@ -51,11 +51,9 @@ void Authenticator::RestReceived(const std::string& rest) {
 
 void Authenticator::HandleAuthenticationSuccess() {
 	IEngine::getEngine()->GetUserProvider()->SetUser(GetUser());
-	IEngine::getEngine()->GetUserProvider()->LogIn();
 }
 
 void Authenticator::HandleAuthenticationFailure() {
-	IEngine::getEngine()->GetUserProvider()->LogOut();
 }
 
 bool Authenticator::JsonToAuthenticationResult(const json11::Json json) const {

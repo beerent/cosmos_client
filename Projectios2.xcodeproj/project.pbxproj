@@ -237,7 +237,6 @@
 		818BF7882219F18000DD45B6 /* PDKeychainBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BF7852219F17F00DD45B6 /* PDKeychainBindingsController.m */; };
 		818BF7892219F18000DD45B6 /* PDKeychainBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BF7862219F17F00DD45B6 /* PDKeychainBindings.m */; };
 		818BF78B2219F3F600DD45B6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818BF78A2219F3F600DD45B6 /* Security.framework */; };
-		818BF78F2219F56500DD45B6 /* IOSUserMemory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 818BF78E2219F56500DD45B6 /* IOSUserMemory.mm */; };
 		81B30E47218149AA008A2638 /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81B30E45218149AA008A2638 /* json11.cpp */; };
 		81B4717921EA115500F067D5 /* UIStateChallengeMainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81B4717721EA115500F067D5 /* UIStateChallengeMainMenu.cpp */; };
 		81B4718A21EA12DD00F067D5 /* ChallengeMenuWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81B4718921EA12DD00F067D5 /* ChallengeMenuWidget.cpp */; };
@@ -270,8 +269,10 @@
 		81FDE8D521FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */; };
 		874FED6325789B07005B2059 /* LoadingScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 874FED6225789B07005B2059 /* LoadingScreenImage.png */; };
 		87551C92257C78BF00F23E57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87551C8A257C77EC00F23E57 /* StoreKit.framework */; };
+		87ACE0452581343E005C6320 /* DeviceMemoryInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87ACE0432581343E005C6320 /* DeviceMemoryInterface.cpp */; };
 		87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CA14FA2578849600E18697 /* Launch Screen.storyboard */; };
 		87E3B8A9257F3864007C63D1 /* IOSDeviceUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87E3B8A8257F3864007C63D1 /* IOSDeviceUtil.mm */; };
+		87E3B8CA257F4428007C63D1 /* UsernameEditWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87E3B8C9257F4428007C63D1 /* UsernameEditWidget.cpp */; };
 		BA6D85EA216EF22100943989 /* KYCPlanetSizeSweepScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */; };
 		BA7229622165B79A00DF0F5A /* StyleFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA7229602165B79A00DF0F5A /* StyleFactory.cpp */; };
 		BABA366E20B64E1900E312A8 /* NCPAIFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BABA366A20B64E1800E312A8 /* NCPAIFactory.cpp */; };
@@ -859,9 +860,6 @@
 		818BF7862219F17F00DD45B6 /* PDKeychainBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDKeychainBindings.m; path = Core/IOS/Keychain/PDKeychainBindings.m; sourceTree = "<group>"; };
 		818BF7872219F18000DD45B6 /* PDKeychainBindingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PDKeychainBindingsController.h; path = Core/IOS/Keychain/PDKeychainBindingsController.h; sourceTree = "<group>"; };
 		818BF78A2219F3F600DD45B6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		818BF78C2219F4CC00DD45B6 /* IUserMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IUserMemory.h; path = Core/User/IUserMemory.h; sourceTree = "<group>"; };
-		818BF78D2219F56500DD45B6 /* IOSUserMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOSUserMemory.h; path = Core/IOS/IOSUserMemory.h; sourceTree = "<group>"; };
-		818BF78E2219F56500DD45B6 /* IOSUserMemory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSUserMemory.mm; path = Core/IOS/IOSUserMemory.mm; sourceTree = "<group>"; };
 		81B30E412181467F008A2638 /* IRestConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRestConnector.h; path = Core/Net/IRestConnector.h; sourceTree = "<group>"; };
 		81B30E422181467F008A2638 /* IRestReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRestReceiver.h; path = Core/Net/IRestReceiver.h; sourceTree = "<group>"; };
 		81B30E442181469F008A2638 /* JsonProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonProvider.h; path = Core/Net/Json/JsonProvider.h; sourceTree = "<group>"; };
@@ -934,10 +932,14 @@
 		874FED6225789B07005B2059 /* LoadingScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreenImage.png; sourceTree = "<group>"; };
 		87551C8A257C77EC00F23E57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		87551C8E257C78AF00F23E57 /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = SDKROOT; };
+		87ACE041258133F1005C6320 /* IDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDeviceUtil.h; path = Core/General/IDeviceUtil.h; sourceTree = "<group>"; };
+		87ACE0432581343E005C6320 /* DeviceMemoryInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DeviceMemoryInterface.cpp; path = Core/General/DeviceMemoryInterface.cpp; sourceTree = "<group>"; };
+		87ACE0442581343E005C6320 /* DeviceMemoryInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceMemoryInterface.h; path = Core/General/DeviceMemoryInterface.h; sourceTree = "<group>"; };
 		87CA14FA2578849600E18697 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		87E3B89D257F33E6007C63D1 /* IOSDeviceUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IOSDeviceUtil.h; path = Core/IOS/IOSDeviceUtil.h; sourceTree = "<group>"; };
-		87E3B8A4257F36CE007C63D1 /* IDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDeviceUtil.h; path = Core/General/IDeviceUtil.h; sourceTree = "<group>"; };
 		87E3B8A8257F3864007C63D1 /* IOSDeviceUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSDeviceUtil.mm; path = Core/IOS/IOSDeviceUtil.mm; sourceTree = "<group>"; };
+		87E3B8C8257F4428007C63D1 /* UsernameEditWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UsernameEditWidget.h; path = Core/GUI/Widgets/User/Username/UsernameEditWidget.h; sourceTree = "<group>"; };
+		87E3B8C9257F4428007C63D1 /* UsernameEditWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UsernameEditWidget.cpp; path = Core/GUI/Widgets/User/Username/UsernameEditWidget.cpp; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KYCPlanetSizeSweepScript.cpp; path = Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.cpp; sourceTree = "<group>"; };
 		BA6D85E9216EF22100943989 /* KYCPlanetSizeSweepScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCPlanetSizeSweepScript.h; path = Core/GameLogic/ScriptedEventEngine/KYCPlanetSizeSweepScript.h; sourceTree = "<group>"; };
@@ -1280,7 +1282,7 @@
 		1A82112C1571400C00F9F792 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				87E3B89F257F344B007C63D1 /* Generic */,
+				87ACE040258133E4005C6320 /* General */,
 				814BB909239345C60045CDC1 /* Util */,
 				8127D004220C44FA00C6BD2D /* Keyboard */,
 				81F0D66021DC0F6E00A81D1F /* User */,
@@ -1979,8 +1981,6 @@
 			children = (
 				87E3B8A8257F3864007C63D1 /* IOSDeviceUtil.mm */,
 				87E3B89D257F33E6007C63D1 /* IOSDeviceUtil.h */,
-				818BF78D2219F56500DD45B6 /* IOSUserMemory.h */,
-				818BF78E2219F56500DD45B6 /* IOSUserMemory.mm */,
 				818BF7832219EFA300DD45B6 /* Keychain */,
 				81C494F22183D7C500F15E79 /* IOSRestConnector.h */,
 				81C494F32183D7C500F15E79 /* IOSRestConnector.mm */,
@@ -2263,6 +2263,7 @@
 		81E139BF22276F190051A662 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				87E3B8C7257F4412007C63D1 /* Username */,
 				81E139C122276F370051A662 /* IUserProfileDisplayListener.h */,
 				81E139C222276F370051A662 /* UsernameWidget.cpp */,
 				81E139C022276F370051A662 /* UsernameWidget.h */,
@@ -2298,7 +2299,6 @@
 				8109EB67222B528B00E1FCD7 /* Profile */,
 				81E139CC222775C50051A662 /* UIUsernameLabel.cpp */,
 				81E139C8222770240051A662 /* UIUsernameLabel.h */,
-				818BF78C2219F4CC00DD45B6 /* IUserMemory.h */,
 				81F0D66421DC0F8A00A81D1F /* User.cpp */,
 				81F0D66221DC0F8A00A81D1F /* User.h */,
 				81F0D66321DC0F8A00A81D1F /* UserProvider.cpp */,
@@ -2333,12 +2333,23 @@
 			name = images;
 			sourceTree = "<group>";
 		};
-		87E3B89F257F344B007C63D1 /* Generic */ = {
+		87ACE040258133E4005C6320 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				87E3B8A4257F36CE007C63D1 /* IDeviceUtil.h */,
+				87ACE0432581343E005C6320 /* DeviceMemoryInterface.cpp */,
+				87ACE0442581343E005C6320 /* DeviceMemoryInterface.h */,
+				87ACE041258133F1005C6320 /* IDeviceUtil.h */,
 			);
-			name = Generic;
+			name = General;
+			sourceTree = "<group>";
+		};
+		87E3B8C7257F4412007C63D1 /* Username */ = {
+			isa = PBXGroup;
+			children = (
+				87E3B8C9257F4428007C63D1 /* UsernameEditWidget.cpp */,
+				87E3B8C8257F4428007C63D1 /* UsernameEditWidget.h */,
+			);
+			name = Username;
 			sourceTree = "<group>";
 		};
 		BA72295F2165B76F00DF0F5A /* Style */ = {
@@ -2695,7 +2706,6 @@
 				1A8BD13018A32D30000D10C0 /* btMultiBodyConstraint.cpp in Sources */,
 				81E139C522276F370051A662 /* UsernameWidget.cpp in Sources */,
 				1A8BD3B018A3312D000D10C0 /* gim_contact.cpp in Sources */,
-				818BF78F2219F56500DD45B6 /* IOSUserMemory.mm in Sources */,
 				1A675A001EF22C6D006F32FF /* CharacterControler.cpp in Sources */,
 				1A8BD38E18A3312D000D10C0 /* btConvexPointCloudShape.cpp in Sources */,
 				1A6759FB1EF22C1F006F32FF /* GameMaster.cpp in Sources */,
@@ -2710,6 +2720,7 @@
 				81F0D66A21DC0FFA00A81D1F /* AuthenticationInputWidget.cpp in Sources */,
 				1AFB25901D0C848200C5BFFB /* MainMenuWidget.cpp in Sources */,
 				1A8BD38418A3312D000D10C0 /* btBoxShape.cpp in Sources */,
+				87ACE0452581343E005C6320 /* DeviceMemoryInterface.cpp in Sources */,
 				1A8BD39518A3312D000D10C0 /* btMinkowskiSumShape.cpp in Sources */,
 				1A8BD2F518A3312C000D10C0 /* btBroadphaseProxy.cpp in Sources */,
 				1A2F15561BD30CFB0057BD1A /* EntityControler.cpp in Sources */,
@@ -2760,6 +2771,7 @@
 				1AFB25E71D0C8C6A00C5BFFB /* PropertyCollection.cpp in Sources */,
 				1A8BD2FA18A3312C000D10C0 /* btMultiSapBroadphase.cpp in Sources */,
 				1A8BD13318A32D30000D10C0 /* btMultiBodyJointLimitConstraint.cpp in Sources */,
+				87E3B8CA257F4428007C63D1 /* UsernameEditWidget.cpp in Sources */,
 				1AFB25F51D0C8E3800C5BFFB /* TextureManager.cpp in Sources */,
 				1A8BD17F18A32D4F000D10C0 /* btQuickprof.cpp in Sources */,
 				BABA368120B64E4A00E312A8 /* LookAtTargetAIBehavior.cpp in Sources */,

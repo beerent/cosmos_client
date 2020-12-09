@@ -183,10 +183,6 @@ void ChallengeMenuWidget::AddNewGameButton() {
     m_newGameButton->setDropShadowColor(dropShadowColor);
 	m_newGameButton->setY(40);
 
-	if (IEngine::getEngine()->GetUserProvider()->IsLoggedIn() == false) {
-		m_newGameButton->DisableButton();
-	}
-
 	callBack.bind(this, &ChallengeMenuWidget::OnNewGamePressed);
 	m_newGameButton->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
 	m_parentComponent->addChild(m_newGameButton);

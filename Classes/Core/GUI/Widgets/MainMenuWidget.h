@@ -26,26 +26,25 @@ public:
     
 	void init();
 	void release();
+    
+    void registerUsernamePressedCallback(UITouchButton::onButtonStateChangedCallBack usernamePressedCallback);
+    
 	void registerForMenuItemSelectedEvent(onMenuItemSelectedCallBack callBack);
 	void unregisterForMenuItemSelectedEvent(onMenuItemSelectedCallBack callBack);
     
-    void RegisterUsernameFocusCallback(UILabel::onButtonStateChangedCallBack callback);
-    
-    void SetUsernameText();
-    void SetGuestUsernameDisplay(const std::string& displayUsername);
+    void DisplayUsername();
     void RegisterUsernameRefreshListener(IUsernameRefreshListener* listener) {
         m_usernameRefreshListener = listener;
     }
+    
+    void SetVisible(bool visible);
 
 private:
+    UITouchButton::onButtonStateChangedCallBack m_usernamePressedCallback;
     std::list<onMenuItemSelectedCallBack> m_onMenuItemSelectedListeners;
 
+    void OnUsernamePressed(UITouchButton::ButtonState state);
 	void OnLoadChallengeMenu(UITouchButton::ButtonState state);
-	void onLogin(UITouchButton::ButtonState state);
-
-	void AddLoginButton(UIComponent *parentComponent);
-    void AddUsernameRefreshButton();
-    void OnRefreshUsername(UITouchButton::ButtonState state);
     
     void DisplayAppVersion();
     void TakeDownAppVersion();
@@ -60,12 +59,7 @@ private:
 
 	UIComponent* m_menu;
     UILabel* m_username;
-    UILabel* m_usernameInputBox;
-    UILabel* m_usernameRefreshButton;
-	UILabel* m_loginButton;
     UILabel* m_appVersion;
     
     IUsernameRefreshListener* m_usernameRefreshListener;
-    
-	//UILabel* m_registerButton;
 };

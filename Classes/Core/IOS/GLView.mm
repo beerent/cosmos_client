@@ -42,7 +42,6 @@
         m_ojerEngine2d->SetRestConnector(&m_restConnector);
         m_keyboardActivator.SetView(self);
         m_ojerEngine2d->GetKeyboardManager()->RegisterKeyboardActivator(&m_keyboardActivator);
-        m_ojerEngine2d->SetUserMemory(&m_userMemory);
         m_ojerEngine2d->SetDeviceUtil(&m_deviceUtil);
         
         [m_context

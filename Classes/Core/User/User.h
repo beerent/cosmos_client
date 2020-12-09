@@ -15,6 +15,7 @@ public:
 	std::string GetUsername() const;
 	std::string GetPasswordHash() const;
     UserAccessLevel GetAccessLevel() const;
+    bool Equals(const User& user) const;
 
 private:
 	std::string m_username;

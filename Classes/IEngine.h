@@ -12,7 +12,6 @@
 #include "Core/OpenSource/FastDelegate.h"
 #include <Core/Net/IRestConnector.h>
 #include <Core/User/UserProvider.h>
-#include <Core/User/IUserMemory.h>
 #include <Core/Keyboard/KeyboardManager.h>
 #include <Core/GameLogic/Authentication/Authenticator.h>
 #include <Core/General/IDeviceUtil.h>
@@ -61,7 +60,6 @@ public:
     virtual KeyboardManager* GetKeyboardManager() = 0;
 	virtual UserProvider* GetUserProvider() = 0;
     virtual IDeviceUtil* GetDeviceUtil() = 0;
-    virtual IUserMemory* GetUserMemory() = 0;
 
 	virtual void OnAuthenticationResultReceived(AuthenticationResult result) = 0;
 	
