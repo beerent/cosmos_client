@@ -37,18 +37,10 @@ void MainMenuWidget::init() {
     label->setY(12.0);   
     m_menu->addChild(label);
     
-
-    /* Blank Label */
-    label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "");
-    label->setDropShadowColor(dropShadowColor);
-    label->setX(labelXPosition);
-    label->setY(labelYPosition + LABEL_SPACING );
-    m_menu->addChild(label);
-    
     label = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Challenge Mode");
     label->setDropShadowColor(dropShadowColor);
     label->setX(labelXPosition);
-    label->setY(labelYPosition + LABEL_SPACING * 2);
+    label->setY(labelYPosition + LABEL_SPACING);
     
     UITouchButton::onButtonStateChangedCallBack callBack;
 	callBack.bind(this, &MainMenuWidget::OnLoadChallengeMenu);
