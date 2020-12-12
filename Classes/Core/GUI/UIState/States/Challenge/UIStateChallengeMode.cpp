@@ -154,8 +154,6 @@ bool UIStateChallengeMode::TimerIsExpired() const {
 void UIStateChallengeMode::OnChallengeTimerReceived(int timerSeconds) {
     m_challengeModeTimerSeconds = timerSeconds;
     m_timerSecondsRemaining = m_challengeModeTimerSeconds;
-    m_challengeModeWidget->DisplayTimer(m_timerSecondsRemaining);
-    m_challengeModeWidget->SetTimerColor(TextColor::GREEN_TEXT_COLOR);
 }
 
 void UIStateChallengeMode::RegisterTimers() {

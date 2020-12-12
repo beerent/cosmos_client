@@ -119,7 +119,11 @@ void ChallengeModeWidget::UpdateTimer(int seconds) {
         seconds = 0;
     }
     
-    m_timerLabel->setTextString(GetTimerString(seconds));
+    if (m_timerLabel == nullptr) {
+        DisplayTimer(seconds);
+    } else {
+        m_timerLabel->setTextString(GetTimerString(seconds));
+    }
 }
 
 void ChallengeModeWidget::DisplayTimer(int seconds) {
