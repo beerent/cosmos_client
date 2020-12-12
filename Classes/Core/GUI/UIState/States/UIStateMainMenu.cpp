@@ -14,9 +14,6 @@ UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeLis
 UIStateMainMenu::~UIStateMainMenu() {}
 
 void UIStateMainMenu::OnEnterState() {
-    m_usernameEditWidget = new UsernameEditWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
-    m_usernameEditWidget->RegisterEditUsernameCloser(this);
-    
     m_mainMenuWidget = new MainMenuWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
     m_mainMenuWidget->init();
     
@@ -48,11 +45,22 @@ void UIStateMainMenu::onMainMenuItemSelected(MainMenuWidget::MainMenuItems selec
 }
 
 void UIStateMainMenu::OnUsernamePressed(UITouchButton::ButtonState state) {
+    if (m_usernameEditWidget != nullptr) {
+        return;
+    }
+    
     m_mainMenuWidget->SetVisible(false);
+    
+    m_usernameEditWidget = new UsernameEditWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
+    m_usernameEditWidget->RegisterEditUsernameCloser(this);
     m_usernameEditWidget->Init();
 }
 
 void UIStateMainMenu::CloseEditUsername() {
+    m_usernameEditWidget->Release();
+    delete m_usernameEditWidget;
+    m_usernameEditWidget = nullptr;
+    
     if (DeviceMemoryInterface().ReadRememberUsername()) {
         DeviceMemoryInterface().StoreUsername(IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername());
     } else {
@@ -60,6 +68,6 @@ void UIStateMainMenu::CloseEditUsername() {
     }
     
     IEngine::getEngine()->GetUserProvider()->LogOut();
-    m_usernameEditWidget->Release();
+    
     m_mainMenuWidget->SetVisible(true);
 }

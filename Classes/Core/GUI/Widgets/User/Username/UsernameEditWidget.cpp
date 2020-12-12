@@ -51,7 +51,7 @@ void UsernameEditWidget::AddProfileFrame() {
 void UsernameEditWidget::AddUsernameSelectionLabel() {
     m_usernameSelectionLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_CENTER, "Username Selection");
     m_usernameSelectionLabel->setDropShadowColor(dropShadowColor);
-    m_usernameSelectionLabel->setY(6);
+    m_usernameSelectionLabel->setY(12.0);
 
 	m_profileFrame->addChild(m_usernameSelectionLabel);
 }
