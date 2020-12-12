@@ -53,6 +53,7 @@ private:
 	UIComponent* m_parentComponent;
 
 	UIComponent* m_menu;
+    UILabel* m_usernamePrefix;
     UILabel* m_username;
     UILabel* m_appVersion;
     

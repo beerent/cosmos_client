@@ -12,7 +12,8 @@ const float LABEL_WIDTH = 585.0;
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
-MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_username(nullptr), m_appVersion(nullptr), m_usernamePressedCallback(nullptr) {
+MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_username(nullptr), m_usernamePrefix(nullptr),
+      m_appVersion(nullptr), m_usernamePressedCallback(nullptr) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
@@ -90,6 +91,7 @@ void MainMenuWidget::unregisterForMenuItemSelectedEvent(onMenuItemSelectedCallBa
 
 void MainMenuWidget::release() {
     m_username->release();
+    m_usernamePrefix->release();
     m_appVersion->release();
     
     m_menu->release();
@@ -101,19 +103,31 @@ void MainMenuWidget::DisplayUsername() {
         m_username->release();
     }
     
-    std::string username = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
+    if (m_usernamePrefix != nullptr) {
+        m_usernamePrefix->release();
+    }
     
-    float displaySize = 12.5 * username.size();
+    std::string username = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
+    std::string usernamePrefix = "username:   ";
+   
+    float usernameDisplaySize = 12.5 * username.size();
+    float usernamePrefixDisplaySize = 12.5 * usernamePrefix.size();
 
-    m_username = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", displaySize, 40, UIComponent::ANCHOR_TOP_RIGHT, username);
+    m_username = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameDisplaySize, 40, UIComponent::ANCHOR_TOP_RIGHT, username);
     m_username->setDropShadowColor(dropShadowColor);
     m_username->setX(80);
+    
+    m_usernamePrefix = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernamePrefixDisplaySize, 40, UIComponent::ANCHOR_TOP_RIGHT, usernamePrefix);
+    m_usernamePrefix->setDropShadowColor(dropShadowColor);
+    m_usernamePrefix->setX(80 + usernameDisplaySize);
     
     UITouchButton::onButtonStateChangedCallBack callBack;
     callBack.bind(this, &MainMenuWidget::OnUsernamePressed);
     m_username->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+    m_usernamePrefix->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
     
     m_parentComponent->addChild(m_username);
+    m_parentComponent->addChild(m_usernamePrefix);
 }
 
 void MainMenuWidget::SetVisible(bool visible) {
@@ -122,6 +136,7 @@ void MainMenuWidget::SetVisible(bool visible) {
         DisplayUsername();
     } else {
         m_username->setTextString("");
+        m_usernamePrefix->setTextString("");
         m_appVersion->setTextString("");
     }
     
