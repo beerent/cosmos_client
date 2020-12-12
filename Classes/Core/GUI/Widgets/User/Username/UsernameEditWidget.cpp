@@ -19,6 +19,7 @@ void UsernameEditWidget::Init() {
     m_closeKeyboardCallback.bind(this, &UsernameEditWidget::OnBackgroundPressed);
     InputManager::getInstance()->registerForInputEvents(m_closeKeyboardCallback);
     
+    m_originalUsername = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
     m_username = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
     
 	AddProfileWindow();
@@ -172,9 +173,8 @@ void UsernameEditWidget::OnRandomPressed(UITouchButton::ButtonState state) {
 void UsernameEditWidget::OnExitPressed(UITouchButton::ButtonState state) {
     const User currentUser = IEngine::getEngine()->GetUserProvider()->GetUser();
     const User newUser = User(m_username, currentUser.GetPasswordHash(), currentUser.GetAccessLevel());
-    IEngine::getEngine()->GetUserProvider()->SetUser(newUser);
     
-    m_editUsernameCloser->CloseEditUsername();
+    m_editUsernameCloser->CloseEditUsername(newUser);
 }
 
 void UsernameEditWidget::OnBackgroundPressed(InputManager::InputEvent event, InputManager::InputEventData data) {

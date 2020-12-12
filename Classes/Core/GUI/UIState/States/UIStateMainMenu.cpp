@@ -50,16 +50,33 @@ void UIStateMainMenu::OnUsernamePressed(UITouchButton::ButtonState state) {
     }
     
     m_mainMenuWidget->SetVisible(false);
-    
+    InitUsernameEditWidget();
+}
+
+void UIStateMainMenu::CloseEditUsername(User newUser) {
+    ReleaseUsernameEditWidget();
+    HandleNewUser(newUser);
+    m_mainMenuWidget->SetVisible(true);
+}
+
+void UIStateMainMenu::InitUsernameEditWidget() {
     m_usernameEditWidget = new UsernameEditWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
     m_usernameEditWidget->RegisterEditUsernameCloser(this);
     m_usernameEditWidget->Init();
 }
 
-void UIStateMainMenu::CloseEditUsername() {
+
+void UIStateMainMenu::ReleaseUsernameEditWidget() {
     m_usernameEditWidget->Release();
     delete m_usernameEditWidget;
     m_usernameEditWidget = nullptr;
+}
+
+void UIStateMainMenu::HandleNewUser(User newUser) {
+    if (!newUser.GetUsername().empty() && !newUser.Equals(IEngine::getEngine()->GetUserProvider()->GetUser())) {
+        IEngine::getEngine()->GetUserProvider()->SetUser(newUser);
+        IEngine::getEngine()->GetUserProvider()->LogOut();
+    }
     
     if (DeviceMemoryInterface().ReadRememberUsername()) {
         DeviceMemoryInterface().StoreUsername(IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername());
@@ -67,7 +84,5 @@ void UIStateMainMenu::CloseEditUsername() {
         DeviceMemoryInterface().StoreUsername("");
     }
     
-    IEngine::getEngine()->GetUserProvider()->LogOut();
     
-    m_mainMenuWidget->SetVisible(true);
 }

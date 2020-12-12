@@ -18,8 +18,7 @@ public:
     
     virtual STRING_ID GetStateID(){ return UI_STATE_MAINMENU; }
 
-    virtual void CloseEditUsername();
-    
+    virtual void CloseEditUsername(User newUser);
 private:
     MainMenuWidget* m_mainMenuWidget;
     UsernameEditWidget* m_usernameEditWidget;
@@ -28,5 +27,9 @@ private:
     
     void OnUsernamePressed(UITouchButton::ButtonState state);
     void onMainMenuItemSelected(MainMenuWidget::MainMenuItems selectedItem);
-
+    
+    void InitUsernameEditWidget();
+    void ReleaseUsernameEditWidget();
+    
+    void HandleNewUser(User newUser);
 };

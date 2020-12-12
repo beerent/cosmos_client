@@ -12,7 +12,7 @@
 
 class IEditUsernameCloser {
 public:
-	virtual void CloseEditUsername() = 0;
+	virtual void CloseEditUsername(User newUser) = 0;
 };
 
 class UsernameEditWidget : public IKeyboardListener, Timer::SimpleTimerListener {
@@ -49,6 +49,7 @@ private:
     
     UITouchButton::onButtonStateChangedCallBack m_closeButtonCallback;
     
+    std::string m_originalUsername;
     std::string m_username;
     bool m_cursorOn;
     bool m_editingUsername;
@@ -66,7 +67,6 @@ private:
     void AddEditButton();
     void AddRandomButton();
 	void AddCloseButton();
-    
     
     bool IsEditingUsername();
     void DisplayCursor();
