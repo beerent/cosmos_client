@@ -73,8 +73,6 @@ void ChallengeDataProviderLive::RestReceived(const std::string& rest) {
 	} else if (request == requests::GET_CHALLENGE_QUESTIONS) {
 		std::queue<Question> questions = JsonToQuestions(json["payload"]);
 		ChallengeQuestionsReceived(questions);
-	} else {
-
 	}
 }
 

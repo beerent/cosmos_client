@@ -11,9 +11,10 @@ const float LABEL_SPACING = 0.0 + LABEL_HEIGHT;
 const float LABEL_WIDTH = 585.0;
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
+const glm::vec3 YELLOW_TEXT_COLOR(255.0f , 255.0f, 0.0f);
 
 MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_username(nullptr), m_usernamePrefix(nullptr),
-      m_appVersion(nullptr), m_usernamePressedCallback(nullptr) {
+      m_appVersion(nullptr), m_usernamePressedCallback(nullptr), m_message(nullptr){
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
@@ -96,6 +97,7 @@ void MainMenuWidget::release() {
     
     m_menu->release();
     TakeDownAppVersion();
+    TakeDownMessage();
 }
 
 void MainMenuWidget::DisplayUsername() {
@@ -128,6 +130,27 @@ void MainMenuWidget::DisplayUsername() {
     
     m_parentComponent->addChild(m_username);
     m_parentComponent->addChild(m_usernamePrefix);
+}
+
+void MainMenuWidget::SetMessage(const std::string& message) {
+    float offset = message.size() * 12.5;
+    m_message = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", offset, 10, UIComponent::ANCHOR_BOTTOM_CENTER, message);
+    m_message->setDropShadowColor(dropShadowColor);
+    m_message->setColor(YELLOW_TEXT_COLOR);
+    m_message->setY(60);
+    m_parentComponent->addChild(m_message);
+}
+
+void MainMenuWidget::UpdateMessage(const std::string& message) {
+    if (m_message == nullptr) {
+        return;
+    }
+    
+    m_message->setTextString(message);
+}
+
+void MainMenuWidget::TakeDownMessage() {
+    m_message->release();
 }
 
 void MainMenuWidget::SetVisible(bool visible) {

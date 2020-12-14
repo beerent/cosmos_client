@@ -4,16 +4,24 @@
 #include "Core/GUI/UIState/States/Authentication/UIStateAuthInput.h"
 #include "Core/GUI/UIState/States/Challenge/UIStateChallengeMainMenu.h"
 #include <Core/General/DeviceMemoryInterface.h>
+#include <Core/Net/RequestBuilder.h>
 
 #include "IEngine.h"
 
 CONST_STRING_DEF(UIStateMainMenu, UI_STATE_MAINMENU)
 
-UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr) {}
+namespace requests {
+    const std::string GET_MESSAGES = "getMessages";
+}
+
+UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageScrollIndex(0) {}
 
 UIStateMainMenu::~UIStateMainMenu() {}
 
 void UIStateMainMenu::OnEnterState() {
+    m_restConnector = IEngine::getEngine()->GetRestConnector();
+    SendGetMessagesRequest();
+    
     m_mainMenuWidget = new MainMenuWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
     m_mainMenuWidget->init();
     
@@ -24,9 +32,12 @@ void UIStateMainMenu::OnEnterState() {
     UITouchButton::onButtonStateChangedCallBack usernamePressedCallback;
     usernamePressedCallback.bind(this, &UIStateMainMenu::OnUsernamePressed);
     m_mainMenuWidget->registerUsernamePressedCallback(usernamePressedCallback);
+    RegisterTimers();
 }
 
 void UIStateMainMenu::OnExitState() {
+    DeregisterTimers();
+    
     m_mainMenuWidget->release();
     delete m_mainMenuWidget;
     m_mainMenuWidget = nullptr;
@@ -43,6 +54,75 @@ void UIStateMainMenu::onMainMenuItemSelected(MainMenuWidget::MainMenuItems selec
 		ChangeState(UIStateChallengeMainMenu::UI_STATE_CHALLENGE_MAIN_MENU);
 	}
 }
+
+void UIStateMainMenu::SendGetMessagesRequest() {
+    RequestBuilder requestBuilder;
+    requestBuilder.SetEndpoint(requests::GET_MESSAGES);
+
+    std::string requestString = requestBuilder.GetRequestString();
+    m_restConnector->SendRequest(requestString, this);
+}
+
+void UIStateMainMenu::RestReceived(const std::string& rest) {
+    json11::Json json = JsonProvider::ParseString(rest);
+    std::string request = json["request"].string_value();
+    
+    std::string first;
+    if (request == requests::GET_MESSAGES) {
+        std::vector<std::string> messages = JsonToMessages(json["payload"]);
+        BuildMessagesString(messages);
+        m_mainMenuWidget->SetMessage(m_messagesString);
+    }
+}
+
+std::vector<std::string> UIStateMainMenu::JsonToMessages(const json11::Json& json) {
+    auto messagesJson = json["messages"].array_items();
+
+    std::vector<std::string> messages;
+    for (auto& messageJson : messagesJson) {
+        std::string message = messageJson["message"].string_value();
+        messages.push_back(message);
+    }
+
+    return messages;
+}
+
+void UIStateMainMenu::BuildMessagesString(std::vector<std::string> messages) {
+    std::string finalMessage;
+    std::string skeleton = "                                                                                                                        ";
+    for (const auto message : messages) {
+        std::string nextMessage = skeleton + message;
+        finalMessage += " " + nextMessage;
+    }
+    
+    m_messagesString = finalMessage;
+}
+
+void UIStateMainMenu::RegisterTimers() {
+    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS);
+}
+
+void UIStateMainMenu::DeregisterTimers() {
+    m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS);
+}
+
+
+void UIStateMainMenu::OnTimerEvent(Timer::TimerType type) {
+    switch(type) {
+        case Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS:
+            AdvanceMessageScroll();
+            break;
+        default:
+            break;
+    }
+}
+
+void UIStateMainMenu::AdvanceMessageScroll() {
+    m_messagesString += m_messagesString[0];
+    m_messagesString = m_messagesString.substr(1, m_messagesString.length());
+    m_mainMenuWidget->UpdateMessage(m_messagesString);
+}
+
 
 void UIStateMainMenu::OnUsernamePressed(UITouchButton::ButtonState state) {
     if (m_usernameEditWidget != nullptr) {
@@ -83,6 +163,4 @@ void UIStateMainMenu::HandleNewUser(User newUser) {
     } else {
         DeviceMemoryInterface().StoreUsername("");
     }
-    
-    
 }

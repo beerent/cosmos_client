@@ -1,8 +1,10 @@
 #include "IOSRestConnector.h"
 
 std::string IOSRestConnector::SendRequest(const std::string& request, IRestReceiver* restReceiver) {
+    
+    NSString* ipAddress = @"http://192.168.1.240:8081";
     //NSString* ipAddress = @"http://127.0.0.1:8081";
-    NSString* ipAddress = @"https://knowyourcosmos.com:13213";
+    //NSString* ipAddress = @"https://knowyourcosmos.com:13213";
     NSString* formattedRequest = [NSString stringWithUTF8String:request.c_str()];
     NSString* fullRequestUrl = [NSString stringWithFormat:@"%@/%@", ipAddress, formattedRequest];
     NSURL *url = [NSURL URLWithString:fullRequestUrl];

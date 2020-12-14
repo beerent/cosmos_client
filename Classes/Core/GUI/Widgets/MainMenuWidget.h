@@ -33,6 +33,8 @@ public:
 	void unregisterForMenuItemSelectedEvent(onMenuItemSelectedCallBack callBack);
     
     void DisplayUsername();
+    void SetMessage(const std::string& message);
+    void UpdateMessage(const std::string& message);
     void RegisterUsernameRefreshListener(IUsernameRefreshListener* listener) {
         m_usernameRefreshListener = listener;
     }
@@ -49,12 +51,15 @@ private:
     void DisplayAppVersion();
     void TakeDownAppVersion();
     
+    void TakeDownMessage();
+    
 	UIComponentFactory* m_uiComponentFactory;
 	UIComponent* m_parentComponent;
 
 	UIComponent* m_menu;
     UILabel* m_usernamePrefix;
     UILabel* m_username;
+    UILabel* m_message;
     UILabel* m_appVersion;
     
     IUsernameRefreshListener* m_usernameRefreshListener;
