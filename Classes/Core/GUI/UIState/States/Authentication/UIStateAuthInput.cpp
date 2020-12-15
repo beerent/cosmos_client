@@ -105,7 +105,7 @@ void UIStateAuthInput::RemoveCharacterFromPassword() {
 }
 
 void UIStateAuthInput::OnInputButtonPressed(AuthenticationInputWidget::AuthenticationInputButtons button) {
-    m_timer.DeregisterTimer(Timer::TimerType::CURSOR_BLINK_500_MS);
+    m_timer.DeregisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
     m_keyboardManager->DeactivateKeyboard();
 	User user(m_username, m_password, UserAccessLevel::MEMBER);
 
@@ -148,7 +148,7 @@ void UIStateAuthInput::OnAuthenticationResultReceived(AuthenticationResult resul
 
 void UIStateAuthInput::OnTimerEvent(Timer::TimerType type) {
     switch(type) {
-        case Timer::TimerType::CURSOR_BLINK_500_MS:            
+        case Timer::TimerType::CURSOR_BLINK_550_MS:
             if (m_currentEditField == KeyboardSelectedOption::USERNAME) {
                 if (m_cursorOn) {
                     HideUsernameCursor();
@@ -220,7 +220,7 @@ void UIStateAuthInput::OnUsernamePressed(UITouchButton::ButtonState state) {
     
     m_keyboardManager->ActivateKeyboard();
     m_currentEditField = KeyboardSelectedOption::USERNAME;
-    m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_500_MS);
+    m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
 }
 
 void UIStateAuthInput::OnPasswordPressed(UITouchButton::ButtonState state) {
@@ -229,7 +229,7 @@ void UIStateAuthInput::OnPasswordPressed(UITouchButton::ButtonState state) {
     
     m_keyboardManager->ActivateKeyboard();
     m_currentEditField = KeyboardSelectedOption::PASSWORD;
-    m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_500_MS);
+    m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
 }
 
 void UIStateAuthInput::RegisterUsernameListener() {

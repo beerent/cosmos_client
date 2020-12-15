@@ -67,7 +67,7 @@ void ChallengeMenuWidget::UnregisterForChallengeMenuItemSelectedEvent(onChalleng
 void ChallengeMenuWidget::AddCurrentUserUsername() {
     const std::string username = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
     float usernameWidth = 12.5 * username.size();
-    m_currentUsername = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameWidth, 40, UIComponent::ANCHOR_TOP_RIGHT, username);
+    m_currentUsername = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameWidth, 60, UIComponent::ANCHOR_TOP_RIGHT, username);
     m_currentUsername->setDropShadowColor(dropShadowColor);
     m_currentUsername->setX(80);
     m_parentComponent->addChild(m_currentUsername);
@@ -76,9 +76,9 @@ void ChallengeMenuWidget::AddCurrentUserUsername() {
 void ChallengeMenuWidget::AddHomeButton() {
 	UITouchButton::onButtonStateChangedCallBack callBack;
 
-	m_home = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 50, 40, UIComponent::ANCHOR_TOP_LEFT, "home");
+	m_home = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_LEFT, "        home        ");
 	m_home->setDropShadowColor(dropShadowColor);
-	m_home->setX(80);
+	m_home->setX(30);
 
 	callBack.bind(this, &ChallengeMenuWidget::OnHomePressed);
 	m_home->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);

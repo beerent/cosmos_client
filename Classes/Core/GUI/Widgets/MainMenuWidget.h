@@ -33,8 +33,7 @@ public:
 	void unregisterForMenuItemSelectedEvent(onMenuItemSelectedCallBack callBack);
     
     void DisplayUsername();
-    void SetMessage(const std::string& message);
-    void UpdateMessage(const std::string& message);
+    void UpdateMessage(const std::string& message, int offset);
     void RegisterUsernameRefreshListener(IUsernameRefreshListener* listener) {
         m_usernameRefreshListener = listener;
     }

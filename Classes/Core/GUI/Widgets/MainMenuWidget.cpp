@@ -115,11 +115,11 @@ void MainMenuWidget::DisplayUsername() {
     float usernameDisplaySize = 12.5 * username.size();
     float usernamePrefixDisplaySize = 12.5 * usernamePrefix.size();
 
-    m_username = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameDisplaySize, 40, UIComponent::ANCHOR_TOP_RIGHT, username);
+    m_username = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameDisplaySize, 60, UIComponent::ANCHOR_TOP_RIGHT, username);
     m_username->setDropShadowColor(dropShadowColor);
     m_username->setX(80);
     
-    m_usernamePrefix = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernamePrefixDisplaySize, 40, UIComponent::ANCHOR_TOP_RIGHT, usernamePrefix);
+    m_usernamePrefix = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernamePrefixDisplaySize, 60, UIComponent::ANCHOR_TOP_RIGHT, usernamePrefix);
     m_usernamePrefix->setDropShadowColor(dropShadowColor);
     m_usernamePrefix->setX(80 + usernameDisplaySize);
     
@@ -132,25 +132,27 @@ void MainMenuWidget::DisplayUsername() {
     m_parentComponent->addChild(m_usernamePrefix);
 }
 
-void MainMenuWidget::SetMessage(const std::string& message) {
-    float offset = message.size() * 12.5;
-    m_message = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", offset, 10, UIComponent::ANCHOR_BOTTOM_CENTER, message);
+
+
+void MainMenuWidget::UpdateMessage(const std::string& message, int offset) {
+    if (m_message != nullptr) {
+        m_message->setTextString("");
+        m_message->release();
+        m_message = nullptr;
+    }
+    
+    m_message = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 1, 1, UIComponent::ANCHOR_BOTTOM_RIGHT, message);
     m_message->setDropShadowColor(dropShadowColor);
     m_message->setColor(YELLOW_TEXT_COLOR);
     m_message->setY(60);
+    m_message->setX(offset);
     m_parentComponent->addChild(m_message);
 }
 
-void MainMenuWidget::UpdateMessage(const std::string& message) {
-    if (m_message == nullptr) {
-        return;
-    }
-    
-    m_message->setTextString(message);
-}
-
 void MainMenuWidget::TakeDownMessage() {
-    m_message->release();
+    if (m_message != nullptr) {
+        m_message->release();
+    }
 }
 
 void MainMenuWidget::SetVisible(bool visible) {

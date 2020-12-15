@@ -66,7 +66,7 @@ void ChallengeModeWidget::RegisterMainMenuPressedCallback(UITouchButton::onButto
 void ChallengeModeWidget::DisplayCurrentUsername() {
     const std::string username = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
     float usernameWidth = 12.5 * username.size();
-    m_currentUsername = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameWidth, 40, UIComponent::ANCHOR_TOP_RIGHT, username);
+    m_currentUsername = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameWidth, 60, UIComponent::ANCHOR_TOP_RIGHT, username);
     m_currentUsername->setDropShadowColor(dropShadowColor);
     m_currentUsername->setX(80);
     m_parentComponent->addChild(m_currentUsername);

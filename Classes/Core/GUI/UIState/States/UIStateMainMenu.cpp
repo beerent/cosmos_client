@@ -14,7 +14,7 @@ namespace requests {
     const std::string GET_MESSAGES = "getMessages";
 }
 
-UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageScrollIndex(0) {}
+UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageIndex(-1), m_currentMessageScrollIndex(-10000) {}
 
 UIStateMainMenu::~UIStateMainMenu() {}
 
@@ -32,10 +32,13 @@ void UIStateMainMenu::OnEnterState() {
     UITouchButton::onButtonStateChangedCallBack usernamePressedCallback;
     usernamePressedCallback.bind(this, &UIStateMainMenu::OnUsernamePressed);
     m_mainMenuWidget->registerUsernamePressedCallback(usernamePressedCallback);
-    RegisterTimers();
 }
 
 void UIStateMainMenu::OnExitState() {
+    if (!m_messagesRequestKey.empty()) {
+        m_restConnector->CloseRequest(m_messagesRequestKey);
+    }
+    
     DeregisterTimers();
     
     m_mainMenuWidget->release();
@@ -60,18 +63,22 @@ void UIStateMainMenu::SendGetMessagesRequest() {
     requestBuilder.SetEndpoint(requests::GET_MESSAGES);
 
     std::string requestString = requestBuilder.GetRequestString();
-    m_restConnector->SendRequest(requestString, this);
+    m_messagesRequestKey = m_restConnector->SendRequest(requestString, this);
 }
 
 void UIStateMainMenu::RestReceived(const std::string& rest) {
+    m_messagesRequestKey.clear();
+    
     json11::Json json = JsonProvider::ParseString(rest);
     std::string request = json["request"].string_value();
     
     std::string first;
     if (request == requests::GET_MESSAGES) {
-        std::vector<std::string> messages = JsonToMessages(json["payload"]);
-        BuildMessagesString(messages);
-        m_mainMenuWidget->SetMessage(m_messagesString);
+        m_messages = JsonToMessages(json["payload"]);
+        if (!m_messages.empty()) {
+            AdvanceMessageIndex();
+            RegisterTimers();
+        }
     }
 }
 
@@ -87,29 +94,31 @@ std::vector<std::string> UIStateMainMenu::JsonToMessages(const json11::Json& jso
     return messages;
 }
 
-void UIStateMainMenu::BuildMessagesString(std::vector<std::string> messages) {
-    std::string finalMessage;
-    std::string skeleton = "                                                                                                                        ";
-    for (const auto message : messages) {
-        std::string nextMessage = skeleton + message;
-        finalMessage += " " + nextMessage;
+void UIStateMainMenu::AdvanceMessageIndex() {
+    if (m_messages.empty()) {
+        return;
     }
     
-    m_messagesString = finalMessage;
+    if (m_currentMessageIndex == m_messages.size() - 1) {
+        m_currentMessageIndex = 0;
+    } else {
+        m_currentMessageIndex++;
+    }
+    
 }
 
 void UIStateMainMenu::RegisterTimers() {
-    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS);
+    m_timer.RegisterTimer(Timer::TimerType::MESSAGE_SCROLL_TIMER);
 }
 
 void UIStateMainMenu::DeregisterTimers() {
-    m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS);
+    m_timer.DeregisterTimer(Timer::TimerType::MESSAGE_SCROLL_TIMER);
 }
 
 
 void UIStateMainMenu::OnTimerEvent(Timer::TimerType type) {
     switch(type) {
-        case Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS:
+        case Timer::TimerType::MESSAGE_SCROLL_TIMER:
             AdvanceMessageScroll();
             break;
         default:
@@ -118,9 +127,20 @@ void UIStateMainMenu::OnTimerEvent(Timer::TimerType type) {
 }
 
 void UIStateMainMenu::AdvanceMessageScroll() {
-    m_messagesString += m_messagesString[0];
-    m_messagesString = m_messagesString.substr(1, m_messagesString.length());
-    m_mainMenuWidget->UpdateMessage(m_messagesString);
+    std::string currentMessage = m_messages[m_currentMessageIndex];
+    
+    int targetSize = 1650 + (10 * currentMessage.size());
+    if (m_currentMessageScrollIndex >= targetSize) {
+        AdvanceMessageIndex();
+        currentMessage = m_messages[m_currentMessageIndex];
+        m_currentMessageScrollIndex = -10000;
+    }
+    
+    if (m_currentMessageScrollIndex == -10000) {
+        m_currentMessageScrollIndex = -1 * (14 * currentMessage.size() / 2);
+    }
+    
+    m_mainMenuWidget->UpdateMessage(currentMessage, m_currentMessageScrollIndex += 4);
 }
 
 

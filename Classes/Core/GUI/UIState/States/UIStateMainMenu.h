@@ -28,7 +28,9 @@ public:
 private:
     MainMenuWidget* m_mainMenuWidget;
     UsernameEditWidget* m_usernameEditWidget;
-    std::string m_messagesString;
+    std::vector<std::string> m_messages;
+    std::string m_messagesRequestKey;
+    int m_currentMessageIndex;
     int m_currentMessageScrollIndex;
     
     IRestConnector* m_restConnector;
@@ -40,11 +42,10 @@ private:
     std::vector<std::string> JsonToMessages(const json11::Json& json);
     
     void AdvanceMessageScroll();
+    void AdvanceMessageIndex();
     
     void RegisterTimers();
     void DeregisterTimers();
-    
-    void BuildMessagesString(std::vector<std::string> messages);
     
     void OnUsernamePressed(UITouchButton::ButtonState state);
     void onMainMenuItemSelected(MainMenuWidget::MainMenuItems selectedItem);
