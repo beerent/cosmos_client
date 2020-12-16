@@ -1,8 +1,8 @@
 #include "Core/GUI/Widgets/MainMenuWidget.h"
 #include "Core/GUI/Components/UIComponentFactory.h"
 #include "Core/Debug/DebugLogic.h"
-
 #include <Core/User/UserProvider.h>
+#include <cmath>
 
 float labelYPosition = 100.0;
 float labelXPosition = 5.0f;
@@ -11,10 +11,11 @@ const float LABEL_SPACING = 0.0 + LABEL_HEIGHT;
 const float LABEL_WIDTH = 585.0;
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
-const glm::vec3 YELLOW_TEXT_COLOR(255.0f , 255.0f, 0.0f);
+const glm::vec3 YELLOW_TEXT_COLOR(255.0f, 255.0f, 0.0f);
 
-MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_username(nullptr), m_usernamePrefix(nullptr),
-      m_appVersion(nullptr), m_usernamePressedCallback(nullptr), m_message(nullptr){
+
+MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_title(nullptr), m_username(nullptr), m_usernamePrefix(nullptr),
+      m_appVersion(nullptr), m_usernamePressedCallback(nullptr), m_message(nullptr), m_appVersionPressCount(0), m_usingRainbowMessageColor(false) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
@@ -29,12 +30,12 @@ void MainMenuWidget::init() {
     
 	m_parentComponent->addChild(m_menu);
 
-	UILabel* label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_CENTER, "Know Your Cosmos");
-    label->setDropShadowColor(dropShadowColor);
-    label->setY(12.0);   
-    m_menu->addChild(label);
+	m_title = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_CENTER, "Know Your Cosmos");
+    m_title->setDropShadowColor(dropShadowColor);
+    m_title->setY(12.0);
+    m_menu->addChild(m_title);
     
-    label = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Challenge Mode");
+    UILabel* label = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Challenge Mode");
     label->setDropShadowColor(dropShadowColor);
     label->setX(labelXPosition);
     label->setY(labelYPosition + LABEL_SPACING);
@@ -50,11 +51,17 @@ void MainMenuWidget::init() {
 }
 
 void MainMenuWidget::DisplayAppVersion() {
-    std::string appVersion = IEngine::getEngine()->GetDeviceUtil()->GetBuildVersion();
+    const std::string appVersion = IEngine::getEngine()->GetDeviceUtil()->GetBuildVersion();
     float offset = appVersion.size() * 12.5;
-    m_appVersion = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", offset, 10, UIComponent::ANCHOR_BOTTOM_RIGHT, appVersion);
+    m_appVersion = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 100, 100, UIComponent::ANCHOR_BOTTOM_RIGHT, appVersion);
     m_appVersion->setDropShadowColor(dropShadowColor);
-    m_appVersion->setX(80);
+    m_appVersion->setX(45);
+    m_appVersion->setY(-40);
+    
+    UITouchButton::onButtonStateChangedCallBack callBack;
+    callBack.bind(this, &MainMenuWidget::OnAppVersionPressed);
+    m_appVersion->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+    
     m_parentComponent->addChild(m_appVersion);
 }
 
@@ -62,6 +69,61 @@ void MainMenuWidget::TakeDownAppVersion() {
     m_appVersion->release();
     delete m_appVersion;
     m_appVersion = nullptr;
+}
+
+void MainMenuWidget::OnAppVersionPressed(UITouchButton::ButtonState state) {
+    UpdateAppTitleTextColor();
+    m_appVersionPressCount++;
+}
+
+int MainMenuWidget::GetAppVersionPressCount() const {
+    return m_appVersionPressCount;
+}
+
+void MainMenuWidget::ActivateRainbowMessageColor() {
+    m_usingRainbowMessageColor = true;
+}
+
+void MainMenuWidget::UpdateAppTitleTextColor() {
+    UpdateLabelColor(m_appVersionPressCount, m_title);
+}
+
+void MainMenuWidget::UpdateLabelColor(int colorOffset, UILabel* labelComponent) {
+    glm::vec3 color;
+    
+    int switchKey = abs(colorOffset) % 7;
+    switch (switchKey) {
+        case 0:
+            color = glm::vec3(0, 1, 1);
+            break;
+            
+        case 1:
+            color = glm::vec3(1, 0, 0);
+            break;
+            
+        case 2:
+            color = glm::vec3(0, 1, 0);
+            break;
+            
+        case 3:
+            color = glm::vec3(0, 0, 1);
+            break;
+            
+        case 4:
+            color = glm::vec3(1, 1, 0);
+            break;
+            
+        case 5:
+            color = glm::vec3(1, 0, 1);
+            break;
+            
+        case 6:
+            color = glm::vec3(1, 1, 1);
+            break;
+
+    }
+    
+    labelComponent->setColor(color);
 }
 
 void MainMenuWidget::OnLoadChallengeMenu(UITouchButton::ButtonState state) {
@@ -143,7 +205,13 @@ void MainMenuWidget::UpdateMessage(const std::string& message, int offset) {
     
     m_message = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 1, 1, UIComponent::ANCHOR_BOTTOM_RIGHT, message);
     m_message->setDropShadowColor(dropShadowColor);
-    m_message->setColor(YELLOW_TEXT_COLOR);
+    
+    if (!m_usingRainbowMessageColor) {
+        m_message->setColor(YELLOW_TEXT_COLOR);
+    }else {
+        UpdateLabelColor(offset, m_message);
+    }
+    
     m_message->setY(60);
     m_message->setX(offset);
     m_parentComponent->addChild(m_message);

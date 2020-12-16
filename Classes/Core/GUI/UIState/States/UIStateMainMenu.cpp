@@ -14,7 +14,10 @@ namespace requests {
     const std::string GET_MESSAGES = "getMessages";
 }
 
-UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageIndex(-1), m_currentMessageScrollIndex(-10000) {}
+const int EASTER_EGG_PRESS_COUNT_AMOUNT = 15;
+const std::string EASTER_EGG_MESSAGE = "Know Your Cosmos // Dedicated To My Beautiful Pregnant Wife Amy // July 15, 2021 <3";
+
+UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageIndex(-1), m_currentMessageScrollIndex(-10000), m_easterEggPending(true) {}
 
 UIStateMainMenu::~UIStateMainMenu() {}
 
@@ -126,7 +129,30 @@ void UIStateMainMenu::OnTimerEvent(Timer::TimerType type) {
     }
 }
 
+bool UIStateMainMenu::EasterEggIsActive() const {
+    return !m_easterEggPending;
+}
+
+bool UIStateMainMenu::ShouldActivateEasterEgg() const {
+    return !EasterEggIsActive() && m_mainMenuWidget->GetAppVersionPressCount() == EASTER_EGG_PRESS_COUNT_AMOUNT;
+}
+
+void UIStateMainMenu::ActivateEasterEgg() {
+    m_easterEggPending = false;
+    m_currentMessageIndex = 0;
+    m_messages.clear();
+    m_messages.push_back(EASTER_EGG_MESSAGE);
+}
+
 void UIStateMainMenu::AdvanceMessageScroll() {
+    if (ShouldActivateEasterEgg()) {
+        ActivateEasterEgg();
+    }
+    
+    if (EasterEggIsActive()) {
+        m_mainMenuWidget->ActivateRainbowMessageColor();
+    }
+
     std::string currentMessage = m_messages[m_currentMessageIndex];
     
     int targetSize = 1650 + (10 * currentMessage.size());
@@ -140,7 +166,7 @@ void UIStateMainMenu::AdvanceMessageScroll() {
         m_currentMessageScrollIndex = -1 * (14 * currentMessage.size() / 2);
     }
     
-    m_mainMenuWidget->UpdateMessage(currentMessage, m_currentMessageScrollIndex += 4);
+    m_mainMenuWidget->UpdateMessage(currentMessage, m_currentMessageScrollIndex += 5);
 }
 
 

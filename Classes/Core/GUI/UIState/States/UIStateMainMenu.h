@@ -32,6 +32,7 @@ private:
     std::string m_messagesRequestKey;
     int m_currentMessageIndex;
     int m_currentMessageScrollIndex;
+    bool m_easterEggPending;
     
     IRestConnector* m_restConnector;
     
@@ -52,6 +53,10 @@ private:
     
     void InitUsernameEditWidget();
     void ReleaseUsernameEditWidget();
+    
+    bool EasterEggIsActive() const;
+    bool ShouldActivateEasterEgg() const;
+    void ActivateEasterEgg();
     
     void HandleNewUser(User newUser);
 };
