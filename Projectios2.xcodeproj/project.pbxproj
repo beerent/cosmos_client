@@ -272,6 +272,7 @@
 		87ACE0452581343E005C6320 /* DeviceMemoryInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87ACE0432581343E005C6320 /* DeviceMemoryInterface.cpp */; };
 		87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CA14FA2578849600E18697 /* Launch Screen.storyboard */; };
 		87DE70B825AB86D600AC163A /* UIStateCosmosLiveLobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87DE70B725AB86D600AC163A /* UIStateCosmosLiveLobby.cpp */; };
+		87DE70BD25ABF2D300AC163A /* CosmosLiveCoordinator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87DE70BB25ABF2D300AC163A /* CosmosLiveCoordinator.cpp */; };
 		87E3B8A9257F3864007C63D1 /* IOSDeviceUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87E3B8A8257F3864007C63D1 /* IOSDeviceUtil.mm */; };
 		87E3B8CA257F4428007C63D1 /* UsernameEditWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87E3B8C9257F4428007C63D1 /* UsernameEditWidget.cpp */; };
 		BA6D85EA216EF22100943989 /* KYCPlanetSizeSweepScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */; };
@@ -939,6 +940,9 @@
 		87CA14FA2578849600E18697 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		87DE70B625AB86D600AC163A /* UIStateCosmosLiveLobby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIStateCosmosLiveLobby.h; path = Core/GUI/UIState/States/Live/UIStateCosmosLiveLobby.h; sourceTree = "<group>"; };
 		87DE70B725AB86D600AC163A /* UIStateCosmosLiveLobby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UIStateCosmosLiveLobby.cpp; path = Core/GUI/UIState/States/Live/UIStateCosmosLiveLobby.cpp; sourceTree = "<group>"; };
+		87DE70BB25ABF2D300AC163A /* CosmosLiveCoordinator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CosmosLiveCoordinator.cpp; path = Core/GameLogic/Live/CosmosLiveCoordinator.cpp; sourceTree = "<group>"; };
+		87DE70BC25ABF2D300AC163A /* CosmosLiveCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLiveCoordinator.h; path = Core/GameLogic/Live/CosmosLiveCoordinator.h; sourceTree = "<group>"; };
+		87DE70BF25ABF4CE00AC163A /* CosmosLiveStates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLiveStates.h; path = Core/GameLogic/Live/CosmosLiveStates.h; sourceTree = "<group>"; };
 		87E3B89D257F33E6007C63D1 /* IOSDeviceUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IOSDeviceUtil.h; path = Core/IOS/IOSDeviceUtil.h; sourceTree = "<group>"; };
 		87E3B8A8257F3864007C63D1 /* IOSDeviceUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSDeviceUtil.mm; path = Core/IOS/IOSDeviceUtil.mm; sourceTree = "<group>"; };
 		87E3B8C8257F4428007C63D1 /* UsernameEditWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UsernameEditWidget.h; path = Core/GUI/Widgets/User/Username/UsernameEditWidget.h; sourceTree = "<group>"; };
@@ -1222,6 +1226,7 @@
 		1A727EC2193FF141001D8111 /* GameLogic */ = {
 			isa = PBXGroup;
 			children = (
+				87DE70BA25ABF28C00AC163A /* Live */,
 				81D747652228A8C7001CBB95 /* User */,
 				81DB2FBC21F5FB82000F4135 /* Question */,
 				81B4717A21EA11D500F067D5 /* Challenge */,
@@ -2356,6 +2361,16 @@
 			name = Live;
 			sourceTree = "<group>";
 		};
+		87DE70BA25ABF28C00AC163A /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				87DE70BF25ABF4CE00AC163A /* CosmosLiveStates.h */,
+				87DE70BB25ABF2D300AC163A /* CosmosLiveCoordinator.cpp */,
+				87DE70BC25ABF2D300AC163A /* CosmosLiveCoordinator.h */,
+			);
+			name = Live;
+			sourceTree = "<group>";
+		};
 		87E3B8C7257F4412007C63D1 /* Username */ = {
 			isa = PBXGroup;
 			children = (
@@ -2643,6 +2658,7 @@
 				1A8BD12118A32D30000D10C0 /* btGeneric6DofConstraint.cpp in Sources */,
 				1A5C7A031FD8EE5B00CD9788 /* MathGLMBulletConversionHelpers.cpp in Sources */,
 				BABA36D120B6528F00E312A8 /* ltm.c in Sources */,
+				87DE70BD25ABF2D300AC163A /* CosmosLiveCoordinator.cpp in Sources */,
 				1A8BD2F418A3312C000D10C0 /* btAxisSweep3.cpp in Sources */,
 				1AFB25791D0C7FD900C5BFFB /* TutTexturedRenderable.cpp in Sources */,
 				1A8BD12918A32D30000D10C0 /* btTypedConstraint.cpp in Sources */,

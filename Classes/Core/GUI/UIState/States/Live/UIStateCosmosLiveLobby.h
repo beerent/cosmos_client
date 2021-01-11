@@ -3,6 +3,7 @@
 #include "Core/StringManager/StringManager.h"
 #include "Core/Generic/StateMachine/BaseState.h"
 #include <Core/GameLogic/Authentication/Authenticator.h>
+#include <Core/GameLogic/Live/CosmosLiveCoordinator.h>
 
 class UIStateCosmosLiveLobby : public BaseStateDepricated, IAuthenticationResultListener {
 
@@ -19,6 +20,10 @@ public:
 
 private:
     Authenticator m_authenticator;
+    
+    CosmosLiveCoordinator m_cosmosLiveCoordinator;
+    
+    void SubmitGuestLoginRequest();
     // ChallengeMenuWidget* m_challengeMenuWidget;
 
     // ChallengeLeaderboardLoader m_leaderboardLoader;
