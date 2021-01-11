@@ -19,6 +19,7 @@
 
 #include "Core/GUI/UIState/States/Challenge/UIStateChallengeMainMenu.h"
 #include "Core/GUI/UIState/States/Challenge/UIStateChallengeMode.h"
+#include "Core/GUI/UIState/States/Live/UIStateCosmosLiveLobby.h"
 
 UIStateMachine* UIStateMachine::mInstance = 0;
 
@@ -71,6 +72,10 @@ BaseStateDepricated* UIStateMachine::CreateState(STRING_ID stateName) {
 	else if (stateName == UIStateChallengeMode::UI_STATE_CHALLENGE_MODE) {
 		return new UIStateChallengeMode(this);
 	}
+    
+    else if (stateName == UIStateCosmosLiveLobby::UI_STATE_COSMOS_LIVE_LOBBY) {
+        return new UIStateCosmosLiveLobby(this);
+    }
 
 	else {
 		Logger::Error("Requested Unknown State!");

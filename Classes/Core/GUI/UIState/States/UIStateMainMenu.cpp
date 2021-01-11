@@ -3,6 +3,7 @@
 #include "Core/GUI/Components/UIComponentFactory.h"
 #include "Core/GUI/UIState/States/Authentication/UIStateAuthInput.h"
 #include "Core/GUI/UIState/States/Challenge/UIStateChallengeMainMenu.h"
+#include "Core/GUI/UIState/States/Live/UIStateCosmosLiveLobby.h"
 #include <Core/General/DeviceMemoryInterface.h>
 #include <Core/Net/RequestBuilder.h>
 
@@ -15,7 +16,7 @@ namespace requests {
 }
 
 const int EASTER_EGG_PRESS_COUNT_AMOUNT = 15;
-const std::string EASTER_EGG_MESSAGE = "Know Your Cosmos // Dedicated To My Beautiful Pregnant Wife Amy // July 15, 2021 <3";
+const std::string EASTER_EGG_MESSAGE = "Know Your Cosmos // Dedicated To My Future Son, Ralph Michael Ryczak // July 15, 2021 <3";
 
 UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageIndex(-1), m_currentMessageScrollIndex(-10000), m_easterEggPending(true) {}
 
@@ -59,6 +60,10 @@ void UIStateMainMenu::onMainMenuItemSelected(MainMenuWidget::MainMenuItems selec
 	else if (selectedItem == MainMenuWidget::LOAD_CHALLENGE_MENU_LEVEL) {
 		ChangeState(UIStateChallengeMainMenu::UI_STATE_CHALLENGE_MAIN_MENU);
 	}
+
+    else if (selectedItem == MainMenuWidget::LOAD_COSMOS_LIVE_LEVEL) {
+        ChangeState(UIStateCosmosLiveLobby::UI_STATE_COSMOS_LIVE_LOBBY);
+    }
 }
 
 void UIStateMainMenu::SendGetMessagesRequest() {

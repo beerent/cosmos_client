@@ -18,7 +18,7 @@ public:
 class MainMenuWidget {
 
 public:
-    enum MainMenuItems{LOAD_GAME_TEST_LEVEL, LOAD_LOGIN_LEVEL, LOAD_CHALLENGE_MENU_LEVEL};
+    enum MainMenuItems{LOAD_GAME_TEST_LEVEL, LOAD_LOGIN_LEVEL, LOAD_CHALLENGE_MENU_LEVEL, LOAD_COSMOS_LIVE_LEVEL};
     typedef fastdelegate::FastDelegate1<MainMenuItems> onMenuItemSelectedCallBack;
 
 	MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent);
@@ -48,6 +48,10 @@ private:
 
     void OnUsernamePressed(UITouchButton::ButtonState state);
 	void OnLoadChallengeMenu(UITouchButton::ButtonState state);
+    void OnLoadCosmosLiveLobby(UITouchButton::ButtonState state);
+    
+    void DisplayChallengeModeButton();
+    void DisplayCosmosLiveButton();
     
     void DisplayAppVersion();
     void TakeDownAppVersion();
@@ -63,6 +67,8 @@ private:
     UILabel* m_title;
     UILabel* m_usernamePrefix;
     UILabel* m_username;
+    UILabel* m_challengeMode;
+    UILabel* m_cosmosLive;
     UILabel* m_message;
     UILabel* m_appVersion;
     bool m_usingRainbowMessageColor;

@@ -4,10 +4,10 @@
 #include <Core/User/UserProvider.h>
 #include <cmath>
 
-float labelYPosition = 100.0;
+float labelYPosition = 40.0;
 float labelXPosition = 5.0f;
 const float LABEL_HEIGHT = 90.0;
-const float LABEL_SPACING = 0.0 + LABEL_HEIGHT;
+const float LABEL_SPACING = 10.0 + LABEL_HEIGHT;
 const float LABEL_WIDTH = 585.0;
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
@@ -15,7 +15,7 @@ const glm::vec3 YELLOW_TEXT_COLOR(255.0f, 255.0f, 0.0f);
 
 
 MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_title(nullptr), m_username(nullptr), m_usernamePrefix(nullptr),
-      m_appVersion(nullptr), m_usernamePressedCallback(nullptr), m_message(nullptr), m_appVersionPressCount(0), m_usingRainbowMessageColor(false) {
+      m_appVersion(nullptr), m_usernamePressedCallback(nullptr), m_challengeMode(nullptr), m_cosmosLive(nullptr), m_message(nullptr), m_appVersionPressCount(0), m_usingRainbowMessageColor(false) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
@@ -35,19 +35,37 @@ void MainMenuWidget::init() {
     m_title->setY(12.0);
     m_menu->addChild(m_title);
     
-    UILabel* label = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Challenge Mode");
-    label->setDropShadowColor(dropShadowColor);
-    label->setX(labelXPosition);
-    label->setY(labelYPosition + LABEL_SPACING);
-    
-    UITouchButton::onButtonStateChangedCallBack callBack;
-	callBack.bind(this, &MainMenuWidget::OnLoadChallengeMenu);
-	label->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
-    
-    m_menu->addChild(label);
+    DisplayChallengeModeButton();
+    DisplayCosmosLiveButton();
 
     DisplayUsername();
     DisplayAppVersion();
+}
+
+void MainMenuWidget::DisplayChallengeModeButton() {
+    m_challengeMode = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Challenge Mode");
+    m_challengeMode->setDropShadowColor(dropShadowColor);
+    m_challengeMode->setX(labelXPosition);
+    m_challengeMode->setY(labelYPosition + LABEL_SPACING);
+    
+    UITouchButton::onButtonStateChangedCallBack callBack;
+    callBack.bind(this, &MainMenuWidget::OnLoadChallengeMenu);
+    m_challengeMode->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+    
+    m_menu->addChild(m_challengeMode);
+}
+
+void MainMenuWidget::DisplayCosmosLiveButton() {
+    m_cosmosLive = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Cosmos Live");
+    m_cosmosLive->setDropShadowColor(dropShadowColor);
+    m_cosmosLive->setX(labelXPosition);
+    m_cosmosLive->setY(labelYPosition + LABEL_SPACING * 2);
+    
+    UITouchButton::onButtonStateChangedCallBack callBack;
+    callBack.bind(this, &MainMenuWidget::OnLoadCosmosLiveLobby);
+    m_cosmosLive->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+    
+    m_menu->addChild(m_cosmosLive);
 }
 
 void MainMenuWidget::DisplayAppVersion() {
@@ -130,6 +148,14 @@ void MainMenuWidget::OnLoadChallengeMenu(UITouchButton::ButtonState state) {
     std::list<onMenuItemSelectedCallBack>::iterator it = m_onMenuItemSelectedListeners.begin();
     while(it != m_onMenuItemSelectedListeners.end()) {
         (*it)(LOAD_CHALLENGE_MENU_LEVEL);
+        it++;
+    }
+}
+
+void MainMenuWidget::OnLoadCosmosLiveLobby(UITouchButton::ButtonState state) {
+    std::list<onMenuItemSelectedCallBack>::iterator it = m_onMenuItemSelectedListeners.begin();
+    while(it != m_onMenuItemSelectedListeners.end()) {
+        (*it)(LOAD_COSMOS_LIVE_LEVEL);
         it++;
     }
 }
