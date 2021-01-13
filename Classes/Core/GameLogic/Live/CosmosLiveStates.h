@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 enum class CosmosLiveState {
     INVALID,
     CLOSED,
@@ -7,3 +9,5 @@ enum class CosmosLiveState {
     IN_GAME,
     POST_GAME_LOBBY
 };
+
+CosmosLiveState GetCosmosLiveState(const std::string& s);

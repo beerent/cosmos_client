@@ -1,7 +1,9 @@
 #pragma once
 
 #include <Core/GameLogic/Live/CosmosLiveStates.h>
+#include <Core/GameLogic/Live/Session/CosmosLiveSession.h>
 
+#include <Core/Net/Json/JsonProvider.h>
 #include <Core/Net/IRestConnector.h>
 #include <Core/Net/IRestReceiver.h>
 
@@ -42,6 +44,8 @@ private:
     bool CosmosLiveUpdateRequestIsPending() const;
     void CancelCosmosLiveUpdateRequest();
     void CloseCosmosLiveUpdateRequest();
+    
+    CosmosLiveSession RestToCosmosLiveSession(const json11::Json& json) const;
     
     void RegisterTimers();
     void DeregisterTimers();

@@ -273,6 +273,7 @@
 		87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CA14FA2578849600E18697 /* Launch Screen.storyboard */; };
 		87DE70B825AB86D600AC163A /* UIStateCosmosLiveLobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87DE70B725AB86D600AC163A /* UIStateCosmosLiveLobby.cpp */; };
 		87DE70BD25ABF2D300AC163A /* CosmosLiveCoordinator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87DE70BB25ABF2D300AC163A /* CosmosLiveCoordinator.cpp */; };
+		87DE70CA25AF141C00AC163A /* CosmosLiveSession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87DE70C925AF141C00AC163A /* CosmosLiveSession.cpp */; };
 		87E3B8A9257F3864007C63D1 /* IOSDeviceUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87E3B8A8257F3864007C63D1 /* IOSDeviceUtil.mm */; };
 		87E3B8CA257F4428007C63D1 /* UsernameEditWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87E3B8C9257F4428007C63D1 /* UsernameEditWidget.cpp */; };
 		BA6D85EA216EF22100943989 /* KYCPlanetSizeSweepScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6D85E8216EF21F00943989 /* KYCPlanetSizeSweepScript.cpp */; };
@@ -943,6 +944,9 @@
 		87DE70BB25ABF2D300AC163A /* CosmosLiveCoordinator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CosmosLiveCoordinator.cpp; path = Core/GameLogic/Live/CosmosLiveCoordinator.cpp; sourceTree = "<group>"; };
 		87DE70BC25ABF2D300AC163A /* CosmosLiveCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLiveCoordinator.h; path = Core/GameLogic/Live/CosmosLiveCoordinator.h; sourceTree = "<group>"; };
 		87DE70BF25ABF4CE00AC163A /* CosmosLiveStates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLiveStates.h; path = Core/GameLogic/Live/CosmosLiveStates.h; sourceTree = "<group>"; };
+		87DE70C225AC772C00AC163A /* CosmosLiveSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLiveSession.h; path = Core/GameLogic/Live/Session/CosmosLiveSession.h; sourceTree = "<group>"; };
+		87DE70C725AF0C5100AC163A /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateUtil.h; path = Core/Util/Date/DateUtil.h; sourceTree = "<group>"; };
+		87DE70C925AF141C00AC163A /* CosmosLiveSession.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CosmosLiveSession.cpp; path = Core/GameLogic/Live/Session/CosmosLiveSession.cpp; sourceTree = "<group>"; };
 		87E3B89D257F33E6007C63D1 /* IOSDeviceUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IOSDeviceUtil.h; path = Core/IOS/IOSDeviceUtil.h; sourceTree = "<group>"; };
 		87E3B8A8257F3864007C63D1 /* IOSDeviceUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSDeviceUtil.mm; path = Core/IOS/IOSDeviceUtil.mm; sourceTree = "<group>"; };
 		87E3B8C8257F4428007C63D1 /* UsernameEditWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UsernameEditWidget.h; path = Core/GUI/Widgets/User/Username/UsernameEditWidget.h; sourceTree = "<group>"; };
@@ -2134,6 +2138,7 @@
 		814BB909239345C60045CDC1 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				87DE70C625AF0C2300AC163A /* Date */,
 				81FD1A3E23D367ED00C3BA0C /* UsernameGenerator.h */,
 				814BB90A239345D80045CDC1 /* SimpleTimer.cpp */,
 				814BB90B239345D80045CDC1 /* SimpleTimer.h */,
@@ -2364,11 +2369,29 @@
 		87DE70BA25ABF28C00AC163A /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				87DE70C125AC76EE00AC163A /* Session */,
 				87DE70BF25ABF4CE00AC163A /* CosmosLiveStates.h */,
 				87DE70BB25ABF2D300AC163A /* CosmosLiveCoordinator.cpp */,
 				87DE70BC25ABF2D300AC163A /* CosmosLiveCoordinator.h */,
 			);
 			name = Live;
+			sourceTree = "<group>";
+		};
+		87DE70C125AC76EE00AC163A /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				87DE70C925AF141C00AC163A /* CosmosLiveSession.cpp */,
+				87DE70C225AC772C00AC163A /* CosmosLiveSession.h */,
+			);
+			name = Session;
+			sourceTree = "<group>";
+		};
+		87DE70C625AF0C2300AC163A /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				87DE70C725AF0C5100AC163A /* DateUtil.h */,
+			);
+			name = Date;
 			sourceTree = "<group>";
 		};
 		87E3B8C7257F4412007C63D1 /* Username */ = {
@@ -2794,6 +2817,7 @@
 				1A8BD37A18A3312D000D10C0 /* btHashedSimplePairCache.cpp in Sources */,
 				BABA36DC20B6528F00E312A8 /* lauxlib.c in Sources */,
 				BABA36C920B6528F00E312A8 /* lcorolib.c in Sources */,
+				87DE70CA25AF141C00AC163A /* CosmosLiveSession.cpp in Sources */,
 				1A8BD3B718A3312D000D10C0 /* btGjkEpa2.cpp in Sources */,
 				81DB2FA221F5F814000F4135 /* ChallengeLeaderboardLoader.cpp in Sources */,
 				1A85F8551D1106C000DA499D /* CribLevelData.cpp in Sources */,

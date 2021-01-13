@@ -1,4 +1,7 @@
 #include <Core/GameLogic/Live/CosmosLiveCoordinator.h>
+
+#include <Core/Util/Date/DateUtil.h>
+
 #include <Core/Net/RequestBuilder.h>
 #include <IEngine.h>
 
@@ -28,6 +31,21 @@ void CosmosLiveCoordinator::DeregisterTimers() {
 
 void CosmosLiveCoordinator::RestReceived(const std::string& rest) {
     CloseCosmosLiveUpdateRequest();
+
+    json11::Json json = JsonProvider::ParseString(rest);
+    CosmosLiveSession cosmosLiveSession = RestToCosmosLiveSession(json);
+}
+
+CosmosLiveSession CosmosLiveCoordinator::RestToCosmosLiveSession(const json11::Json& json) const {
+    const json11::Json sessionJson = json["payload"]["cosmos_live_session"];
+    std::string state = sessionJson["state"].string_value();
+    std::string startDate = sessionJson["start"].string_value();
+    int round = sessionJson["round"].int_value();
+    int roundSecondsRemaining = sessionJson["round_seconds_remaining"].int_value();
+    int playerCount = sessionJson["player_count"].int_value();
+    
+    CosmosLiveSession cosmosLiveSession(GetCosmosLiveState(state), Util::StringToDateTime(startDate), round, roundSecondsRemaining, playerCount);
+    return cosmosLiveSession;
 }
 
 void CosmosLiveCoordinator::OnTimerEvent(Timer::TimerType type) {
