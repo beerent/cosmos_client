@@ -33,7 +33,7 @@ public:
     virtual void RestReceived(const std::string& rest);
 
 private:
-    CosmosLiveState m_currentState;
+    CosmosLiveSession m_currentLiveSession;
     
     IRestConnector* m_restConnector;
     std::string m_liveRequestId;
@@ -44,6 +44,8 @@ private:
     bool CosmosLiveUpdateRequestIsPending() const;
     void CancelCosmosLiveUpdateRequest();
     void CloseCosmosLiveUpdateRequest();
+    
+    bool SessionsAreEqual(const CosmosLiveSession& sessionA, const CosmosLiveSession& sessionB) const;
     
     CosmosLiveSession RestToCosmosLiveSession(const json11::Json& json) const;
     

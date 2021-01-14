@@ -1,26 +1,13 @@
 #include <Core/GameLogic/Live/Session/CosmosLiveSession.h>
+#include <Core/GameLogic/Live/CosmosLiveStates.h>
+#include <Util/Date/DateUtil.h>
 
-CosmosLiveState GetCosmosLiveState(const std::string& s) {
-    if (s == "INVALID") {
-        return CosmosLiveState::INVALID;
-    }
-    
-    if (s == "CLOSED") {
-        return CosmosLiveState::CLOSED;
-    }
-    
-    if (s == "PRE_GAME_LOBBY") {
-        return CosmosLiveState::PRE_GAME_LOBBY;
-    }
-    
-    if (s == "IN_GAME") {
-        return CosmosLiveState::IN_GAME;
-    }
-    
-    if (s == "POST_GAME_LOBBY") {
-        return CosmosLiveState::POST_GAME_LOBBY;
-    }
-    
-    return CosmosLiveState::INVALID;
+CosmosLiveSession::CosmosLiveSession()
+  : m_state(CosmosLiveState::INVALID), m_startTimeUTC(Util::StringToDateTime("0000-00-00T00:00:00Z")), m_round(0), m_roundSecondsRemaining(0), m_playerCount(0) {}
+
+CosmosLiveSession::CosmosLiveSession(CosmosLiveState state, std::time_t startTimeUTC, int round, int roundSecondsRemaining, int playerCount)
+  : m_state(state), m_startTimeUTC(startTimeUTC), m_round(round), m_roundSecondsRemaining(roundSecondsRemaining), m_playerCount(playerCount) {}
+
+std::string CosmosLiveSession::GetHash() const {
+    return CosmosLiveStateToString(m_state) + std::to_string(m_startTimeUTC) + std::to_string(m_round) + std::to_string(m_roundSecondsRemaining) + std::to_string(m_playerCount);
 }
-

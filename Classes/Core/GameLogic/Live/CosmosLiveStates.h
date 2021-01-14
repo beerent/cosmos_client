@@ -10,4 +10,5 @@ enum class CosmosLiveState {
     POST_GAME_LOBBY
 };
 
-CosmosLiveState GetCosmosLiveState(const std::string& s);
+CosmosLiveState StringToCosmosLiveState(const std::string& string);
+std::string CosmosLiveStateToString(const CosmosLiveState& state);

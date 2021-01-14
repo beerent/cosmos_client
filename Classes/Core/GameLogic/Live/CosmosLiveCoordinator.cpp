@@ -9,7 +9,7 @@ namespace requests {
     const std::string LIVE = "live";
 }
 
-CosmosLiveCoordinator::CosmosLiveCoordinator() : m_currentState(CosmosLiveState::INVALID), m_timer(this) {
+CosmosLiveCoordinator::CosmosLiveCoordinator() : m_timer(this) {
     m_restConnector = IEngine::getEngine()->GetRestConnector();
 }
 
@@ -34,6 +34,16 @@ void CosmosLiveCoordinator::RestReceived(const std::string& rest) {
 
     json11::Json json = JsonProvider::ParseString(rest);
     CosmosLiveSession cosmosLiveSession = RestToCosmosLiveSession(json);
+    if (!SessionsAreEqual(m_currentLiveSession, cosmosLiveSession)) {
+        
+    }
+}
+
+bool CosmosLiveCoordinator::SessionsAreEqual(const CosmosLiveSession& sessionA, const CosmosLiveSession& sessionB) const {
+    const std::string sessionAHash = sessionA.GetHash();
+    const std::string sessionBHash = sessionB.GetHash();
+    
+    return sessionAHash == sessionBHash;
 }
 
 CosmosLiveSession CosmosLiveCoordinator::RestToCosmosLiveSession(const json11::Json& json) const {
@@ -44,7 +54,7 @@ CosmosLiveSession CosmosLiveCoordinator::RestToCosmosLiveSession(const json11::J
     int roundSecondsRemaining = sessionJson["round_seconds_remaining"].int_value();
     int playerCount = sessionJson["player_count"].int_value();
     
-    CosmosLiveSession cosmosLiveSession(GetCosmosLiveState(state), Util::StringToDateTime(startDate), round, roundSecondsRemaining, playerCount);
+    CosmosLiveSession cosmosLiveSession(StringToCosmosLiveState(state), Util::StringToDateTime(startDate), round, roundSecondsRemaining, playerCount);
     return cosmosLiveSession;
 }
 
