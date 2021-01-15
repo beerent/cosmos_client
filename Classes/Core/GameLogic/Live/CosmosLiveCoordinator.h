@@ -44,7 +44,9 @@ private:
     bool CosmosLiveUpdateRequestIsPending() const;
     void CancelCosmosLiveUpdateRequest();
     void CloseCosmosLiveUpdateRequest();
-    
+
+    void UpdateSession(const CosmosLiveSession& session);
+    bool ShouldUpdateSession(const CosmosLiveSession& session) const;
     bool SessionsAreEqual(const CosmosLiveSession& sessionA, const CosmosLiveSession& sessionB) const;
     
     CosmosLiveSession RestToCosmosLiveSession(const json11::Json& json) const;

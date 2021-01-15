@@ -33,10 +33,14 @@ void CosmosLiveCoordinator::RestReceived(const std::string& rest) {
     CloseCosmosLiveUpdateRequest();
 
     json11::Json json = JsonProvider::ParseString(rest);
-    CosmosLiveSession cosmosLiveSession = RestToCosmosLiveSession(json);
-    if (!SessionsAreEqual(m_currentLiveSession, cosmosLiveSession)) {
-        
+    CosmosLiveSession session = RestToCosmosLiveSession(json);
+    if (ShouldUpdateSession(session)) {
+        UpdateSession(session);
     }
+}
+    
+bool CosmosLiveCoordinator::ShouldUpdateSession(const CosmosLiveSession& session) const {
+    return !SessionsAreEqual(m_currentLiveSession, session);
 }
 
 bool CosmosLiveCoordinator::SessionsAreEqual(const CosmosLiveSession& sessionA, const CosmosLiveSession& sessionB) const {
@@ -44,6 +48,11 @@ bool CosmosLiveCoordinator::SessionsAreEqual(const CosmosLiveSession& sessionA, 
     const std::string sessionBHash = sessionB.GetHash();
     
     return sessionAHash == sessionBHash;
+}
+
+void CosmosLiveCoordinator::UpdateSession(const CosmosLiveSession& session) {
+    //alert UI of change
+    m_currentLiveSession = session;
 }
 
 CosmosLiveSession CosmosLiveCoordinator::RestToCosmosLiveSession(const json11::Json& json) const {
