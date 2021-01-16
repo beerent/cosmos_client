@@ -30,7 +30,9 @@ void UIStateChallengeMode::OnEnterState() {
 
 void UIStateChallengeMode::OnExitState() {
 	m_challengeModeWidget->Release();
-	BaseStateDepricated::OnExitState();
+    delete m_challengeModeWidget;
+
+    BaseStateDepricated::OnExitState();
 }
 
 void UIStateChallengeMode::RegisterQuestionsReadyReceiver() {

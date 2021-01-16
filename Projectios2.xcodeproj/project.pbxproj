@@ -269,6 +269,8 @@
 		81FDE8D521FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */; };
 		874FED6325789B07005B2059 /* LoadingScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 874FED6225789B07005B2059 /* LoadingScreenImage.png */; };
 		87551C92257C78BF00F23E57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87551C8A257C77EC00F23E57 /* StoreKit.framework */; };
+		877666D125B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877666CF25B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp */; };
+		877666D725B307FF00B6F8AD /* LoadingWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877666D525B307FF00B6F8AD /* LoadingWidget.cpp */; };
 		87ACE0452581343E005C6320 /* DeviceMemoryInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87ACE0432581343E005C6320 /* DeviceMemoryInterface.cpp */; };
 		87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CA14FA2578849600E18697 /* Launch Screen.storyboard */; };
 		87DE70B825AB86D600AC163A /* UIStateCosmosLiveLobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87DE70B725AB86D600AC163A /* UIStateCosmosLiveLobby.cpp */; };
@@ -937,6 +939,10 @@
 		874FED6225789B07005B2059 /* LoadingScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreenImage.png; sourceTree = "<group>"; };
 		87551C8A257C77EC00F23E57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		87551C8E257C78AF00F23E57 /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = SDKROOT; };
+		877666CF25B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CosmosLiveClosedWidget.cpp; path = Core/GUI/Widgets/Live/Closed/CosmosLiveClosedWidget.cpp; sourceTree = "<group>"; };
+		877666D025B2F70300B6F8AD /* CosmosLiveClosedWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLiveClosedWidget.h; path = Core/GUI/Widgets/Live/Closed/CosmosLiveClosedWidget.h; sourceTree = "<group>"; };
+		877666D525B307FF00B6F8AD /* LoadingWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadingWidget.cpp; path = Core/GUI/Widgets/Loading/LoadingWidget.cpp; sourceTree = "<group>"; };
+		877666D625B307FF00B6F8AD /* LoadingWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingWidget.h; path = Core/GUI/Widgets/Loading/LoadingWidget.h; sourceTree = "<group>"; };
 		87ACE041258133F1005C6320 /* IDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDeviceUtil.h; path = Core/General/IDeviceUtil.h; sourceTree = "<group>"; };
 		87ACE0432581343E005C6320 /* DeviceMemoryInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DeviceMemoryInterface.cpp; path = Core/General/DeviceMemoryInterface.cpp; sourceTree = "<group>"; };
 		87ACE0442581343E005C6320 /* DeviceMemoryInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceMemoryInterface.h; path = Core/General/DeviceMemoryInterface.h; sourceTree = "<group>"; };
@@ -1850,6 +1856,8 @@
 		1AA204E016FE3502006EBE43 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				877666D425B307E300B6F8AD /* Loading */,
+				877666CD25B2F6B800B6F8AD /* Live */,
 				81E139BF22276F190051A662 /* User */,
 				81B4718721EA12C500F067D5 /* Challenge */,
 				81F0D66721DC0FDE00A81D1F /* Authentication */,
@@ -2351,6 +2359,32 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		877666CD25B2F6B800B6F8AD /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				877666CE25B2F6DD00B6F8AD /* Closed */,
+			);
+			name = Live;
+			sourceTree = "<group>";
+		};
+		877666CE25B2F6DD00B6F8AD /* Closed */ = {
+			isa = PBXGroup;
+			children = (
+				877666CF25B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp */,
+				877666D025B2F70300B6F8AD /* CosmosLiveClosedWidget.h */,
+			);
+			name = Closed;
+			sourceTree = "<group>";
+		};
+		877666D425B307E300B6F8AD /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				877666D525B307FF00B6F8AD /* LoadingWidget.cpp */,
+				877666D625B307FF00B6F8AD /* LoadingWidget.h */,
+			);
+			name = Loading;
+			sourceTree = "<group>";
+		};
 		87ACE040258133E4005C6320 /* General */ = {
 			isa = PBXGroup;
 			children = (
@@ -2728,6 +2762,7 @@
 				1A8BD12E18A32D30000D10C0 /* Bullet-C-API.cpp in Sources */,
 				1A8BD3A118A3312D000D10C0 /* btTriangleCallback.cpp in Sources */,
 				1AFB25951D0C84C000C5BFFB /* DebugLogic.cpp in Sources */,
+				877666D725B307FF00B6F8AD /* LoadingWidget.cpp in Sources */,
 				1A5E437B1A9D692700A106BA /* PropulsionEntity.cpp in Sources */,
 				1A8BD2F918A3312C000D10C0 /* btDispatcher.cpp in Sources */,
 				1A1523271A8C4B92003F7F81 /* DebugOverLayWidget.cpp in Sources */,
@@ -2740,6 +2775,7 @@
 				1A8BD12718A32D30000D10C0 /* btSliderConstraint.cpp in Sources */,
 				BABA368520B64F1B00E312A8 /* AICharacterControler.cpp in Sources */,
 				1A8BD37D18A3312D000D10C0 /* btSimulationIslandManager.cpp in Sources */,
+				877666D125B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp in Sources */,
 				1A8BD38618A3312D000D10C0 /* btCapsuleShape.cpp in Sources */,
 				1AFB26011D0C8E8B00C5BFFB /* UILabel.cpp in Sources */,
 				81DB2F9721F5F801000F4135 /* ChallengeDataProviderFake.cpp in Sources */,

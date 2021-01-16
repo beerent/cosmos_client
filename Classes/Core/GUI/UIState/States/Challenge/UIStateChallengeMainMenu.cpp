@@ -30,6 +30,8 @@ void UIStateChallengeMainMenu::OnEnterState() {
 
 void UIStateChallengeMainMenu::OnExitState() {
 	m_challengeMenuWidget->Release();
+    delete m_challengeMenuWidget;
+    
     m_leaderboardLoader.UnregisterLoadLeaderboardListener();
     m_authenticator.UnregisterAuthenticationResultListener();
 	BaseStateDepricated::OnExitState();

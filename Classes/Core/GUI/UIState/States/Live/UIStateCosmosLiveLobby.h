@@ -5,10 +5,13 @@
 #include <Core/GameLogic/Authentication/Authenticator.h>
 #include <Core/GameLogic/Live/CosmosLiveCoordinator.h>
 
+#include <Core/GUI/Widgets/Loading/LoadingWidget.h>
+#include <Core/GUI/Widgets/Live/Closed/CosmosLiveClosedWidget.h>
+
 class UIStateCosmosLiveLobby : public BaseStateDepricated, IAuthenticationResultListener, ICosmosLiveSessionUpdateListener {
 
 public:
-    UIStateCosmosLiveLobby(IStateChanageListenerDepricated* stateChangeListener) : BaseStateDepricated(stateChangeListener) {};
+    UIStateCosmosLiveLobby(IStateChanageListenerDepricated* stateChangeListener) : BaseStateDepricated(stateChangeListener), m_loadingWidget(nullptr), m_closedWidget(nullptr) {};
     CONST_STRING_DEC(UI_STATE_COSMOS_LIVE_LOBBY)
 
     virtual void OnEnterState();
@@ -20,12 +23,17 @@ public:
     virtual STRING_ID GetStateID() { return UI_STATE_COSMOS_LIVE_LOBBY; }
 
 private:
-    Authenticator m_authenticator;
-    
-    CosmosLiveCoordinator m_cosmosLiveCoordinator;
-    
     void SubmitGuestLoginRequest();
-    // ChallengeMenuWidget* m_challengeMenuWidget;
+    void HandleClosedSessionUpdate();
+    void OnMainMenuItemSelected(CosmosLiveClosedWidget::MenuItems selectedItem);
+    void DisplayLoading();
+    void TakeDownLoading();
+    bool IsLoadingDisplayed() const;
+
+    Authenticator m_authenticator;
+    CosmosLiveCoordinator m_cosmosLiveCoordinator;
+    LoadingWidget* m_loadingWidget;
+    CosmosLiveClosedWidget* m_closedWidget;
 
     // ChallengeLeaderboardLoader m_leaderboardLoader;
     // ChallengeLeaderboard m_leaderboard;
