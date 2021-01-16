@@ -8,6 +8,10 @@ CosmosLiveSession::CosmosLiveSession()
 CosmosLiveSession::CosmosLiveSession(CosmosLiveState state, std::time_t startTimeUTC, int round, int roundSecondsRemaining, int playerCount)
   : m_state(state), m_startTimeUTC(startTimeUTC), m_round(round), m_roundSecondsRemaining(roundSecondsRemaining), m_playerCount(playerCount) {}
 
+CosmosLiveState CosmosLiveSession::GetState() const {
+    return m_state;
+}
+
 std::string CosmosLiveSession::GetHash() const {
     return CosmosLiveStateToString(m_state) + std::to_string(m_startTimeUTC) + std::to_string(m_round) + std::to_string(m_roundSecondsRemaining) + std::to_string(m_playerCount);
 }

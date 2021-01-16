@@ -9,7 +9,7 @@ namespace requests {
     const std::string LIVE = "live";
 }
 
-CosmosLiveCoordinator::CosmosLiveCoordinator() : m_timer(this) {
+CosmosLiveCoordinator::CosmosLiveCoordinator() : m_timer(this), m_cosmosLiveSessionUpdateListener(nullptr) {
     m_restConnector = IEngine::getEngine()->GetRestConnector();
 }
 
@@ -38,6 +38,22 @@ void CosmosLiveCoordinator::RestReceived(const std::string& rest) {
         UpdateSession(session);
     }
 }
+
+void CosmosLiveCoordinator::UpdateSession(const CosmosLiveSession& session) {
+    m_currentLiveSession = session;
+    
+    if (m_cosmosLiveSessionUpdateListener != nullptr) {
+        m_cosmosLiveSessionUpdateListener->OnCosmosLiveSessionUpdated(session);
+    }
+}
+
+void CosmosLiveCoordinator::RegisterCosmosLiveSessionUpdateListener(ICosmosLiveSessionUpdateListener* listener) {
+    m_cosmosLiveSessionUpdateListener = listener;
+}
+
+void CosmosLiveCoordinator::DeregisterCosmosLiveSessionUpdateListener() {
+    m_cosmosLiveSessionUpdateListener = nullptr;
+}
     
 bool CosmosLiveCoordinator::ShouldUpdateSession(const CosmosLiveSession& session) const {
     return !SessionsAreEqual(m_currentLiveSession, session);
@@ -48,11 +64,6 @@ bool CosmosLiveCoordinator::SessionsAreEqual(const CosmosLiveSession& sessionA, 
     const std::string sessionBHash = sessionB.GetHash();
     
     return sessionAHash == sessionBHash;
-}
-
-void CosmosLiveCoordinator::UpdateSession(const CosmosLiveSession& session) {
-    //alert UI of change
-    m_currentLiveSession = session;
 }
 
 CosmosLiveSession CosmosLiveCoordinator::RestToCosmosLiveSession(const json11::Json& json) const {

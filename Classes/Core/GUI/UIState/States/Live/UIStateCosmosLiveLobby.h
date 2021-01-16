@@ -5,7 +5,7 @@
 #include <Core/GameLogic/Authentication/Authenticator.h>
 #include <Core/GameLogic/Live/CosmosLiveCoordinator.h>
 
-class UIStateCosmosLiveLobby : public BaseStateDepricated, IAuthenticationResultListener {
+class UIStateCosmosLiveLobby : public BaseStateDepricated, IAuthenticationResultListener, ICosmosLiveSessionUpdateListener {
 
 public:
     UIStateCosmosLiveLobby(IStateChanageListenerDepricated* stateChangeListener) : BaseStateDepricated(stateChangeListener) {};
@@ -15,6 +15,7 @@ public:
     virtual void OnExitState();
     
     virtual void OnAuthenticationResultReceived(AuthenticationResult result);
+    virtual void OnCosmosLiveSessionUpdated(const CosmosLiveSession& session);
     
     virtual STRING_ID GetStateID() { return UI_STATE_COSMOS_LIVE_LOBBY; }
 

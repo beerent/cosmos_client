@@ -10,11 +10,13 @@
 CONST_STRING_DEF(UIStateCosmosLiveLobby, UI_STATE_COSMOS_LIVE_LOBBY)
 
 void UIStateCosmosLiveLobby::OnEnterState() {
+    m_cosmosLiveCoordinator.RegisterCosmosLiveSessionUpdateListener(this);
     SubmitGuestLoginRequest();
     BaseStateDepricated::OnEnterState();
 }
 
 void UIStateCosmosLiveLobby::OnExitState() {
+    m_cosmosLiveCoordinator.DeregisterCosmosLiveSessionUpdateListener();
     BaseStateDepricated::OnExitState();
 }
 
@@ -29,9 +31,26 @@ void UIStateCosmosLiveLobby::SubmitGuestLoginRequest() {
 void UIStateCosmosLiveLobby::OnAuthenticationResultReceived(AuthenticationResult result) {
     if (AuthenticationResult::SUCCESS == result) {
         m_cosmosLiveCoordinator.Start();
-        //IEngine::getEngine()->GetUserProvider()->LogIn();
-        //m_challengeMenuWidget->AddNewGameButton();
     } else {
         //display some error
+    }
+}
+
+void UIStateCosmosLiveLobby::OnCosmosLiveSessionUpdated(const CosmosLiveSession& session) {
+    switch(session.GetState()) {
+        case CosmosLiveState::CLOSED:
+            break;
+            
+        case CosmosLiveState::PRE_GAME_LOBBY:
+            break;
+            
+        case CosmosLiveState::IN_GAME:
+            break;
+            
+        case CosmosLiveState::POST_GAME_LOBBY:
+            break;
+            
+        default:
+            break;
     }
 }

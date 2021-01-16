@@ -23,6 +23,11 @@
 *   - if state is different than previously recorded state, report change with associated data
 */
 
+class ICosmosLiveSessionUpdateListener {
+public:
+    virtual void OnCosmosLiveSessionUpdated(const CosmosLiveSession& session) = 0;
+};
+
 class CosmosLiveCoordinator : public IRestReceiver, Timer::SimpleTimerListener {
 public:
     CosmosLiveCoordinator();
@@ -31,9 +36,14 @@ public:
     
     virtual void OnTimerEvent(Timer::TimerType type);
     virtual void RestReceived(const std::string& rest);
+    
+    void RegisterCosmosLiveSessionUpdateListener(ICosmosLiveSessionUpdateListener* listener);
+    void DeregisterCosmosLiveSessionUpdateListener();
 
 private:
     CosmosLiveSession m_currentLiveSession;
+    
+    ICosmosLiveSessionUpdateListener* m_cosmosLiveSessionUpdateListener;
     
     IRestConnector* m_restConnector;
     std::string m_liveRequestId;
