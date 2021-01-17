@@ -5,28 +5,27 @@
 #include "Core/GameState/GameStateMachine.h"
 #include "IEngine.h"
 #include <Core/GameLogic/Challenge/Leaderboard/ChallengeLeaderboardLoader.h>
+#include <Core/GameLogic/Live/CosmosLiveStates.h>
 
 
 CONST_STRING_DEF(UIStateCosmosLiveLobby, UI_STATE_COSMOS_LIVE_LOBBY)
 
+static CosmosLiveState currentState = CosmosLiveState::INVALID;
+
 void UIStateCosmosLiveLobby::OnEnterState() {
-    DisplayLoading();
+    if (currentState == CosmosLiveState::INVALID) {
+        DisplayLoading();
+
+        m_cosmosLiveCoordinator.RegisterCosmosLiveSessionUpdateListener(this);
+        SubmitGuestLoginRequest();
+    } else if (currentState == CosmosLiveState::CLOSED) {
+        DisplayClosed();
+    }
     
-    m_closedWidget = new CosmosLiveClosedWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
-    
-    CosmosLiveClosedWidget::onMenuItemSelectedCallBack callback;
-    callback.bind(this, &UIStateCosmosLiveLobby::OnMainMenuItemSelected);
-    m_closedWidget->RegisterForChallengeMenuItemSelectedEvent(callback);
-    
-    m_cosmosLiveCoordinator.RegisterCosmosLiveSessionUpdateListener(this);
-    SubmitGuestLoginRequest();
     BaseStateDepricated::OnEnterState();
 }
 
 void UIStateCosmosLiveLobby::OnExitState() {
-    m_closedWidget->Release();
-    delete m_closedWidget;
-
     m_cosmosLiveCoordinator.DeregisterCosmosLiveSessionUpdateListener();
     BaseStateDepricated::OnExitState();
 }
@@ -48,34 +47,16 @@ void UIStateCosmosLiveLobby::OnAuthenticationResultReceived(AuthenticationResult
 }
 
 void UIStateCosmosLiveLobby::OnCosmosLiveSessionUpdated(const CosmosLiveSession& session) {
-    if (IsLoadingDisplayed()) {
-        TakeDownLoading();
-    }
+    currentState = session.GetState();
+    ChangeState(UIStateCosmosLiveLobby::UI_STATE_COSMOS_LIVE_LOBBY);
     
-    switch(session.GetState()) {
-        case CosmosLiveState::CLOSED:
-            HandleClosedSessionUpdate();
-            break;
-            
-        case CosmosLiveState::PRE_GAME_LOBBY:
-            break;
-            
-        case CosmosLiveState::IN_GAME:
-            break;
-            
-        case CosmosLiveState::POST_GAME_LOBBY:
-            break;
-            
-        default:
-            break;
-    }
-}
-
-void UIStateCosmosLiveLobby::HandleClosedSessionUpdate() {
-    m_closedWidget->Init();
+    TakeDownLoading();
 }
 
 void UIStateCosmosLiveLobby::OnMainMenuItemSelected(CosmosLiveClosedWidget::MenuItems selectedItem) {
+    currentState = CosmosLiveState::INVALID;
+    TakeDownClosed();
+    
     if (selectedItem == CosmosLiveClosedWidget::LOAD_MAIN_MENU) {
         ChangeState(UIStateMainMenu::UI_STATE_MAINMENU);
     }
@@ -91,6 +72,17 @@ void UIStateCosmosLiveLobby::TakeDownLoading() {
     delete m_loadingWidget;
 }
 
-bool UIStateCosmosLiveLobby::IsLoadingDisplayed() const {
-    return m_loadingWidget != nullptr;
+void UIStateCosmosLiveLobby::DisplayClosed() {
+    m_closedWidget = new CosmosLiveClosedWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
+    
+    CosmosLiveClosedWidget::onMenuItemSelectedCallBack callback;
+    callback.bind(this, &UIStateCosmosLiveLobby::OnMainMenuItemSelected);
+    m_closedWidget->RegisterForChallengeMenuItemSelectedEvent(callback);
+    
+    m_closedWidget->Init();
+}
+
+void UIStateCosmosLiveLobby::TakeDownClosed() {
+    m_closedWidget->Release();
+    delete m_closedWidget;
 }

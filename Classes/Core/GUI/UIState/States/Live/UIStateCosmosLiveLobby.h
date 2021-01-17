@@ -24,22 +24,16 @@ public:
 
 private:
     void SubmitGuestLoginRequest();
-    void HandleClosedSessionUpdate();
     void OnMainMenuItemSelected(CosmosLiveClosedWidget::MenuItems selectedItem);
+    
     void DisplayLoading();
     void TakeDownLoading();
-    bool IsLoadingDisplayed() const;
+    
+    void DisplayClosed();
+    void TakeDownClosed();
 
     Authenticator m_authenticator;
     CosmosLiveCoordinator m_cosmosLiveCoordinator;
     LoadingWidget* m_loadingWidget;
     CosmosLiveClosedWidget* m_closedWidget;
-
-    // ChallengeLeaderboardLoader m_leaderboardLoader;
-    // ChallengeLeaderboard m_leaderboard;
-
-    // void SubmitLoadChallengeLeaderboardRequest();
-    // virtual void OnLeaderboardLoaded(const ChallengeLeaderboardLoadResult& result);
-    // void SubmitGuestLoginRequest();
-    // void OnChallengeMainMenuItemSelected(ChallengeMenuWidget::MenuItems selectedItem);
 };
