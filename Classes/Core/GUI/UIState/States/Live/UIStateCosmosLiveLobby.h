@@ -30,6 +30,10 @@ private:
     void OnMainMenuItemSelected(CosmosLiveClosedWidget::MenuItems selectedItem);
     void OnMainMenuItemSelected(CosmosLivePreGameLobbyWidget::MenuItems selectedItem);
     
+    void UpdateCurrentSession(const CosmosLiveSession& session);
+    void UpdatePreGameLobby(const CosmosLiveSession& session);
+    void ChangeCurrentSession(const CosmosLiveSession& session);
+    
     void DisplayLoading();
     void TakeDownLoading();
     
@@ -39,7 +43,7 @@ private:
     void DisplayPreGameLobby();
     void TakeDownPreGameLobby();
     
-    void TakeDownCurrentState();
+    void TakeDownState(CosmosLiveState state);
 
     Authenticator m_authenticator;
     CosmosLiveCoordinator m_cosmosLiveCoordinator;
