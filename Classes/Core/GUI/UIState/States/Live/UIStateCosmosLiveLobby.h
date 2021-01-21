@@ -7,11 +7,14 @@
 
 #include <Core/GUI/Widgets/Loading/LoadingWidget.h>
 #include <Core/GUI/Widgets/Live/Closed/CosmosLiveClosedWidget.h>
+#include <Core/GUI/Widgets/Live/PreGameLobby/CosmosLivePreGameLobbyWidget.h>
 
 class UIStateCosmosLiveLobby : public BaseStateDepricated, IAuthenticationResultListener, ICosmosLiveSessionUpdateListener {
 
 public:
-    UIStateCosmosLiveLobby(IStateChanageListenerDepricated* stateChangeListener) : BaseStateDepricated(stateChangeListener), m_loadingWidget(nullptr), m_closedWidget(nullptr) {};
+    UIStateCosmosLiveLobby(IStateChanageListenerDepricated* stateChangeListener) :
+      BaseStateDepricated(stateChangeListener), m_loadingWidget(nullptr), m_closedWidget(nullptr), m_preGameLobbyWidget(nullptr), m_cosmosLiveCoordinator() {};
+    
     CONST_STRING_DEC(UI_STATE_COSMOS_LIVE_LOBBY)
 
     virtual void OnEnterState();
@@ -25,15 +28,22 @@ public:
 private:
     void SubmitGuestLoginRequest();
     void OnMainMenuItemSelected(CosmosLiveClosedWidget::MenuItems selectedItem);
+    void OnMainMenuItemSelected(CosmosLivePreGameLobbyWidget::MenuItems selectedItem);
     
     void DisplayLoading();
     void TakeDownLoading();
     
     void DisplayClosed();
     void TakeDownClosed();
+    
+    void DisplayPreGameLobby();
+    void TakeDownPreGameLobby();
+    
+    void TakeDownCurrentState();
 
     Authenticator m_authenticator;
     CosmosLiveCoordinator m_cosmosLiveCoordinator;
     LoadingWidget* m_loadingWidget;
     CosmosLiveClosedWidget* m_closedWidget;
+    CosmosLivePreGameLobbyWidget* m_preGameLobbyWidget;
 };

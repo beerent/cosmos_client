@@ -2,12 +2,12 @@
 
 #include <Core/GUI/Components/UIComponentFactory.h>
 
-class CosmosLiveClosedWidget {
+class CosmosLivePreGameLobbyWidget {
 public:
     enum MenuItems { LOAD_MAIN_MENU };
     typedef fastdelegate::FastDelegate1<MenuItems> onMenuItemSelectedCallBack;
     
-    CosmosLiveClosedWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent);
+    CosmosLivePreGameLobbyWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent);
 
     void Init();
     void Release();
@@ -15,12 +15,14 @@ public:
     void RegisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
     void UnregisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
     
+    void UpdateActiveUsers(int users);
+    
 private:
     void AddProfileWindow();
     void AddProfileFrame();
     void AddHomeButton();
     void AddTitleButton();
-    void AddMessage();
+    void AddActiveUsers();
     void AddUsername();
     
     void OnHomePressed(UITouchButton::ButtonState state);
@@ -33,7 +35,7 @@ private:
     UIComponent* m_profileWindow;
     UIComponent* m_profileFrame;
     UILabel* m_title;
-    UILabel* m_message;
+    UILabel* m_activeUsers;
     UILabel* m_home;
     
     UILabel* m_currentUsername;

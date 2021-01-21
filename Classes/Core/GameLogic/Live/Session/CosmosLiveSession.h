@@ -13,6 +13,7 @@ public:
     CosmosLiveSession(CosmosLiveState state, std::time_t startTimeUTC, int round, int roundSecondsRemaining, int playerCount);
     
     CosmosLiveState GetState() const;
+    int GetPlayerCount() const;
     
     std::string GetHash() const;
     

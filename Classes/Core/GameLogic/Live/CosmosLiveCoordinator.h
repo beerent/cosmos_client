@@ -39,6 +39,8 @@ public:
     
     void RegisterCosmosLiveSessionUpdateListener(ICosmosLiveSessionUpdateListener* listener);
     void DeregisterCosmosLiveSessionUpdateListener();
+    
+    void UpdateSession(const CosmosLiveSession& session);
 
 private:
     CosmosLiveSession m_currentLiveSession;
@@ -55,7 +57,6 @@ private:
     void CancelCosmosLiveUpdateRequest();
     void CloseCosmosLiveUpdateRequest();
 
-    void UpdateSession(const CosmosLiveSession& session);
     bool ShouldUpdateSession(const CosmosLiveSession& session) const;
     bool SessionsAreEqual(const CosmosLiveSession& sessionA, const CosmosLiveSession& sessionB) const;
     

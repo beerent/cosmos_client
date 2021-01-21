@@ -12,6 +12,10 @@ CosmosLiveState CosmosLiveSession::GetState() const {
     return m_state;
 }
 
+int CosmosLiveSession::GetPlayerCount() const {
+    return m_playerCount;
+}
+
 std::string CosmosLiveSession::GetHash() const {
     return CosmosLiveStateToString(m_state) + std::to_string(m_startTimeUTC) + std::to_string(m_round) + std::to_string(m_roundSecondsRemaining) + std::to_string(m_playerCount);
 }

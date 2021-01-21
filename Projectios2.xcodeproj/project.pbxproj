@@ -267,6 +267,7 @@
 		81F0D66A21DC0FFA00A81D1F /* AuthenticationInputWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81F0D66821DC0FFA00A81D1F /* AuthenticationInputWidget.cpp */; };
 		81F0D66E21DC104D00A81D1F /* AuthenticationState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81F0D66D21DC104D00A81D1F /* AuthenticationState.cpp */; };
 		81FDE8D521FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */; };
+		871BB2DB25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 871BB2DA25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp */; };
 		874FED6325789B07005B2059 /* LoadingScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 874FED6225789B07005B2059 /* LoadingScreenImage.png */; };
 		87551C92257C78BF00F23E57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87551C8A257C77EC00F23E57 /* StoreKit.framework */; };
 		877666D125B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877666CF25B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp */; };
@@ -936,6 +937,8 @@
 		81FD1A3E23D367ED00C3BA0C /* UsernameGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UsernameGenerator.h; path = Core/Util/UsernameGenerator.h; sourceTree = "<group>"; };
 		81FDE8D321FA6C1D00F2BBB2 /* ChallengeDataProviderLive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChallengeDataProviderLive.h; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.h; sourceTree = "<group>"; };
 		81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChallengeDataProviderLive.cpp; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.cpp; sourceTree = "<group>"; };
+		871BB2D925B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLivePreGameLobbyWidget.h; path = Core/GUI/Widgets/Live/PreGameLobby/CosmosLivePreGameLobbyWidget.h; sourceTree = "<group>"; };
+		871BB2DA25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CosmosLivePreGameLobbyWidget.cpp; path = Core/GUI/Widgets/Live/PreGameLobby/CosmosLivePreGameLobbyWidget.cpp; sourceTree = "<group>"; };
 		874FED6225789B07005B2059 /* LoadingScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreenImage.png; sourceTree = "<group>"; };
 		87551C8A257C77EC00F23E57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		87551C8E257C78AF00F23E57 /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = SDKROOT; };
@@ -2351,6 +2354,15 @@
 			name = Authentication;
 			sourceTree = "<group>";
 		};
+		871BB2D425B99D2F00DB03BB /* PreGameLobby */ = {
+			isa = PBXGroup;
+			children = (
+				871BB2DA25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp */,
+				871BB2D925B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.h */,
+			);
+			name = PreGameLobby;
+			sourceTree = "<group>";
+		};
 		874FED6125789AEF005B2059 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -2362,6 +2374,7 @@
 		877666CD25B2F6B800B6F8AD /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				871BB2D425B99D2F00DB03BB /* PreGameLobby */,
 				877666CE25B2F6DD00B6F8AD /* Closed */,
 			);
 			name = Live;
@@ -2689,6 +2702,7 @@
 				1AFB25881D0C841100C5BFFB /* WaterPlaneEntity.cpp in Sources */,
 				1A882C231BD2D4CF0055B0B9 /* TimeEventGenerator.cpp in Sources */,
 				1AFB25FF1D0C8E8B00C5BFFB /* UIComponent.cpp in Sources */,
+				871BB2DB25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp in Sources */,
 				1A5C7A041FD8EE5B00CD9788 /* PhysicsObjectFactory.cpp in Sources */,
 				BABA366E20B64E1900E312A8 /* NCPAIFactory.cpp in Sources */,
 				1A8BD38918A3312D000D10C0 /* btConcaveShape.cpp in Sources */,
