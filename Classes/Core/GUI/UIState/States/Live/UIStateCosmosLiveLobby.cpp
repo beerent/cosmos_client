@@ -10,16 +10,25 @@
 
 CONST_STRING_DEF(UIStateCosmosLiveLobby, UI_STATE_COSMOS_LIVE_LOBBY)
 
-static CosmosLiveState currentState = CosmosLiveState::INVALID;
+static CosmosLiveSession currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
 
 void UIStateCosmosLiveLobby::OnEnterState() {
-    if (currentState == CosmosLiveState::INVALID) {
-        DisplayLoading();
+    switch (currentSession.GetState()) {
+        case CosmosLiveState::PRE_GAME_LOBBY:
+            //DisplayPreGameLobby();
+            break;
+            
+        case CosmosLiveState::CLOSED:
+            DisplayClosed();
+            break;
+            
+        case CosmosLiveState::INVALID:
+        default:
+            DisplayLoading();
 
-        m_cosmosLiveCoordinator.RegisterCosmosLiveSessionUpdateListener(this);
-        SubmitGuestLoginRequest();
-    } else if (currentState == CosmosLiveState::CLOSED) {
-        DisplayClosed();
+            m_cosmosLiveCoordinator.RegisterCosmosLiveSessionUpdateListener(this);
+            SubmitGuestLoginRequest();
+            break;
     }
     
     BaseStateDepricated::OnEnterState();
@@ -47,14 +56,14 @@ void UIStateCosmosLiveLobby::OnAuthenticationResultReceived(AuthenticationResult
 }
 
 void UIStateCosmosLiveLobby::OnCosmosLiveSessionUpdated(const CosmosLiveSession& session) {
-    currentState = session.GetState();
+    currentSession = session;
     ChangeState(UIStateCosmosLiveLobby::UI_STATE_COSMOS_LIVE_LOBBY);
     
     TakeDownLoading();
 }
 
 void UIStateCosmosLiveLobby::OnMainMenuItemSelected(CosmosLiveClosedWidget::MenuItems selectedItem) {
-    currentState = CosmosLiveState::INVALID;
+    currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
     TakeDownClosed();
     
     if (selectedItem == CosmosLiveClosedWidget::LOAD_MAIN_MENU) {

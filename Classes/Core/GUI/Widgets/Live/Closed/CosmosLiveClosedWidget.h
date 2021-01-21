@@ -21,6 +21,7 @@ private:
     void AddHomeButton();
     void AddTitleButton();
     void AddMessageButton();
+    void AddUsername();
     
     void OnHomePressed(UITouchButton::ButtonState state);
     
@@ -34,4 +35,6 @@ private:
     UILabel* m_title;
     UILabel* m_message;
     UILabel* m_home;
+    
+    UILabel* m_currentUsername;
 };

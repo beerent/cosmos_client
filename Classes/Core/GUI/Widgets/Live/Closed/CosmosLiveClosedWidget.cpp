@@ -5,7 +5,7 @@ const float LABEL_HEIGHT = 90.0;
 const float LABEL_WIDTH = 585.0;
 
 CosmosLiveClosedWidget::CosmosLiveClosedWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
-m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_message(nullptr), m_home(nullptr) {}
+m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_message(nullptr), m_home(nullptr), m_currentUsername(nullptr) {}
 
 void CosmosLiveClosedWidget::Init() {
     AddProfileWindow();
@@ -13,11 +13,21 @@ void CosmosLiveClosedWidget::Init() {
     AddHomeButton();
     AddTitleButton();
     AddMessageButton();
+    AddUsername();
 }
 
 void CosmosLiveClosedWidget::Release() {
     m_home->release();
     delete m_home;
+    
+    m_title->release();
+    delete m_title;
+    
+    m_message->release();
+    delete m_message;
+    
+    m_currentUsername->release();
+    delete m_currentUsername;
     
     m_profileWindow->release();
     delete m_profileWindow;
@@ -70,6 +80,15 @@ void CosmosLiveClosedWidget::AddMessageButton() {
     m_message->setY(12.0);
 
     m_profileFrame->addChild(m_message);
+}
+
+void CosmosLiveClosedWidget::AddUsername() {
+    const std::string username = IEngine::getEngine()->GetUserProvider()->GetUser().GetUsername();
+    float usernameWidth = 12.5 * username.size();
+    m_currentUsername = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", usernameWidth, 60, UIComponent::ANCHOR_TOP_RIGHT, username);
+    m_currentUsername->setDropShadowColor(dropShadowColor);
+    m_currentUsername->setX(80);
+    m_parentComponent->addChild(m_currentUsername);
 }
 
 void CosmosLiveClosedWidget::OnHomePressed(UITouchButton::ButtonState state) {
