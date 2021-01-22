@@ -17,6 +17,9 @@ void LoadingWidget::Release() {
     delete m_loading;
 }
 
+void LoadingWidget::SetVisible(bool visible) {
+    m_loading->setVisible(visible);
+}
 
 void LoadingWidget::AddLoadingMessage() {
     m_loading = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_CENTER, "loading...");

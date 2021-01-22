@@ -14,7 +14,9 @@ CONST_STRING_DEF(UIStateCosmosLiveLobby, UI_STATE_COSMOS_LIVE_LOBBY)
 
 void UIStateCosmosLiveLobby::OnEnterState() {
     DisplayLoading();
+    DisplayClosed();
     DisplayPreGameLobby();
+    
     m_cosmosLiveCoordinator.RegisterCosmosLiveSessionUpdateListener(this);
     SubmitGuestLoginRequest();
     
@@ -23,6 +25,7 @@ void UIStateCosmosLiveLobby::OnEnterState() {
 
 void UIStateCosmosLiveLobby::OnExitState() {
     m_cosmosLiveCoordinator.DeregisterCosmosLiveSessionUpdateListener();
+    TakeDownAllWidgets();
     BaseStateDepricated::OnExitState();
 }
 
@@ -35,7 +38,12 @@ void UIStateCosmosLiveLobby::SubmitGuestLoginRequest() {
 }
 
 void UIStateCosmosLiveLobby::OnAuthenticationResultReceived(AuthenticationResult result) {
+    // This is not the ideal location to set visiblity but it works... I think the
+    // UI needs to load in place before we actually set it not visible. Otherwise you see the
+    // drawing of the UI.
     m_preGameLobbyWidget->SetVisible(false);
+    m_closedWidget->SetVisible(false);
+    
     if (AuthenticationResult::SUCCESS == result) {
         m_cosmosLiveCoordinator.Start();
     } else {
@@ -60,8 +68,6 @@ void UIStateCosmosLiveLobby::UpdateCurrentSession(const CosmosLiveSession& sessi
         default:
             break;
     }
-    
-    //currentSession = session;
 }
 
 void UIStateCosmosLiveLobby::UpdatePreGameLobby(const CosmosLiveSession& session) {
@@ -77,15 +83,15 @@ void UIStateCosmosLiveLobby::ChangeCurrentSession(const CosmosLiveSession& sessi
 void UIStateCosmosLiveLobby::DeactivateState(CosmosLiveState state) {
     switch(state) {
         case CosmosLiveState::INVALID:
-            TakeDownLoading();
+            m_loadingWidget->SetVisible(false);
             break;
 
         case CosmosLiveState::CLOSED:
-            TakeDownClosed();
+            m_closedWidget->SetVisible(false);
             break;
 
         case CosmosLiveState::PRE_GAME_LOBBY:
-            TakeDownPreGameLobby();
+            m_preGameLobbyWidget->SetVisible(false);
             break;
             
         default:
@@ -101,7 +107,7 @@ void UIStateCosmosLiveLobby::ActivateState(const CosmosLiveSession& session) {
             break;
             
         case CosmosLiveState::CLOSED:
-            DisplayClosed();
+            m_closedWidget->SetVisible(true);
             break;
             
         case CosmosLiveState::INVALID:
@@ -112,18 +118,12 @@ void UIStateCosmosLiveLobby::ActivateState(const CosmosLiveSession& session) {
 }
 
 void UIStateCosmosLiveLobby::OnMainMenuItemSelected(CosmosLiveClosedWidget::MenuItems selectedItem) {
-    //currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
-    TakeDownClosed();
-    
     if (selectedItem == CosmosLiveClosedWidget::LOAD_MAIN_MENU) {
         ChangeState(UIStateMainMenu::UI_STATE_MAINMENU);
     }
 }
 
 void UIStateCosmosLiveLobby::OnMainMenuItemSelected(CosmosLivePreGameLobbyWidget::MenuItems selectedItem) {
-    //currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
-    TakeDownPreGameLobby();
-    
     if (selectedItem == CosmosLivePreGameLobbyWidget::LOAD_MAIN_MENU) {
         ChangeState(UIStateMainMenu::UI_STATE_MAINMENU);
     }
@@ -167,4 +167,10 @@ void UIStateCosmosLiveLobby::DisplayPreGameLobby() {
 void UIStateCosmosLiveLobby::TakeDownPreGameLobby() {
     m_preGameLobbyWidget->Release();
     delete m_preGameLobbyWidget;
+}
+
+void UIStateCosmosLiveLobby::TakeDownAllWidgets() {
+    TakeDownLoading();
+    TakeDownClosed();
+    TakeDownPreGameLobby();
 }

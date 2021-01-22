@@ -43,6 +43,8 @@ private:
     void DisplayPreGameLobby();
     void TakeDownPreGameLobby();
     
+    void TakeDownAllWidgets();
+    
     void DeactivateState(CosmosLiveState state);
     void ActivateState(const CosmosLiveSession& session);
 

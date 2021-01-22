@@ -9,6 +9,7 @@ public:
 
     void Init();
     void Release();
+    void SetVisible(bool visible);
     
 private:
     void AddLoadingMessage();
