@@ -147,6 +147,7 @@ std::string UILabel::GetText() {
 
 void UILabel::setTextString(const std::string& text) {
 	m_text_backing = text;
+    m_textBackingSaved = text;
 	//This is terrible we are leaking string IDs, but we need to do this
 	//so that we return a const char* string, since the font renderable uses an odd 
 	//rendering optimization that creates a new buffer for every string rendered!

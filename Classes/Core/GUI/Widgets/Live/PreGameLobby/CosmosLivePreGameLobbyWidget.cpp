@@ -46,7 +46,6 @@ void CosmosLivePreGameLobbyWidget::AddProfileWindow() {
     m_profileWindow = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("UIGroupArchetype"));
     m_profileWindow->setWidth(m_parentComponent->getWidth());
     m_profileWindow->setHeight(m_parentComponent->getHeight());
-    m_profileWindow->setVisible(false);
     m_parentComponent->addChild(m_profileWindow);
 }
 

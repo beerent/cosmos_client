@@ -106,7 +106,7 @@ public:
     virtual void onInputEvent(InputManager::InputEvent event, InputManager::InputEventData data, bool &captured);
     virtual void release();
     
-    void setVisible(bool value){mVisible = value;};
+    virtual void setVisible(bool value){mVisible = value;};
     bool getVisible(){return mVisible;};
     
 protected:

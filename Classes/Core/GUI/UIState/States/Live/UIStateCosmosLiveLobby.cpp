@@ -35,6 +35,7 @@ void UIStateCosmosLiveLobby::SubmitGuestLoginRequest() {
 }
 
 void UIStateCosmosLiveLobby::OnAuthenticationResultReceived(AuthenticationResult result) {
+    m_preGameLobbyWidget->SetVisible(false);
     if (AuthenticationResult::SUCCESS == result) {
         m_cosmosLiveCoordinator.Start();
     } else {

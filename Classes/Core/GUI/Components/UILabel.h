@@ -42,6 +42,15 @@ public:
     void setDropShadowAlpha(float a);
     void setDropShadow(bool enabled){m_dropShadow = enabled;};
 	void setStyle(const Style& style);
+    virtual void setVisible(bool visible) {
+        if (visible) {
+            m_text_backing = m_textBackingSaved;
+        } else {
+            m_text_backing = "";
+        }
+        
+        setText(ID_TO_STRING(STRING_TO_ID(m_text_backing))->c_str());
+    }
 
 protected:
     void init(PropertyCollection &propertyCollection);
@@ -58,6 +67,7 @@ private:
     AnchorType        m_textLayout;
     
     std::string m_text_backing;
+    std::string m_textBackingSaved;
 	const char* m_text;
 
     void setFontVisual(STRING_ID id);

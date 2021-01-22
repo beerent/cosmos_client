@@ -33,6 +33,14 @@ void CosmosLiveClosedWidget::Release() {
     delete m_profileWindow;
 }
 
+void CosmosLiveClosedWidget::SetVisible(bool visible) {
+    m_profileWindow->setVisible(visible);
+    m_profileFrame->setVisible(visible);
+    m_currentUsername->setVisible(visible);
+    m_title->setVisible(visible);
+    m_home->setVisible(visible);
+}
+
 void CosmosLiveClosedWidget::AddProfileWindow() {
     m_profileWindow = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("UIGroupArchetype"));
     m_profileWindow->setWidth(m_parentComponent->getWidth());

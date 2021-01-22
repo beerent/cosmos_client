@@ -12,6 +12,8 @@ public:
     void Init();
     void Release();
     
+    void SetVisible(bool visible);
+    
     void RegisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
     void UnregisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
     
