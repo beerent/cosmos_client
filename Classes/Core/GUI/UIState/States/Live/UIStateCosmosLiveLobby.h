@@ -13,7 +13,7 @@ class UIStateCosmosLiveLobby : public BaseStateDepricated, IAuthenticationResult
 
 public:
     UIStateCosmosLiveLobby(IStateChanageListenerDepricated* stateChangeListener) :
-      BaseStateDepricated(stateChangeListener), m_loadingWidget(nullptr), m_closedWidget(nullptr), m_preGameLobbyWidget(nullptr), m_cosmosLiveCoordinator() {};
+      BaseStateDepricated(stateChangeListener), m_loadingWidget(nullptr), m_closedWidget(nullptr), m_preGameLobbyWidget(nullptr), m_activeState(CosmosLiveState::INVALID) {};
     
     CONST_STRING_DEC(UI_STATE_COSMOS_LIVE_LOBBY)
 
@@ -43,10 +43,13 @@ private:
     void DisplayPreGameLobby();
     void TakeDownPreGameLobby();
     
-    void TakeDownState(CosmosLiveState state);
+    void DeactivateState(CosmosLiveState state);
+    void ActivateState(const CosmosLiveSession& session);
 
     Authenticator m_authenticator;
     CosmosLiveCoordinator m_cosmosLiveCoordinator;
+    
+    CosmosLiveState m_activeState;
     LoadingWidget* m_loadingWidget;
     CosmosLiveClosedWidget* m_closedWidget;
     CosmosLivePreGameLobbyWidget* m_preGameLobbyWidget;

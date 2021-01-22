@@ -33,10 +33,20 @@ void CosmosLivePreGameLobbyWidget::Release() {
     delete m_profileWindow;
 }
 
+void CosmosLivePreGameLobbyWidget::SetVisible(bool visible) {
+    m_currentUsername->setVisible(visible);
+    m_activeUsers->setVisible(visible);
+    m_title->setVisible(visible);
+    m_home->setVisible(visible);
+    m_profileFrame->setVisible(visible);
+    m_profileWindow->setVisible(visible);
+}
+
 void CosmosLivePreGameLobbyWidget::AddProfileWindow() {
     m_profileWindow = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("UIGroupArchetype"));
     m_profileWindow->setWidth(m_parentComponent->getWidth());
     m_profileWindow->setHeight(m_parentComponent->getHeight());
+    m_profileWindow->setVisible(false);
     m_parentComponent->addChild(m_profileWindow);
 }
 

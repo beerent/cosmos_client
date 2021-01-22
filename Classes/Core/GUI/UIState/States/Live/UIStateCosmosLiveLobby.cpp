@@ -10,28 +10,13 @@
 
 CONST_STRING_DEF(UIStateCosmosLiveLobby, UI_STATE_COSMOS_LIVE_LOBBY)
 
-static CosmosLiveSession currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
+//static CosmosLiveSession currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
 
 void UIStateCosmosLiveLobby::OnEnterState() {
+    DisplayLoading();
+    DisplayPreGameLobby();
     m_cosmosLiveCoordinator.RegisterCosmosLiveSessionUpdateListener(this);
-    
-    switch (currentSession.GetState()) {
-        case CosmosLiveState::PRE_GAME_LOBBY:
-            DisplayPreGameLobby();
-            m_cosmosLiveCoordinator.Start();
-            break;
-            
-        case CosmosLiveState::CLOSED:
-            DisplayClosed();
-            m_cosmosLiveCoordinator.Start();
-            break;
-            
-        case CosmosLiveState::INVALID:
-        default:
-            DisplayLoading();
-            SubmitGuestLoginRequest();
-            break;
-    }
+    SubmitGuestLoginRequest();
     
     BaseStateDepricated::OnEnterState();
 }
@@ -58,7 +43,7 @@ void UIStateCosmosLiveLobby::OnAuthenticationResultReceived(AuthenticationResult
 }
 
 void UIStateCosmosLiveLobby::OnCosmosLiveSessionUpdated(const CosmosLiveSession& session) {
-    if (currentSession.GetState() == session.GetState()) {
+    if (m_activeState == session.GetState()) {
         UpdateCurrentSession(session);
     } else {
         ChangeCurrentSession(session);
@@ -75,7 +60,7 @@ void UIStateCosmosLiveLobby::UpdateCurrentSession(const CosmosLiveSession& sessi
             break;
     }
     
-    currentSession = session;
+    //currentSession = session;
 }
 
 void UIStateCosmosLiveLobby::UpdatePreGameLobby(const CosmosLiveSession& session) {
@@ -83,13 +68,12 @@ void UIStateCosmosLiveLobby::UpdatePreGameLobby(const CosmosLiveSession& session
 }
 
 void UIStateCosmosLiveLobby::ChangeCurrentSession(const CosmosLiveSession& session) {
-    TakeDownState(currentSession.GetState());
-    
-    currentSession = session;
-    ChangeState(UIStateCosmosLiveLobby::UI_STATE_COSMOS_LIVE_LOBBY);
+    DeactivateState(m_activeState);
+    ActivateState(session);
+    m_activeState = session.GetState();
 }
 
-void UIStateCosmosLiveLobby::TakeDownState(CosmosLiveState state) {
+void UIStateCosmosLiveLobby::DeactivateState(CosmosLiveState state) {
     switch(state) {
         case CosmosLiveState::INVALID:
             TakeDownLoading();
@@ -108,8 +92,26 @@ void UIStateCosmosLiveLobby::TakeDownState(CosmosLiveState state) {
     }
 }
 
+void UIStateCosmosLiveLobby::ActivateState(const CosmosLiveSession& session) {
+    switch (session.GetState()) {
+        case CosmosLiveState::PRE_GAME_LOBBY:
+            m_preGameLobbyWidget->SetVisible(true);
+            UpdatePreGameLobby(session);
+            break;
+            
+        case CosmosLiveState::CLOSED:
+            DisplayClosed();
+            break;
+            
+        case CosmosLiveState::INVALID:
+        default:
+            DisplayLoading();
+            break;
+    }
+}
+
 void UIStateCosmosLiveLobby::OnMainMenuItemSelected(CosmosLiveClosedWidget::MenuItems selectedItem) {
-    currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
+    //currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
     TakeDownClosed();
     
     if (selectedItem == CosmosLiveClosedWidget::LOAD_MAIN_MENU) {
@@ -118,7 +120,7 @@ void UIStateCosmosLiveLobby::OnMainMenuItemSelected(CosmosLiveClosedWidget::Menu
 }
 
 void UIStateCosmosLiveLobby::OnMainMenuItemSelected(CosmosLivePreGameLobbyWidget::MenuItems selectedItem) {
-    currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
+    //currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
     TakeDownPreGameLobby();
     
     if (selectedItem == CosmosLivePreGameLobbyWidget::LOAD_MAIN_MENU) {
@@ -159,8 +161,6 @@ void UIStateCosmosLiveLobby::DisplayPreGameLobby() {
     m_preGameLobbyWidget->RegisterForChallengeMenuItemSelectedEvent(callback);
     
     m_preGameLobbyWidget->Init();
-    
-    UpdatePreGameLobby(currentSession);
 }
 
 void UIStateCosmosLiveLobby::TakeDownPreGameLobby() {
