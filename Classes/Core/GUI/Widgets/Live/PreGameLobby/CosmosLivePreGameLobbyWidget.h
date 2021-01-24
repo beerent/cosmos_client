@@ -19,6 +19,7 @@ public:
     void UnregisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
     
     void UpdateActiveUsers(int users);
+    void UpdateTimeUntilGametime(double secondsRemaining);
     void UpdateChats(const std::vector<CosmosLiveChat>& chats);
     
 private:
@@ -27,6 +28,7 @@ private:
     void AddHomeButton();
     void AddTitleButton();
     void AddActiveUsers();
+    void AddTimeUntilGametime();
     void AddUsername();
     void AddChats();
     void UpdateChat(const CosmosLiveChat& chat, int position);
@@ -42,6 +44,7 @@ private:
     UIComponent* m_profileFrame;
     UILabel* m_title;
     UILabel* m_activeUsers;
+    UILabel* m_timeUntilGametime;
     UILabel* m_home;
 
     UILabel* m_chat0;
