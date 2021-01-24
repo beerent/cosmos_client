@@ -2,6 +2,7 @@
 
 #include <Core/GameLogic/Live/CosmosLiveStates.h>
 #include <Core/GameLogic/Live/Session/CosmosLiveSession.h>
+#include <Core/GameLogic/Live/Chat/CosmosLiveChat.h>
 
 #include <Core/Net/Json/JsonProvider.h>
 #include <Core/Net/IRestConnector.h>
@@ -60,6 +61,7 @@ private:
     bool SessionsAreEqual(const CosmosLiveSession& sessionA, const CosmosLiveSession& sessionB) const;
     
     CosmosLiveSession RestToCosmosLiveSession(const json11::Json& json) const;
+    std::vector<CosmosLiveChat> GetChatsFromJson(const json11::Json& json) const;
     
     void RegisterTimers();
     void DeregisterTimers();

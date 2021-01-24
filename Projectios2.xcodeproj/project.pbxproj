@@ -268,6 +268,7 @@
 		81F0D66E21DC104D00A81D1F /* AuthenticationState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81F0D66D21DC104D00A81D1F /* AuthenticationState.cpp */; };
 		81FDE8D521FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */; };
 		871BB2DB25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 871BB2DA25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp */; };
+		871BB2E025BCFB4B00DB03BB /* CosmosLiveChat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 871BB2DE25BCFB4A00DB03BB /* CosmosLiveChat.cpp */; };
 		874FED6325789B07005B2059 /* LoadingScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 874FED6225789B07005B2059 /* LoadingScreenImage.png */; };
 		87551C92257C78BF00F23E57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87551C8A257C77EC00F23E57 /* StoreKit.framework */; };
 		877666D125B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877666CF25B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp */; };
@@ -939,6 +940,8 @@
 		81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChallengeDataProviderLive.cpp; path = Core/GameLogic/Challenge/Gameplay/ChallengeDataProviderLive.cpp; sourceTree = "<group>"; };
 		871BB2D925B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLivePreGameLobbyWidget.h; path = Core/GUI/Widgets/Live/PreGameLobby/CosmosLivePreGameLobbyWidget.h; sourceTree = "<group>"; };
 		871BB2DA25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CosmosLivePreGameLobbyWidget.cpp; path = Core/GUI/Widgets/Live/PreGameLobby/CosmosLivePreGameLobbyWidget.cpp; sourceTree = "<group>"; };
+		871BB2DE25BCFB4A00DB03BB /* CosmosLiveChat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CosmosLiveChat.cpp; path = Core/GameLogic/Live/Chat/CosmosLiveChat.cpp; sourceTree = "<group>"; };
+		871BB2DF25BCFB4A00DB03BB /* CosmosLiveChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLiveChat.h; path = Core/GameLogic/Live/Chat/CosmosLiveChat.h; sourceTree = "<group>"; };
 		874FED6225789B07005B2059 /* LoadingScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreenImage.png; sourceTree = "<group>"; };
 		87551C8A257C77EC00F23E57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		87551C8E257C78AF00F23E57 /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = SDKROOT; };
@@ -2363,6 +2366,15 @@
 			name = PreGameLobby;
 			sourceTree = "<group>";
 		};
+		871BB2DD25BCFB3900DB03BB /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				871BB2DE25BCFB4A00DB03BB /* CosmosLiveChat.cpp */,
+				871BB2DF25BCFB4A00DB03BB /* CosmosLiveChat.h */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
 		874FED6125789AEF005B2059 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -2420,6 +2432,7 @@
 		87DE70BA25ABF28C00AC163A /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				871BB2DD25BCFB3900DB03BB /* Chat */,
 				87DE70C125AC76EE00AC163A /* Session */,
 				87DE70CC25AFE73900AC163A /* CosmosLiveStates.cpp */,
 				87DE70BF25ABF4CE00AC163A /* CosmosLiveStates.h */,
@@ -2950,6 +2963,7 @@
 				1A8BD3B918A3312D000D10C0 /* btGjkPairDetector.cpp in Sources */,
 				1A8BD37618A3312D000D10C0 /* btConvexPlaneCollisionAlgorithm.cpp in Sources */,
 				1A8BD3BD18A3312D000D10C0 /* btRaycastCallback.cpp in Sources */,
+				871BB2E025BCFB4B00DB03BB /* CosmosLiveChat.cpp in Sources */,
 				BA6D85EA216EF22100943989 /* KYCPlanetSizeSweepScript.cpp in Sources */,
 				BABA36C720B6528F00E312A8 /* lutf8lib.c in Sources */,
 				BABA36D220B6528F00E312A8 /* linit.c in Sources */,
