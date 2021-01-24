@@ -8,6 +8,9 @@ CosmosLiveSession::CosmosLiveSession()
 CosmosLiveSession::CosmosLiveSession(CosmosLiveState state, std::time_t startTimeUTC, int round, int roundSecondsRemaining, int playerCount)
   : m_state(state), m_startTimeUTC(startTimeUTC), m_round(round), m_roundSecondsRemaining(roundSecondsRemaining), m_playerCount(playerCount) {}
 
+CosmosLiveSession::CosmosLiveSession(CosmosLiveState state, std::time_t startTimeUTC, int round, int roundSecondsRemaining, int playerCount, std::vector<CosmosLiveChat> chats)
+  : m_state(state), m_startTimeUTC(startTimeUTC), m_round(round), m_roundSecondsRemaining(roundSecondsRemaining), m_playerCount(playerCount), m_chats(chats) {}
+
 CosmosLiveState CosmosLiveSession::GetState() const {
     return m_state;
 }
@@ -16,6 +19,19 @@ int CosmosLiveSession::GetPlayerCount() const {
     return m_playerCount;
 }
 
+std::vector<CosmosLiveChat> CosmosLiveSession::GetChats() const {
+    return m_chats;
+}
+
 std::string CosmosLiveSession::GetHash() const {
-    return CosmosLiveStateToString(m_state) + std::to_string(m_startTimeUTC) + std::to_string(m_round) + std::to_string(m_roundSecondsRemaining) + std::to_string(m_playerCount);
+    std::string hash = CosmosLiveStateToString(m_state);
+    hash += std::to_string(m_startTimeUTC);
+    hash += std::to_string(m_round);
+    hash += std::to_string(m_roundSecondsRemaining);
+    hash += std::to_string(m_playerCount);
+    for (const auto& chat : m_chats) {
+        hash += (chat.GetUser() + chat.GetMessage() + chat.GetAdded());
+    }
+    
+    return hash;
 }

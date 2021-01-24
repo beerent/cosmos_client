@@ -77,7 +77,8 @@ CosmosLiveSession CosmosLiveCoordinator::RestToCosmosLiveSession(const json11::J
     const json11::Json chatJson = json["payload"]["chat"];
     std::vector<CosmosLiveChat> cosmosLiveChats = GetChatsFromJson(chatJson);
     
-    CosmosLiveSession cosmosLiveSession(StringToCosmosLiveState(state), Util::StringToDateTime(startDate), round, roundSecondsRemaining, playerCount);
+    CosmosLiveSession cosmosLiveSession(
+        StringToCosmosLiveState(state), Util::StringToDateTime(startDate), round, roundSecondsRemaining, playerCount, cosmosLiveChats);
     return cosmosLiveSession;
 }
 

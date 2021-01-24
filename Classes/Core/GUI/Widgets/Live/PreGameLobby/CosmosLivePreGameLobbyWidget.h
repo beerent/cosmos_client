@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Core/GUI/Components/UIComponentFactory.h>
+#include <Core/GameLogic/Live/Chat/CosmosLiveChat.h>
 
 class CosmosLivePreGameLobbyWidget {
 public:
@@ -18,6 +19,7 @@ public:
     void UnregisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
     
     void UpdateActiveUsers(int users);
+    void UpdateChats(const std::vector<CosmosLiveChat>& chats);
     
 private:
     void AddProfileWindow();
@@ -26,6 +28,8 @@ private:
     void AddTitleButton();
     void AddActiveUsers();
     void AddUsername();
+    void AddChats();
+    void UpdateChat(const CosmosLiveChat& chat, int position);
     
     void OnHomePressed(UITouchButton::ButtonState state);
     
@@ -39,6 +43,17 @@ private:
     UILabel* m_title;
     UILabel* m_activeUsers;
     UILabel* m_home;
+
+    UILabel* m_chat0;
+    UILabel* m_chat1;
+    UILabel* m_chat2;
+    UILabel* m_chat3;
+    UILabel* m_chat4;
+    UILabel* m_chat5;
+    UILabel* m_chat6;
+    UILabel* m_chat7;
+    UILabel* m_chat8;
+    UILabel* m_chat9;
     
     UILabel* m_currentUsername;
 };
