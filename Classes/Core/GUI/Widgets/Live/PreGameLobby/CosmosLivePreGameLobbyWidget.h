@@ -20,6 +20,7 @@ public:
     
     void UpdateActiveUsers(int users);
     void UpdateTimeUntilGametime(double secondsRemaining);
+    std::string SecondsToMinutesSecondsString(double secondsRemaining) const;
     void UpdateChats(const std::vector<CosmosLiveChat>& chats);
     
 private:

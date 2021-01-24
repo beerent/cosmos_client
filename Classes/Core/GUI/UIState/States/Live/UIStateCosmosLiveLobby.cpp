@@ -73,6 +73,7 @@ void UIStateCosmosLiveLobby::UpdateCurrentSession(const CosmosLiveSession& sessi
 void UIStateCosmosLiveLobby::UpdatePreGameLobby(const CosmosLiveSession& session) {
     m_preGameLobbyWidget->UpdateActiveUsers(session.GetPlayerCount());
     m_preGameLobbyWidget->UpdateChats(session.GetChats());
+    m_preGameLobbyWidget->UpdateTimeUntilGametime(session.GetSecondsToStart());
 }
 
 void UIStateCosmosLiveLobby::ChangeCurrentSession(const CosmosLiveSession& session) {

@@ -60,7 +60,7 @@ void CosmosLivePreGameLobbyWidget::AddProfileFrame() {
     m_profileFrame->setAnchor(UIComponent::ANCHOR_TOP_CENTER);
     m_profileFrame->setWidth(900);
     m_profileFrame->setHeight(600);
-    m_profileFrame->setY(30);
+    m_profileFrame->setY(50);
 
     m_profileWindow->addChild(m_profileFrame);
 }
@@ -92,8 +92,46 @@ void CosmosLivePreGameLobbyWidget::UpdateActiveUsers(int users) {
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateTimeUntilGametime(double secondsRemaining) {
-    std::string timeString = "Minutes Until Gametime: " + std::to_string(secondsRemaining);
+    std::string timeString = "gametime: " + SecondsToMinutesSecondsString(secondsRemaining);
     m_timeUntilGametime->setTextString(timeString);
+}
+
+std::string CosmosLivePreGameLobbyWidget::SecondsToMinutesSecondsString(double secondsRemaining) const {
+    if (secondsRemaining <= 0) {
+        return "00:00";
+    }
+    
+    if (secondsRemaining < 60) {
+        std::string secondString = std::to_string(secondsRemaining);
+        if (secondsRemaining < 10) {
+            return "00:0" + secondString.substr(0, 1);
+        }
+
+        if (secondString.size() > 3) {
+            secondString = secondString.substr(0, 2);
+        }
+        
+        if (secondString.size() == 1) {
+            secondString = "0" + secondString;
+        }
+        
+        return "00:" + (secondString);
+    }
+    
+    int minutes = secondsRemaining / 60;
+    int seconds = secondsRemaining - (minutes * 60);
+    
+    std::string minuteString = std::to_string(minutes);
+    if (minuteString.size() == 1) {
+        minuteString = "0" + minuteString;
+    }
+
+    std::string secondString = std::to_string(seconds);
+    if (secondString.size() == 1) {
+        secondString = "0" + secondString;
+    }
+    
+    return minuteString + ":" + secondString;
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateChats(const std::vector<CosmosLiveChat>& chats) {
@@ -116,7 +154,7 @@ void CosmosLivePreGameLobbyWidget::AddActiveUsers() {
     
     m_activeUsers = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_CENTER, message);
     m_activeUsers->setDropShadowColor(dropShadowColor);
-    m_activeUsers->setX(-200);
+    m_activeUsers->setX(-260);
 
     m_parentComponent->addChild(m_activeUsers);
 }
@@ -126,7 +164,7 @@ void CosmosLivePreGameLobbyWidget::AddTimeUntilGametime() {
     
     m_timeUntilGametime = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_CENTER, message);
     m_timeUntilGametime->setDropShadowColor(dropShadowColor);
-    m_timeUntilGametime->setX(200);
+    m_timeUntilGametime->setX(230);
 
     m_parentComponent->addChild(m_timeUntilGametime);
 }
