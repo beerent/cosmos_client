@@ -54,7 +54,7 @@ void CosmosLivePreGameLobbyWidget::AddProfileFrame() {
     m_profileFrame = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
     m_profileFrame->setAnchor(UIComponent::ANCHOR_CENTER);
     m_profileFrame->setWidth(900);
-    m_profileFrame->setHeight(700);
+    m_profileFrame->setHeight(600);
 
     m_profileWindow->addChild(m_profileFrame);
 }
@@ -95,9 +95,12 @@ void CosmosLivePreGameLobbyWidget::UpdateChats(const std::vector<CosmosLiveChat>
         fullChats.push_back(CosmosLiveChat("", "", ""));
     }
     
-    int position = 0;
+    int position = 9;
     for (const auto& chat : chats) {
-        UpdateChat(chat, position++);
+        UpdateChat(chat, position--);
+        
+        if (position < 0)
+            break;
     }
 }
 
@@ -155,7 +158,10 @@ void CosmosLivePreGameLobbyWidget::AddChats() {
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int position) {
-    const std::string chatString = chat.GetUser() + ": " + chat.GetMessage();
+    std::string chatString = chat.GetUser() + ": " + chat.GetMessage();
+    while (chatString.size() != 50) {
+        chatString += " ";
+    }
     
     switch (position) {
         case 0: m_chat0->setTextString(chatString); break;
