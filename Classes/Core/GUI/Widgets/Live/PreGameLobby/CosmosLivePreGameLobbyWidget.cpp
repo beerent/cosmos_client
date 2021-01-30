@@ -6,7 +6,7 @@ const float LABEL_HEIGHT = 90.0;
 const float LABEL_WIDTH = 585.0;
 
 CosmosLivePreGameLobbyWidget::CosmosLivePreGameLobbyWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
-m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_keyboardManager(nullptr) {}
+m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_chatText(nullptr), m_keyboardManager(nullptr), m_timer(this), m_cursorOn(false), m_editingChat(false) {}
 
 void CosmosLivePreGameLobbyWidget::Init() {
     m_keyboardManager = IEngine::getEngine()->GetKeyboardManager();
@@ -55,15 +55,22 @@ void CosmosLivePreGameLobbyWidget::SetVisible(bool visible) {
 }
 
 void CosmosLivePreGameLobbyWidget::OnDeletePressed() {
+    std::string currentChat = m_chat;
+    if (currentChat.empty() == false) {
+        currentChat.pop_back();
+    }
     
+    m_chat = currentChat;
+    DisplayCursor();
+    m_timer.ResetTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
 }
 
 void CosmosLivePreGameLobbyWidget::OnCharacterPressed(char c) {
-    
+    m_chat += c;
 }
 
 void CosmosLivePreGameLobbyWidget::OnEnterPressed() {
-    
+    OnSendChat();
 }
 
 void CosmosLivePreGameLobbyWidget::AddProfileWindow() {
@@ -105,11 +112,19 @@ void CosmosLivePreGameLobbyWidget::AddTitleButton() {
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateActiveUsers(int users) {
+    if (m_editingChat) {
+        return;
+    }
+    
     std::string usersString = "players: " + std::to_string(users);
     m_activeUsers->setTextString(usersString);
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateTimeUntilGametime(double secondsRemaining) {
+    if (m_editingChat) {
+        return;
+    }
+    
     std::string timeString = "gametime: " + SecondsToMinutesSecondsString(secondsRemaining);
     m_timeUntilGametime->setTextString(timeString);
 }
@@ -268,12 +283,87 @@ void CosmosLivePreGameLobbyWidget::AddAddChatButton() {
 
 void CosmosLivePreGameLobbyWidget::OnAddChatPressed(UITouchButton::ButtonState state) {
     m_keyboardManager->ActivateKeyboard();
+    HideMenuBar();
     MoveFrameUp();
     m_addChatButton->release();
+    DisplayChatBox();
+    m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+    m_editingChat = true;
+}
+
+void CosmosLivePreGameLobbyWidget::OnSendChat() {
+    m_keyboardManager->DeactivateKeyboard();
+    ShowMenuBar();
+    MoveFrameDown();
+    AddAddChatButton();
+    m_chat.clear();
+    m_chatText->release();
+    m_timer.DeregisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+    m_editingChat = false;
 }
 
 void CosmosLivePreGameLobbyWidget::MoveFrameUp() {
     m_profileFrame->setY(-300);
+}
+
+void CosmosLivePreGameLobbyWidget::MoveFrameDown() {
+    m_profileFrame->setY(50);
+}
+
+void CosmosLivePreGameLobbyWidget::DisplayChatBox() {
+    const std::string message = "chat: ";
+    
+    m_chatText = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_BOTTOM_CENTER, message);
+    m_chatText->setDropShadowColor(dropShadowColor);
+    m_chatText->setY(-60);
+
+    m_profileFrame->addChild(m_chatText);
+}
+
+void CosmosLivePreGameLobbyWidget::DisplayCursor() {
+    m_chatText->setTextString("chat: " + m_chat + "|");
+}
+
+void CosmosLivePreGameLobbyWidget::HideCursor() {
+    m_chatText->setTextString("chat: " + m_chat + " ");
+}
+
+void CosmosLivePreGameLobbyWidget::OnTimerEvent(Timer::TimerType type) {
+    switch(type) {
+        case Timer::TimerType::CURSOR_BLINK_550_MS:
+            if (m_editingChat == false) {
+                break;
+            }
+            
+            if (m_cursorOn) {
+                HideCursor();
+                m_cursorOn = false;
+            } else {
+                m_cursorOn = true;
+                DisplayCursor();
+            }
+            
+            break;
+        default:
+            break;
+    }
+}
+
+void CosmosLivePreGameLobbyWidget::HideMenuBar() {
+    m_activeUsers->setTextString("");
+    m_timeUntilGametime->setTextString("");
+    
+    m_home->setVisible(false);
+    m_activeUsers->setVisible(false);
+    m_timeUntilGametime->setVisible(false);
+    m_currentUsername->setVisible(false);
+}
+
+void CosmosLivePreGameLobbyWidget::ShowMenuBar() {
+    m_home->setVisible(true);
+    m_activeUsers->setVisible(true);
+    m_timeUntilGametime->setVisible(true);
+    m_currentUsername->setVisible(true);
 }
 
 void CosmosLivePreGameLobbyWidget::OnHomePressed(UITouchButton::ButtonState state) {

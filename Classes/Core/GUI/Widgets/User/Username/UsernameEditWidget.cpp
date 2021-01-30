@@ -140,7 +140,7 @@ void UsernameEditWidget::DisplayCursor() {
 }
 
 void UsernameEditWidget::HideCursor() {
-    m_usernameLabel->setTextString(m_username);
+    m_usernameLabel->setTextString(m_username + " ");
 }
 
 void UsernameEditWidget::OnRememberUsernamePressed(UITouchButton::ButtonState state) {
@@ -188,7 +188,6 @@ void UsernameEditWidget::RegisterEditUsernameCloser(IEditUsernameCloser* editUse
 }
 
 void UsernameEditWidget::OnDeletePressed() {
-    
     std::string currentUsername = m_username;
     if (currentUsername.empty() == false) {
         currentUsername.pop_back();

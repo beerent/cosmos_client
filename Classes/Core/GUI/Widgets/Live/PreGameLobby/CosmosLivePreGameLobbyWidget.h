@@ -3,8 +3,9 @@
 #include <Core/GUI/Components/UIComponentFactory.h>
 #include <Core/GameLogic/Live/Chat/CosmosLiveChat.h>
 #include <Core/Keyboard/IKeyboardListener.h>
+#include <Core/Util/SimpleTimer.h>
 
-class CosmosLivePreGameLobbyWidget : public IKeyboardListener {
+class CosmosLivePreGameLobbyWidget : public IKeyboardListener, Timer::SimpleTimerListener {
 public:
     enum MenuItems { LOAD_MAIN_MENU };
     typedef fastdelegate::FastDelegate1<MenuItems> onMenuItemSelectedCallBack;
@@ -18,6 +19,8 @@ public:
     virtual void OnDeletePressed();
     virtual void OnCharacterPressed(char c);
     virtual void OnEnterPressed();
+    
+    virtual void OnTimerEvent(Timer::TimerType type);
     
     void RegisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
     void UnregisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
@@ -42,8 +45,16 @@ private:
     
     void AddAddChatButton();
     void OnAddChatPressed(UITouchButton::ButtonState state);
+    void OnSendChat();
     
     void MoveFrameUp();
+    void MoveFrameDown();
+    void DisplayChatBox();
+    void DisplayCursor();
+    void HideCursor();
+    
+    void HideMenuBar();
+    void ShowMenuBar();
     
     onMenuItemSelectedCallBack m_onHomeMenuItemSelectedListener;
     
@@ -69,7 +80,13 @@ private:
     UILabel* m_chat9;
     
     UILabel* m_addChatButton;
+    std::string m_chat;
+    UILabel* m_chatText;
+    bool m_cursorOn;
+    bool m_editingChat;
     KeyboardManager* m_keyboardManager;
+    
+    Timer::SimpleTimer m_timer;
     
     UILabel* m_currentUsername;
 };
