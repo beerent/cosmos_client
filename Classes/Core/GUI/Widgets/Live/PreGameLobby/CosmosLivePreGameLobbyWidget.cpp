@@ -350,9 +350,6 @@ void CosmosLivePreGameLobbyWidget::OnTimerEvent(Timer::TimerType type) {
 }
 
 void CosmosLivePreGameLobbyWidget::HideMenuBar() {
-    m_activeUsers->setTextString("");
-    m_timeUntilGametime->setTextString("");
-    
     m_home->setVisible(false);
     m_activeUsers->setVisible(false);
     m_timeUntilGametime->setVisible(false);
