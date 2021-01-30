@@ -2,8 +2,9 @@
 
 #include <Core/GUI/Components/UIComponentFactory.h>
 #include <Core/GameLogic/Live/Chat/CosmosLiveChat.h>
+#include <Core/Keyboard/IKeyboardListener.h>
 
-class CosmosLivePreGameLobbyWidget {
+class CosmosLivePreGameLobbyWidget : public IKeyboardListener {
 public:
     enum MenuItems { LOAD_MAIN_MENU };
     typedef fastdelegate::FastDelegate1<MenuItems> onMenuItemSelectedCallBack;
@@ -12,8 +13,11 @@ public:
 
     void Init();
     void Release();
-    
     void SetVisible(bool visible);
+    
+    virtual void OnDeletePressed();
+    virtual void OnCharacterPressed(char c);
+    virtual void OnEnterPressed();
     
     void RegisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
     void UnregisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
@@ -35,6 +39,11 @@ private:
     void UpdateChat(const CosmosLiveChat& chat, int position);
     
     void OnHomePressed(UITouchButton::ButtonState state);
+    
+    void AddAddChatButton();
+    void OnAddChatPressed(UITouchButton::ButtonState state);
+    
+    void MoveFrameUp();
     
     onMenuItemSelectedCallBack m_onHomeMenuItemSelectedListener;
     
@@ -58,6 +67,9 @@ private:
     UILabel* m_chat7;
     UILabel* m_chat8;
     UILabel* m_chat9;
+    
+    UILabel* m_addChatButton;
+    KeyboardManager* m_keyboardManager;
     
     UILabel* m_currentUsername;
 };

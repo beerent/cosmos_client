@@ -1,13 +1,17 @@
 #include <Core/GUI/Widgets/Live/PreGameLobby/CosmosLivePreGameLobbyWidget.h>
+#include <IEngine.h>
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 const float LABEL_HEIGHT = 90.0;
 const float LABEL_WIDTH = 585.0;
 
 CosmosLivePreGameLobbyWidget::CosmosLivePreGameLobbyWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
-m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr) {}
+m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_keyboardManager(nullptr) {}
 
 void CosmosLivePreGameLobbyWidget::Init() {
+    m_keyboardManager = IEngine::getEngine()->GetKeyboardManager();
+    m_keyboardManager->RegisterKeyboardListener(this);
+    
     AddProfileWindow();
     AddProfileFrame();
     AddHomeButton();
@@ -16,6 +20,7 @@ void CosmosLivePreGameLobbyWidget::Init() {
     AddTimeUntilGametime();
     AddUsername();
     AddChats();
+    AddAddChatButton();
 }
 
 void CosmosLivePreGameLobbyWidget::Release() {
@@ -44,8 +49,21 @@ void CosmosLivePreGameLobbyWidget::SetVisible(bool visible) {
     m_timeUntilGametime->setVisible(visible);
     m_title->setVisible(visible);
     m_home->setVisible(visible);
+    m_addChatButton->setVisible(visible);
     m_profileFrame->setVisible(visible);
     m_profileWindow->setVisible(visible);
+}
+
+void CosmosLivePreGameLobbyWidget::OnDeletePressed() {
+    
+}
+
+void CosmosLivePreGameLobbyWidget::OnCharacterPressed(char c) {
+    
+}
+
+void CosmosLivePreGameLobbyWidget::OnEnterPressed() {
+    
 }
 
 void CosmosLivePreGameLobbyWidget::AddProfileWindow() {
@@ -234,6 +252,28 @@ void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int po
         case 8: m_chat8->setTextString(chatString); break;
         case 9: m_chat9->setTextString(chatString); break;
     }
+}
+
+void CosmosLivePreGameLobbyWidget::AddAddChatButton() {
+    UITouchButton::onButtonStateChangedCallBack callBack;
+
+    m_addChatButton = UIComponentFactory::getInstance()->createUILabel("KYCQuestionButtonArchetype", 500.0, 90.0, UIComponent::ANCHOR_BOTTOM_CENTER, "Add Chat");
+    m_addChatButton->setDropShadowColor(dropShadowColor);
+    m_addChatButton->setY(25);
+
+    callBack.bind(this, &CosmosLivePreGameLobbyWidget::OnAddChatPressed);
+    m_addChatButton->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+    m_profileWindow->addChild(m_addChatButton);
+}
+
+void CosmosLivePreGameLobbyWidget::OnAddChatPressed(UITouchButton::ButtonState state) {
+    m_keyboardManager->ActivateKeyboard();
+    MoveFrameUp();
+    m_addChatButton->release();
+}
+
+void CosmosLivePreGameLobbyWidget::MoveFrameUp() {
+    m_profileFrame->setY(-300);
 }
 
 void CosmosLivePreGameLobbyWidget::OnHomePressed(UITouchButton::ButtonState state) {
