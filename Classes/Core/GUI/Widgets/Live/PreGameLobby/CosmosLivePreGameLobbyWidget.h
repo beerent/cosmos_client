@@ -5,6 +5,11 @@
 #include <Core/Keyboard/IKeyboardListener.h>
 #include <Core/Util/SimpleTimer.h>
 
+class ICosmosLiveChatReceiver {
+public:
+    virtual void ChatReceived(const std::string& chat) = 0;
+};
+
 class CosmosLivePreGameLobbyWidget : public IKeyboardListener, Timer::SimpleTimerListener {
 public:
     enum MenuItems { LOAD_MAIN_MENU };
@@ -24,6 +29,9 @@ public:
     
     void RegisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
     void UnregisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback);
+    
+    void RegisterCosmosLiveChatReceiver(ICosmosLiveChatReceiver* receiver);
+    void DeregisterCosmosLiveChatReceiver();
     
     void UpdateActiveUsers(int users);
     void UpdateTimeUntilGametime(double secondsRemaining);
@@ -89,4 +97,6 @@ private:
     Timer::SimpleTimer m_timer;
     
     UILabel* m_currentUsername;
+    
+    ICosmosLiveChatReceiver* m_cosmosLiveChatReceiver;
 };

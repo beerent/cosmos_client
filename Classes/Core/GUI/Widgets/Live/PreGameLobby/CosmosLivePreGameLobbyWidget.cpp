@@ -6,7 +6,7 @@ const float LABEL_HEIGHT = 90.0;
 const float LABEL_WIDTH = 585.0;
 
 CosmosLivePreGameLobbyWidget::CosmosLivePreGameLobbyWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
-m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_chatText(nullptr), m_keyboardManager(nullptr), m_timer(this), m_cursorOn(false), m_editingChat(false) {}
+m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_chatText(nullptr), m_keyboardManager(nullptr), m_timer(this), m_cursorOn(false), m_editingChat(false), m_cosmosLiveChatReceiver(nullptr) {}
 
 void CosmosLivePreGameLobbyWidget::Init() {
     m_keyboardManager = IEngine::getEngine()->GetKeyboardManager();
@@ -173,12 +173,9 @@ void CosmosLivePreGameLobbyWidget::UpdateChats(const std::vector<CosmosLiveChat>
         fullChats.push_back(CosmosLiveChat("", "", ""));
     }
     
-    int position = 9;
-    for (const auto& chat : chats) {
-        UpdateChat(chat, position--);
-        
-        if (position < 0)
-            break;
+    for (int i = 0; i < 10; i++) {
+        const CosmosLiveChat &chat = chats[i];
+        UpdateChat(chat, 9 - i);
     }
 }
 
@@ -251,7 +248,7 @@ void CosmosLivePreGameLobbyWidget::AddChats() {
 
 void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int position) {
     std::string chatString = chat.GetUser() + ": " + chat.GetMessage();
-    while (chatString.size() != 50) {
+    while (chatString.size() < 50) {
         chatString += " ";
     }
     
@@ -292,6 +289,10 @@ void CosmosLivePreGameLobbyWidget::OnAddChatPressed(UITouchButton::ButtonState s
 }
 
 void CosmosLivePreGameLobbyWidget::OnSendChat() {
+    if (!m_chat.empty() && m_cosmosLiveChatReceiver != nullptr) {
+        m_cosmosLiveChatReceiver->ChatReceived(m_chat);
+    }
+    
     m_keyboardManager->DeactivateKeyboard();
     ShowMenuBar();
     MoveFrameDown();
@@ -373,4 +374,12 @@ void CosmosLivePreGameLobbyWidget::RegisterForChallengeMenuItemSelectedEvent(onM
 
 void CosmosLivePreGameLobbyWidget::UnregisterForChallengeMenuItemSelectedEvent(onMenuItemSelectedCallBack callback) {
     m_onHomeMenuItemSelectedListener = nullptr;
+}
+
+void CosmosLivePreGameLobbyWidget::RegisterCosmosLiveChatReceiver(ICosmosLiveChatReceiver* receiver) {
+    m_cosmosLiveChatReceiver = receiver;
+}
+
+void CosmosLivePreGameLobbyWidget::DeregisterCosmosLiveChatReceiver() {
+    m_cosmosLiveChatReceiver = nullptr;
 }

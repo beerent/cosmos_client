@@ -20,6 +20,8 @@ void UIStateCosmosLiveLobby::OnEnterState() {
     m_cosmosLiveCoordinator.RegisterCosmosLiveSessionUpdateListener(this);
     SubmitGuestLoginRequest();
     
+    m_preGameLobbyWidget->RegisterCosmosLiveChatReceiver(this);
+    
     BaseStateDepricated::OnEnterState();
 }
 
@@ -175,4 +177,8 @@ void UIStateCosmosLiveLobby::TakeDownAllWidgets() {
     TakeDownLoading();
     TakeDownClosed();
     TakeDownPreGameLobby();
+}
+
+void UIStateCosmosLiveLobby::ChatReceived(const std::string& chat) {
+    m_cosmosLiveCoordinator.SendChat(chat);
 }

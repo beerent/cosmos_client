@@ -38,6 +38,7 @@ public:
     virtual void OnTimerEvent(Timer::TimerType type);
     virtual void RestReceived(const std::string& rest);
     
+    void SendChat(const std::string& chat);
     void RegisterCosmosLiveSessionUpdateListener(ICosmosLiveSessionUpdateListener* listener);
     void DeregisterCosmosLiveSessionUpdateListener();
 

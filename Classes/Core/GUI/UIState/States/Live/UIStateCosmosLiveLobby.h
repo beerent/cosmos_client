@@ -9,11 +9,16 @@
 #include <Core/GUI/Widgets/Live/Closed/CosmosLiveClosedWidget.h>
 #include <Core/GUI/Widgets/Live/PreGameLobby/CosmosLivePreGameLobbyWidget.h>
 
-class UIStateCosmosLiveLobby : public BaseStateDepricated, IAuthenticationResultListener, ICosmosLiveSessionUpdateListener {
+class UIStateCosmosLiveLobby : public BaseStateDepricated, IAuthenticationResultListener, ICosmosLiveSessionUpdateListener, ICosmosLiveChatReceiver {
 
 public:
     UIStateCosmosLiveLobby(IStateChanageListenerDepricated* stateChangeListener) :
-      BaseStateDepricated(stateChangeListener), m_loadingWidget(nullptr), m_closedWidget(nullptr), m_preGameLobbyWidget(nullptr), m_activeState(CosmosLiveState::INVALID) {};
+      BaseStateDepricated(stateChangeListener), m_loadingWidget(nullptr), m_closedWidget(nullptr), m_preGameLobbyWidget(nullptr), m_activeState(CosmosLiveState::INVALID) {
+      };
+    
+    ~UIStateCosmosLiveLobby() {
+    }
+    
     
     CONST_STRING_DEC(UI_STATE_COSMOS_LIVE_LOBBY)
 
@@ -22,6 +27,8 @@ public:
     
     virtual void OnAuthenticationResultReceived(AuthenticationResult result);
     virtual void OnCosmosLiveSessionUpdated(const CosmosLiveSession& session);
+    
+    virtual void ChatReceived(const std::string& chat);
     
     virtual STRING_ID GetStateID() { return UI_STATE_COSMOS_LIVE_LOBBY; }
 

@@ -7,6 +7,7 @@
 
 namespace requests {
     const std::string LIVE = "live";
+    const std::string LIVE_POST_CHAT = "livePostChat";
 }
 
 CosmosLiveCoordinator::CosmosLiveCoordinator() : m_timer(this), m_cosmosLiveSessionUpdateListener(nullptr) {
@@ -15,6 +16,7 @@ CosmosLiveCoordinator::CosmosLiveCoordinator() : m_timer(this), m_cosmosLiveSess
 
 CosmosLiveCoordinator::~CosmosLiveCoordinator() {
     DeregisterTimers();
+    CloseCosmosLiveUpdateRequest();
 }
 
 void CosmosLiveCoordinator::Start() {
@@ -30,12 +32,15 @@ void CosmosLiveCoordinator::DeregisterTimers() {
 }
 
 void CosmosLiveCoordinator::RestReceived(const std::string& rest) {
-    CloseCosmosLiveUpdateRequest();
-
     json11::Json json = JsonProvider::ParseString(rest);
-    CosmosLiveSession session = RestToCosmosLiveSession(json);
-    if (ShouldUpdateSession(session)) {
-        UpdateSession(session);
+    const std::string request = json["request"].string_value();
+
+    if (request == requests::LIVE) {
+        CloseCosmosLiveUpdateRequest();
+        CosmosLiveSession session = RestToCosmosLiveSession(json);
+        if (ShouldUpdateSession(session)) {
+            UpdateSession(session);
+        }
     }
 }
 
@@ -96,6 +101,16 @@ std::vector<CosmosLiveChat> CosmosLiveCoordinator::GetChatsFromJson(const json11
     }
     
     return cosmosLiveChats;
+}
+
+void CosmosLiveCoordinator::SendChat(const std::string& chat) {
+    RequestBuilder requestBuilder;
+    requestBuilder.AddUser(IEngine::getEngine()->GetUserProvider()->GetUser());
+    requestBuilder.AddParameter("message", chat);
+    requestBuilder.SetEndpoint(requests::LIVE_POST_CHAT);
+
+    std::string requestString = requestBuilder.GetRequestString();
+    m_restConnector->SendRequest(requestString, this);
 }
 
 void CosmosLiveCoordinator::OnTimerEvent(Timer::TimerType type) {
