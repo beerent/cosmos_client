@@ -42,6 +42,7 @@ void UIStateChallengeMode::RegisterQuestionsReadyReceiver() {
 }
 
 void UIStateChallengeMode::StartGame() {
+    m_remainingLives = 3;
 	m_challengeData.StartNewGame();
 }
 
@@ -70,9 +71,13 @@ void UIStateChallengeMode::HandleAnswerByCorrectness(bool isCorrect) {
 }
 
 void UIStateChallengeMode::HandleCorrectAnswer() {
-    m_challengeModeWidget->AnswerSelected(true);
+    m_challengeModeWidget->AnswerSelected(CORRECT);
+    StartPostAnswerProcess();
+}
+
+void UIStateChallengeMode::StartPostAnswerProcess() {
+    RegisterPostAnswerTimer();
     ResetGameTimer(3, TextColor::YELLOW_TEXT_COLOR);
-    RegisterCorrectAnswerTimer();
 }
 
 void UIStateChallengeMode::AdvanceToNextQuestion() {
@@ -100,15 +105,31 @@ void UIStateChallengeMode::ResetGameTimer() {
 }
 
 void UIStateChallengeMode::ResetGameTimer(int seconds, glm::vec3 color) {
+    m_lastTimeCheck = Timer::SimpleTimer::GetCurrentTime();
+    
     m_timerSecondsRemaining = seconds;
     m_challengeModeWidget->UpdateTimer(m_timerSecondsRemaining);
     m_challengeModeWidget->SetTimerColor(color);
-
-    m_lastTimeCheck = Timer::SimpleTimer::GetCurrentTime();
 }
 
 void UIStateChallengeMode::HandleWrongAnswer() {
-	m_challengeModeWidget->GameOver();
+    if (m_remainingLives > 1) {
+        HandleWrongAnswerLivesRemaining();
+    } else {
+        HandleGameOver();
+    }
+}
+
+void UIStateChallengeMode::HandleWrongAnswerLivesRemaining() {
+    m_remainingLives--;
+    m_challengeModeWidget->UpdateLivesSymbol(m_remainingLives);
+    m_challengeModeWidget->AnswerSelected(INCORRECT);
+    StartPostAnswerProcess();
+}
+
+void UIStateChallengeMode::HandleGameOver() {
+    m_challengeModeWidget->UpdateLivesSymbol(0);
+    m_challengeModeWidget->GameOver();
     DeregisterGameTimerTimers();
 }
 
@@ -131,8 +152,8 @@ void UIStateChallengeMode::OnTimerEvent(Timer::TimerType type) {
                 UpdateTimer();
             break;
             
-        case Timer::TimerType::CHALLENGE_CORRECT_ANSWER_TIMER:
-            DeregisterCorrectAnswerTimer();
+        case Timer::TimerType::CHALLENGE_POST_ANSWER_TIMER:
+            DeregisterPostAnswerTimer();
             AdvanceToNextQuestion();
 
         default:
@@ -185,10 +206,10 @@ void UIStateChallengeMode::DeregisterGameTimerTimers() {
     m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_1000_MS);
 }
 
-void UIStateChallengeMode::RegisterCorrectAnswerTimer() {
-    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_CORRECT_ANSWER_TIMER);
+void UIStateChallengeMode::RegisterPostAnswerTimer() {
+    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_POST_ANSWER_TIMER);
 }
 
-void UIStateChallengeMode::DeregisterCorrectAnswerTimer() {
-    m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_CORRECT_ANSWER_TIMER);
+void UIStateChallengeMode::DeregisterPostAnswerTimer() {
+    m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_POST_ANSWER_TIMER);
 }
