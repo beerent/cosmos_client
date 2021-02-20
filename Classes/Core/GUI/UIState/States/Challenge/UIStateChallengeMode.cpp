@@ -48,7 +48,7 @@ void UIStateChallengeMode::QuestionsReady() {
 	m_challengeModeWidget->TakeDownLoading();
     DisplayQuestion(question);
     
-    RegisterTimers();
+    RegisterGameTimerTimers();
 }
 
 void UIStateChallengeMode::OnAnswerSelected(const Answer& answer) {
@@ -69,12 +69,12 @@ void UIStateChallengeMode::HandleAnswerByCorrectness(bool isCorrect) {
 
 void UIStateChallengeMode::HandleCorrectAnswer() {
     m_challengeModeWidget->AnswerSelected(true);
-    DeregisterTimers();
+    DeregisterGameTimerTimers();
     RegisterCorrectAnswerTimer();
 }
 
 void UIStateChallengeMode::AdvanceToNextQuestion() {
-    RegisterTimers();
+    RegisterGameTimerTimers();
     
     m_challengeModeWidget->TakeDownAnswerState();
     m_challengeModeWidget->TakeDownQuestion();
@@ -83,7 +83,7 @@ void UIStateChallengeMode::AdvanceToNextQuestion() {
         const Question& question = m_challengeData.GetNextQuestion();
         DisplayQuestion(question);
     } else {
-        DeregisterTimers();
+        DeregisterGameTimerTimers();
 
         m_challengeModeWidget->DisplayLoading();
         m_challengeData.ChallengeQuestionsRequested();
@@ -105,7 +105,7 @@ void UIStateChallengeMode::ResetGameTimer() {
 
 void UIStateChallengeMode::HandleWrongAnswer() {
 	m_challengeModeWidget->GameOver();
-    DeregisterTimers();
+    DeregisterGameTimerTimers();
 }
 
 void UIStateChallengeMode::OnMainMenuPressed(UITouchButton::ButtonState state) {
@@ -171,12 +171,12 @@ void UIStateChallengeMode::OnChallengeTimerReceived(int timerSeconds) {
     m_timerSecondsRemaining = m_challengeModeTimerSeconds;
 }
 
-void UIStateChallengeMode::RegisterTimers() {
+void UIStateChallengeMode::RegisterGameTimerTimers() {
     m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS);
     m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_1000_MS);
 }
 
-void UIStateChallengeMode::DeregisterTimers() {
+void UIStateChallengeMode::DeregisterGameTimerTimers() {
     m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS);
     m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_1000_MS);
 }
