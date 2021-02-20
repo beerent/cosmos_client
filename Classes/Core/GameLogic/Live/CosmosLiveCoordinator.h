@@ -63,6 +63,7 @@ private:
     
     CosmosLiveSession RestToCosmosLiveSession(const json11::Json& json) const;
     std::vector<CosmosLiveChat> GetChatsFromJson(const json11::Json& json) const;
+    std::vector<CosmosLiveChat> GetQuestionFromJson(const json11::Json& json) const;
     
     void RegisterTimers();
     void DeregisterTimers();

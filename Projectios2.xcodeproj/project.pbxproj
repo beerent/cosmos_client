@@ -273,6 +273,7 @@
 		87551C92257C78BF00F23E57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87551C8A257C77EC00F23E57 /* StoreKit.framework */; };
 		877666D125B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877666CF25B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp */; };
 		877666D725B307FF00B6F8AD /* LoadingWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877666D525B307FF00B6F8AD /* LoadingWidget.cpp */; };
+		878D63B225DB49450027A6B7 /* CosmosLiveInGameWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 878D63B125DB49450027A6B7 /* CosmosLiveInGameWidget.cpp */; };
 		87ACE0452581343E005C6320 /* DeviceMemoryInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87ACE0432581343E005C6320 /* DeviceMemoryInterface.cpp */; };
 		87CA14FB2578849600E18697 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CA14FA2578849600E18697 /* Launch Screen.storyboard */; };
 		87DE70B825AB86D600AC163A /* UIStateCosmosLiveLobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87DE70B725AB86D600AC163A /* UIStateCosmosLiveLobby.cpp */; };
@@ -949,6 +950,8 @@
 		877666D025B2F70300B6F8AD /* CosmosLiveClosedWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLiveClosedWidget.h; path = Core/GUI/Widgets/Live/Closed/CosmosLiveClosedWidget.h; sourceTree = "<group>"; };
 		877666D525B307FF00B6F8AD /* LoadingWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadingWidget.cpp; path = Core/GUI/Widgets/Loading/LoadingWidget.cpp; sourceTree = "<group>"; };
 		877666D625B307FF00B6F8AD /* LoadingWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingWidget.h; path = Core/GUI/Widgets/Loading/LoadingWidget.h; sourceTree = "<group>"; };
+		878D63B025DB49450027A6B7 /* CosmosLiveInGameWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLiveInGameWidget.h; path = Classes/Core/GUI/Widgets/Live/InGame/CosmosLiveInGameWidget.h; sourceTree = SOURCE_ROOT; };
+		878D63B125DB49450027A6B7 /* CosmosLiveInGameWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CosmosLiveInGameWidget.cpp; path = Classes/Core/GUI/Widgets/Live/InGame/CosmosLiveInGameWidget.cpp; sourceTree = SOURCE_ROOT; };
 		87ACE041258133F1005C6320 /* IDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDeviceUtil.h; path = Core/General/IDeviceUtil.h; sourceTree = "<group>"; };
 		87ACE0432581343E005C6320 /* DeviceMemoryInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DeviceMemoryInterface.cpp; path = Core/General/DeviceMemoryInterface.cpp; sourceTree = "<group>"; };
 		87ACE0442581343E005C6320 /* DeviceMemoryInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceMemoryInterface.h; path = Core/General/DeviceMemoryInterface.h; sourceTree = "<group>"; };
@@ -2386,6 +2389,7 @@
 		877666CD25B2F6B800B6F8AD /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				878D63AB25DB2EBD0027A6B7 /* InGame */,
 				871BB2D425B99D2F00DB03BB /* PreGameLobby */,
 				877666CE25B2F6DD00B6F8AD /* Closed */,
 			);
@@ -2408,6 +2412,15 @@
 				877666D625B307FF00B6F8AD /* LoadingWidget.h */,
 			);
 			name = Loading;
+			sourceTree = "<group>";
+		};
+		878D63AB25DB2EBD0027A6B7 /* InGame */ = {
+			isa = PBXGroup;
+			children = (
+				878D63B125DB49450027A6B7 /* CosmosLiveInGameWidget.cpp */,
+				878D63B025DB49450027A6B7 /* CosmosLiveInGameWidget.h */,
+			);
+			path = InGame;
 			sourceTree = "<group>";
 		};
 		87ACE040258133E4005C6320 /* General */ = {
@@ -2725,6 +2738,7 @@
 				BABA36E120B6528F00E312A8 /* lstate.c in Sources */,
 				1AB793491A7466B100E65DD6 /* UIStateDebugControls.cpp in Sources */,
 				818BF7882219F18000DD45B6 /* PDKeychainBindingsController.m in Sources */,
+				878D63B225DB49450027A6B7 /* CosmosLiveInGameWidget.cpp in Sources */,
 				1A8BD11E18A32D30000D10C0 /* btContactConstraint.cpp in Sources */,
 				1A8BD12018A32D30000D10C0 /* btGearConstraint.cpp in Sources */,
 				1A8BD39018A3312D000D10C0 /* btConvexShape.cpp in Sources */,

@@ -8,6 +8,7 @@
 #include <Core/GUI/Widgets/Loading/LoadingWidget.h>
 #include <Core/GUI/Widgets/Live/Closed/CosmosLiveClosedWidget.h>
 #include <Core/GUI/Widgets/Live/PreGameLobby/CosmosLivePreGameLobbyWidget.h>
+#include <Core/GUI/Widgets/Live/InGame/CosmosLiveInGameWidget.h>
 
 class UIStateCosmosLiveLobby : public BaseStateDepricated, IAuthenticationResultListener, ICosmosLiveSessionUpdateListener, ICosmosLiveChatReceiver {
 
@@ -39,6 +40,8 @@ private:
     
     void UpdateCurrentSession(const CosmosLiveSession& session);
     void UpdatePreGameLobby(const CosmosLiveSession& session);
+    void UpdateInGame(const CosmosLiveSession& session);
+    
     void ChangeCurrentSession(const CosmosLiveSession& session);
     
     void DisplayLoading();
@@ -49,6 +52,9 @@ private:
     
     void DisplayPreGameLobby();
     void TakeDownPreGameLobby();
+    
+    void DisplayInGame();
+    void TakeDownInGame();
     
     void TakeDownAllWidgets();
     
@@ -62,4 +68,5 @@ private:
     LoadingWidget* m_loadingWidget;
     CosmosLiveClosedWidget* m_closedWidget;
     CosmosLivePreGameLobbyWidget* m_preGameLobbyWidget;
+    CosmosLiveInGameWidget* m_inGameWidget;
 };

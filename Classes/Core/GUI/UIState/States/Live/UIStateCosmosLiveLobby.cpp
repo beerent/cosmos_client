@@ -16,6 +16,7 @@ void UIStateCosmosLiveLobby::OnEnterState() {
     DisplayLoading();
     DisplayClosed();
     DisplayPreGameLobby();
+    DisplayInGame();
     
     m_cosmosLiveCoordinator.RegisterCosmosLiveSessionUpdateListener(this);
     SubmitGuestLoginRequest();
@@ -67,6 +68,11 @@ void UIStateCosmosLiveLobby::UpdateCurrentSession(const CosmosLiveSession& sessi
             UpdatePreGameLobby(session);
             break;
             
+        case CosmosLiveState::IN_GAME:
+            UpdateInGame(session);
+            break;
+        
+            
         default:
             break;
     }
@@ -76,6 +82,13 @@ void UIStateCosmosLiveLobby::UpdatePreGameLobby(const CosmosLiveSession& session
     m_preGameLobbyWidget->UpdateActiveUsers(session.GetPlayerCount());
     m_preGameLobbyWidget->UpdateChats(session.GetChats());
     m_preGameLobbyWidget->UpdateTimeUntilGametime(session.GetSecondsToStart());
+}
+
+void UIStateCosmosLiveLobby::UpdateInGame(const CosmosLiveSession& session) {
+    int x = 5;
+    //m_preGameLobbyWidget->UpdateActiveUsers(session.GetPlayerCount());
+    //m_preGameLobbyWidget->UpdateChats(session.GetChats());
+    //m_preGameLobbyWidget->UpdateTimeUntilGametime(session.GetSecondsToStart());
 }
 
 void UIStateCosmosLiveLobby::ChangeCurrentSession(const CosmosLiveSession& session) {
@@ -98,6 +111,10 @@ void UIStateCosmosLiveLobby::DeactivateState(CosmosLiveState state) {
             m_preGameLobbyWidget->SetVisible(false);
             break;
             
+        case CosmosLiveState::IN_GAME:
+            m_inGameWidget->SetVisible(false);
+            break;
+            
         default:
             break;
     }
@@ -112,6 +129,11 @@ void UIStateCosmosLiveLobby::ActivateState(const CosmosLiveSession& session) {
             
         case CosmosLiveState::CLOSED:
             m_closedWidget->SetVisible(true);
+            break;
+            
+        case CosmosLiveState::IN_GAME:
+            UpdateInGame(session);
+            m_inGameWidget->SetVisible(true);
             break;
             
         case CosmosLiveState::INVALID:
@@ -173,10 +195,26 @@ void UIStateCosmosLiveLobby::TakeDownPreGameLobby() {
     delete m_preGameLobbyWidget;
 }
 
+void UIStateCosmosLiveLobby::DisplayInGame() {
+    m_inGameWidget = new CosmosLiveInGameWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
+    
+//    CosmosLivePreGameLobbyWidget::onMenuItemSelectedCallBack callback;
+//    callback.bind(this, &UIStateCosmosLiveLobby::OnMainMenuItemSelected);
+//    m_preGameLobbyWidget->RegisterForChallengeMenuItemSelectedEvent(callback);
+    
+    m_inGameWidget->Init();
+}
+
+void UIStateCosmosLiveLobby::TakeDownInGame() {
+    //m_preGameLobbyWidget->Release();
+    //delete m_preGameLobbyWidget;
+}
+
 void UIStateCosmosLiveLobby::TakeDownAllWidgets() {
     TakeDownLoading();
     TakeDownClosed();
     TakeDownPreGameLobby();
+    TakeDownInGame();
 }
 
 void UIStateCosmosLiveLobby::ChatReceived(const std::string& chat) {
