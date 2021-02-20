@@ -9,6 +9,7 @@ public:
     std::string GetUser() const;
     std::string GetMessage() const;
     std::string GetAdded() const;
+    bool IsValid() const;
     
 private:
     std::string m_user;

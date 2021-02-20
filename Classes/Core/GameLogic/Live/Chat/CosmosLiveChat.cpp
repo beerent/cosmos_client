@@ -13,3 +13,7 @@ std::string CosmosLiveChat::GetMessage() const {
 std::string CosmosLiveChat::GetAdded() const {
     return m_added;
 }
+
+bool CosmosLiveChat::IsValid() const {
+    return !m_user.empty() && !m_added.empty();
+}
