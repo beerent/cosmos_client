@@ -59,6 +59,9 @@ public:
 	void TakeDownEntireChallenge();
     
     void DisplayCurrentUsername();
+    
+    void DisplayLives();
+    void DisplayLivesSymbol(int livesRemaining);
 
 private:
 	int m_currentQuestionId;
@@ -79,6 +82,8 @@ private:
 	UILabel* m_challengeOverMainMenuButtonLabel;
 	UILabel* m_questionLabelLineOne;
 	UILabel* m_questionLabelLineTwo;
+    UILabel* m_livesLabel;
+    UILabel* m_livesSymbolsLabel;
 	std::vector<UILabel*> m_answers;
 
 	UILabel* m_flagQuestion;

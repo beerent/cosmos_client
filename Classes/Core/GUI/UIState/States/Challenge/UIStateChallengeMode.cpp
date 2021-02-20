@@ -20,6 +20,8 @@ void UIStateChallengeMode::OnEnterState() {
 
 	m_challengeModeWidget->DisplayLoading();
 	m_challengeModeWidget->DisplayPoints(m_challengeData.GetAmountCorrect() * 10);
+    m_challengeModeWidget->DisplayLives();
+    m_challengeModeWidget->DisplayLivesSymbol(3);
     m_challengeData.RegisterChallengeTimerReceiver(this);
 
 	BaseStateDepricated::OnEnterState();

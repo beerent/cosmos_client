@@ -37,7 +37,8 @@ namespace {
 	}
 }
 
-ChallengeModeWidget::ChallengeModeWidget() : m_currentQuestionId(-1), m_flagQuestion(nullptr), m_questionFlagged(nullptr), m_currentUsername(nullptr), m_timerLabel(nullptr), m_answerStateLabel(nullptr) {}
+ChallengeModeWidget::ChallengeModeWidget() : m_currentQuestionId(-1), m_flagQuestion(nullptr), m_questionFlagged(nullptr),
+    m_currentUsername(nullptr), m_timerLabel(nullptr), m_answerStateLabel(nullptr), m_livesLabel(nullptr), m_livesSymbolsLabel(nullptr) {}
 
 void ChallengeModeWidget::Init(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) {
 	m_uiComponentFactory = uiComponentFactory;
@@ -92,6 +93,35 @@ void ChallengeModeWidget::TakeDownFlagged() {
     }
 }
 
+void ChallengeModeWidget::DisplayLives() {
+    const std::string lives = "Lives [         ]";
+    float livesLength = 12.5 * lives.size();
+    m_livesLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", livesLength, 60, UIComponent::ANCHOR_TOP_CENTER, lives);
+    m_livesLabel->setDropShadowColor(dropShadowColor);
+    m_livesLabel->setX(-325);
+    m_livesLabel->setY(15);
+    m_parentComponent->addChild(m_livesLabel);
+}
+
+void ChallengeModeWidget::DisplayLivesSymbol(int livesRemaining) {
+    std::string lives = "";
+    for (int i = 0; i < livesRemaining; i++) {
+        lives += " X ";
+    }
+    
+    for (int i = 0; i < 3 - livesRemaining; i++) {
+        lives += "   ";
+    }
+    
+    float livesLength = 12.5 * lives.size();
+    m_livesSymbolsLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", livesLength, 60, UIComponent::ANCHOR_TOP_CENTER, lives);
+    m_livesSymbolsLabel->setDropShadowColor(dropShadowColor);
+    m_livesSymbolsLabel->setX(-281);
+    m_livesSymbolsLabel->setY(15);
+    m_livesSymbolsLabel->setColor(TextColor::GREEN_TEXT_COLOR);
+    m_parentComponent->addChild(m_livesSymbolsLabel);
+}
+
 void ChallengeModeWidget::DisplayAnswerSelectedNotification(bool correct) {
     const std::string answerSelectedNotification = GetAnswerSelectedNotificationString(correct);
     const glm::vec3 answerSelectedNotificationColor = GetAnswerSelectedNotificationColor(correct);
@@ -99,7 +129,7 @@ void ChallengeModeWidget::DisplayAnswerSelectedNotification(bool correct) {
     float pointsWidth = 12.5 * answerSelectedNotification.size();
 
     m_answerStateLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", pointsWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, answerSelectedNotification);
-    m_answerStateLabel->setY(65);
+    m_answerStateLabel->setY(70);
     m_answerStateLabel->setColor(answerSelectedNotificationColor);
     m_answerStateLabel->setDropShadowColor(dropShadowColor);
     m_parentComponent->addChild(m_answerStateLabel);
@@ -138,7 +168,6 @@ void ChallengeModeWidget::DisplayPoints(int points) {
     float pointsWidth = 12.5 * pointsAsString.size();
 
 	m_pointsLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", pointsWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, pointsAsString);
-    m_pointsLabel->setX(-200);
     m_pointsLabel->setY(15);
     m_pointsLabel->setDropShadowColor(dropShadowColor);
 	m_parentComponent->addChild(m_pointsLabel);
@@ -169,7 +198,7 @@ void ChallengeModeWidget::DisplayTimer(int seconds) {
     float timerWidth = 12.5 * timerString.size();
 
     m_timerLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", timerWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, timerString);
-    m_timerLabel->setX(200);
+    m_timerLabel->setX(300);
     m_timerLabel->setY(15);
     m_timerLabel->setDropShadowColor(dropShadowColor);
     m_parentComponent->addChild(m_timerLabel);
