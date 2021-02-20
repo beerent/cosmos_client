@@ -174,7 +174,7 @@ void CosmosLivePreGameLobbyWidget::UpdateChats(const std::vector<CosmosLiveChat>
     }
     
     for (int i = 0; i < 10; i++) {
-        const CosmosLiveChat &chat = chats[i];
+        const CosmosLiveChat &chat = fullChats[i];
         UpdateChat(chat, 9 - i);
     }
 }
@@ -247,7 +247,11 @@ void CosmosLivePreGameLobbyWidget::AddChats() {
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int position) {
-    std::string chatString = chat.GetUser() + ": " + chat.GetMessage();
+    std::string chatString = "";
+    if (chat.IsValid()) {
+        chatString = chat.GetUser() + ": " + chat.GetMessage();
+    }
+    
     while (chatString.size() < 50) {
         chatString += " ";
     }
