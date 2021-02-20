@@ -50,7 +50,11 @@ public:
     
     void TakeDownFlag();
     void TakeDownFlagged();
+    
+    void DisplayAnswerState(bool correct);
+    void TakeDownAnswerState();
 
+    void AnswerSelected(bool correct);
 	void GameOver();
 	void TakeDownEntireChallenge();
     
@@ -70,6 +74,7 @@ private:
 	UILabel* m_loadingLabel;
 	UILabel* m_pointsLabel;
     UILabel* m_timerLabel;
+    UILabel* m_answerStateLabel;
 	UILabel* m_challengeOverLabel;
 	UILabel* m_challengeOverMainMenuButtonLabel;
 	UILabel* m_questionLabelLineOne;

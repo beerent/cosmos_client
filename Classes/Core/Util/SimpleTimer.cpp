@@ -11,7 +11,7 @@ std::chrono::steady_clock::time_point SimpleTimer::GetCurrentTime() {
 }
 
 std::map<TimerType, double> TIMER_MAP = {
-    { TimerType::CURSOR_BLINK_550_MS, 550 }, { TimerType::MESSAGE_SCROLL_TIMER, 10 }, { TimerType::CHALLENGE_QUESTION_TIMER_100_MS, 100 }, { TimerType::CHALLENGE_QUESTION_TIMER_1000_MS, 1000 }, { TimerType::COSMOS_LIVE_REFRESH_TIMER, 1000 }
+    { TimerType::CURSOR_BLINK_550_MS, 550 }, { TimerType::MESSAGE_SCROLL_TIMER, 10 }, { TimerType::CHALLENGE_QUESTION_TIMER_100_MS, 100 }, { TimerType::CHALLENGE_QUESTION_TIMER_1000_MS, 1000 }, { TimerType::COSMOS_LIVE_REFRESH_TIMER, 1000 }, { TimerType::CHALLENGE_CORRECT_ANSWER_TIMER, 4000 }
 };
 
 SimpleTimer::SimpleTimer(SimpleTimerListener* listener) : m_timerListener(listener), m_timersAltered(false) {

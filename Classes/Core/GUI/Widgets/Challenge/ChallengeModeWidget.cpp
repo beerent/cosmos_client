@@ -37,7 +37,7 @@ namespace {
 	}
 }
 
-ChallengeModeWidget::ChallengeModeWidget() : m_currentQuestionId(-1), m_flagQuestion(nullptr), m_questionFlagged(nullptr), m_currentUsername(nullptr), m_timerLabel(nullptr) {}
+ChallengeModeWidget::ChallengeModeWidget() : m_currentQuestionId(-1), m_flagQuestion(nullptr), m_questionFlagged(nullptr), m_currentUsername(nullptr), m_timerLabel(nullptr), m_answerStateLabel(nullptr) {}
 
 void ChallengeModeWidget::Init(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) {
 	m_uiComponentFactory = uiComponentFactory;
@@ -92,6 +92,29 @@ void ChallengeModeWidget::TakeDownFlagged() {
     }
 }
 
+void ChallengeModeWidget::DisplayAnswerState(bool correct) {
+    glm::vec3 textColor = TextColor::RED_TEXT_COLOR;
+    std::string state = "GAME OVER";
+    if (correct) {
+        textColor = TextColor::GREEN_TEXT_COLOR;
+        state = "CORRECT!";
+    }
+    
+    float pointsWidth = 12.5 * state.size();
+
+    m_answerStateLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", pointsWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, state);
+    m_answerStateLabel->setY(65);
+    m_answerStateLabel->setColor(textColor);
+    m_answerStateLabel->setDropShadowColor(dropShadowColor);
+    m_parentComponent->addChild(m_answerStateLabel);
+}
+
+void ChallengeModeWidget::TakeDownAnswerState() {
+    if (m_answerStateLabel != nullptr) {
+        m_answerStateLabel->release();
+    }
+}
+
 void ChallengeModeWidget::UpdatePoints(int points) {
     m_pointsLabel->setTextString(GetPointsString(points));
 }
@@ -100,8 +123,9 @@ void ChallengeModeWidget::DisplayPoints(int points) {
     std::string pointsAsString = GetPointsString(points);
     float pointsWidth = 12.5 * pointsAsString.size();
 
-	m_pointsLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", pointsWidth, 40.0, UIComponent::ANCHOR_TOP_LEFT, pointsAsString);
-    m_pointsLabel->setX(80);
+	m_pointsLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", pointsWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, pointsAsString);
+    m_pointsLabel->setX(-200);
+    m_pointsLabel->setY(15);
     m_pointsLabel->setDropShadowColor(dropShadowColor);
 	m_parentComponent->addChild(m_pointsLabel);
 }
@@ -131,6 +155,7 @@ void ChallengeModeWidget::DisplayTimer(int seconds) {
     float timerWidth = 12.5 * timerString.size();
 
     m_timerLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", timerWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, timerString);
+    m_timerLabel->setX(200);
     m_timerLabel->setY(15);
     m_timerLabel->setDropShadowColor(dropShadowColor);
     m_parentComponent->addChild(m_timerLabel);
@@ -229,6 +254,7 @@ void ChallengeModeWidget::TakeDownEntireChallenge() {
 	TakeDownQuestion();
     TakeDownFlag();
     TakeDownFlagged();
+    TakeDownAnswerState();
 	m_challengeOverMainMenuButtonLabel->release();
 }
 
@@ -269,10 +295,15 @@ void ChallengeModeWidget::DisplayQuestionFlagged() {
 	m_parentComponent->addChild(m_questionFlagged);
 }
 
-void ChallengeModeWidget::GameOver() {
-	DisableAnswerButtons();
+void ChallengeModeWidget::AnswerSelected(bool correct) {
+    DisableAnswerButtons();
     TearDownAnswers();
-	SetCorrectnessRevealingColors();
+    SetCorrectnessRevealingColors();
+    DisplayAnswerState(correct);
+}
+
+void ChallengeModeWidget::GameOver() {
+    AnswerSelected(false);
 	DisplayMainMenuButton();
 }
 

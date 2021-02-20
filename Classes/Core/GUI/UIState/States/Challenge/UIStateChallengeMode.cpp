@@ -68,17 +68,26 @@ void UIStateChallengeMode::HandleAnswerByCorrectness(bool isCorrect) {
 }
 
 void UIStateChallengeMode::HandleCorrectAnswer() {
-	m_challengeModeWidget->TakeDownQuestion();
+    m_challengeModeWidget->AnswerSelected(true);
+    DeregisterTimers();
+    RegisterCorrectAnswerTimer();
+}
 
-	if (m_challengeData.ChallengeQuestionAvailable()) {
-		const Question& question = m_challengeData.GetNextQuestion();
+void UIStateChallengeMode::AdvanceToNextQuestion() {
+    RegisterTimers();
+    
+    m_challengeModeWidget->TakeDownAnswerState();
+    m_challengeModeWidget->TakeDownQuestion();
+
+    if (m_challengeData.ChallengeQuestionAvailable()) {
+        const Question& question = m_challengeData.GetNextQuestion();
         DisplayQuestion(question);
-	} else {
+    } else {
         DeregisterTimers();
 
         m_challengeModeWidget->DisplayLoading();
-		m_challengeData.ChallengeQuestionsRequested();
-	}
+        m_challengeData.ChallengeQuestionsRequested();
+    }
 }
 
 void UIStateChallengeMode::DisplayQuestion(const Question& question) {
@@ -117,6 +126,10 @@ void UIStateChallengeMode::OnTimerEvent(Timer::TimerType type) {
         case Timer::TimerType::CHALLENGE_QUESTION_TIMER_1000_MS:
                 UpdateTimer();
             break;
+            
+        case Timer::TimerType::CHALLENGE_CORRECT_ANSWER_TIMER:
+            DeregisterCorrectAnswerTimer();
+            AdvanceToNextQuestion();
 
         default:
             break;
@@ -166,4 +179,12 @@ void UIStateChallengeMode::RegisterTimers() {
 void UIStateChallengeMode::DeregisterTimers() {
     m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_100_MS);
     m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_QUESTION_TIMER_1000_MS);
+}
+
+void UIStateChallengeMode::RegisterCorrectAnswerTimer() {
+    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_CORRECT_ANSWER_TIMER);
+}
+
+void UIStateChallengeMode::DeregisterCorrectAnswerTimer() {
+    m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_CORRECT_ANSWER_TIMER);
 }

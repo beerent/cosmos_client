@@ -49,6 +49,8 @@ private:
 	void HandleCorrectAnswer();
 	void HandleWrongAnswer();
     
+    void AdvanceToNextQuestion();
+    
     void DisplayQuestion(const Question& question);
     void ResetGameTimer();
     
@@ -59,6 +61,9 @@ private:
     
     void RegisterTimers();
     void DeregisterTimers();
+    
+    void RegisterCorrectAnswerTimer();
+    void DeregisterCorrectAnswerTimer();
     
     bool TimerIsExpired() const;
     
