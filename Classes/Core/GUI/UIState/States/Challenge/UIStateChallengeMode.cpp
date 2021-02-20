@@ -69,13 +69,11 @@ void UIStateChallengeMode::HandleAnswerByCorrectness(bool isCorrect) {
 
 void UIStateChallengeMode::HandleCorrectAnswer() {
     m_challengeModeWidget->AnswerSelected(true);
-    DeregisterGameTimerTimers();
+    ResetGameTimer(3, TextColor::YELLOW_TEXT_COLOR);
     RegisterCorrectAnswerTimer();
 }
 
 void UIStateChallengeMode::AdvanceToNextQuestion() {
-    RegisterGameTimerTimers();
-    
     m_challengeModeWidget->TakeDownAnswerState();
     m_challengeModeWidget->TakeDownQuestion();
 
@@ -96,9 +94,13 @@ void UIStateChallengeMode::DisplayQuestion(const Question& question) {
 }
 
 void UIStateChallengeMode::ResetGameTimer() {
-    m_timerSecondsRemaining = m_challengeModeTimerSeconds;
+    ResetGameTimer(m_challengeModeTimerSeconds, TextColor::GREEN_TEXT_COLOR);
+}
+
+void UIStateChallengeMode::ResetGameTimer(int seconds, glm::vec3 color) {
+    m_timerSecondsRemaining = seconds;
     m_challengeModeWidget->UpdateTimer(m_timerSecondsRemaining);
-    m_challengeModeWidget->SetTimerColor(TextColor::GREEN_TEXT_COLOR);
+    m_challengeModeWidget->SetTimerColor(color);
 
     m_lastTimeCheck = Timer::SimpleTimer::GetCurrentTime();
 }

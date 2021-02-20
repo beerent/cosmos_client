@@ -52,6 +52,7 @@ private:
     void AdvanceToNextQuestion();
     
     void DisplayQuestion(const Question& question);
+    void ResetGameTimer(int seconds, glm::vec3 color);
     void ResetGameTimer();
     
     void UpdateTimer();
