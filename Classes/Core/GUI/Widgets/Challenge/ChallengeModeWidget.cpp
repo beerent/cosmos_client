@@ -92,21 +92,35 @@ void ChallengeModeWidget::TakeDownFlagged() {
     }
 }
 
-void ChallengeModeWidget::DisplayAnswerState(bool correct) {
-    glm::vec3 textColor = TextColor::RED_TEXT_COLOR;
-    std::string state = "GAME OVER";
-    if (correct) {
-        textColor = TextColor::GREEN_TEXT_COLOR;
-        state = "CORRECT!";
-    }
+void ChallengeModeWidget::DisplayAnswerSelectedNotification(bool correct) {
+    const std::string answerSelectedNotification = GetAnswerSelectedNotificationString(correct);
+    const glm::vec3 answerSelectedNotificationColor = GetAnswerSelectedNotificationColor(correct);
     
-    float pointsWidth = 12.5 * state.size();
+    float pointsWidth = 12.5 * answerSelectedNotification.size();
 
-    m_answerStateLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", pointsWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, state);
+    m_answerStateLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", pointsWidth, 40.0, UIComponent::ANCHOR_TOP_CENTER, answerSelectedNotification);
     m_answerStateLabel->setY(65);
-    m_answerStateLabel->setColor(textColor);
+    m_answerStateLabel->setColor(answerSelectedNotificationColor);
     m_answerStateLabel->setDropShadowColor(dropShadowColor);
     m_parentComponent->addChild(m_answerStateLabel);
+}
+
+std::string ChallengeModeWidget::GetAnswerSelectedNotificationString(bool correct) const {
+    std::string notification = "GAME OVER";
+    if (correct) {
+        notification = "CORRECT!";
+    }
+    
+    return notification;
+}
+
+glm::vec3 ChallengeModeWidget::GetAnswerSelectedNotificationColor(bool correct) const {
+    glm::vec3 color = TextColor::RED_TEXT_COLOR;
+    if (correct) {
+        color = TextColor::GREEN_TEXT_COLOR;
+    }
+    
+    return color;
 }
 
 void ChallengeModeWidget::TakeDownAnswerState() {
@@ -299,7 +313,7 @@ void ChallengeModeWidget::AnswerSelected(bool correct) {
     DisableAnswerButtons();
     TearDownAnswers();
     SetCorrectnessRevealingColors();
-    DisplayAnswerState(correct);
+    DisplayAnswerSelectedNotification(correct);
 }
 
 void ChallengeModeWidget::GameOver() {

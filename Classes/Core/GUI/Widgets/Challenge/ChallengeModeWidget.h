@@ -51,7 +51,7 @@ public:
     void TakeDownFlag();
     void TakeDownFlagged();
     
-    void DisplayAnswerState(bool correct);
+    void DisplayAnswerSelectedNotification(bool correct);
     void TakeDownAnswerState();
 
     void AnswerSelected(bool correct);
@@ -105,6 +105,9 @@ private:
 	void DisplayQuestionFlagged();
 
 	void DisplayMainMenuButton();
+    
+    std::string GetAnswerSelectedNotificationString(bool correct) const;
+    glm::vec3 GetAnswerSelectedNotificationColor(bool correct) const;
 
 	UITouchButton::onButtonStateChangedCallBack CreateButtonCallback(int index);
 	void OnAnswer0(UITouchButton::ButtonState state);
