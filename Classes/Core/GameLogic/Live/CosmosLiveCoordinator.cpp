@@ -16,7 +16,7 @@ CosmosLiveCoordinator::CosmosLiveCoordinator() : m_timer(this), m_cosmosLiveSess
 
 CosmosLiveCoordinator::~CosmosLiveCoordinator() {
     DeregisterTimers();
-    CloseCosmosLiveUpdateRequest();
+    CancelCosmosLiveUpdateRequest();
 }
 
 void CosmosLiveCoordinator::Start() {
