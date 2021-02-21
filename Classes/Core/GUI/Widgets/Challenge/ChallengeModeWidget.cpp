@@ -93,7 +93,8 @@ void ChallengeModeWidget::DisplayLoading() {
 }
 
 void ChallengeModeWidget::TakeDownLoading() {
-	m_loadingLabel->release();
+    m_loadingLabel->setText("");
+    m_loadingLabel->release();
 }
 
 void ChallengeModeWidget::TakeDownFlag() {
@@ -312,7 +313,7 @@ void ChallengeModeWidget::TakeDownQuestion() {
 }
 
 void ChallengeModeWidget::DisplayLoadingScheme() {
-	m_loadingLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_CENTER, "Loading...");
+	m_loadingLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 0.0, 0.0, UIComponent::ANCHOR_CENTER, "Loading...");
     m_loadingLabel->setDropShadowColor(dropShadowColor);
 	m_centerContainer->addChild(m_loadingLabel);
 }
