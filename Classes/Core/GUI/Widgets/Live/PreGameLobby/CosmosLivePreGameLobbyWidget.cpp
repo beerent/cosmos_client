@@ -5,6 +5,9 @@ const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 const float LABEL_HEIGHT = 90.0;
 const float LABEL_WIDTH = 585.0;
 
+const int MAX_USERNAME_CHARACTERS = 20;
+const int MAX_CHAT_CHARACTERS = 60;
+
 CosmosLivePreGameLobbyWidget::CosmosLivePreGameLobbyWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
 m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_chatText(nullptr), m_keyboardManager(nullptr), m_timer(this), m_cursorOn(false), m_editingChat(false), m_cosmosLiveChatReceiver(nullptr) {}
 
@@ -12,8 +15,8 @@ void CosmosLivePreGameLobbyWidget::Init() {
     m_keyboardManager = IEngine::getEngine()->GetKeyboardManager();
     m_keyboardManager->RegisterKeyboardListener(this);
     
-    AddProfileWindow();
-    AddProfileFrame();
+    AddChatWindow();
+    AddChatFrame();
     AddHomeButton();
     AddTitleButton();
     AddActiveUsers();
@@ -66,26 +69,30 @@ void CosmosLivePreGameLobbyWidget::OnDeletePressed() {
 }
 
 void CosmosLivePreGameLobbyWidget::OnCharacterPressed(char c) {
+    if (m_chat.length() >= MAX_CHAT_CHARACTERS) {
+        return;
+    }
+    
     m_chat += c;
     DisplayCursor();
     ResetCursorTimer();
 }
 
 void CosmosLivePreGameLobbyWidget::OnEnterPressed() {
-    OnSendChat();
+    SendChat();
 }
 
-void CosmosLivePreGameLobbyWidget::AddProfileWindow() {
+void CosmosLivePreGameLobbyWidget::AddChatWindow() {
     m_profileWindow = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("UIGroupArchetype"));
     m_profileWindow->setWidth(m_parentComponent->getWidth());
     m_profileWindow->setHeight(m_parentComponent->getHeight());
     m_parentComponent->addChild(m_profileWindow);
 }
 
-void CosmosLivePreGameLobbyWidget::AddProfileFrame() {
+void CosmosLivePreGameLobbyWidget::AddChatFrame() {
     m_profileFrame = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
     m_profileFrame->setAnchor(UIComponent::ANCHOR_TOP_CENTER);
-    m_profileFrame->setWidth(900);
+    m_profileFrame->setWidth(1265);
     m_profileFrame->setHeight(600);
     m_profileFrame->setY(50);
 
@@ -249,12 +256,14 @@ void CosmosLivePreGameLobbyWidget::AddChats() {
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int position) {
+    const std::string usernamePostFix = ": ";
     std::string chatString = "";
     if (chat.IsValid()) {
-        chatString = chat.GetUser() + ": " + chat.GetMessage();
+        chatString = chat.GetUser() + usernamePostFix + chat.GetMessage();
     }
     
-    while (chatString.size() < 50) {
+    const int maxChatSize = MAX_CHAT_CHARACTERS + MAX_USERNAME_CHARACTERS + (int) usernamePostFix.size();
+    while (chatString.size() < maxChatSize) {
         chatString += " ";
     }
     
@@ -306,7 +315,7 @@ void CosmosLivePreGameLobbyWidget::UnsetCursorTimer() {
     m_timer.DeregisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
 }
 
-void CosmosLivePreGameLobbyWidget::OnSendChat() {
+void CosmosLivePreGameLobbyWidget::SendChat() {
     if (!m_chat.empty() && m_cosmosLiveChatReceiver != nullptr) {
         m_cosmosLiveChatReceiver->ChatReceived(m_chat);
     }
@@ -330,7 +339,8 @@ void CosmosLivePreGameLobbyWidget::MoveFrameDown() {
 }
 
 void CosmosLivePreGameLobbyWidget::DisplayChatBox() {
-    const std::string message = "chat: ";
+    const std::string chatLengthIndicator = GetChatLengthAsString();
+    const std::string message = "chat:   " + chatLengthIndicator;
     
     m_chatText = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_BOTTOM_CENTER, message);
     m_chatText->setDropShadowColor(dropShadowColor);
@@ -340,11 +350,23 @@ void CosmosLivePreGameLobbyWidget::DisplayChatBox() {
 }
 
 void CosmosLivePreGameLobbyWidget::DisplayCursor() {
-    m_chatText->setTextString("chat: " + m_chat + "|");
+    const std::string chatLengthIndicator = GetChatLengthAsString();
+    m_chatText->setTextString("chat: " + m_chat + "| " + chatLengthIndicator);
 }
 
 void CosmosLivePreGameLobbyWidget::HideCursor() {
-    m_chatText->setTextString("chat: " + m_chat + " ");
+    const std::string chatLengthIndicator = GetChatLengthAsString();
+    m_chatText->setTextString("chat: " + m_chat + "  " + chatLengthIndicator);
+}
+
+std::string CosmosLivePreGameLobbyWidget::GetChatLengthAsString() const {
+    std::string chatLengthIndicator = "(";
+    chatLengthIndicator += std::to_string(m_chat.length());
+    chatLengthIndicator += "/";
+    chatLengthIndicator += std::to_string(MAX_CHAT_CHARACTERS);
+    chatLengthIndicator += ")";
+    
+    return chatLengthIndicator;
 }
 
 void CosmosLivePreGameLobbyWidget::OnTimerEvent(Timer::TimerType type) {
