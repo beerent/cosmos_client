@@ -96,6 +96,7 @@ void ChallengeMenuWidget::AddChallengeTitle() {
 void ChallengeMenuWidget::AddLeaderboardTitle() {
 	m_leaderboardTitle = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "Challenge Leaderboard");
     m_leaderboardTitle->setDropShadowColor(dropShadowColor);
+    m_leaderboardTitle->setY(12.0);
 	m_leaderboard->addChild(m_leaderboardTitle);
 }
 

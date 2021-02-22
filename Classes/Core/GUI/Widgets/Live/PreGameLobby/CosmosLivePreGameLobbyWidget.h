@@ -55,6 +55,10 @@ private:
     void OnAddChatPressed(UITouchButton::ButtonState state);
     void OnSendChat();
     
+    void SetCursorTimer();
+    void ResetCursorTimer();
+    void UnsetCursorTimer();
+    
     void MoveFrameUp();
     void MoveFrameDown();
     void DisplayChatBox();

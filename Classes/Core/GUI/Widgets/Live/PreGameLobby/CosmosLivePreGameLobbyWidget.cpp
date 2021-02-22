@@ -62,11 +62,13 @@ void CosmosLivePreGameLobbyWidget::OnDeletePressed() {
     
     m_chat = currentChat;
     DisplayCursor();
-    m_timer.ResetTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+    ResetCursorTimer();
 }
 
 void CosmosLivePreGameLobbyWidget::OnCharacterPressed(char c) {
     m_chat += c;
+    DisplayCursor();
+    ResetCursorTimer();
 }
 
 void CosmosLivePreGameLobbyWidget::OnEnterPressed() {
@@ -288,8 +290,20 @@ void CosmosLivePreGameLobbyWidget::OnAddChatPressed(UITouchButton::ButtonState s
     MoveFrameUp();
     m_addChatButton->release();
     DisplayChatBox();
-    m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+    SetCursorTimer();
     m_editingChat = true;
+}
+
+void CosmosLivePreGameLobbyWidget::SetCursorTimer() {
+    m_timer.ResetTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+}
+
+void CosmosLivePreGameLobbyWidget::ResetCursorTimer() {
+    m_timer.ResetTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+}
+
+void CosmosLivePreGameLobbyWidget::UnsetCursorTimer() {
+    m_timer.DeregisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
 }
 
 void CosmosLivePreGameLobbyWidget::OnSendChat() {
@@ -303,7 +317,7 @@ void CosmosLivePreGameLobbyWidget::OnSendChat() {
     AddAddChatButton();
     m_chat.clear();
     m_chatText->release();
-    m_timer.DeregisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+    UnsetCursorTimer();
     m_editingChat = false;
 }
 
