@@ -15,7 +15,7 @@ namespace requests {
     const std::string GET_MESSAGES = "getMessages";
 }
 
-const int EASTER_EGG_PRESS_COUNT_AMOUNT = 15;
+const int EASTER_EGG_PRESS_COUNT_AMOUNT = 5;
 const std::string EASTER_EGG_MESSAGE = "Know Your Cosmos // Created By Brent Ryczak // 2018 - 2021";
 
 UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageIndex(-1), m_currentMessageScrollIndex(-10000), m_easterEggPending(true) {}
