@@ -146,7 +146,7 @@ std::string CosmosLivePreGameLobbyWidget::SecondsToMinutesSecondsString(double s
     if (secondsRemaining < 60) {
         std::string secondString = std::to_string(secondsRemaining);
         if (secondsRemaining < 10) {
-            return "00:0" + secondString.substr(0, 1);
+            return "00:00:0" + secondString.substr(0, 1);
         }
 
         if (secondString.size() > 3) {
@@ -157,11 +157,17 @@ std::string CosmosLivePreGameLobbyWidget::SecondsToMinutesSecondsString(double s
             secondString = "0" + secondString;
         }
         
-        return "00:" + (secondString);
+        return "00:00:" + (secondString);
     }
     
-    int minutes = secondsRemaining / 60;
-    int seconds = secondsRemaining - (minutes * 60);
+    const int hours = secondsRemaining / 60 / 60;
+    const int minutes = (secondsRemaining / 60) - (hours * 60);
+    const int seconds = secondsRemaining - ((hours * 60 * 60) + (minutes * 60));
+    
+    std::string hourString = std::to_string(hours);
+    if (hourString.size() == 1) {
+        hourString = "0" + hourString;
+    }
     
     std::string minuteString = std::to_string(minutes);
     if (minuteString.size() == 1) {
@@ -173,7 +179,7 @@ std::string CosmosLivePreGameLobbyWidget::SecondsToMinutesSecondsString(double s
         secondString = "0" + secondString;
     }
     
-    return minuteString + ":" + secondString;
+    return hourString + ":" + minuteString + ":" + secondString;
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateChats(const std::vector<CosmosLiveChat>& chats) {
