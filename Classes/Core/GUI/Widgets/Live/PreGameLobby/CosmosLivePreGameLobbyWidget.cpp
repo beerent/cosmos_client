@@ -331,6 +331,7 @@ void CosmosLivePreGameLobbyWidget::SendChat() {
     ShowMenuBar();
     MoveFrameDown();
     AddAddChatButton();
+    SetVisible(true);
     m_chat.clear();
     m_chatText->release();
     UnsetCursorTimer();
