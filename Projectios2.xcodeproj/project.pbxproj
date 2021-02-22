@@ -3017,7 +3017,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.4.0.1;
+				CURRENT_PROJECT_VERSION = 1.4.0.2;
 				DEVELOPMENT_TEAM = F2DR84DKST;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3066,7 +3066,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.4.0.1;
+				CURRENT_PROJECT_VERSION = 1.4.0.2;
 				DEVELOPMENT_TEAM = F2DR84DKST;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
