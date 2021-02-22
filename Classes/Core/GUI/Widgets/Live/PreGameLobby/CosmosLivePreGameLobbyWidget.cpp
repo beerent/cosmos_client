@@ -9,7 +9,7 @@ const int MAX_USERNAME_CHARACTERS = 20;
 const int MAX_CHAT_CHARACTERS = 60;
 
 CosmosLivePreGameLobbyWidget::CosmosLivePreGameLobbyWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
-m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_chatText(nullptr), m_keyboardManager(nullptr), m_timer(this), m_cursorOn(false), m_editingChat(false), m_cosmosLiveChatReceiver(nullptr) {}
+m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_preGameLobbyWindow(nullptr), m_chatFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_chatText(nullptr), m_keyboardManager(nullptr), m_timer(this), m_cursorOn(false), m_editingChat(false), m_cosmosLiveChatReceiver(nullptr) {}
 
 void CosmosLivePreGameLobbyWidget::Init() {
     m_keyboardManager = IEngine::getEngine()->GetKeyboardManager();
@@ -42,19 +42,24 @@ void CosmosLivePreGameLobbyWidget::Release() {
     m_currentUsername->release();
     delete m_currentUsername;
     
-    m_profileWindow->release();
-    delete m_profileWindow;
+    m_preGameLobbyWindow->release();
+    delete m_preGameLobbyWindow;
 }
 
 void CosmosLivePreGameLobbyWidget::SetVisible(bool visible) {
-    m_currentUsername->setVisible(visible);
-    m_activeUsers->setVisible(visible);
-    m_timeUntilGametime->setVisible(visible);
-    m_title->setVisible(visible);
-    m_home->setVisible(visible);
+    m_chatFrame->setVisible(visible);
+    m_preGameLobbyWindow->setVisible(visible);
     m_addChatButton->setVisible(visible);
-    m_profileFrame->setVisible(visible);
-    m_profileWindow->setVisible(visible);
+    
+    if (visible) {
+        m_home->setTextString("        home        ");
+        m_title->setTextString("Cosmos Live - Pre Game Lobby");
+        m_addChatButton->setTextString("Add Chat");
+    } else {
+        m_home->setTextString("");
+        m_title->setTextString("");
+        m_addChatButton->setTextString("");
+    }
 }
 
 void CosmosLivePreGameLobbyWidget::OnDeletePressed() {
@@ -83,26 +88,26 @@ void CosmosLivePreGameLobbyWidget::OnEnterPressed() {
 }
 
 void CosmosLivePreGameLobbyWidget::AddChatWindow() {
-    m_profileWindow = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("UIGroupArchetype"));
-    m_profileWindow->setWidth(m_parentComponent->getWidth());
-    m_profileWindow->setHeight(m_parentComponent->getHeight());
-    m_parentComponent->addChild(m_profileWindow);
+    m_preGameLobbyWindow = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("UIGroupArchetype"));
+    m_preGameLobbyWindow->setWidth(m_parentComponent->getWidth());
+    m_preGameLobbyWindow->setHeight(m_parentComponent->getHeight());
+    m_parentComponent->addChild(m_preGameLobbyWindow);
 }
 
 void CosmosLivePreGameLobbyWidget::AddChatFrame() {
-    m_profileFrame = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
-    m_profileFrame->setAnchor(UIComponent::ANCHOR_TOP_CENTER);
-    m_profileFrame->setWidth(1265);
-    m_profileFrame->setHeight(600);
-    m_profileFrame->setY(50);
+    m_chatFrame = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
+    m_chatFrame->setAnchor(UIComponent::ANCHOR_TOP_CENTER);
+    m_chatFrame->setWidth(1265);
+    m_chatFrame->setHeight(600);
+    m_chatFrame->setY(50);
 
-    m_profileWindow->addChild(m_profileFrame);
+    m_preGameLobbyWindow->addChild(m_chatFrame);
 }
 
 void CosmosLivePreGameLobbyWidget::AddHomeButton() {
     UITouchButton::onButtonStateChangedCallBack callBack;
 
-    m_home = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_LEFT, "        home        ");
+    m_home = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_LEFT, "");
     m_home->setDropShadowColor(dropShadowColor);
     m_home->setX(30);
 
@@ -113,11 +118,11 @@ void CosmosLivePreGameLobbyWidget::AddHomeButton() {
 }
 
 void CosmosLivePreGameLobbyWidget::AddTitleButton() {
-    m_title = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_CENTER, "Cosmos Live - Pre Game Lobby");
+    m_title = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_CENTER, "");
     m_title->setDropShadowColor(dropShadowColor);
     m_title->setY(12.0);
 
-    m_profileFrame->addChild(m_title);
+    m_chatFrame->addChild(m_title);
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateActiveUsers(int users) {
@@ -195,9 +200,7 @@ void CosmosLivePreGameLobbyWidget::UpdateChats(const std::vector<CosmosLiveChat>
 }
 
 void CosmosLivePreGameLobbyWidget::AddActiveUsers() {
-    const std::string message = "";
-    
-    m_activeUsers = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_CENTER, message);
+    m_activeUsers = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_CENTER, "");
     m_activeUsers->setDropShadowColor(dropShadowColor);
     m_activeUsers->setX(-260);
 
@@ -205,9 +208,7 @@ void CosmosLivePreGameLobbyWidget::AddActiveUsers() {
 }
 
 void CosmosLivePreGameLobbyWidget::AddTimeUntilGametime() {
-    const std::string message = "time";
-    
-    m_timeUntilGametime = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_CENTER, message);
+    m_timeUntilGametime = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_CENTER, "");
     m_timeUntilGametime->setDropShadowColor(dropShadowColor);
     m_timeUntilGametime->setX(230);
 
@@ -231,34 +232,34 @@ void CosmosLivePreGameLobbyWidget::AddChats() {
     const int rowPadding = 41;
     
     m_chat0 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
-    m_chat0->setDropShadowColor(dropShadowColor); m_chat0->setY(basePadding + ( rowPadding * (1 + 0))); m_profileFrame->addChild(m_chat0);
+    m_chat0->setDropShadowColor(dropShadowColor); m_chat0->setY(basePadding + ( rowPadding * (1 + 0))); m_chatFrame->addChild(m_chat0);
     
     m_chat1 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
-    m_chat1->setDropShadowColor(dropShadowColor); m_chat1->setY(basePadding + ( rowPadding * (1 + 1))); m_profileFrame->addChild(m_chat1);
+    m_chat1->setDropShadowColor(dropShadowColor); m_chat1->setY(basePadding + ( rowPadding * (1 + 1))); m_chatFrame->addChild(m_chat1);
     
     m_chat2 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
-    m_chat2->setDropShadowColor(dropShadowColor); m_chat2->setY(basePadding + ( rowPadding * (1 + 2))); m_profileFrame->addChild(m_chat2);
+    m_chat2->setDropShadowColor(dropShadowColor); m_chat2->setY(basePadding + ( rowPadding * (1 + 2))); m_chatFrame->addChild(m_chat2);
     
     m_chat3 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
-    m_chat3->setDropShadowColor(dropShadowColor); m_chat3->setY(basePadding + ( rowPadding * (1 + 3))); m_profileFrame->addChild(m_chat3);
+    m_chat3->setDropShadowColor(dropShadowColor); m_chat3->setY(basePadding + ( rowPadding * (1 + 3))); m_chatFrame->addChild(m_chat3);
     
     m_chat4 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
-    m_chat4->setDropShadowColor(dropShadowColor); m_chat4->setY(basePadding + ( rowPadding * (1 + 4))); m_profileFrame->addChild(m_chat4);
+    m_chat4->setDropShadowColor(dropShadowColor); m_chat4->setY(basePadding + ( rowPadding * (1 + 4))); m_chatFrame->addChild(m_chat4);
     
     m_chat5 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
-    m_chat5->setDropShadowColor(dropShadowColor); m_chat5->setY(basePadding + ( rowPadding * (1 + 5))); m_profileFrame->addChild(m_chat5);
+    m_chat5->setDropShadowColor(dropShadowColor); m_chat5->setY(basePadding + ( rowPadding * (1 + 5))); m_chatFrame->addChild(m_chat5);
     
     m_chat6 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
-    m_chat6->setDropShadowColor(dropShadowColor); m_chat6->setY(basePadding + ( rowPadding * (1 + 6))); m_profileFrame->addChild(m_chat6);
+    m_chat6->setDropShadowColor(dropShadowColor); m_chat6->setY(basePadding + ( rowPadding * (1 + 6))); m_chatFrame->addChild(m_chat6);
     
     m_chat7 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
-    m_chat7->setDropShadowColor(dropShadowColor); m_chat7->setY(basePadding + ( rowPadding * (1 + 7))); m_profileFrame->addChild(m_chat7);
+    m_chat7->setDropShadowColor(dropShadowColor); m_chat7->setY(basePadding + ( rowPadding * (1 + 7))); m_chatFrame->addChild(m_chat7);
     
     m_chat8 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
-    m_chat8->setDropShadowColor(dropShadowColor); m_chat8->setY(basePadding + ( rowPadding * (1 + 8))); m_profileFrame->addChild(m_chat8);
+    m_chat8->setDropShadowColor(dropShadowColor); m_chat8->setY(basePadding + ( rowPadding * (1 + 8))); m_chatFrame->addChild(m_chat8);
     
     m_chat9 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
-    m_chat9->setDropShadowColor(dropShadowColor); m_chat9->setY(basePadding + ( rowPadding * (1 + 9))); m_profileFrame->addChild(m_chat9);
+    m_chat9->setDropShadowColor(dropShadowColor); m_chat9->setY(basePadding + ( rowPadding * (1 + 9))); m_chatFrame->addChild(m_chat9);
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int position) {
@@ -290,13 +291,13 @@ void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int po
 void CosmosLivePreGameLobbyWidget::AddAddChatButton() {
     UITouchButton::onButtonStateChangedCallBack callBack;
 
-    m_addChatButton = UIComponentFactory::getInstance()->createUILabel("KYCQuestionButtonArchetype", 500.0, 90.0, UIComponent::ANCHOR_BOTTOM_CENTER, "Add Chat");
+    m_addChatButton = UIComponentFactory::getInstance()->createUILabel("KYCQuestionButtonArchetype", 500.0, 90.0, UIComponent::ANCHOR_BOTTOM_CENTER, "");
     m_addChatButton->setDropShadowColor(dropShadowColor);
     m_addChatButton->setY(25);
 
     callBack.bind(this, &CosmosLivePreGameLobbyWidget::OnAddChatPressed);
     m_addChatButton->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
-    m_profileWindow->addChild(m_addChatButton);
+    m_preGameLobbyWindow->addChild(m_addChatButton);
 }
 
 void CosmosLivePreGameLobbyWidget::OnAddChatPressed(UITouchButton::ButtonState state) {
@@ -337,11 +338,11 @@ void CosmosLivePreGameLobbyWidget::SendChat() {
 }
 
 void CosmosLivePreGameLobbyWidget::MoveFrameUp() {
-    m_profileFrame->setY(-300);
+    m_chatFrame->setY(-300);
 }
 
 void CosmosLivePreGameLobbyWidget::MoveFrameDown() {
-    m_profileFrame->setY(50);
+    m_chatFrame->setY(50);
 }
 
 void CosmosLivePreGameLobbyWidget::DisplayChatBox() {
@@ -352,7 +353,7 @@ void CosmosLivePreGameLobbyWidget::DisplayChatBox() {
     m_chatText->setDropShadowColor(dropShadowColor);
     m_chatText->setY(-60);
 
-    m_profileFrame->addChild(m_chatText);
+    m_chatFrame->addChild(m_chatText);
 }
 
 void CosmosLivePreGameLobbyWidget::DisplayCursor() {

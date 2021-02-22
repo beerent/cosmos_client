@@ -14,6 +14,8 @@ CONST_STRING_DEF(UIStateCosmosLiveLobby, UI_STATE_COSMOS_LIVE_LOBBY)
 
 void UIStateCosmosLiveLobby::OnEnterState() {
     DisplayLoading();
+    m_loadingWidget->SetVisible(true);
+    
     DisplayClosed();
     DisplayPreGameLobby();
     

@@ -74,8 +74,8 @@ private:
     UIComponentFactory* m_uiComponentFactory;
     UIComponent* m_parentComponent;
     
-    UIComponent* m_profileWindow;
-    UIComponent* m_profileFrame;
+    UIComponent* m_preGameLobbyWindow;
+    UIComponent* m_chatFrame;
     UILabel* m_title;
     UILabel* m_activeUsers;
     UILabel* m_timeUntilGametime;

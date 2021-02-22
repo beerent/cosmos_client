@@ -5,7 +5,7 @@ const float LABEL_HEIGHT = 90.0;
 const float LABEL_WIDTH = 585.0;
 
 CosmosLiveClosedWidget::CosmosLiveClosedWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
-m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_profileWindow(nullptr), m_profileFrame(nullptr), m_title(nullptr), m_message(nullptr), m_home(nullptr), m_currentUsername(nullptr) {}
+m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_closedWindow(nullptr), m_closedFrame(nullptr), m_title(nullptr), m_message(nullptr), m_home(nullptr), m_currentUsername(nullptr) {}
 
 void CosmosLiveClosedWidget::Init() {
     AddProfileWindow();
@@ -29,38 +29,46 @@ void CosmosLiveClosedWidget::Release() {
     m_currentUsername->release();
     delete m_currentUsername;
     
-    m_profileWindow->release();
-    delete m_profileWindow;
+    m_closedWindow->release();
+    delete m_closedWindow;
 }
 
 void CosmosLiveClosedWidget::SetVisible(bool visible) {
-    m_profileWindow->setVisible(visible);
-    m_profileFrame->setVisible(visible);
-    m_currentUsername->setVisible(visible);
-    m_title->setVisible(visible);
-    m_home->setVisible(visible);
+    m_closedWindow->setVisible(visible);
+    m_closedFrame->setVisible(visible);
+    
+    if (visible) {
+        m_title->setTextString("Cosmos Live - Closed");
+        m_home->setTextString("        home        ");
+        m_message->setTextString("Cosmos Live Lobby is currently closed.");
+    } else {
+        m_title->setTextString("");
+        m_home->setTextString("");
+        m_message->setTextString("");
+    }
 }
 
 void CosmosLiveClosedWidget::AddProfileWindow() {
-    m_profileWindow = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("UIGroupArchetype"));
-    m_profileWindow->setWidth(m_parentComponent->getWidth());
-    m_profileWindow->setHeight(m_parentComponent->getHeight());
-    m_parentComponent->addChild(m_profileWindow);
+    m_closedWindow = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("UIGroupArchetype"));
+    m_closedWindow->setWidth(m_parentComponent->getWidth());
+    m_closedWindow->setHeight(m_parentComponent->getHeight());
+    m_parentComponent->addChild(m_closedWindow);
 }
 
 void CosmosLiveClosedWidget::AddProfileFrame() {
-    m_profileFrame = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
-    m_profileFrame->setAnchor(UIComponent::ANCHOR_CENTER);
-    m_profileFrame->setWidth(900);
-    m_profileFrame->setHeight(460);
+    m_closedFrame = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
+    m_closedFrame->setAnchor(UIComponent::ANCHOR_TOP_CENTER);
+    m_closedFrame->setWidth(1265);
+    m_closedFrame->setHeight(600);
+    m_closedFrame->setY(50);
 
-    m_profileWindow->addChild(m_profileFrame);
+    m_closedWindow->addChild(m_closedFrame);
 }
 
 void CosmosLiveClosedWidget::AddHomeButton() {
     UITouchButton::onButtonStateChangedCallBack callBack;
 
-    m_home = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_LEFT, "        home        ");
+    m_home = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_LEFT, "");
     m_home->setDropShadowColor(dropShadowColor);
     m_home->setX(30);
 
@@ -71,21 +79,19 @@ void CosmosLiveClosedWidget::AddHomeButton() {
 }
 
 void CosmosLiveClosedWidget::AddTitleButton() {
-    m_title = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_CENTER, "Cosmos Live - Closed");
+    m_title = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_CENTER, "");
     m_title->setDropShadowColor(dropShadowColor);
     m_title->setY(12.0);
 
-    m_profileFrame->addChild(m_title);
+    m_closedFrame->addChild(m_title);
 }
 
 void CosmosLiveClosedWidget::AddMessage() {
-    const std::string message = "Cosmos Live Lobby is currently closed.";
-    
-    m_message = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_CENTER, message);
+    m_message = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_CENTER, "");
     m_message->setDropShadowColor(dropShadowColor);
     m_message->setY(12.0);
 
-    m_profileFrame->addChild(m_message);
+    m_closedFrame->addChild(m_message);
 }
 
 void CosmosLiveClosedWidget::AddUsername() {

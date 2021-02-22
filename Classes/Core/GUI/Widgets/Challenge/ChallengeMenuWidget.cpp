@@ -208,11 +208,11 @@ std::string ChallengeMenuWidget::ChallengeLeaderboardEntryToString(const Challen
     
     std::string points = std::to_string(challengeLeaderboardEntry.GetPoints());
     if (position == 0) {
-        m_maxPointsSize = (int) points.length();
-    } else {
-        while (points.length() != m_maxPointsSize) {
-            points = " " + points;
-        }
+        m_maxPointsSize = (int) points.length() + 1;
+    }
+    
+    while (points.length() != m_maxPointsSize) {
+        points = " " + points;
     }
     
     while (points.length() < 4) {
