@@ -154,7 +154,7 @@ void UsernameEditWidget::OnRememberUsernamePressed(UITouchButton::ButtonState st
 void UsernameEditWidget::OnEditPressed(UITouchButton::ButtonState state) {
     m_keyboardManager->ActivateKeyboard();
     DisplayCursor();
-    m_timer.RegisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+    SetCursorTimer();
     m_editingUsername = true;
 }
 
@@ -195,7 +195,7 @@ void UsernameEditWidget::OnDeletePressed() {
     
     m_username = currentUsername;
     DisplayCursor();
-    m_timer.ResetTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+    ResetCursorTimer();
 }
 
 void UsernameEditWidget::OnCharacterPressed(char c) {
@@ -208,12 +208,13 @@ void UsernameEditWidget::OnCharacterPressed(char c) {
     }
     
     DisplayCursor();
-    m_timer.ResetTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+    ResetCursorTimer();
 }
 
 void UsernameEditWidget::OnEnterPressed() {
     m_editingUsername = false;
     HideCursor();
+    UnsetCursorTimer();
     m_keyboardManager->DeactivateKeyboard();
 }
 
@@ -246,4 +247,16 @@ void UsernameEditWidget::Release() {
     if (m_profileWindow != nullptr) {
         m_profileWindow->release();
     }
+}
+
+void UsernameEditWidget::SetCursorTimer() {
+    m_timer.ResetTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+}
+
+void UsernameEditWidget::ResetCursorTimer() {
+    m_timer.ResetTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
+}
+
+void UsernameEditWidget::UnsetCursorTimer() {
+    m_timer.DeregisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
 }

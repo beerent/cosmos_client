@@ -32,8 +32,8 @@ private:
     UIComponentFactory* m_uiComponentFactory;
     UIComponent* m_parentComponent;
     
-    UIComponent* m_profileWindow;
-    UIComponent* m_profileFrame;
+    UIComponent* m_closedWindow;
+    UIComponent* m_closedFrame;
     UILabel* m_title;
     UILabel* m_message;
     UILabel* m_home;

@@ -18,6 +18,12 @@ namespace TextColor {
     const glm::vec3 RED_TEXT_COLOR(255.0f , 0.0f, 0.0f);
 }
 
+enum AnswerSelectedOption {
+    CORRECT,
+    INCORRECT,
+    GAME_OVER
+};
+
 class ChallengeModeWidget {
 public:
 
@@ -51,14 +57,23 @@ public:
     void TakeDownFlag();
     void TakeDownFlagged();
     
-    void DisplayAnswerSelectedNotification(bool correct);
+    void DisplayAnswerSelectedNotification(AnswerSelectedOption answerSelectedOption);
     void TakeDownAnswerState();
 
-    void AnswerSelected(bool correct);
+    void AnswerSelected(AnswerSelectedOption answerSelectedOption);
 	void GameOver();
 	void TakeDownEntireChallenge();
     
     void DisplayCurrentUsername();
+    
+    void DisplayLives();
+    void TakeDownLives();
+    
+    void UpdateLivesSymbol(int livesRemaining);
+    void DisplayLivesSymbol(int livesRemaining);
+    void TakeDownlivesSymbol();
+    std::string GetLivesSymbolString(int livesRemaining) const;
+    glm::vec3 GetLivesSymbolColor(int livesRemaining) const;
 
 private:
 	int m_currentQuestionId;
@@ -79,6 +94,8 @@ private:
 	UILabel* m_challengeOverMainMenuButtonLabel;
 	UILabel* m_questionLabelLineOne;
 	UILabel* m_questionLabelLineTwo;
+    UILabel* m_livesLabel;
+    UILabel* m_livesSymbolsLabel;
 	std::vector<UILabel*> m_answers;
 
 	UILabel* m_flagQuestion;
@@ -99,15 +116,17 @@ private:
 	void DisplayAnswer(int index, const Answer& answer);
 
 	void DisableAnswerButtons();
-	void SetCorrectnessRevealingColors();
+	void ShowCorrectnessRevealingColors();
 
 	void DisplayFlagQuestionButton();
 	void DisplayQuestionFlagged();
 
 	void DisplayMainMenuButton();
     
-    std::string GetAnswerSelectedNotificationString(bool correct) const;
-    glm::vec3 GetAnswerSelectedNotificationColor(bool correct) const;
+    std::string GetAnswerSelectedNotificationString(AnswerSelectedOption answerSelectedOption) const;
+    std::string GetCorrectAnswerString() const;
+    std::string GetIncorrectAnswerString() const;
+    glm::vec3 GetAnswerSelectedNotificationColor(AnswerSelectedOption answerSelectedOption) const;
 
 	UITouchButton::onButtonStateChangedCallBack CreateButtonCallback(int index);
 	void OnAnswer0(UITouchButton::ButtonState state);

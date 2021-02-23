@@ -53,6 +53,19 @@ private:
 
 	UILabel* m_loadingLabel;
     
+    UILabel* m_leaderboardEntry0;
+    UILabel* m_leaderboardEntry1;
+    UILabel* m_leaderboardEntry2;
+    UILabel* m_leaderboardEntry3;
+    UILabel* m_leaderboardEntry4;
+    UILabel* m_leaderboardEntry5;
+    UILabel* m_leaderboardEntry6;
+    UILabel* m_leaderboardEntry7;
+    UILabel* m_leaderboardEntry8;
+    UILabel* m_leaderboardEntry9;
+    
+    int m_maxPointsSize;
+    
     bool m_waitingForLeaderboard;
     bool IsWaitingForLeaderboard() {
         return m_waitingForLeaderboard;
@@ -67,7 +80,12 @@ private:
 	void AddChallengeTitle();
 	void AddLeaderboardFrame();
 	void AddLeaderboardTitle();
-	void AddLeaderboardContents();
+    void AddEmptyLeaderboard();
+	void AddLeaderboardLoading();
+    void TakeDownLeaderboardLoading();
+    void SetLeaderboardEntry(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, int postition);
+    void SetLeaderboardString(const std::string& leaderboardString, int position);
+    std::string ChallengeLeaderboardEntryToString(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, int position);
 
 	void OnHomePressed(UITouchButton::ButtonState state);
 	void OnNewGamePressed(UITouchButton::ButtonState state);

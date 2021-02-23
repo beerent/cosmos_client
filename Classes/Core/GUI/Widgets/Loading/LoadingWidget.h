@@ -13,9 +13,15 @@ public:
     
 private:
     void AddLoadingMessage();
+    void AddProfileWindow();
+    void AddProfileFrame();
+    void AddTitle();
     
     UIComponentFactory* m_uiComponentFactory;
     UIComponent* m_parentComponent;
+    UIComponent* m_loadingWindow;
+    UIComponent* m_loadingFrame;
 
+    UILabel* m_title;
     UILabel* m_loading;
 };

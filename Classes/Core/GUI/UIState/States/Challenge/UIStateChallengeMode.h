@@ -17,7 +17,7 @@
 class UIStateChallengeMode : public BaseStateDepricated, IQuestionsReadyReceiver, IAnswerSelectedReceiver, Timer::SimpleTimerListener, IChallengeTimerReceiver {
 
 public:
-	UIStateChallengeMode(IStateChanageListenerDepricated* stateChangeListener) : BaseStateDepricated(stateChangeListener), m_timerSecondsRemaining(0), m_challengeModeTimerSeconds(0), m_timer(this) {};
+	UIStateChallengeMode(IStateChanageListenerDepricated* stateChangeListener) : BaseStateDepricated(stateChangeListener), m_timerSecondsRemaining(0), m_challengeModeTimerSeconds(0), m_remainingLives(0), m_timer(this) {};
 	CONST_STRING_DEC(UI_STATE_CHALLENGE_MODE)
 
 	virtual void OnEnterState();
@@ -40,6 +40,7 @@ private:
     Timer::SimpleTimer m_timer;
     int m_challengeModeTimerSeconds;
     int m_timerSecondsRemaining;
+    int m_remainingLives;
     std::chrono::steady_clock::time_point m_lastTimeCheck;
 
 	void RegisterQuestionsReadyReceiver();
@@ -47,11 +48,15 @@ private:
 
 	void HandleAnswerByCorrectness(bool isCorrect);
 	void HandleCorrectAnswer();
+    void StartPostAnswerProcess();
 	void HandleWrongAnswer();
+    void HandleWrongAnswerLivesRemaining();
+    void HandleGameOver();
     
     void AdvanceToNextQuestion();
     
     void DisplayQuestion(const Question& question);
+    void ResetGameTimer(int seconds, glm::vec3 color);
     void ResetGameTimer();
     
     void UpdateTimer();
@@ -62,8 +67,8 @@ private:
     void RegisterGameTimerTimers();
     void DeregisterGameTimerTimers();
     
-    void RegisterCorrectAnswerTimer();
-    void DeregisterCorrectAnswerTimer();
+    void RegisterPostAnswerTimer();
+    void DeregisterPostAnswerTimer();
     
     bool TimerIsExpired() const;
     

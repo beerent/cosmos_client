@@ -5,7 +5,7 @@
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
 ChallengeMenuWidget::ChallengeMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : IUserProfileDisplayListener(uiComponentFactory, parentComponent),
-      m_home(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr), m_currentUsername(nullptr), m_waitingForLeaderboard(false) {
+      m_home(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr), m_currentUsername(nullptr), m_waitingForLeaderboard(false), m_loadingLabel(nullptr), m_maxPointsSize(0) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
@@ -17,7 +17,8 @@ void ChallengeMenuWidget::Init() {
 	AddChallengeTitle();
 	AddLeaderboardFrame();
 	AddLeaderboardTitle();
-	AddLeaderboardContents();
+    AddEmptyLeaderboard();
+	AddLeaderboardLoading();
     m_parentComponent->setVisible(true);
 }
 
@@ -95,6 +96,7 @@ void ChallengeMenuWidget::AddChallengeTitle() {
 void ChallengeMenuWidget::AddLeaderboardTitle() {
 	m_leaderboardTitle = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "Challenge Leaderboard");
     m_leaderboardTitle->setDropShadowColor(dropShadowColor);
+    m_leaderboardTitle->setY(12.0);
 	m_leaderboard->addChild(m_leaderboardTitle);
 }
 
@@ -107,62 +109,118 @@ void ChallengeMenuWidget::AddLeaderboardFrame() {
 	m_parentComponent->addChild(m_leaderboard);
 }
 
-void ChallengeMenuWidget::AddLeaderboardContents() {
-	m_loadingLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "loading...");
+void ChallengeMenuWidget::AddLeaderboardLoading() {
+	m_loadingLabel = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 0.0, 0.0, UIComponent::ANCHOR_CENTER, "loading...");
     m_loadingLabel->setDropShadowColor(dropShadowColor);
-	m_loadingLabel->setX(5.0f);
-	m_loadingLabel->setY(190);
 
 	m_leaderboard->addChild(m_loadingLabel);
 }
 
-void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& leaderboard) {
-	if (m_loadingLabel != nullptr) {
+void ChallengeMenuWidget::TakeDownLeaderboardLoading() {
+    if (m_loadingLabel != nullptr) {
         std::string emptyString("");
         m_loadingLabel->setTextString(emptyString);
-		m_loadingLabel->release();
-	}
+        m_loadingLabel->release();
+    }
+}
 
-	const int LEADERBOARD_ENTRY_PADDING = 25; //this is used to get the entries under the leaderboard title.
+void ChallengeMenuWidget::AddEmptyLeaderboard() {
+    const std::string text = "";
+    float textWidth = 12.5 * text.size();
+    
+    const int basePadding = 29;
+    const int rowPadding = 32;
+    
+    m_leaderboardEntry0 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
+    m_leaderboardEntry0->setDropShadowColor(dropShadowColor); m_leaderboardEntry0->setY(basePadding + ( rowPadding * (1 + 0))); m_leaderboard->addChild(m_leaderboardEntry0);
+    
+    m_leaderboardEntry1 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
+    m_leaderboardEntry1->setDropShadowColor(dropShadowColor); m_leaderboardEntry1->setY(basePadding + ( rowPadding * (1 + 1))); m_leaderboard->addChild(m_leaderboardEntry1);
+    
+    m_leaderboardEntry2 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
+    m_leaderboardEntry2->setDropShadowColor(dropShadowColor); m_leaderboardEntry2->setY(basePadding + ( rowPadding * (1 + 2))); m_leaderboard->addChild(m_leaderboardEntry2);
+    
+    m_leaderboardEntry3 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
+    m_leaderboardEntry3->setDropShadowColor(dropShadowColor); m_leaderboardEntry3->setY(basePadding + ( rowPadding * (1 + 3))); m_leaderboard->addChild(m_leaderboardEntry3);
+    
+    m_leaderboardEntry4 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
+    m_leaderboardEntry4->setDropShadowColor(dropShadowColor); m_leaderboardEntry4->setY(basePadding + ( rowPadding * (1 + 4))); m_leaderboard->addChild(m_leaderboardEntry4);
+    
+    m_leaderboardEntry5 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
+    m_leaderboardEntry5->setDropShadowColor(dropShadowColor); m_leaderboardEntry5->setY(basePadding + ( rowPadding * (1 + 5))); m_leaderboard->addChild(m_leaderboardEntry5);
+    
+    m_leaderboardEntry6 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
+    m_leaderboardEntry6->setDropShadowColor(dropShadowColor); m_leaderboardEntry6->setY(basePadding + ( rowPadding * (1 + 6))); m_leaderboard->addChild(m_leaderboardEntry6);
+    
+    m_leaderboardEntry7 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
+    m_leaderboardEntry7->setDropShadowColor(dropShadowColor); m_leaderboardEntry7->setY(basePadding + ( rowPadding * (1 + 7))); m_leaderboard->addChild(m_leaderboardEntry7);
+    
+    m_leaderboardEntry8 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
+    m_leaderboardEntry8->setDropShadowColor(dropShadowColor); m_leaderboardEntry8->setY(basePadding + ( rowPadding * (1 + 8))); m_leaderboard->addChild(m_leaderboardEntry8);
+    
+    m_leaderboardEntry9 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, text);
+    m_leaderboardEntry9->setDropShadowColor(dropShadowColor); m_leaderboardEntry9->setY(basePadding + ( rowPadding * (1 + 9))); m_leaderboard->addChild(m_leaderboardEntry9);
+}
 
-	UILabel* label = nullptr;
-	UIUsernameLabel* usernameLabel = nullptr;
+void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& leaderboard) {
+    TakeDownLeaderboardLoading();
+
 	for (int i = 0; i < leaderboard.Size(); i++) {
-		double calculatedY = 30 * (i + 1);
-
-		label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0/6, 90.0, UIComponent::ANCHOR_TOP_CENTER, std::to_string(i + 1));
-        label->setDropShadowColor(dropShadowColor);
-		label->setY(LEADERBOARD_ENTRY_PADDING + calculatedY);
-		label->setX(-160);
-        if (IsWaitingForLeaderboard() == false) {
-            return;
-        }
-		m_leaderboard->addChild(label);
-
-		label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 200.0, 40.0, UIComponent::ANCHOR_TOP_CENTER, leaderboard.GetEntryInPlace(i).GetUser().GetUsername());
-        label->setDropShadowColor(dropShadowColor);
-		label->setY(LEADERBOARD_ENTRY_PADDING + 24 + calculatedY);
-
-		usernameLabel = new UIUsernameLabel(leaderboard.GetEntryInPlace(i).GetUser(), label);
-		//usernameLabel->RegisterUserProfileDisplayListener(this);
-		m_leaderboardEntries.push_back(label);
-		//m_leaderboardClickListeners.push_back(usernameLabel);
-
-        if (IsWaitingForLeaderboard() == false) {
-            return;
-        }
-		m_leaderboard->addChild(label);
-
-		label = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0 / 6, 90.0, UIComponent::ANCHOR_TOP_CENTER, std::to_string(leaderboard.GetEntryInPlace(i).GetPoints()));
-        label->setDropShadowColor(dropShadowColor);
-		label->setY(LEADERBOARD_ENTRY_PADDING + calculatedY);
-		label->setX(160);
-
-        if (IsWaitingForLeaderboard() == false) {
-            return;
-        }
-		m_leaderboard->addChild(label);
+        const ChallengeLeaderboardEntry challengeLeaderboardEntry = leaderboard.GetEntryInPlace(i);
+        SetLeaderboardEntry(challengeLeaderboardEntry, i);
 	}
+}
+
+void ChallengeMenuWidget::SetLeaderboardEntry(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, int position) {
+    const std::string leaderboardString = ChallengeLeaderboardEntryToString(challengeLeaderboardEntry, position);
+    SetLeaderboardString(leaderboardString, position);
+}
+
+void ChallengeMenuWidget::SetLeaderboardString(const std::string& leaderboardString, int position) {
+    switch (position) {
+        case 0: m_leaderboardEntry0->setTextString(leaderboardString); break;
+        case 1: m_leaderboardEntry1->setTextString(leaderboardString); break;
+        case 2: m_leaderboardEntry2->setTextString(leaderboardString); break;
+        case 3: m_leaderboardEntry3->setTextString(leaderboardString); break;
+        case 4: m_leaderboardEntry4->setTextString(leaderboardString); break;
+        case 5: m_leaderboardEntry5->setTextString(leaderboardString); break;
+        case 6: m_leaderboardEntry6->setTextString(leaderboardString); break;
+        case 7: m_leaderboardEntry7->setTextString(leaderboardString); break;
+        case 8: m_leaderboardEntry8->setTextString(leaderboardString); break;
+        case 9: m_leaderboardEntry9->setTextString(leaderboardString); break;
+        
+    }
+}
+
+std::string ChallengeMenuWidget::ChallengeLeaderboardEntryToString(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, int position) {
+    std::string leaderboardString = "";
+    std::string place = std::to_string(position + 1);
+    while (place.length() < 5) {
+        place += " ";
+    }
+    leaderboardString += place;
+    
+    std::string username = challengeLeaderboardEntry.GetUser().GetUsername();
+    while (username.length() < 20) {
+        username += " ";
+    }
+    leaderboardString += username;
+    
+    std::string points = std::to_string(challengeLeaderboardEntry.GetPoints());
+    if (position == 0) {
+        m_maxPointsSize = (int) points.length() + 1;
+    }
+    
+    while (points.length() != m_maxPointsSize) {
+        points = " " + points;
+    }
+    
+    while (points.length() < 4) {
+        points  += " ";
+    }
+    leaderboardString += points;
+    
+    return leaderboardString;
 }
 
 void ChallengeMenuWidget::SetLeaderboardContentsLoadFailed() {

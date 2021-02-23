@@ -39,8 +39,8 @@ public:
     void UpdateChats(const std::vector<CosmosLiveChat>& chats);
     
 private:
-    void AddProfileWindow();
-    void AddProfileFrame();
+    void AddChatWindow();
+    void AddChatFrame();
     void AddHomeButton();
     void AddTitleButton();
     void AddActiveUsers();
@@ -53,13 +53,18 @@ private:
     
     void AddAddChatButton();
     void OnAddChatPressed(UITouchButton::ButtonState state);
-    void OnSendChat();
+    void SendChat();
+    
+    void SetCursorTimer();
+    void ResetCursorTimer();
+    void UnsetCursorTimer();
     
     void MoveFrameUp();
     void MoveFrameDown();
     void DisplayChatBox();
     void DisplayCursor();
     void HideCursor();
+    std::string GetChatLengthAsString() const;
     
     void HideMenuBar();
     void ShowMenuBar();
@@ -69,8 +74,8 @@ private:
     UIComponentFactory* m_uiComponentFactory;
     UIComponent* m_parentComponent;
     
-    UIComponent* m_profileWindow;
-    UIComponent* m_profileFrame;
+    UIComponent* m_preGameLobbyWindow;
+    UIComponent* m_chatFrame;
     UILabel* m_title;
     UILabel* m_activeUsers;
     UILabel* m_timeUntilGametime;

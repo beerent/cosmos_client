@@ -77,6 +77,10 @@ private:
     void OnRandomPressed(UITouchButton::ButtonState state);
 	void OnExitPressed(UITouchButton::ButtonState state);
     
+    void SetCursorTimer();
+    void ResetCursorTimer();
+    void UnsetCursorTimer();
+    
     //we're using input event callback to close the keyboard if the screen is touched.
     InputManager::onInputEventCallBack m_closeKeyboardCallback;
     void OnBackgroundPressed(InputManager::InputEvent event, InputManager::InputEventData data);
