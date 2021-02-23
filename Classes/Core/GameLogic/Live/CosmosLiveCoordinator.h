@@ -8,6 +8,9 @@
 #include <Core/Net/IRestConnector.h>
 #include <Core/Net/IRestReceiver.h>
 
+#include <Core/GameLogic/Question/Question.h>
+#include <Core/GameLogic/Question/Answer.h>
+
 #include <Core/Util/SimpleTimer.h>
 
 /*
@@ -63,7 +66,9 @@ private:
     
     CosmosLiveSession RestToCosmosLiveSession(const json11::Json& json) const;
     std::vector<CosmosLiveChat> GetChatsFromJson(const json11::Json& json) const;
-    std::vector<CosmosLiveChat> GetQuestionFromJson(const json11::Json& json) const;
+    Question GetQuestionFromJson(const json11::Json& json) const;
+    std::vector<Answer> GetAnswersFromJson(const json11::Json& json) const;
+    Answer GetAnswerFromJson(const json11::Json& json) const;
     
     void RegisterTimers();
     void DeregisterTimers();

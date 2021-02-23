@@ -87,7 +87,7 @@ CosmosLiveSession CosmosLiveCoordinator::RestToCosmosLiveSession(const json11::J
     
     //get question
     const json11::Json questionJson = json["payload"]["question"];
-    //Question question = GetQuestionFromJson(questionJson);
+    Question question = GetQuestionFromJson(questionJson);
     
     CosmosLiveSession cosmosLiveSession(
         StringToCosmosLiveState(state), Util::StringToDateTime(startDate), secondsToStart, round, roundSecondsRemaining, playerCount, cosmosLiveChats);
@@ -109,8 +109,33 @@ std::vector<CosmosLiveChat> CosmosLiveCoordinator::GetChatsFromJson(const json11
     return cosmosLiveChats;
 }
 
-std::vector<CosmosLiveChat> CosmosLiveCoordinator::GetQuestionFromJson(const json11::Json& json) const {
+Question CosmosLiveCoordinator::GetQuestionFromJson(const json11::Json& json) const {
+    int id = json["id"].int_value();
+    std::string question = json["question"].string_value();
+    std::vector<Answer> incorrectAnswers = GetAnswersFromJson(json["incorrectAnswers"]);
+    Answer correctAnswer = GetAnswerFromJson(json["correctAnswer"]);
     
+    return Question(id, question, incorrectAnswers, correctAnswer);
+}
+
+std::vector<Answer> CosmosLiveCoordinator::GetAnswersFromJson(const json11::Json& json) const {
+    std::vector<Answer> answers;
+    
+    auto answersJson = json.array_items();
+    for (const auto& answerJson : answersJson) {
+        Answer answer = GetAnswerFromJson(answerJson);
+        answers.push_back(answer);
+    }
+    
+    return answers;
+}
+
+Answer CosmosLiveCoordinator::GetAnswerFromJson(const json11::Json& json) const {
+    int id = json["id"].int_value();
+    std::string answer = json["answer"].string_value();
+    bool correct = json["correct"].bool_value();
+    
+    return Answer(id, answer, correct);
 }
 
 void CosmosLiveCoordinator::SendChat(const std::string& chat) {
