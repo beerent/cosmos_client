@@ -3,7 +3,7 @@
 #include "Core/GUI/Components/UIComponentFactory.h"
 #include "Core/GUI/UIState/States/Authentication/UIStateAuthInput.h"
 #include "Core/GUI/UIState/States/Challenge/UIStateChallengeMainMenu.h"
-#include "Core/GUI/UIState/States/Live/UIStateCosmosLiveLobby.h"
+#include "Core/GUI/UIState/States/Live/UIStateCosmosLive.h"
 #include <Core/General/DeviceMemoryInterface.h>
 #include <Core/Net/RequestBuilder.h>
 
@@ -62,7 +62,7 @@ void UIStateMainMenu::onMainMenuItemSelected(MainMenuWidget::MainMenuItems selec
 	}
 
     else if (selectedItem == MainMenuWidget::LOAD_COSMOS_LIVE_LEVEL) {
-        ChangeState(UIStateCosmosLiveLobby::UI_STATE_COSMOS_LIVE_LOBBY);
+        ChangeState(UIStateCosmosLive::UI_STATE_COSMOS_LIVE_LOBBY);
     }
 }
 

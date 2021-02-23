@@ -1,4 +1,4 @@
-#include "Core/GUI/UIState/States/Live/UIStateCosmosLiveLobby.h"
+#include "Core/GUI/UIState/States/Live/UIStateCosmosLive.h"
 #include "Core/GUI/UIState/States/UIStateMainMenu.h"
 #include <Core/GUI/UIState/States/Challenge/UIStateChallengeMode.h>
 #include "Core/GUI/Components/UIComponentFactory.h"
@@ -8,11 +8,11 @@
 #include <Core/GameLogic/Live/CosmosLiveStates.h>
 
 
-CONST_STRING_DEF(UIStateCosmosLiveLobby, UI_STATE_COSMOS_LIVE_LOBBY)
+CONST_STRING_DEF(UIStateCosmosLive, UI_STATE_COSMOS_LIVE_LOBBY)
 
 //static CosmosLiveSession currentSession = CosmosLiveSession(CosmosLiveState::INVALID, std::time_t(), 0, 0, 0);
 
-void UIStateCosmosLiveLobby::OnEnterState() {
+void UIStateCosmosLive::OnEnterState() {
     DisplayLoading();
     m_loadingWidget->SetVisible(true);
     
@@ -28,13 +28,13 @@ void UIStateCosmosLiveLobby::OnEnterState() {
     BaseStateDepricated::OnEnterState();
 }
 
-void UIStateCosmosLiveLobby::OnExitState() {
+void UIStateCosmosLive::OnExitState() {
     m_cosmosLiveCoordinator.DeregisterCosmosLiveSessionUpdateListener();
     TakeDownAllWidgets();
     BaseStateDepricated::OnExitState();
 }
 
-void UIStateCosmosLiveLobby::SubmitGuestLoginRequest() {
+void UIStateCosmosLive::SubmitGuestLoginRequest() {
     m_authenticator.SetUser(IEngine::getEngine()->GetUserProvider()->GetUser());
     
     m_authenticator.RegisterAuthenticationResultListener(this);
@@ -42,7 +42,7 @@ void UIStateCosmosLiveLobby::SubmitGuestLoginRequest() {
     m_authenticator.SendGuestAuthenticationRequest();
 }
 
-void UIStateCosmosLiveLobby::OnAuthenticationResultReceived(AuthenticationResult result) {
+void UIStateCosmosLive::OnAuthenticationResultReceived(AuthenticationResult result) {
     // This is not the ideal location to set visiblity but it works... I think the
     // UI needs to load in place before we actually set it not visible. Otherwise you see the
     // drawing of the UI.
@@ -56,7 +56,7 @@ void UIStateCosmosLiveLobby::OnAuthenticationResultReceived(AuthenticationResult
     }
 }
 
-void UIStateCosmosLiveLobby::OnCosmosLiveSessionUpdated(const CosmosLiveSession& session) {
+void UIStateCosmosLive::OnCosmosLiveSessionUpdated(const CosmosLiveSession& session) {
     if (m_activeState == session.GetState()) {
         UpdateCurrentSession(session);
     } else {
@@ -64,7 +64,7 @@ void UIStateCosmosLiveLobby::OnCosmosLiveSessionUpdated(const CosmosLiveSession&
     }
 }
 
-void UIStateCosmosLiveLobby::UpdateCurrentSession(const CosmosLiveSession& session) {
+void UIStateCosmosLive::UpdateCurrentSession(const CosmosLiveSession& session) {
     switch(session.GetState()) {
         case CosmosLiveState::PRE_GAME_LOBBY:
             UpdatePreGameLobby(session);
@@ -80,26 +80,26 @@ void UIStateCosmosLiveLobby::UpdateCurrentSession(const CosmosLiveSession& sessi
     }
 }
 
-void UIStateCosmosLiveLobby::UpdatePreGameLobby(const CosmosLiveSession& session) {
+void UIStateCosmosLive::UpdatePreGameLobby(const CosmosLiveSession& session) {
     m_preGameLobbyWidget->UpdateActiveUsers(session.GetPlayerCount());
     m_preGameLobbyWidget->UpdateChats(session.GetChats());
     m_preGameLobbyWidget->UpdateTimeUntilGametime(session.GetSecondsToStart());
 }
 
-void UIStateCosmosLiveLobby::UpdateInGame(const CosmosLiveSession& session) {
+void UIStateCosmosLive::UpdateInGame(const CosmosLiveSession& session) {
     int x = 5;
     //m_preGameLobbyWidget->UpdateActiveUsers(session.GetPlayerCount());
     //m_preGameLobbyWidget->UpdateChats(session.GetChats());
     //m_preGameLobbyWidget->UpdateTimeUntilGametime(session.GetSecondsToStart());
 }
 
-void UIStateCosmosLiveLobby::ChangeCurrentSession(const CosmosLiveSession& session) {
+void UIStateCosmosLive::ChangeCurrentSession(const CosmosLiveSession& session) {
     DeactivateState(m_activeState);
     ActivateState(session);
     m_activeState = session.GetState();
 }
 
-void UIStateCosmosLiveLobby::DeactivateState(CosmosLiveState state) {
+void UIStateCosmosLive::DeactivateState(CosmosLiveState state) {
     switch(state) {
         case CosmosLiveState::INVALID:
             m_loadingWidget->SetVisible(false);
@@ -122,7 +122,7 @@ void UIStateCosmosLiveLobby::DeactivateState(CosmosLiveState state) {
     }
 }
 
-void UIStateCosmosLiveLobby::ActivateState(const CosmosLiveSession& session) {
+void UIStateCosmosLive::ActivateState(const CosmosLiveSession& session) {
     switch (session.GetState()) {
         case CosmosLiveState::PRE_GAME_LOBBY:
             m_preGameLobbyWidget->SetVisible(true);
@@ -145,80 +145,80 @@ void UIStateCosmosLiveLobby::ActivateState(const CosmosLiveSession& session) {
     }
 }
 
-void UIStateCosmosLiveLobby::OnMainMenuItemSelected(CosmosLiveClosedWidget::MenuItems selectedItem) {
+void UIStateCosmosLive::OnMainMenuItemSelected(CosmosLiveClosedWidget::MenuItems selectedItem) {
     if (selectedItem == CosmosLiveClosedWidget::LOAD_MAIN_MENU) {
         ChangeState(UIStateMainMenu::UI_STATE_MAINMENU);
     }
 }
 
-void UIStateCosmosLiveLobby::OnMainMenuItemSelected(CosmosLivePreGameLobbyWidget::MenuItems selectedItem) {
+void UIStateCosmosLive::OnMainMenuItemSelected(CosmosLivePreGameLobbyWidget::MenuItems selectedItem) {
     if (selectedItem == CosmosLivePreGameLobbyWidget::LOAD_MAIN_MENU) {
         ChangeState(UIStateMainMenu::UI_STATE_MAINMENU);
     }
 }
 
-void UIStateCosmosLiveLobby::DisplayLoading() {
+void UIStateCosmosLive::DisplayLoading() {
     m_loadingWidget = new LoadingWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
     m_loadingWidget->Init();
 }
 
-void UIStateCosmosLiveLobby::TakeDownLoading() {
+void UIStateCosmosLive::TakeDownLoading() {
     m_loadingWidget->Release();
     delete m_loadingWidget;
 }
 
-void UIStateCosmosLiveLobby::DisplayClosed() {
+void UIStateCosmosLive::DisplayClosed() {
     m_closedWidget = new CosmosLiveClosedWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
     
     CosmosLiveClosedWidget::onMenuItemSelectedCallBack callback;
-    callback.bind(this, &UIStateCosmosLiveLobby::OnMainMenuItemSelected);
+    callback.bind(this, &UIStateCosmosLive::OnMainMenuItemSelected);
     m_closedWidget->RegisterForChallengeMenuItemSelectedEvent(callback);
     
     m_closedWidget->Init();
 }
 
-void UIStateCosmosLiveLobby::TakeDownClosed() {
+void UIStateCosmosLive::TakeDownClosed() {
     m_closedWidget->Release();
     delete m_closedWidget;
 }
 
-void UIStateCosmosLiveLobby::DisplayPreGameLobby() {
+void UIStateCosmosLive::DisplayPreGameLobby() {
     m_preGameLobbyWidget = new CosmosLivePreGameLobbyWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
     
     CosmosLivePreGameLobbyWidget::onMenuItemSelectedCallBack callback;
-    callback.bind(this, &UIStateCosmosLiveLobby::OnMainMenuItemSelected);
+    callback.bind(this, &UIStateCosmosLive::OnMainMenuItemSelected);
     m_preGameLobbyWidget->RegisterForChallengeMenuItemSelectedEvent(callback);
     
     m_preGameLobbyWidget->Init();
 }
 
-void UIStateCosmosLiveLobby::TakeDownPreGameLobby() {
+void UIStateCosmosLive::TakeDownPreGameLobby() {
     m_preGameLobbyWidget->Release();
     delete m_preGameLobbyWidget;
 }
 
-void UIStateCosmosLiveLobby::DisplayInGame() {
+void UIStateCosmosLive::DisplayInGame() {
     m_inGameWidget = new CosmosLiveInGameWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
     
 //    CosmosLivePreGameLobbyWidget::onMenuItemSelectedCallBack callback;
-//    callback.bind(this, &UIStateCosmosLiveLobby::OnMainMenuItemSelected);
+//    callback.bind(this, &UIStateCosmosLive::OnMainMenuItemSelected);
 //    m_preGameLobbyWidget->RegisterForChallengeMenuItemSelectedEvent(callback);
     
     m_inGameWidget->Init();
 }
 
-void UIStateCosmosLiveLobby::TakeDownInGame() {
+void UIStateCosmosLive::TakeDownInGame() {
     //m_preGameLobbyWidget->Release();
     //delete m_preGameLobbyWidget;
 }
 
-void UIStateCosmosLiveLobby::TakeDownAllWidgets() {
+void UIStateCosmosLive::TakeDownAllWidgets() {
     TakeDownLoading();
     TakeDownClosed();
     TakeDownPreGameLobby();
     TakeDownInGame();
 }
 
-void UIStateCosmosLiveLobby::ChatReceived(const std::string& chat) {
+void UIStateCosmosLive::ChatReceived(const std::string& chat) {
     m_cosmosLiveCoordinator.SendChat(chat);
 }

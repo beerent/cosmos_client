@@ -10,14 +10,14 @@
 #include <Core/GUI/Widgets/Live/PreGameLobby/CosmosLivePreGameLobbyWidget.h>
 #include <Core/GUI/Widgets/Live/InGame/CosmosLiveInGameWidget.h>
 
-class UIStateCosmosLiveLobby : public BaseStateDepricated, IAuthenticationResultListener, ICosmosLiveSessionUpdateListener, ICosmosLiveChatReceiver {
+class UIStateCosmosLive : public BaseStateDepricated, IAuthenticationResultListener, ICosmosLiveSessionUpdateListener, ICosmosLiveChatReceiver {
 
 public:
-    UIStateCosmosLiveLobby(IStateChanageListenerDepricated* stateChangeListener) :
+    UIStateCosmosLive(IStateChanageListenerDepricated* stateChangeListener) :
       BaseStateDepricated(stateChangeListener), m_loadingWidget(nullptr), m_closedWidget(nullptr), m_preGameLobbyWidget(nullptr), m_activeState(CosmosLiveState::INVALID) {
       };
     
-    ~UIStateCosmosLiveLobby() {
+    ~UIStateCosmosLive() {
     }
     
     

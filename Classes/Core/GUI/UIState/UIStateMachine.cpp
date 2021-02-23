@@ -19,7 +19,7 @@
 
 #include "Core/GUI/UIState/States/Challenge/UIStateChallengeMainMenu.h"
 #include "Core/GUI/UIState/States/Challenge/UIStateChallengeMode.h"
-#include "Core/GUI/UIState/States/Live/UIStateCosmosLiveLobby.h"
+#include "Core/GUI/UIState/States/Live/UIStateCosmosLive.h"
 
 UIStateMachine* UIStateMachine::mInstance = 0;
 
@@ -73,8 +73,8 @@ BaseStateDepricated* UIStateMachine::CreateState(STRING_ID stateName) {
 		return new UIStateChallengeMode(this);
 	}
     
-    else if (stateName == UIStateCosmosLiveLobby::UI_STATE_COSMOS_LIVE_LOBBY) {
-        return new UIStateCosmosLiveLobby(this);
+    else if (stateName == UIStateCosmosLive::UI_STATE_COSMOS_LIVE_LOBBY) {
+        return new UIStateCosmosLive(this);
     }
 
 	else {
