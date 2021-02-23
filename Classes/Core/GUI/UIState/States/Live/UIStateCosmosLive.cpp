@@ -114,7 +114,7 @@ void UIStateCosmosLive::DeactivateState(CosmosLiveState state) {
             break;
             
         case CosmosLiveState::IN_GAME:
-            m_inGameWidget->SetVisible(false);
+            //m_inGameWidget->SetVisible(false);
             break;
             
         default:
@@ -135,7 +135,7 @@ void UIStateCosmosLive::ActivateState(const CosmosLiveSession& session) {
             
         case CosmosLiveState::IN_GAME:
             UpdateInGame(session);
-            m_inGameWidget->SetVisible(true);
+            //m_inGameWidget->SetVisible(true);
             break;
             
         case CosmosLiveState::INVALID:
@@ -205,6 +205,7 @@ void UIStateCosmosLive::DisplayInGame() {
 //    m_preGameLobbyWidget->RegisterForChallengeMenuItemSelectedEvent(callback);
     
     m_inGameWidget->Init();
+    m_inGameWidget->DisplayLives();
 }
 
 void UIStateCosmosLive::TakeDownInGame() {
