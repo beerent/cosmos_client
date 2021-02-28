@@ -4,7 +4,7 @@
 #include <Core/General/DeviceMemoryInterface.h>
 #include <IEngine.h>
 
-const User INVALID_USER("", "", UserAccessLevel::INVALID);
+const User INVALID_USER("", "", "", UserAccessLevel::INVALID);
 const std::string GUEST_PASSWORD = "guest";
 
 UserProvider::UserProvider() : m_user(INVALID_USER), m_isLoggedIn(false), m_isLogoutQueued(false) {
@@ -13,6 +13,7 @@ UserProvider::UserProvider() : m_user(INVALID_USER), m_isLoggedIn(false), m_isLo
 void UserProvider::InitUser() {
     DeviceMemoryInterface deviceMemoryInterface;
 
+    std::string deviceUuid = IEngine::getEngine()->GetDeviceUtil()->GetDeviceUuid();
     std::string username = UsernameGenerator().GetRandomUsername();
     const std::string rememberedUsername = deviceMemoryInterface.ReadUsername();
     
@@ -21,7 +22,7 @@ void UserProvider::InitUser() {
         username = rememberedUsername;
     }
     
-    User user = User(username, GUEST_PASSWORD, UserAccessLevel::GUEST);
+    User user = User(deviceUuid, username, GUEST_PASSWORD, UserAccessLevel::GUEST);
     SetUser(user);
 }
 

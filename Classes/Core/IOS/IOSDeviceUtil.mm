@@ -32,3 +32,8 @@ std::string IOSDeviceUtil::ReadFromDeviceStorage(const std::string& key) {
     
     return stdValue;
 }
+
+std::string IOSDeviceUtil::GetDeviceUuid() {
+    NSString *Uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    return std::string([Uuid UTF8String]);
+}
