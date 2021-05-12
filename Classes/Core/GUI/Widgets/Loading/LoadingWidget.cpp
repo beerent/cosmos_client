@@ -54,7 +54,7 @@ void LoadingWidget::SetVisible(bool visible) {
     
     if (visible) {
         m_loading->setTextString("loading...");
-        m_title->setTextString("Cosmos Live");
+        m_title->setTextString("Cosmic Chat");
     } else {
         m_loading->setTextString("");
         m_title->setTextString("");

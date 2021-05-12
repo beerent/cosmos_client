@@ -43,7 +43,7 @@ void MainMenuWidget::init() {
 }
 
 void MainMenuWidget::DisplayChallengeModeButton() {
-    m_challengeMode = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Challenge Mode");
+    m_challengeMode = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Cosmos Quiz");
     m_challengeMode->setDropShadowColor(dropShadowColor);
     m_challengeMode->setX(labelXPosition);
     m_challengeMode->setY(labelYPosition + LABEL_SPACING);
@@ -56,7 +56,7 @@ void MainMenuWidget::DisplayChallengeModeButton() {
 }
 
 void MainMenuWidget::DisplayCosmosLiveButton() {
-    m_cosmosLive = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Cosmos Live");
+    m_cosmosLive = m_uiComponentFactory->createUILabel("KYCQuestionButtonArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_TOP_LEFT, "Cosmic Chat");
     m_cosmosLive->setDropShadowColor(dropShadowColor);
     m_cosmosLive->setX(labelXPosition);
     m_cosmosLive->setY(labelYPosition + LABEL_SPACING * 2);

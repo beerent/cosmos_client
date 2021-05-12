@@ -53,7 +53,7 @@ void CosmosLivePreGameLobbyWidget::SetVisible(bool visible) {
     
     if (visible) {
         m_home->setTextString("        home        ");
-        m_title->setTextString("Cosmos Live - Pre Game Lobby");
+        m_title->setTextString("Cosmic Chat");
         m_addChatButton->setTextString("Add Chat");
     } else {
         m_home->setTextString("");
@@ -130,7 +130,7 @@ void CosmosLivePreGameLobbyWidget::UpdateActiveUsers(int users) {
         return;
     }
     
-    std::string usersString = "players: " + std::to_string(users);
+    std::string usersString = "active users: " + std::to_string(users);
     m_activeUsers->setTextString(usersString);
 }
 
@@ -202,7 +202,9 @@ void CosmosLivePreGameLobbyWidget::UpdateChats(const std::vector<CosmosLiveChat>
 void CosmosLivePreGameLobbyWidget::AddActiveUsers() {
     m_activeUsers = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 150, 60, UIComponent::ANCHOR_TOP_CENTER, "");
     m_activeUsers->setDropShadowColor(dropShadowColor);
-    m_activeUsers->setX(-260);
+    
+    //disabled while we are not showing time til game
+    //m_activeUsers->setX(-260);
 
     m_parentComponent->addChild(m_activeUsers);
 }

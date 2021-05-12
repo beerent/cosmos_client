@@ -38,9 +38,9 @@ void CosmosLiveClosedWidget::SetVisible(bool visible) {
     m_closedFrame->setVisible(visible);
     
     if (visible) {
-        m_title->setTextString("Cosmos Live - Closed");
+        m_title->setTextString("Cosmic Chat");
         m_home->setTextString("        home        ");
-        m_message->setTextString("Cosmos Live Lobby is currently closed.");
+        m_message->setTextString("Cosmic Chat is currently closed.");
     } else {
         m_title->setTextString("");
         m_home->setTextString("");
