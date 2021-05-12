@@ -69,6 +69,8 @@ private:
     void HideMenuBar();
     void ShowMenuBar();
     
+    glm::vec3 getTextColorFromChatMessage(const std::string& chat) const;
+
     onMenuItemSelectedCallBack m_onHomeMenuItemSelectedListener;
     
     UIComponentFactory* m_uiComponentFactory;

@@ -8,6 +8,11 @@ const float LABEL_WIDTH = 585.0;
 const int MAX_USERNAME_CHARACTERS = 20;
 const int MAX_CHAT_CHARACTERS = 60;
 
+const glm::vec3 YELLOW_TEXT_COLOR(255.0f, 255.0f, 0.0f);
+const glm::vec3 RED_TEXT_COLOR(255.0f, 0.0f, 0.0f);
+const glm::vec3 PURPLE_TEXT_COLOR(255.0f, 0.0f, 255.0f);
+const glm::vec3 WHITE_TEXT_COLOR(255.0f, 255.0f, 255.0f);
+
 CosmosLivePreGameLobbyWidget::CosmosLivePreGameLobbyWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
 m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_preGameLobbyWindow(nullptr), m_chatFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_chatText(nullptr), m_keyboardManager(nullptr), m_timer(this), m_cursorOn(false), m_editingChat(false), m_cosmosLiveChatReceiver(nullptr) {}
 
@@ -267,8 +272,17 @@ void CosmosLivePreGameLobbyWidget::AddChats() {
 void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int position) {
     const std::string usernamePostFix = ": ";
     std::string chatString = "";
+    
+    glm::vec3 textColor = WHITE_TEXT_COLOR;
+    
     if (chat.IsValid()) {
-        chatString = chat.GetUser() + usernamePostFix + chat.GetMessage();
+        std::string chatMessage = chat.GetMessage();
+        textColor = getTextColorFromChatMessage(chatMessage);
+        if (textColor == YELLOW_TEXT_COLOR || textColor == PURPLE_TEXT_COLOR || textColor == RED_TEXT_COLOR) {
+            chatMessage = chatMessage.substr(3);
+        }
+        
+        chatString = chat.GetUser() + usernamePostFix + chatMessage;
     }
     
     const int maxChatSize = MAX_CHAT_CHARACTERS + MAX_USERNAME_CHARACTERS + (int) usernamePostFix.size();
@@ -277,17 +291,72 @@ void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int po
     }
     
     switch (position) {
-        case 0: m_chat0->setTextString(chatString); break;
-        case 1: m_chat1->setTextString(chatString); break;
-        case 2: m_chat2->setTextString(chatString); break;
-        case 3: m_chat3->setTextString(chatString); break;
-        case 4: m_chat4->setTextString(chatString); break;
-        case 5: m_chat5->setTextString(chatString); break;
-        case 6: m_chat6->setTextString(chatString); break;
-        case 7: m_chat7->setTextString(chatString); break;
-        case 8: m_chat8->setTextString(chatString); break;
-        case 9: m_chat9->setTextString(chatString); break;
+        case 0:
+            m_chat0->setTextString(chatString);
+            m_chat0->setColor(textColor);
+            break;
+            
+        case 1:
+            m_chat1->setTextString(chatString);
+            m_chat1->setColor(textColor);
+            break;
+            
+        case 2:
+            m_chat2->setTextString(chatString);
+            m_chat2->setColor(textColor);
+            break;
+            
+        case 3:
+            m_chat3->setTextString(chatString);
+            m_chat3->setColor(textColor);
+            break;
+            
+        case 4:
+            m_chat4->setTextString(chatString);
+            m_chat4->setColor(textColor);
+            break;
+            
+        case 5:
+            m_chat5->setTextString(chatString);
+            m_chat5->setColor(textColor);
+            break;
+            
+        case 6:
+            m_chat6->setTextString(chatString);
+            m_chat6->setColor(textColor);
+            break;
+            
+        case 7:
+            m_chat7->setTextString(chatString);
+            m_chat7->setColor(textColor);
+            break;
+            
+        case 8:
+            m_chat8->setTextString(chatString);
+            m_chat8->setColor(textColor);
+            break;
+            
+        case 9:
+            m_chat9->setTextString(chatString);
+            m_chat9->setColor(textColor);
+            break;
     }
+}
+
+glm::vec3 CosmosLivePreGameLobbyWidget::getTextColorFromChatMessage(const std::string& chat) const {
+    if (chat.rfind("!r!", 0) == 0) {
+        return RED_TEXT_COLOR;
+    }
+    
+    if (chat.rfind("!y!", 0) == 0) {
+        return YELLOW_TEXT_COLOR;
+    }
+    
+    if (chat.rfind("!p!", 0) == 0) {
+        return PURPLE_TEXT_COLOR;
+    }
+    
+    return WHITE_TEXT_COLOR;
 }
 
 void CosmosLivePreGameLobbyWidget::AddAddChatButton() {
