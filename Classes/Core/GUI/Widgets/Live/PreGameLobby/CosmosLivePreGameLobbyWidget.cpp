@@ -270,19 +270,32 @@ void CosmosLivePreGameLobbyWidget::AddChats() {
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int position) {
-    const std::string usernamePostFix = ": ";
+    std::string usernamePostFix = ": ";
     std::string chatString = "";
     
     glm::vec3 textColor = WHITE_TEXT_COLOR;
     
     if (chat.IsValid()) {
+        std::string username = chat.GetUser();
         std::string chatMessage = chat.GetMessage();
+        
         textColor = getTextColorFromChatMessage(chatMessage);
+        
         if (textColor == YELLOW_TEXT_COLOR || textColor == PURPLE_TEXT_COLOR || textColor == RED_TEXT_COLOR) {
             chatMessage = chatMessage.substr(3);
         }
         
-        chatString = chat.GetUser() + usernamePostFix + chatMessage;
+        if (textColor == PURPLE_TEXT_COLOR) {
+            username = username + " [admin]";
+            usernamePostFix = ": ";
+        }
+        
+        if (textColor == YELLOW_TEXT_COLOR || textColor == RED_TEXT_COLOR) {
+            username = "[system]";
+            usernamePostFix = ": ";
+        }
+        
+        chatString = username + usernamePostFix + chatMessage;
     }
     
     const int maxChatSize = MAX_CHAT_CHARACTERS + MAX_USERNAME_CHARACTERS + (int) usernamePostFix.size();
