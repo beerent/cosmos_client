@@ -55,7 +55,10 @@ private:
     
     void DisplayAppVersion();
     void TakeDownAppVersion();
+    void DisplayBuyMeCoffee();
+    void TakeDownBuyMeCoffee();
     void OnAppVersionPressed(UITouchButton::ButtonState state);
+    void OnBuyMeCoffeePressed(UITouchButton::ButtonState state);
     void UpdateAppTitleTextColor();
     void UpdateLabelColor(int colorOffset, UILabel* labelComponent);
     void TakeDownMessage();
@@ -71,6 +74,7 @@ private:
     UILabel* m_cosmosLive;
     UILabel* m_message;
     UILabel* m_appVersion;
+    UILabel* m_buyMeCoffee;
     bool m_usingRainbowMessageColor;
     int m_appVersionPressCount;
     

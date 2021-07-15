@@ -12,10 +12,11 @@ const float LABEL_WIDTH = 585.0;
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 const glm::vec3 YELLOW_TEXT_COLOR(255.0f, 255.0f, 0.0f);
+const glm::vec3 PURPLE_TEXT_COLOR(255.0f, 0.0f, 255.0f);
 
 
 MainMenuWidget::MainMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : m_menu(nullptr), m_title(nullptr), m_username(nullptr), m_usernamePrefix(nullptr),
-      m_appVersion(nullptr), m_usernamePressedCallback(nullptr), m_challengeMode(nullptr), m_cosmosLive(nullptr), m_message(nullptr), m_appVersionPressCount(0), m_usingRainbowMessageColor(false) {
+      m_appVersion(nullptr), m_usernamePressedCallback(nullptr), m_challengeMode(nullptr), m_cosmosLive(nullptr), m_message(nullptr), m_appVersionPressCount(0), m_usingRainbowMessageColor(false), m_buyMeCoffee(nullptr) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
@@ -40,6 +41,7 @@ void MainMenuWidget::init() {
 
     DisplayUsername();
     DisplayAppVersion();
+    DisplayBuyMeCoffee();
 }
 
 void MainMenuWidget::DisplayChallengeModeButton() {
@@ -70,10 +72,9 @@ void MainMenuWidget::DisplayCosmosLiveButton() {
 
 void MainMenuWidget::DisplayAppVersion() {
     const std::string appVersion = IEngine::getEngine()->GetDeviceUtil()->GetBuildVersion();
-    float offset = appVersion.size() * 12.5;
     m_appVersion = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 100, 100, UIComponent::ANCHOR_BOTTOM_RIGHT, appVersion);
     m_appVersion->setDropShadowColor(dropShadowColor);
-    m_appVersion->setX(45);
+    m_appVersion->setX(47);
     m_appVersion->setY(-40);
     
     UITouchButton::onButtonStateChangedCallBack callBack;
@@ -92,6 +93,10 @@ void MainMenuWidget::TakeDownAppVersion() {
 void MainMenuWidget::OnAppVersionPressed(UITouchButton::ButtonState state) {
     UpdateAppTitleTextColor();
     m_appVersionPressCount++;
+}
+
+void MainMenuWidget::OnBuyMeCoffeePressed(UITouchButton::ButtonState state) {
+    IEngine::getEngine()->GetDeviceUtil()->OpenWebsite("https://buymeacoffee.com/brentryczak");
 }
 
 int MainMenuWidget::GetAppVersionPressCount() const {
@@ -185,6 +190,7 @@ void MainMenuWidget::release() {
     
     m_menu->release();
     TakeDownAppVersion();
+    TakeDownBuyMeCoffee();
     TakeDownMessage();
 }
 
@@ -249,14 +255,39 @@ void MainMenuWidget::TakeDownMessage() {
     }
 }
 
+void MainMenuWidget::DisplayBuyMeCoffee() {
+    const std::string text = "> buy us a coffee <";
+    float textLength = 12.5 * text.size();
+    
+    m_buyMeCoffee = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textLength + 100, 100, UIComponent::ANCHOR_BOTTOM_LEFT, text);
+    m_buyMeCoffee->setDropShadowColor(PURPLE_TEXT_COLOR);
+    m_buyMeCoffee->setX(45);
+    m_buyMeCoffee->setY(-40);
+    m_buyMeCoffee->setColor(PURPLE_TEXT_COLOR);
+    
+    UITouchButton::onButtonStateChangedCallBack callBack;
+    callBack.bind(this, &MainMenuWidget::OnBuyMeCoffeePressed);
+    m_buyMeCoffee->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+    
+    m_parentComponent->addChild(m_buyMeCoffee);
+}
+
+void MainMenuWidget::TakeDownBuyMeCoffee() {
+    m_buyMeCoffee->release();
+    delete m_buyMeCoffee;
+    m_buyMeCoffee = nullptr;
+}
+
 void MainMenuWidget::SetVisible(bool visible) {
     if (visible) {
         DisplayAppVersion();
         DisplayUsername();
+        DisplayBuyMeCoffee();
     } else {
         m_username->setTextString("");
         m_usernamePrefix->setTextString("");
         m_appVersion->setTextString("");
+        m_buyMeCoffee->setTextString("");
     }
     
     m_menu->setVisible(visible);
