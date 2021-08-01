@@ -3,9 +3,10 @@
 #include <IEngine.h>
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
+const glm::vec3 GREEN_TEXT_COLOR(0.0f / 255.0f, 255.0f / 255.0f, 128.0f / 255.0f);
 
 ChallengeMenuWidget::ChallengeMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : IUserProfileDisplayListener(uiComponentFactory, parentComponent),
-      m_home(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr), m_currentUsername(nullptr), m_waitingForLeaderboard(false), m_loadingLabel(nullptr), m_maxPointsSize(0) {
+      m_home(nullptr), m_userBestScore(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr), m_currentUsername(nullptr), m_waitingForLeaderboard(false), m_loadingLabel(nullptr), m_maxPointsSize(0) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
@@ -14,7 +15,8 @@ void ChallengeMenuWidget::Init() {
     m_parentComponent->setVisible(false);
     AddCurrentUserUsername();
 	AddHomeButton();
-	AddChallengeTitle();
+    AddUserBestScore();
+    AddChallengeTitle();
 	AddLeaderboardFrame();
 	AddLeaderboardTitle();
     AddEmptyLeaderboard();
@@ -27,6 +29,11 @@ void ChallengeMenuWidget::Release() {
 
     m_home->release();
 	delete m_home;
+    
+    if (m_userBestScore != nullptr) {
+        m_userBestScore->release();
+        delete m_userBestScore;
+    }
     
     m_currentUsername->release();
     delete m_currentUsername;
@@ -85,6 +92,26 @@ void ChallengeMenuWidget::AddHomeButton() {
 	m_home->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
 
 	m_parentComponent->addChild(m_home);
+}
+
+void ChallengeMenuWidget::AddUserBestScore() {
+    const std::string bestScore = IEngine::getEngine()->GetDeviceUtil()->ReadFromDeviceStorage("best_score");
+    if (bestScore.empty()) {
+        return;
+    }
+    
+    int bestScoreInt = std::atoi(bestScore.c_str()) * 10;
+    const std::string bestScoreString = std::to_string(bestScoreInt);
+
+    const std::string text = "best score: " + bestScoreString;
+    float textWidth = 12.5 * text.size();
+    m_userBestScore = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_RIGHT, text);
+    m_userBestScore->setColor(GREEN_TEXT_COLOR);
+    m_userBestScore->setDropShadowColor(dropShadowColor);
+    m_userBestScore->setX(80);
+    m_userBestScore->setY(30);
+
+    m_parentComponent->addChild(m_userBestScore);
 }
 
 void ChallengeMenuWidget::AddChallengeTitle() {

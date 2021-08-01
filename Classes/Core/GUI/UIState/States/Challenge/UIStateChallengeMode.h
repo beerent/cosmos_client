@@ -52,6 +52,7 @@ private:
 	void HandleWrongAnswer();
     void HandleWrongAnswerLivesRemaining();
     void HandleGameOver();
+    void UpdateSavedUserBestScore();
     
     void AdvanceToNextQuestion();
     

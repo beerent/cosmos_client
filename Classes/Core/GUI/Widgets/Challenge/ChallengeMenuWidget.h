@@ -44,6 +44,7 @@ private:
 	UIComponent* m_parentComponent;
 
 	UILabel* m_home;
+    UILabel* m_userBestScore;
 
 	UILabel* m_challengeTitle;
 	UILabel* m_leaderboardTitle;
@@ -76,6 +77,7 @@ private:
 
     void AddCurrentUserUsername();
 	void AddHomeButton();
+    void AddUserBestScore();
 
 	void AddChallengeTitle();
 	void AddLeaderboardFrame();

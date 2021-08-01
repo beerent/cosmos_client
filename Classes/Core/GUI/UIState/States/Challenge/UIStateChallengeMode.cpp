@@ -128,9 +128,24 @@ void UIStateChallengeMode::HandleWrongAnswerLivesRemaining() {
 }
 
 void UIStateChallengeMode::HandleGameOver() {
+    UpdateSavedUserBestScore();
     m_challengeModeWidget->UpdateLivesSymbol(0);
     m_challengeModeWidget->GameOver();
     DeregisterGameTimerTimers();
+}
+
+void UIStateChallengeMode::UpdateSavedUserBestScore() {
+    int currentScore = m_challengeData.GetAmountCorrect();
+    
+    const std::string currentBestString = IEngine::getEngine()->GetDeviceUtil()->ReadFromDeviceStorage("best_score");
+    if (currentBestString.empty()) {
+        return;
+    }
+    int bestScore = std::atoi(currentBestString.c_str());
+    
+    if (currentScore > bestScore) {
+        IEngine::getEngine()->GetDeviceUtil()->WriteToDeviceStorage("best_score", std::to_string(currentScore));
+    }
 }
 
 void UIStateChallengeMode::OnMainMenuPressed(UITouchButton::ButtonState state) {
