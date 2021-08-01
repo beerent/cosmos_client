@@ -8,9 +8,8 @@
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 
-const std::vector<std::string> correctAnswerOptions = {"Correct!", "Right On!", "Amazing!", "Nailed It!", "Gnarly!", "Out Of This World!", "Certainly!", "Righteous!", "Okay!", "Impeccable!", "On The Mark!", "On Target!", "Excellent!", "Fantastic!", "Mission Complete!"};
-
-const std::vector<std::string> incorrectAnswerOptions = {"Incorrect!", "Ouch!", "Bummer!", "Yikes!", "Nice Try!", "Oops!", "Flaw Detected!", "Untrue!", "Dang!", "Cringe!", "EEERRRTTTT!", "<Glass Shattering>", "Houston, We Have A Problem!", "Mission Failed!", "Next Time!"};
+const std::vector<std::string> correctAnswerOptions = {"Correct!", "Right On!", "Amazing!", "Nailed It!", "Out Of This World!", "Excellent!", "Fantastic!", "Splash Down!"};
+const std::vector<std::string> incorrectAnswerOptions = {"Incorrect!", "Ouch!", "Bummer!", "Wrong!", "Nice Try!", "Oops!", "<Glass Shattering>", "Houston, We Have A Problem!", "Mission Failed!", "Next Time!"};
 
 namespace {
 	std::vector<std::string> SplitQuestionOnLength(const std::string& question) {
