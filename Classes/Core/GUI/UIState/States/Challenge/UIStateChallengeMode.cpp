@@ -139,8 +139,10 @@ void UIStateChallengeMode::UpdateSavedUserBestScore() {
     
     const std::string currentBestString = IEngine::getEngine()->GetDeviceUtil()->ReadFromDeviceStorage("best_score");
     if (currentBestString.empty()) {
+        IEngine::getEngine()->GetDeviceUtil()->WriteToDeviceStorage("best_score", std::to_string(currentScore));
         return;
     }
+    
     int bestScore = std::atoi(currentBestString.c_str());
     
     if (currentScore > bestScore) {
