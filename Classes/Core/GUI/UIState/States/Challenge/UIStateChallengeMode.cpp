@@ -137,16 +137,16 @@ void UIStateChallengeMode::HandleGameOver() {
 void UIStateChallengeMode::UpdateSavedUserBestScore() {
     int currentScore = m_challengeData.GetAmountCorrect();
     
-    const std::string currentBestString = IEngine::getEngine()->GetDeviceUtil()->ReadFromDeviceStorage("best_score");
+    const std::string currentBestString = IEngine::getEngine()->GetDeviceUtil()->ReadFromDeviceStorage("high_score");
     if (currentBestString.empty()) {
-        IEngine::getEngine()->GetDeviceUtil()->WriteToDeviceStorage("best_score", std::to_string(currentScore));
+        IEngine::getEngine()->GetDeviceUtil()->WriteToDeviceStorage("high_score", std::to_string(currentScore));
         return;
     }
     
     int bestScore = std::atoi(currentBestString.c_str());
     
     if (currentScore > bestScore) {
-        IEngine::getEngine()->GetDeviceUtil()->WriteToDeviceStorage("best_score", std::to_string(currentScore));
+        IEngine::getEngine()->GetDeviceUtil()->WriteToDeviceStorage("high_score", std::to_string(currentScore));
     }
 }
 

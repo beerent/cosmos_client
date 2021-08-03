@@ -95,7 +95,7 @@ void ChallengeMenuWidget::AddHomeButton() {
 }
 
 void ChallengeMenuWidget::AddUserBestScore() {
-    const std::string bestScore = IEngine::getEngine()->GetDeviceUtil()->ReadFromDeviceStorage("best_score");
+    const std::string bestScore = IEngine::getEngine()->GetDeviceUtil()->ReadFromDeviceStorage("high_score");
     if (bestScore.empty()) {
         return;
     }
@@ -103,7 +103,7 @@ void ChallengeMenuWidget::AddUserBestScore() {
     int bestScoreInt = std::atoi(bestScore.c_str()) * 10;
     const std::string bestScoreString = std::to_string(bestScoreInt);
 
-    const std::string text = "best score: " + bestScoreString;
+    const std::string text = "high score: " + bestScoreString;
     float textWidth = 12.5 * text.size();
     m_userBestScore = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_RIGHT, text);
     m_userBestScore->setColor(GREEN_TEXT_COLOR);
