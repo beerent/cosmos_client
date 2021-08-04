@@ -269,6 +269,8 @@
 		81FDE8D521FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81FDE8D421FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp */; };
 		871BB2DB25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 871BB2DA25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp */; };
 		871BB2E025BCFB4B00DB03BB /* CosmosLiveChat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 871BB2DE25BCFB4A00DB03BB /* CosmosLiveChat.cpp */; };
+		871D76C526BA093400AE9F78 /* PopupWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 871D76C426BA093400AE9F78 /* PopupWidget.cpp */; };
+		871D76CA26BA1FF400AE9F78 /* Alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 871D76C926BA1FF400AE9F78 /* Alert.cpp */; };
 		874FED6325789B07005B2059 /* LoadingScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 874FED6225789B07005B2059 /* LoadingScreenImage.png */; };
 		87551C92257C78BF00F23E57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87551C8A257C77EC00F23E57 /* StoreKit.framework */; };
 		877666D125B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877666CF25B2F70300B6F8AD /* CosmosLiveClosedWidget.cpp */; };
@@ -942,6 +944,10 @@
 		871BB2DA25B99EE300DB03BB /* CosmosLivePreGameLobbyWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CosmosLivePreGameLobbyWidget.cpp; path = Core/GUI/Widgets/Live/PreGameLobby/CosmosLivePreGameLobbyWidget.cpp; sourceTree = "<group>"; };
 		871BB2DE25BCFB4A00DB03BB /* CosmosLiveChat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CosmosLiveChat.cpp; path = Core/GameLogic/Live/Chat/CosmosLiveChat.cpp; sourceTree = "<group>"; };
 		871BB2DF25BCFB4A00DB03BB /* CosmosLiveChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CosmosLiveChat.h; path = Core/GameLogic/Live/Chat/CosmosLiveChat.h; sourceTree = "<group>"; };
+		871D76C326BA093400AE9F78 /* PopupWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopupWidget.h; path = Core/GUI/Widgets/Popup/PopupWidget.h; sourceTree = "<group>"; };
+		871D76C426BA093400AE9F78 /* PopupWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopupWidget.cpp; path = Core/GUI/Widgets/Popup/PopupWidget.cpp; sourceTree = "<group>"; };
+		871D76C826BA17B900AE9F78 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alert.h; path = Core/GameLogic/Alert/Alert.h; sourceTree = "<group>"; };
+		871D76C926BA1FF400AE9F78 /* Alert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Alert.cpp; path = Core/GameLogic/Alert/Alert.cpp; sourceTree = "<group>"; };
 		874FED6225789B07005B2059 /* LoadingScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreenImage.png; sourceTree = "<group>"; };
 		87551C8A257C77EC00F23E57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		87551C8E257C78AF00F23E57 /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = SDKROOT; };
@@ -1246,6 +1252,7 @@
 		1A727EC2193FF141001D8111 /* GameLogic */ = {
 			isa = PBXGroup;
 			children = (
+				871D76C726BA179F00AE9F78 /* Alert */,
 				87DE70BA25ABF28C00AC163A /* Live */,
 				81D747652228A8C7001CBB95 /* User */,
 				81DB2FBC21F5FB82000F4135 /* Question */,
@@ -1862,6 +1869,7 @@
 		1AA204E016FE3502006EBE43 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				871D76C226BA08A600AE9F78 /* Popup */,
 				877666D425B307E300B6F8AD /* Loading */,
 				877666CD25B2F6B800B6F8AD /* Live */,
 				81E139BF22276F190051A662 /* User */,
@@ -2375,6 +2383,24 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
+		871D76C226BA08A600AE9F78 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				871D76C426BA093400AE9F78 /* PopupWidget.cpp */,
+				871D76C326BA093400AE9F78 /* PopupWidget.h */,
+			);
+			name = Popup;
+			sourceTree = "<group>";
+		};
+		871D76C726BA179F00AE9F78 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				871D76C926BA1FF400AE9F78 /* Alert.cpp */,
+				871D76C826BA17B900AE9F78 /* Alert.h */,
+			);
+			name = Alert;
+			sourceTree = "<group>";
+		};
 		874FED6125789AEF005B2059 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -2753,7 +2779,9 @@
 				1AFB25791D0C7FD900C5BFFB /* TutTexturedRenderable.cpp in Sources */,
 				1A8BD12918A32D30000D10C0 /* btTypedConstraint.cpp in Sources */,
 				81FDE8D521FA6C1D00F2BBB2 /* ChallengeDataProviderLive.cpp in Sources */,
+				871D76C526BA093400AE9F78 /* PopupWidget.cpp in Sources */,
 				1A8BD2FB18A3312C000D10C0 /* btOverlappingPairCache.cpp in Sources */,
+				871D76CA26BA1FF400AE9F78 /* Alert.cpp in Sources */,
 				1AB7933C1A74303E00E65DD6 /* StateMachine.cpp in Sources */,
 				1A8BD3B618A3312D000D10C0 /* btGjkConvexCast.cpp in Sources */,
 				81F0D65F21DC0F4300A81D1F /* RequestBuilder.cpp in Sources */,

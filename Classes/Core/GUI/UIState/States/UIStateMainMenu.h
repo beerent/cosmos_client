@@ -5,12 +5,13 @@
 #include "Core/Generic/StateMachine/BaseState.h"
 #include "Core/GUI/Widgets/MainMenuWidget.h"
 #include <Core/GUI/Widgets/User/Username/UsernameEditWidget.h>
+#include <Core/GameLogic/Alert/Alert.h>
 #include <Core/Net/IRestReceiver.h>
 #include <Core/Util/SimpleTimer.h>
 #include <vector>
 #include <string>
 
-class UIStateMainMenu : public BaseStateDepricated, IEditUsernameCloser, IRestReceiver, Timer::SimpleTimerListener {
+class UIStateMainMenu : public BaseStateDepricated, IPopupCloser, IEditUsernameCloser, IRestReceiver, Timer::SimpleTimerListener {
 public:
     UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener);
     ~UIStateMainMenu();
@@ -22,12 +23,14 @@ public:
     
     virtual STRING_ID GetStateID(){ return UI_STATE_MAINMENU; }
 
+    virtual void ClosePopup();
     virtual void CloseEditUsername(User newUser);
     virtual void OnTimerEvent(Timer::TimerType type);
     virtual void RestReceived(const std::string& rest);
 private:
     MainMenuWidget* m_mainMenuWidget;
     UsernameEditWidget* m_usernameEditWidget;
+    PopupWidget* m_popupWidget;
     std::vector<std::string> m_messages;
     std::string m_messagesRequestKey;
     int m_currentMessageIndex;
@@ -40,10 +43,16 @@ private:
     
     void LogOutGuestUser();
     void SendGetMessagesRequest();
+    void SendGetAlertRequest();
     std::vector<std::string> JsonToMessages(const json11::Json& json);
+    Alert JsonToAlert(const json11::Json& json);
     
     void AdvanceMessageScroll();
     void AdvanceMessageIndex();
+
+    void DisplayPopup(const Alert& alert);
+    void InitPopup(const Alert& alert);
+    void ReleasePopup();
     
     void RegisterTimers();
     void DeregisterTimers();

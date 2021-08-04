@@ -226,8 +226,6 @@ void MainMenuWidget::DisplayUsername() {
     m_parentComponent->addChild(m_usernamePrefix);
 }
 
-
-
 void MainMenuWidget::UpdateMessage(const std::string& message, int offset) {
     if (m_message != nullptr) {
         m_message->setTextString("");
@@ -279,6 +277,11 @@ void MainMenuWidget::TakeDownBuyMeCoffee() {
 }
 
 void MainMenuWidget::SetVisible(bool visible) {
+    SetPartialVisible(visible);
+    m_menu->setVisible(visible);
+}
+
+void MainMenuWidget::SetPartialVisible(bool visible) {
     if (visible) {
         DisplayAppVersion();
         DisplayUsername();
@@ -289,6 +292,4 @@ void MainMenuWidget::SetVisible(bool visible) {
         m_appVersion->setTextString("");
         m_buyMeCoffee->setTextString("");
     }
-    
-    m_menu->setVisible(visible);
 }

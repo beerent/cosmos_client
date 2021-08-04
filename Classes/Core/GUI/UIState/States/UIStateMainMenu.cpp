@@ -13,18 +13,20 @@ CONST_STRING_DEF(UIStateMainMenu, UI_STATE_MAINMENU)
 
 namespace requests {
     const std::string GET_MESSAGES = "getMessages";
+    const std::string GET_ALERT = "getAlert";
 }
 
 const int EASTER_EGG_PRESS_COUNT_AMOUNT = 5;
 const std::string EASTER_EGG_MESSAGE = "Know Your Cosmos // Created By Brent Ryczak // 2018 - 2021";
 
-UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageIndex(-1), m_currentMessageScrollIndex(-10000), m_easterEggPending(true) {}
+UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr),  m_popupWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageIndex(-1), m_currentMessageScrollIndex(-10000), m_easterEggPending(true) {}
 
 UIStateMainMenu::~UIStateMainMenu() {}
 
 void UIStateMainMenu::OnEnterState() {
     m_restConnector = IEngine::getEngine()->GetRestConnector();
     SendGetMessagesRequest();
+    SendGetAlertRequest();
     
     m_mainMenuWidget = new MainMenuWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
     m_mainMenuWidget->init();
@@ -74,6 +76,14 @@ void UIStateMainMenu::SendGetMessagesRequest() {
     m_messagesRequestKey = m_restConnector->SendRequest(requestString, this);
 }
 
+void UIStateMainMenu::SendGetAlertRequest() {
+    RequestBuilder requestBuilder;
+    requestBuilder.SetEndpoint(requests::GET_ALERT);
+
+    std::string requestString = requestBuilder.GetRequestString();
+    m_messagesRequestKey = m_restConnector->SendRequest(requestString, this);
+}
+
 void UIStateMainMenu::RestReceived(const std::string& rest) {
     m_messagesRequestKey.clear();
     
@@ -87,6 +97,9 @@ void UIStateMainMenu::RestReceived(const std::string& rest) {
             AdvanceMessageIndex();
             RegisterTimers();
         }
+    } else if (request == requests::GET_ALERT) {
+        Alert alert = JsonToAlert(json["payload"]);
+        DisplayPopup(alert);
     }
 }
 
@@ -100,6 +113,20 @@ std::vector<std::string> UIStateMainMenu::JsonToMessages(const json11::Json& jso
     }
 
     return messages;
+}
+
+Alert UIStateMainMenu::JsonToAlert(const json11::Json& json) {
+    std::string key = json["key"].string_value();
+    std::string title = json["title"].string_value();
+    auto linesJson = json["lines"].array_items();
+
+    std::list<std::string> lines;
+    for (auto& lineJson : linesJson) {
+        std::string line = lineJson["line"].string_value();
+        lines.push_back(line);
+    }
+
+    return Alert(key, title, lines);
 }
 
 void UIStateMainMenu::AdvanceMessageIndex() {
@@ -182,6 +209,30 @@ void UIStateMainMenu::OnUsernamePressed(UITouchButton::ButtonState state) {
     
     m_mainMenuWidget->SetVisible(false);
     InitUsernameEditWidget();
+}
+
+void UIStateMainMenu::DisplayPopup(const Alert& alert) {
+    InitPopup(alert);
+    m_mainMenuWidget->SetVisible(false);
+    m_mainMenuWidget->SetPartialVisible(true);
+    m_popupWidget->SetVisible(true);
+}
+
+void UIStateMainMenu::InitPopup(const Alert& alert) {
+    m_popupWidget = new PopupWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
+    m_popupWidget->Init(this, alert.GetTitle(), alert.GetLines());
+}
+
+void UIStateMainMenu::ReleasePopup() {
+    m_popupWidget->Release();
+    delete m_popupWidget;
+    m_popupWidget = nullptr;
+}
+
+void UIStateMainMenu::ClosePopup() {
+    ReleasePopup();
+    m_mainMenuWidget->SetVisible(true);
+    
 }
 
 void UIStateMainMenu::CloseEditUsername(User newUser) {

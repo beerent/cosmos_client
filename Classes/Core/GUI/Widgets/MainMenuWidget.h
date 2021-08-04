@@ -3,8 +3,10 @@
 #include <Core/OpenSource/FastDelegate.h>
 #include <list>
 
+#include <Core/GUI/Widgets/Popup/PopupWidget.h>
 #include <Core/GUI/Components/UITouchButton.h>
 #include <Core/GUI/Components/UILabel.h>
+#include <Core/GameLogic/Alert/Alert.h>
 #include <Core/Util/SimpleTimer.h>
 
 class UIComponentFactory;
@@ -38,8 +40,9 @@ public:
     void RegisterUsernameRefreshListener(IUsernameRefreshListener* listener) {
         m_usernameRefreshListener = listener;
     }
-    
+
     void SetVisible(bool visible);
+    void SetPartialVisible(bool visible);
     int GetAppVersionPressCount() const;
 
 private:
@@ -75,6 +78,7 @@ private:
     UILabel* m_message;
     UILabel* m_appVersion;
     UILabel* m_buyMeCoffee;
+    
     bool m_usingRainbowMessageColor;
     int m_appVersionPressCount;
     
