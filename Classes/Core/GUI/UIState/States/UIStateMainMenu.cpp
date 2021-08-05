@@ -20,6 +20,7 @@ const int EASTER_EGG_PRESS_COUNT_AMOUNT = 5;
 const std::string EASTER_EGG_MESSAGE = "Know Your Cosmos // Created By Brent Ryczak // 2018 - 2021";
 const std::string READ_ALERT_PREFIX = "alert_";
 const std::string READ_ALERT_VALUE = "READ";
+const std::string TUTORIAL_KEY = "TUTORIAL";
 
 UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr),  m_popupWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageIndex(-1), m_currentMessageScrollIndex(-10000), m_easterEggPending(true) {}
 
@@ -28,10 +29,15 @@ UIStateMainMenu::~UIStateMainMenu() {}
 void UIStateMainMenu::OnEnterState() {
     m_restConnector = IEngine::getEngine()->GetRestConnector();
     SendGetMessagesRequest();
-    SendGetAlertRequest();
     
     m_mainMenuWidget = new MainMenuWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
     m_mainMenuWidget->init();
+    
+    if (!TutorialHasBeenRead()) {
+        DisplayTutorial();
+    } else {
+        SendGetAlertRequest();
+    }
     
     MainMenuWidget::onMenuItemSelectedCallBack mainMenuSelectionCallback;
     mainMenuSelectionCallback.bind(this, &UIStateMainMenu::onMainMenuItemSelected);
@@ -124,7 +130,7 @@ Alert UIStateMainMenu::JsonToAlert(const json11::Json& json) {
     std::string title = json["title"].string_value();
     auto linesJson = json["lines"].array_items();
 
-    std::list<std::string> lines;
+    std::vector<std::string> lines;
     for (auto& lineJson : linesJson) {
         std::string line = lineJson["line"].string_value();
         lines.push_back(line);
@@ -246,6 +252,27 @@ bool UIStateMainMenu::AlertHasBeenRead(const std::string& alertKey) const {
 
 void UIStateMainMenu::MarkAlertAsRead(const std::string& alertKey) {
     IEngine::getEngine()->GetDeviceUtil()->WriteToDeviceStorage(READ_ALERT_PREFIX + alertKey, READ_ALERT_VALUE);
+}
+        
+bool UIStateMainMenu::TutorialHasBeenRead() const {
+    return AlertHasBeenRead(TUTORIAL_KEY);
+}
+
+void UIStateMainMenu::DisplayTutorial() {
+    std::string key = TUTORIAL_KEY;
+    std::string title = "Know Your Cosmos Introduction";
+    
+    std::vector<std::string> lines;
+    lines.push_back("Welcome to Know Your Cosmos... Glad that you decided to stop by!");
+    lines.push_back("");
+    lines.push_back("Fight your way to the top of the Cosmos Quiz leaderboard.");
+    lines.push_back("Don't forget to swing by the Cosmic Chat to introduce yourself!");
+    lines.push_back("");
+    lines.push_back("Pro Tip: Create a custom username by clicking on your username from the main menu.");
+
+    
+    Alert alert(key, title, lines);
+    DisplayPopup(alert);
 }
 
 void UIStateMainMenu::CloseEditUsername(User newUser) {

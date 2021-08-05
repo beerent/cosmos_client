@@ -170,6 +170,10 @@ void MainMenuWidget::registerUsernamePressedCallback(UITouchButton::onButtonStat
 }
 
 void MainMenuWidget::OnUsernamePressed(UITouchButton::ButtonState state) {
+    if (!m_menu->getVisible()) {
+        return;
+    }
+    
     if (m_usernamePressedCallback != nullptr) {
         m_usernamePressedCallback(state);
     }

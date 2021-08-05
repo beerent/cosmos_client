@@ -70,5 +70,8 @@ private:
     bool AlertHasBeenRead(const std::string& alertKey) const;
     void MarkAlertAsRead(const std::string& alertKey);
     
+    bool TutorialHasBeenRead() const;
+    void DisplayTutorial();
+    
     void HandleNewUser(User newUser);
 };

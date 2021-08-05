@@ -5,18 +5,28 @@ const float LABEL_HEIGHT = 90.0;
 const float LABEL_WIDTH = 585.0;
 
 PopupWidget::PopupWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
-  m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_window(nullptr), m_frame(nullptr), m_title(nullptr), m_closeButton(nullptr) {}
+  m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_window(nullptr), m_frame(nullptr), m_title(nullptr), m_closeButton(nullptr), m_line0(nullptr), m_line1(nullptr), m_line2(nullptr), m_line3(nullptr), m_line4(nullptr) , m_line5(nullptr), m_line6(nullptr), m_line7(nullptr), m_line8(nullptr), m_line9(nullptr) {}
 
-void PopupWidget::Init(IPopupCloser* popupCloser, const std::string& key, const std::string& title, const std::list<std::string> lines) {
+void PopupWidget::Init(IPopupCloser* popupCloser, const std::string& key, const std::string& title, const std::vector<std::string> lines) {
+    m_popupCloser = popupCloser;
+    
     m_key = key;
     m_titleString = title;
     m_lines = lines;
+    
+    for (int i = 0; i < 10 - lines.size(); i++) {
+        if (i % 2 == 0) {
+            m_lines.insert(m_lines.begin(), "");
+        } else {
+            m_lines.push_back("");
+        }
+    }
     
     AddWindow();
     AddFrame();
     AddTitle();
     AddCloseButton();
-    AddLoadingMessage();
+    AddLines();
     SetVisible(false);
 }
 
@@ -77,10 +87,50 @@ void PopupWidget::SetVisible(bool visible) {
     }
 }
 
-void PopupWidget::AddLoadingMessage() {
-    //m_loading = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", LABEL_WIDTH, LABEL_HEIGHT, UIComponent::ANCHOR_CENTER, "");
-    //m_loading->setDropShadowColor(dropShadowColor);
-    //m_loading->setY(12.0);
-
-    //m_parentComponent->addChild(m_loading);
+void PopupWidget::AddLines() {
+    const std::string text = "";
+    float textWidth = 12.5 * text.size();
+    
+    const int basePadding = 29;
+    const int rowPadding = 32;
+    
+    std::string line0 = m_lines[0];
+    m_line0 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, line0);
+    m_line0->setDropShadowColor(dropShadowColor); m_line0->setY(basePadding + ( rowPadding * (1 + 0))); m_frame->addChild(m_line0);
+    
+    std::string line1 = m_lines[1];
+    m_line1 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, line1);
+    m_line1->setDropShadowColor(dropShadowColor); m_line1->setY(basePadding + ( rowPadding * (1 + 1))); m_frame->addChild(m_line1);
+    
+    std::string line2 = m_lines[2];
+    m_line2 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, line2);
+    m_line2->setDropShadowColor(dropShadowColor); m_line2->setY(basePadding + ( rowPadding * (1 + 2))); m_frame->addChild(m_line2);
+    
+    std::string line3 = m_lines[3];
+    m_line3 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, line3);
+    m_line3->setDropShadowColor(dropShadowColor); m_line3->setY(basePadding + ( rowPadding * (1 + 3))); m_frame->addChild(m_line3);
+    
+    std::string line4 = m_lines[4];
+    m_line4 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, line4);
+    m_line4->setDropShadowColor(dropShadowColor); m_line4->setY(basePadding + ( rowPadding * (1 + 4))); m_frame->addChild(m_line4);
+    
+    std::string line5 = m_lines[5];
+    m_line5 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, line5);
+    m_line5->setDropShadowColor(dropShadowColor); m_line5->setY(basePadding + ( rowPadding * (1 + 5))); m_frame->addChild(m_line5);
+    
+    std::string line6 = m_lines[6];
+    m_line6 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, line6);
+    m_line6->setDropShadowColor(dropShadowColor); m_line6->setY(basePadding + ( rowPadding * (1 + 6))); m_frame->addChild(m_line6);
+    
+    std::string line7 = m_lines[7];
+    m_line7 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, line7);
+    m_line7->setDropShadowColor(dropShadowColor); m_line7->setY(basePadding + ( rowPadding * (1 + 7))); m_frame->addChild(m_line7);
+    
+    std::string line8 = m_lines[8];
+    m_line8 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, line8);
+    m_line8->setDropShadowColor(dropShadowColor); m_line8->setY(basePadding + ( rowPadding * (1 + 8))); m_frame->addChild(m_line8);
+    
+    std::string line9 = m_lines[9];
+    m_line9 = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", textWidth, 60, UIComponent::ANCHOR_TOP_CENTER, line9);
+    m_line9->setDropShadowColor(dropShadowColor); m_line9->setY(basePadding + ( rowPadding * (1 + 9))); m_frame->addChild(m_line9);
 }
