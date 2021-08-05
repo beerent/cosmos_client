@@ -268,7 +268,7 @@ void UIStateMainMenu::DisplayTutorial() {
     lines.push_back("Fight your way to the top of the Cosmos Quiz leaderboard.");
     lines.push_back("Don't forget to swing by the Cosmic Chat to introduce yourself!");
     lines.push_back("");
-    lines.push_back("Pro Tip: Create a custom username by clicking on your username from the main menu.");
+    lines.push_back("Feel free to create a custom username by clicking on your username from the main menu.");
 
     
     Alert alert(key, title, lines);

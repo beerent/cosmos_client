@@ -71,6 +71,8 @@ void MainMenuWidget::DisplayCosmosLiveButton() {
 }
 
 void MainMenuWidget::DisplayAppVersion() {
+    TakeDownAppVersion();
+    
     const std::string appVersion = IEngine::getEngine()->GetDeviceUtil()->GetBuildVersion();
     m_appVersion = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 100, 100, UIComponent::ANCHOR_BOTTOM_RIGHT, appVersion);
     m_appVersion->setDropShadowColor(dropShadowColor);
@@ -85,9 +87,11 @@ void MainMenuWidget::DisplayAppVersion() {
 }
 
 void MainMenuWidget::TakeDownAppVersion() {
-    m_appVersion->release();
-    delete m_appVersion;
-    m_appVersion = nullptr;
+    if (m_appVersion != nullptr) {
+        m_appVersion->release();
+        delete m_appVersion;
+        m_appVersion = nullptr;
+    }
 }
 
 void MainMenuWidget::OnAppVersionPressed(UITouchButton::ButtonState state) {
@@ -258,6 +262,8 @@ void MainMenuWidget::TakeDownMessage() {
 }
 
 void MainMenuWidget::DisplayBuyMeCoffee() {
+    TakeDownBuyMeCoffee();
+    
     const std::string text = "> buy us a coffee <";
     float textLength = 12.5 * text.size();
     
@@ -275,9 +281,11 @@ void MainMenuWidget::DisplayBuyMeCoffee() {
 }
 
 void MainMenuWidget::TakeDownBuyMeCoffee() {
-    m_buyMeCoffee->release();
-    delete m_buyMeCoffee;
-    m_buyMeCoffee = nullptr;
+    if (m_buyMeCoffee != nullptr) {
+        m_buyMeCoffee->release();
+        delete m_buyMeCoffee;
+        m_buyMeCoffee = nullptr;
+    }
 }
 
 void MainMenuWidget::SetVisible(bool visible) {

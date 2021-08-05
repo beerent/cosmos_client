@@ -23,6 +23,10 @@ private:
     void AddCloseButton();
     void OnClosePopup(UITouchButton::ButtonState state);
     
+    bool ContainsColor(const std::string& text) const;
+    glm::vec3 GetColor(const std::string& text) const;
+    std::string RemoveColor(const std::string& text) const;
+    
     IPopupCloser* m_popupCloser;
     
     UIComponentFactory* m_uiComponentFactory;
