@@ -23,7 +23,7 @@ public:
     
     virtual STRING_ID GetStateID(){ return UI_STATE_MAINMENU; }
 
-    virtual void ClosePopup();
+    virtual void ClosePopup(const std::string& key);
     virtual void CloseEditUsername(User newUser);
     virtual void OnTimerEvent(Timer::TimerType type);
     virtual void RestReceived(const std::string& rest);
@@ -66,6 +66,9 @@ private:
     bool EasterEggIsActive() const;
     bool ShouldActivateEasterEgg() const;
     void ActivateEasterEgg();
+    
+    bool AlertHasBeenRead(const std::string& alertKey) const;
+    void MarkAlertAsRead(const std::string& alertKey);
     
     void HandleNewUser(User newUser);
 };

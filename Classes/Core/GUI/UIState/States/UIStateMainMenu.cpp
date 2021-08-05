@@ -18,6 +18,8 @@ namespace requests {
 
 const int EASTER_EGG_PRESS_COUNT_AMOUNT = 5;
 const std::string EASTER_EGG_MESSAGE = "Know Your Cosmos // Created By Brent Ryczak // 2018 - 2021";
+const std::string READ_ALERT_PREFIX = "alert_";
+const std::string READ_ALERT_VALUE = "READ";
 
 UIStateMainMenu::UIStateMainMenu(IStateChanageListenerDepricated* stateChangeListener): BaseStateDepricated(stateChangeListener), m_mainMenuWidget(nullptr), m_usernameEditWidget(nullptr),  m_popupWidget(nullptr), m_restConnector(nullptr), m_timer(this), m_currentMessageIndex(-1), m_currentMessageScrollIndex(-10000), m_easterEggPending(true) {}
 
@@ -99,7 +101,9 @@ void UIStateMainMenu::RestReceived(const std::string& rest) {
         }
     } else if (request == requests::GET_ALERT) {
         Alert alert = JsonToAlert(json["payload"]);
-        DisplayPopup(alert);
+        if (!AlertHasBeenRead(alert.GetKey())) {
+            DisplayPopup(alert);
+        }
     }
 }
 
@@ -220,7 +224,7 @@ void UIStateMainMenu::DisplayPopup(const Alert& alert) {
 
 void UIStateMainMenu::InitPopup(const Alert& alert) {
     m_popupWidget = new PopupWidget(UIComponentFactory::getInstance(), IEngine::getEngine()->getUIRoot());
-    m_popupWidget->Init(this, alert.GetTitle(), alert.GetLines());
+    m_popupWidget->Init(this, alert.GetKey(), alert.GetTitle(), alert.GetLines());
 }
 
 void UIStateMainMenu::ReleasePopup() {
@@ -229,10 +233,19 @@ void UIStateMainMenu::ReleasePopup() {
     m_popupWidget = nullptr;
 }
 
-void UIStateMainMenu::ClosePopup() {
+void UIStateMainMenu::ClosePopup(const std::string& key) {
+    MarkAlertAsRead(key);
+    
     ReleasePopup();
     m_mainMenuWidget->SetVisible(true);
-    
+}
+
+bool UIStateMainMenu::AlertHasBeenRead(const std::string& alertKey) const {
+    return READ_ALERT_VALUE == IEngine::getEngine()->GetDeviceUtil()->ReadFromDeviceStorage(READ_ALERT_PREFIX + alertKey);
+}
+
+void UIStateMainMenu::MarkAlertAsRead(const std::string& alertKey) {
+    IEngine::getEngine()->GetDeviceUtil()->WriteToDeviceStorage(READ_ALERT_PREFIX + alertKey, READ_ALERT_VALUE);
 }
 
 void UIStateMainMenu::CloseEditUsername(User newUser) {

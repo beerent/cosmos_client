@@ -7,8 +7,8 @@ const float LABEL_WIDTH = 585.0;
 PopupWidget::PopupWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
   m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_window(nullptr), m_frame(nullptr), m_title(nullptr), m_closeButton(nullptr) {}
 
-void PopupWidget::Init(IPopupCloser* popupCloser, const std::string& title, const std::list<std::string> lines) {
-    m_popupCloser = popupCloser;
+void PopupWidget::Init(IPopupCloser* popupCloser, const std::string& key, const std::string& title, const std::list<std::string> lines) {
+    m_key = key;
     m_titleString = title;
     m_lines = lines;
     
@@ -63,7 +63,7 @@ void PopupWidget::AddCloseButton() {
 }
 
 void PopupWidget::OnClosePopup(UITouchButton::ButtonState state) {
-    m_popupCloser->ClosePopup();
+    m_popupCloser->ClosePopup(m_key);
 }
 
 void PopupWidget::SetVisible(bool visible) {

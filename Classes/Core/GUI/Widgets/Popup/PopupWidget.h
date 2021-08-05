@@ -4,14 +4,14 @@
 
 class IPopupCloser {
 public:
-    virtual void ClosePopup() = 0;
+    virtual void ClosePopup(const std::string& key) = 0;
 };
 
 class PopupWidget {
 public:
     PopupWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent);
 
-    void Init(IPopupCloser* popupCloser,  const std::string& title, const std::list<std::string> lines);
+    void Init(IPopupCloser* popupCloser, const std::string& key, const std::string& title, const std::list<std::string> lines);
     void Release();
     void SetVisible(bool visible);
     
@@ -30,6 +30,7 @@ private:
     UIComponent* m_window;
     UIComponent* m_frame;
     
+    std::string m_key;
     std::string m_titleString;
     std::list<std::string> m_lines;
 
