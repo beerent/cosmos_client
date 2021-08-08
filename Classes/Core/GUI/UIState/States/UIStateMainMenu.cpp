@@ -107,7 +107,7 @@ void UIStateMainMenu::RestReceived(const std::string& rest) {
         }
     } else if (request == requests::GET_ALERT) {
         Alert alert = JsonToAlert(json["payload"]);
-        if (!AlertHasBeenRead(alert.GetKey())) {
+        if (!AlertHasBeenRead(alert.GetKey()) && IsValidAlert(alert)) {
             DisplayPopup(alert);
         }
     }
@@ -247,6 +247,10 @@ void UIStateMainMenu::ClosePopup(const std::string& key) {
 
 bool UIStateMainMenu::AlertHasBeenRead(const std::string& alertKey) const {
     return READ_ALERT_VALUE == IEngine::getEngine()->GetDeviceUtil()->ReadFromDeviceStorage(READ_ALERT_PREFIX + alertKey);
+}
+
+bool UIStateMainMenu::IsValidAlert(const Alert& alert) const {
+    return !alert.GetKey().empty() && !alert.GetTitle().empty() && !alert.GetLines().empty();
 }
 
 void UIStateMainMenu::MarkAlertAsRead(const std::string& alertKey) {

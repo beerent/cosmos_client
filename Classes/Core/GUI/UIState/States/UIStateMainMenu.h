@@ -68,6 +68,7 @@ private:
     void ActivateEasterEgg();
     
     bool AlertHasBeenRead(const std::string& alertKey) const;
+    bool IsValidAlert(const Alert& alert) const;
     void MarkAlertAsRead(const std::string& alertKey);
     
     bool TutorialHasBeenRead() const;
