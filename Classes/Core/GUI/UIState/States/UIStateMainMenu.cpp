@@ -132,7 +132,7 @@ Alert UIStateMainMenu::JsonToAlert(const json11::Json& json) {
 
     std::vector<std::string> lines;
     for (auto& lineJson : linesJson) {
-        std::string line = lineJson["line"].string_value();
+        std::string line = lineJson.string_value();
         lines.push_back(line);
     }
 
@@ -149,7 +149,6 @@ void UIStateMainMenu::AdvanceMessageIndex() {
     } else {
         m_currentMessageIndex++;
     }
-    
 }
 
 void UIStateMainMenu::RegisterTimers() {
