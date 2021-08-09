@@ -35,7 +35,7 @@ std::string CosmosLiveSession::GetHash() const {
     hash += std::to_string(m_roundSecondsRemaining);
     hash += std::to_string(m_playerCount);
     for (const auto& chat : m_chats) {
-        hash += (chat.GetUser() + chat.GetMessage() + chat.GetAdded());
+        hash += (chat.GetUser() + chat.GetMessage() + std::to_string(chat.GetSecondsAgo()));
     }
     
     return hash;

@@ -95,9 +95,9 @@ std::vector<CosmosLiveChat> CosmosLiveCoordinator::GetChatsFromJson(const json11
     for (const auto& chatJson : chatsJson) {
         std::string user = chatJson["user"].string_value();
         std::string message = chatJson["message"].string_value();
-        std::string added = chatJson["added"].string_value();
+        int secondsAgo = chatJson["seconds_ago"].int_value();
         
-        cosmosLiveChats.push_back(CosmosLiveChat(user, message, added));
+        cosmosLiveChats.push_back(CosmosLiveChat(user, message, secondsAgo));
     }
     
     return cosmosLiveChats;

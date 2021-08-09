@@ -65,9 +65,14 @@ private:
     void DisplayCursor();
     void HideCursor();
     std::string GetChatLengthAsString() const;
+    std::string getChatString(const CosmosLiveChat& chat, bool usePadding) const;
+    void UpdateChatFrameWidth(const std::vector<CosmosLiveChat>& chats);
+    void UpdateChatMessageWidth(const std::vector<CosmosLiveChat>& chats);
     
     void HideMenuBar();
     void ShowMenuBar();
+    
+    std::string CreateTimeAgoString(int secondsAgo) const;
     
     glm::vec3 getTextColorFromChatMessage(const std::string& chat) const;
 
@@ -93,6 +98,7 @@ private:
     UILabel* m_chat7;
     UILabel* m_chat8;
     UILabel* m_chat9;
+    int m_chatWidth;
     
     UILabel* m_addChatButton;
     std::string m_chat;

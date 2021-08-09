@@ -14,7 +14,7 @@ const glm::vec3 PURPLE_TEXT_COLOR(255.0f, 0.0f, 255.0f);
 const glm::vec3 WHITE_TEXT_COLOR(255.0f, 255.0f, 255.0f);
 
 CosmosLivePreGameLobbyWidget::CosmosLivePreGameLobbyWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) :
-m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_preGameLobbyWindow(nullptr), m_chatFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_chatText(nullptr), m_keyboardManager(nullptr), m_timer(this), m_cursorOn(false), m_editingChat(false), m_cosmosLiveChatReceiver(nullptr) {}
+m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_preGameLobbyWindow(nullptr), m_chatFrame(nullptr), m_title(nullptr), m_activeUsers(nullptr), m_timeUntilGametime(nullptr), m_home(nullptr), m_currentUsername(nullptr), m_chat0(nullptr), m_chat2(nullptr), m_chat1(nullptr), m_chat3(nullptr), m_chat4(nullptr), m_chat5(nullptr), m_chat6(nullptr), m_chat7(nullptr), m_chat8(nullptr), m_chat9(nullptr), m_addChatButton(nullptr), m_chatText(nullptr), m_keyboardManager(nullptr), m_timer(this), m_cursorOn(false), m_editingChat(false), m_cosmosLiveChatReceiver(nullptr), m_chatWidth(0) {}
 
 void CosmosLivePreGameLobbyWidget::Init() {
     m_keyboardManager = IEngine::getEngine()->GetKeyboardManager();
@@ -102,7 +102,7 @@ void CosmosLivePreGameLobbyWidget::AddChatWindow() {
 void CosmosLivePreGameLobbyWidget::AddChatFrame() {
     m_chatFrame = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
     m_chatFrame->setAnchor(UIComponent::ANCHOR_TOP_CENTER);
-    m_chatFrame->setWidth(1265);
+    m_chatFrame->setWidth(1400);
     m_chatFrame->setHeight(600);
     m_chatFrame->setY(50);
 
@@ -193,15 +193,35 @@ std::string CosmosLivePreGameLobbyWidget::SecondsToMinutesSecondsString(double s
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateChats(const std::vector<CosmosLiveChat>& chats) {
+    UpdateChatMessageWidth(chats);
+    UpdateChatFrameWidth(chats);
+    
     std::vector<CosmosLiveChat> fullChats = chats;
     while (fullChats.size() < 10) {
-        fullChats.push_back(CosmosLiveChat("", "", ""));
+        fullChats.push_back(CosmosLiveChat("", "", 0));
     }
     
     for (int i = 0; i < 10; i++) {
         const CosmosLiveChat &chat = fullChats[i];
         UpdateChat(chat, 9 - i);
     }
+}
+
+void CosmosLivePreGameLobbyWidget::UpdateChatMessageWidth(const std::vector<CosmosLiveChat>& chats) {
+    std::string longestMessage = "";
+
+    for (int i = 0; i < 10; i++) {
+        std::string chatMessage = getChatString(chats[i], false);
+        if (chatMessage.length() > longestMessage.length()) {
+            longestMessage = chatMessage;
+        }
+    }
+    
+    m_chatWidth = longestMessage.length();
+}
+
+void CosmosLivePreGameLobbyWidget::UpdateChatFrameWidth(const std::vector<CosmosLiveChat>& chats) {
+    m_chatFrame->setWidth(16 * (m_chatWidth + 8));
 }
 
 void CosmosLivePreGameLobbyWidget::AddActiveUsers() {
@@ -270,38 +290,14 @@ void CosmosLivePreGameLobbyWidget::AddChats() {
 }
 
 void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int position) {
-    std::string usernamePostFix = ": ";
-    std::string chatString = "";
-    
     glm::vec3 textColor = WHITE_TEXT_COLOR;
     
-    if (chat.IsValid()) {
-        std::string username = chat.GetUser();
-        std::string chatMessage = chat.GetMessage();
-        
-        textColor = getTextColorFromChatMessage(chatMessage);
-        
-        if (textColor == YELLOW_TEXT_COLOR || textColor == PURPLE_TEXT_COLOR || textColor == RED_TEXT_COLOR) {
-            chatMessage = chatMessage.substr(3);
-        }
-        
-        if (textColor == PURPLE_TEXT_COLOR) {
-            username = username + " [admin]";
-            usernamePostFix = ": ";
-        }
-        
-        if (textColor == YELLOW_TEXT_COLOR || textColor == RED_TEXT_COLOR) {
-            username = "[system]";
-            usernamePostFix = ": ";
-        }
-        
-        chatString = username + usernamePostFix + chatMessage;
+    if (!chat.IsValid()) {
+        return;
     }
     
-    const int maxChatSize = MAX_CHAT_CHARACTERS + MAX_USERNAME_CHARACTERS + (int) usernamePostFix.size();
-    while (chatString.size() < maxChatSize) {
-        chatString += " ";
-    }
+    textColor = getTextColorFromChatMessage(chat.GetMessage());
+    std::string chatString = getChatString(chat, true);
     
     switch (position) {
         case 0:
@@ -354,6 +350,43 @@ void CosmosLivePreGameLobbyWidget::UpdateChat(const CosmosLiveChat& chat, int po
             m_chat9->setColor(textColor);
             break;
     }
+}
+
+std::string CosmosLivePreGameLobbyWidget::getChatString(const CosmosLiveChat& chat, bool usePadding) const {
+    std::string username = chat.GetUser();
+    std::string chatMessage = chat.GetMessage();
+    int secondsAgo = chat.GetSecondsAgo();
+    std::string timeAgoString = CreateTimeAgoString(secondsAgo);
+    
+    glm::vec3 textColor = getTextColorFromChatMessage(chat.GetMessage());
+    
+    if (textColor == YELLOW_TEXT_COLOR || textColor == PURPLE_TEXT_COLOR || textColor == RED_TEXT_COLOR) {
+        chatMessage = chatMessage.substr(3);
+    }
+    
+    std::string usernamePostFix = ": ";
+    std::string chatString = "";
+    
+    if (textColor == PURPLE_TEXT_COLOR) {
+        username = username + " [admin]";
+        usernamePostFix = ": ";
+    }
+    
+    if (textColor == YELLOW_TEXT_COLOR || textColor == RED_TEXT_COLOR) {
+        username = "[system]";
+        usernamePostFix = ": ";
+    }
+    
+    chatString = username + usernamePostFix + chatMessage;
+
+    if (usePadding) {
+        while (chatString.size() < m_chatWidth) {
+            chatString += " ";
+        }
+        chatString += " " + timeAgoString;
+    }
+    
+    return chatString;
 }
 
 glm::vec3 CosmosLivePreGameLobbyWidget::getTextColorFromChatMessage(const std::string& chat) const {
@@ -480,6 +513,27 @@ void CosmosLivePreGameLobbyWidget::OnTimerEvent(Timer::TimerType type) {
         default:
             break;
     }
+}
+
+std::string CosmosLivePreGameLobbyWidget::CreateTimeAgoString(int secondsAgo) const {
+    std::string timeString = "";
+    
+    if (secondsAgo < 60) {
+        timeString = std::to_string(secondsAgo) + "s";
+    } else if (secondsAgo / 60 < 60) {
+        
+       timeString = std::to_string(secondsAgo / 60) + "m";
+    } else if (secondsAgo / 60 / 60 < 24) {
+        timeString = std::to_string(secondsAgo / 60 / 60) + "h";
+    } else {
+        timeString = std::to_string(secondsAgo / 60 / 60 / 24) + "d";
+    }
+    
+    if (timeString.length() < 3) {
+        timeString = " " + timeString;
+    }
+    
+    return "" + timeString + " ago";
 }
 
 void CosmosLivePreGameLobbyWidget::HideMenuBar() {

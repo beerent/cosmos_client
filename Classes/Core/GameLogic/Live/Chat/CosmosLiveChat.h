@@ -4,15 +4,15 @@
 
 class CosmosLiveChat {
 public:
-    CosmosLiveChat(const std::string& user, const std::string& message, const std::string& added);
+    CosmosLiveChat(const std::string& user, const std::string& message, int secondsAgo);
     
     std::string GetUser() const;
     std::string GetMessage() const;
-    std::string GetAdded() const;
+    int GetSecondsAgo() const;
     bool IsValid() const;
     
 private:
     std::string m_user;
     std::string m_message;
-    std::string m_added;
+    int m_secondsAgo;
 };
