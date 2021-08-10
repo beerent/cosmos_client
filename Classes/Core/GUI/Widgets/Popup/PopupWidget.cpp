@@ -52,7 +52,7 @@ void PopupWidget::AddWindow() {
 void PopupWidget::AddFrame() {
     m_frame = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
     m_frame->setAnchor(UIComponent::ANCHOR_TOP_CENTER);
-    m_frame->setWidth(1265);
+    m_frame->setWidth(1000);
     m_frame->setHeight(600);
     m_frame->setY(50);
 

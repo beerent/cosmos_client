@@ -1,6 +1,10 @@
 #include <Core/User/User.h>
 
-User::User(const std::string& username, const std::string& passwordHash, UserAccessLevel accessLevel) : m_username(username), m_passwordHash(passwordHash), m_accessLevel(accessLevel) {}
+User::User(const std::string& uid, const std::string& username, const std::string& passwordHash, UserAccessLevel accessLevel) : m_uid(uid), m_username(username), m_passwordHash(passwordHash), m_accessLevel(accessLevel) {}
+
+std::string User::GetUid() const {
+    return m_uid;
+}
 
 std::string User::GetUsername() const {
 	return m_username;

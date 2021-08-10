@@ -107,7 +107,7 @@ void UIStateAuthInput::RemoveCharacterFromPassword() {
 void UIStateAuthInput::OnInputButtonPressed(AuthenticationInputWidget::AuthenticationInputButtons button) {
     m_timer.DeregisterTimer(Timer::TimerType::CURSOR_BLINK_550_MS);
     m_keyboardManager->DeactivateKeyboard();
-	User user(m_username, m_password, UserAccessLevel::MEMBER);
+	User user("deprecated", m_username, m_password, UserAccessLevel::MEMBER);
 
 	m_authenticator.SetUser(user);
 	SubmitAuthenticationRequest();

@@ -75,3 +75,14 @@ void IOSDeviceUtil::OpenWebsite(const std::string& url) {
         [[UIApplication sharedApplication] openURL:nsUrl];
     }
 }
+
+std::string IOSDeviceUtil::GetDeviceUid() {
+    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+
+    std::string stdValue;
+    if (uniqueIdentifier != nil) {
+        stdValue = [uniqueIdentifier UTF8String];
+    }
+    
+    return stdValue;
+}

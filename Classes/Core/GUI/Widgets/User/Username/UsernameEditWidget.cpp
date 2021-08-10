@@ -172,7 +172,7 @@ void UsernameEditWidget::OnRandomPressed(UITouchButton::ButtonState state) {
 
 void UsernameEditWidget::OnExitPressed(UITouchButton::ButtonState state) {
     const User currentUser = IEngine::getEngine()->GetUserProvider()->GetUser();
-    const User newUser = User(m_username, currentUser.GetPasswordHash(), currentUser.GetAccessLevel());
+    const User newUser = User(currentUser.GetUid(), m_username, currentUser.GetPasswordHash(), currentUser.GetAccessLevel());
     
     m_editUsernameCloser->CloseEditUsername(newUser);
 }

@@ -13,6 +13,7 @@ void RequestBuilder::AddParameter(const std::string& key, const std::string& val
 }
 
 void RequestBuilder::AddUser(const User& user) {
+    //m_parameters["uid"] = user.GetUid();
 	m_parameters["username"] = user.GetUsername();
 	m_parameters["password"] = user.GetPasswordHash();
 }
