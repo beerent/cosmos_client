@@ -89,8 +89,6 @@ void MainMenuWidget::DisplayAppVersion() {
 void MainMenuWidget::TakeDownAppVersion() {
     if (m_appVersion != nullptr) {
         m_appVersion->release();
-        delete m_appVersion;
-        m_appVersion = nullptr;
     }
 }
 
@@ -283,8 +281,6 @@ void MainMenuWidget::DisplayBuyMeCoffee() {
 void MainMenuWidget::TakeDownBuyMeCoffee() {
     if (m_buyMeCoffee != nullptr) {
         m_buyMeCoffee->release();
-        delete m_buyMeCoffee;
-        m_buyMeCoffee = nullptr;
     }
 }
 
