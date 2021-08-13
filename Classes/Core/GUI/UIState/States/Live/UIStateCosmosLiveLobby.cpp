@@ -16,7 +16,7 @@ void UIStateCosmosLiveLobby::OnEnterState() {
     DisplayLoading();
     m_loadingWidget->SetVisible(true);
     
-    DisplayClosed();
+    //DisplayClosed();
     DisplayPreGameLobby();
     
     m_cosmosLiveCoordinator.RegisterCosmosLiveSessionUpdateListener(this);
@@ -46,7 +46,7 @@ void UIStateCosmosLiveLobby::OnAuthenticationResultReceived(AuthenticationResult
     // UI needs to load in place before we actually set it not visible. Otherwise you see the
     // drawing of the UI.
     m_preGameLobbyWidget->SetVisible(false);
-    m_closedWidget->SetVisible(false);
+    //m_closedWidget->SetVisible(false);
     
     if (AuthenticationResult::SUCCESS == result) {
         m_cosmosLiveCoordinator.Start();
@@ -95,7 +95,7 @@ void UIStateCosmosLiveLobby::DeactivateState(CosmosLiveState state) {
             break;
 
         case CosmosLiveState::CLOSED:
-            m_closedWidget->SetVisible(false);
+            //m_closedWidget->SetVisible(false);
             break;
 
         case CosmosLiveState::PRE_GAME_LOBBY:
@@ -115,7 +115,7 @@ void UIStateCosmosLiveLobby::ActivateState(const CosmosLiveSession& session) {
             break;
             
         case CosmosLiveState::CLOSED:
-            m_closedWidget->SetVisible(true);
+            //m_closedWidget->SetVisible(true);
             break;
             
         case CosmosLiveState::INVALID:
@@ -179,7 +179,7 @@ void UIStateCosmosLiveLobby::TakeDownPreGameLobby() {
 
 void UIStateCosmosLiveLobby::TakeDownAllWidgets() {
     TakeDownLoading();
-    TakeDownClosed();
+    //TakeDownClosed();
     TakeDownPreGameLobby();
 }
 

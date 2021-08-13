@@ -102,7 +102,7 @@ void CosmosLivePreGameLobbyWidget::AddChatWindow() {
 void CosmosLivePreGameLobbyWidget::AddChatFrame() {
     m_chatFrame = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
     m_chatFrame->setAnchor(UIComponent::ANCHOR_TOP_CENTER);
-    m_chatFrame->setWidth(1400);
+    m_chatFrame->setWidth(1200);
     m_chatFrame->setHeight(600);
     m_chatFrame->setY(50);
 

@@ -8,9 +8,9 @@ LoadingWidget::LoadingWidget(UIComponentFactory *uiComponentFactory, UIComponent
   m_uiComponentFactory(uiComponentFactory), m_parentComponent(parentComponent), m_loading(nullptr), m_loadingWindow(nullptr), m_loadingFrame(nullptr), m_title(nullptr) {}
 
 void LoadingWidget::Init() {
-    AddProfileWindow();
-    AddProfileFrame();
-    AddTitle();
+    //AddProfileWindow();
+    //AddProfileFrame();
+    //AddTitle();
     AddLoadingMessage();
 }
 
@@ -19,7 +19,7 @@ void LoadingWidget::Release() {
     m_loading->release();
     delete m_loading;
     
-    m_loadingWindow->release();
+    //m_loadingWindow->release();
     delete m_loadingWindow;
 }
 
@@ -33,7 +33,7 @@ void LoadingWidget::AddProfileWindow() {
 void LoadingWidget::AddProfileFrame() {
     m_loadingFrame = m_uiComponentFactory->createUIComponent(StringManager::getIDForString("uiSGPMenuBackGroundArchetype"));
     m_loadingFrame->setAnchor(UIComponent::ANCHOR_TOP_CENTER);
-    m_loadingFrame->setWidth(1265);
+    m_loadingFrame->setWidth(1200);
     m_loadingFrame->setHeight(600);
     m_loadingFrame->setY(50);
 
@@ -49,15 +49,15 @@ void LoadingWidget::AddTitle() {
 }
 
 void LoadingWidget::SetVisible(bool visible) {
-    m_loadingWindow->setVisible(visible);
-    m_loadingFrame->setVisible(visible);
+    //m_loadingWindow->setVisible(visible);
+    //m_loadingFrame->setVisible(visible);
     
     if (visible) {
         m_loading->setTextString("loading...");
-        m_title->setTextString("Cosmic Chat");
+        //m_title->setTextString("Cosmic Chat");
     } else {
         m_loading->setTextString("");
-        m_title->setTextString("");
+        //m_title->setTextString("");
     }
 }
 
