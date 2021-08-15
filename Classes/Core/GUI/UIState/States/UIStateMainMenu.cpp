@@ -53,6 +53,10 @@ void UIStateMainMenu::OnExitState() {
         m_restConnector->CloseRequest(m_messagesRequestKey);
     }
     
+    if (!m_alertRequestKey.empty()) {
+        m_restConnector->CloseRequest(m_alertRequestKey);
+    }
+    
     DeregisterTimers();
     
     m_mainMenuWidget->release();
@@ -89,23 +93,23 @@ void UIStateMainMenu::SendGetAlertRequest() {
     requestBuilder.SetEndpoint(requests::GET_ALERT);
 
     std::string requestString = requestBuilder.GetRequestString();
-    m_messagesRequestKey = m_restConnector->SendRequest(requestString, this);
+    m_alertRequestKey = m_restConnector->SendRequest(requestString, this);
 }
 
 void UIStateMainMenu::RestReceived(const std::string& rest) {
-    m_messagesRequestKey.clear();
-    
     json11::Json json = JsonProvider::ParseString(rest);
     std::string request = json["request"].string_value();
     
     std::string first;
     if (request == requests::GET_MESSAGES) {
+        m_messagesRequestKey.clear();
         m_messages = JsonToMessages(json["payload"]);
         if (!m_messages.empty()) {
             AdvanceMessageIndex();
             RegisterTimers();
         }
     } else if (request == requests::GET_ALERT) {
+        m_alertRequestKey.clear();
         Alert alert = JsonToAlert(json["payload"]);
         if (!AlertHasBeenRead(alert.GetKey()) && IsValidAlert(alert)) {
             DisplayPopup(alert);

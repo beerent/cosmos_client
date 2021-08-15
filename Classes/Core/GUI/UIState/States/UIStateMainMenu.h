@@ -33,6 +33,7 @@ private:
     PopupWidget* m_popupWidget;
     std::vector<std::string> m_messages;
     std::string m_messagesRequestKey;
+    std::string m_alertRequestKey;
     int m_currentMessageIndex;
     int m_currentMessageScrollIndex;
     bool m_easterEggPending;
