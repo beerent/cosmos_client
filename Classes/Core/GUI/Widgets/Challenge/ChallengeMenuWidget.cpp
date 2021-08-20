@@ -115,7 +115,7 @@ void ChallengeMenuWidget::AddUserBestScore() {
 }
 
 void ChallengeMenuWidget::AddChallengeTitle() {
-	m_challengeTitle = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "Challenge Mode");
+	m_challengeTitle = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "Cosmos Quiz");
     m_challengeTitle->setDropShadowColor(dropShadowColor);
 	m_parentComponent->addChild(m_challengeTitle);
 }
