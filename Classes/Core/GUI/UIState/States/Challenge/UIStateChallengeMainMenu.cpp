@@ -34,6 +34,7 @@ void UIStateChallengeMainMenu::OnExitState() {
     
     m_leaderboardLoader.UnregisterLoadLeaderboardListener();
     m_authenticator.UnregisterAuthenticationResultListener();
+    DeregisterTimers();
 	BaseStateDepricated::OnExitState();
 }
 
@@ -43,12 +44,25 @@ void UIStateChallengeMainMenu::SubmitLoadChallengeLeaderboardRequest() {
 	m_leaderboardLoader.SendLoadLeaderboardRequest();
 }
 
-void UIStateChallengeMainMenu::OnLeaderboardLoaded(const ChallengeLeaderboardLoadResult& result) {
+void UIStateChallengeMainMenu::OnLeaderboardLoaded(const ChallengeLeaderboardLoadResult& result, double leaderboardChangeTimerMs) {
 	if (result.Success()) {
-		m_challengeMenuWidget->SetLeaderboardContents(result.GetLeaderboard());
+        m_timer.SetTimerTime(Timer::TimerType::CHALLENGE_LEADERBOARD_CHANGE_TIMER, leaderboardChangeTimerMs);
+        m_leaderboards = result.GetLeaderboards();
+		m_challengeMenuWidget->SetLeaderboardContents(GetNextLeaderboard());
+        RegisterTimers();
 	} else {
 		m_challengeMenuWidget->SetLeaderboardContentsLoadFailed();
 	}
+}
+
+const ChallengeLeaderboard& UIStateChallengeMainMenu::GetNextLeaderboard() {
+    if (m_currentLeaderboardIndex < m_leaderboards.size() - 1) {
+        m_currentLeaderboardIndex++;
+    } else {
+        m_currentLeaderboardIndex = 0;
+    }
+
+    return m_leaderboards[m_currentLeaderboardIndex];
 }
 
 void UIStateChallengeMainMenu::SubmitGuestLoginRequest() {
@@ -72,4 +86,21 @@ void UIStateChallengeMainMenu::OnChallengeMainMenuItemSelected(ChallengeMenuWidg
 	} else if (selectedItem == ChallengeMenuWidget::LOAD_MAIN_MENU) {
 		ChangeState(UIStateMainMenu::UI_STATE_MAINMENU);
 	}
+}
+
+void UIStateChallengeMainMenu::OnTimerEvent(Timer::TimerType type) {
+    switch(type)
+    {
+        case Timer::TimerType::CHALLENGE_LEADERBOARD_CHANGE_TIMER:
+            m_challengeMenuWidget->SetLeaderboardContents(GetNextLeaderboard());
+            break;
+    }
+}
+
+void UIStateChallengeMainMenu::RegisterTimers() {
+    m_timer.RegisterTimer(Timer::TimerType::CHALLENGE_LEADERBOARD_CHANGE_TIMER);
+}
+
+void UIStateChallengeMainMenu::DeregisterTimers() {
+    m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_LEADERBOARD_CHANGE_TIMER);
 }

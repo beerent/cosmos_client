@@ -1,16 +1,17 @@
 #pragma once
 
 #include <Core/GameLogic/Challenge/Leaderboard/ChallengeLeaderboard.h>
+#include <vector>
 
 class ChallengeLeaderboardLoadResult {
 public:
 	ChallengeLeaderboardLoadResult();
-	ChallengeLeaderboardLoadResult(ChallengeLeaderboard leaderboard);
+	ChallengeLeaderboardLoadResult(std::vector<ChallengeLeaderboard> leaderboards);
 
 	bool Success() const;
-	ChallengeLeaderboard GetLeaderboard() const;
+	std::vector<ChallengeLeaderboard> GetLeaderboards() const;
 
 private:
 	bool m_success;
-	ChallengeLeaderboard m_leaderboard;
+	std::vector<ChallengeLeaderboard> m_leaderboards;
 };

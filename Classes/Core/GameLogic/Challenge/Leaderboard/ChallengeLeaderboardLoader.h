@@ -7,11 +7,11 @@
 #include <Core/GameLogic/Challenge/Leaderboard/ChallengeLeaderboardLoadResult.h>
 #include <list>
 
-const std::string GET_CHALLENGE_LEADERBOARD = "getChallengeLeaderboard";
+const std::string GET_LEADERBOARDS = "getLeaderboards";
 
 class ILeaderboardListener {
 public:
-    virtual void OnLeaderboardLoaded(const ChallengeLeaderboardLoadResult& result) = 0;
+    virtual void OnLeaderboardLoaded(const ChallengeLeaderboardLoadResult& result, double leaderboardChangeTimerMs) = 0;
 };
 
 class ChallengeLeaderboardLoader : public IRestReceiver {
@@ -34,6 +34,7 @@ private:
     ILeaderboardListener* m_leaderboardListener;
     
 	ChallengeLeaderboardLoadResult JsonToLoadLeaderboardResult(const json11::Json json) const;
-	ChallengeLeaderboard JsonToChallengeLeaderboard(const json11::Json json) const;
-	void NotifyLoadLeaderboardListeners(ChallengeLeaderboardLoadResult result) const;
+    double JsonToLeaderboardChangeTimerMs(const json11::Json json) const;
+	std::vector<ChallengeLeaderboard> JsonToChallengeLeaderboard(const json11::Json json) const;
+	void NotifyLoadLeaderboardListeners(ChallengeLeaderboardLoadResult result, double leaderboardChangeTimerMs) const;
 };

@@ -121,7 +121,7 @@ void ChallengeMenuWidget::AddChallengeTitle() {
 }
 
 void ChallengeMenuWidget::AddLeaderboardTitle() {
-	m_leaderboardTitle = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "Challenge Leaderboard");
+	m_leaderboardTitle = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "");
     m_leaderboardTitle->setDropShadowColor(dropShadowColor);
     m_leaderboardTitle->setY(12.0);
 	m_leaderboard->addChild(m_leaderboardTitle);
@@ -192,6 +192,9 @@ void ChallengeMenuWidget::AddEmptyLeaderboard() {
 void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& leaderboard) {
     TakeDownLeaderboardLoading();
 
+    const std::string& title = leaderboard.GetTitle();
+    m_leaderboardTitle->setTextString(title);
+    
 	for (int i = 0; i < leaderboard.Size(); i++) {
         const ChallengeLeaderboardEntry challengeLeaderboardEntry = leaderboard.GetEntryInPlace(i);
         SetLeaderboardEntry(challengeLeaderboardEntry, i);
@@ -215,7 +218,6 @@ void ChallengeMenuWidget::SetLeaderboardString(const std::string& leaderboardStr
         case 7: m_leaderboardEntry7->setTextString(leaderboardString); break;
         case 8: m_leaderboardEntry8->setTextString(leaderboardString); break;
         case 9: m_leaderboardEntry9->setTextString(leaderboardString); break;
-        
     }
 }
 

@@ -3045,7 +3045,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.5.2.12;
+				CURRENT_PROJECT_VERSION = 1.5.3.1;
 				DEVELOPMENT_TEAM = F2DR84DKST;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3070,7 +3070,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.5.2;
+				MARKETING_VERSION = 1.5.3;
 				NEW_SETTING = "";
 				New_Setting = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barzak.$(PRODUCT_NAME:identifier)";
@@ -3094,7 +3094,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1.5.2.12;
+				CURRENT_PROJECT_VERSION = 1.5.3.1;
 				DEVELOPMENT_TEAM = F2DR84DKST;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3115,7 +3115,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.5.2;
+				MARKETING_VERSION = 1.5.3;
 				NEW_SETTING = "";
 				New_Setting = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.barzak.$(PRODUCT_NAME:identifier)";

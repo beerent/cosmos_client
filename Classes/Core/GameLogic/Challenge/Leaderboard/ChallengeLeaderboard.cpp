@@ -1,6 +1,6 @@
 #include <Core/GameLogic/Challenge/Leaderboard/ChallengeLeaderboard.h>
 
-ChallengeLeaderboard::ChallengeLeaderboard() {}
+ChallengeLeaderboard::ChallengeLeaderboard(const std::string& title) : m_title(title) {}
 
 void ChallengeLeaderboard::AddEntry(ChallengeLeaderboardEntry entry) {
 	for (auto it = m_orderedEntries.begin(); it != m_orderedEntries.end(); it++) {
@@ -23,4 +23,8 @@ std::vector<ChallengeLeaderboardEntry> ChallengeLeaderboard::GetAllEntries() con
 
 int ChallengeLeaderboard::Size() const {
 	return m_orderedEntries.size();
+}
+
+std::string ChallengeLeaderboard::GetTitle() const {
+    return m_title;
 }

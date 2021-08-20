@@ -14,7 +14,8 @@ enum class TimerType {
     CHALLENGE_QUESTION_TIMER_100_MS,
     CHALLENGE_QUESTION_TIMER_1000_MS,
     CHALLENGE_POST_ANSWER_TIMER,
-    COSMOS_LIVE_REFRESH_TIMER
+    COSMOS_LIVE_REFRESH_TIMER,
+    CHALLENGE_LEADERBOARD_CHANGE_TIMER
 };
 
 
@@ -32,6 +33,7 @@ public:
     
     void RegisterTimer(TimerType type);
     void DeregisterTimer(TimerType type);
+    void SetTimerTime(TimerType type, double time);
     
     void ResetTimer(TimerType type);
     
