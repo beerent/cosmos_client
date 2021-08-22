@@ -6,7 +6,7 @@ const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
 const glm::vec3 GREEN_TEXT_COLOR(0.0f / 255.0f, 255.0f / 255.0f, 128.0f / 255.0f);
 
 ChallengeMenuWidget::ChallengeMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : IUserProfileDisplayListener(uiComponentFactory, parentComponent),
-      m_home(nullptr), m_userBestScore(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr), m_currentUsername(nullptr), m_waitingForLeaderboard(false), m_loadingLabel(nullptr), m_maxPointsSize(0) {
+      m_home(nullptr), m_userBestScore(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr), m_currentUsername(nullptr), m_waitingForLeaderboard(false), m_loadingLabel(nullptr), m_maxPointsSize(0), m_leftLeaderboardArrow(nullptr), m_rightLeaderboardArrow(nullptr), m_changeLeaderboardListener(nullptr) {
 	m_uiComponentFactory = uiComponentFactory;
 	m_parentComponent = parentComponent;
 }
@@ -21,6 +21,8 @@ void ChallengeMenuWidget::Init() {
 	AddLeaderboardTitle();
     AddEmptyLeaderboard();
 	AddLeaderboardLoading();
+    AddLeftLeaderboardArrow();
+    AddRightLeaderboardArrow();
     m_parentComponent->setVisible(true);
 }
 
@@ -121,9 +123,9 @@ void ChallengeMenuWidget::AddChallengeTitle() {
 }
 
 void ChallengeMenuWidget::AddLeaderboardTitle() {
-	m_leaderboardTitle = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 585.0, 90.0, UIComponent::ANCHOR_TOP_CENTER, "");
+	m_leaderboardTitle = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 0, 0, UIComponent::ANCHOR_TOP_CENTER, "");
     m_leaderboardTitle->setDropShadowColor(dropShadowColor);
-    m_leaderboardTitle->setY(12.0);
+    m_leaderboardTitle->setY(55.0);
 	m_leaderboard->addChild(m_leaderboardTitle);
 }
 
@@ -149,6 +151,40 @@ void ChallengeMenuWidget::TakeDownLeaderboardLoading() {
         m_loadingLabel->setTextString(emptyString);
         m_loadingLabel->release();
     }
+}
+
+void ChallengeMenuWidget::AddLeftLeaderboardArrow() {
+    m_leftLeaderboardArrow = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 180, 60, UIComponent::ANCHOR_TOP_CENTER, "       <--");
+    m_leftLeaderboardArrow->setDropShadowColor(dropShadowColor);
+    m_leftLeaderboardArrow->setY(22.0);
+    m_leftLeaderboardArrow->setX(-300.0);
+    
+    UITouchButton::onButtonStateChangedCallBack callBack;
+    callBack.bind(this, &ChallengeMenuWidget::OnLeftLeaderboardPressed);
+    m_leftLeaderboardArrow->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+    
+    m_leaderboard->addChild(m_leftLeaderboardArrow);
+}
+
+void ChallengeMenuWidget::TakeDownLeftLeaderboardArrow() {
+    
+}
+
+void ChallengeMenuWidget::AddRightLeaderboardArrow() {
+    m_rightLeaderboardArrow = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 180, 60, UIComponent::ANCHOR_TOP_CENTER, "-->       ");
+    m_rightLeaderboardArrow->setDropShadowColor(dropShadowColor);
+    m_rightLeaderboardArrow->setY(22.0);
+    m_rightLeaderboardArrow->setX(300.0);
+    
+    UITouchButton::onButtonStateChangedCallBack callBack;
+    callBack.bind(this, &ChallengeMenuWidget::OnRightLeaderboardPressed);
+    m_rightLeaderboardArrow->registerForButtonEvent(UITouchButton::DEPRESSED, callBack);
+    
+    m_leaderboard->addChild(m_rightLeaderboardArrow);
+}
+
+void ChallengeMenuWidget::TakeDownRightLeaderboardArrow() {
+    
 }
 
 void ChallengeMenuWidget::AddEmptyLeaderboard() {
@@ -289,4 +325,16 @@ void ChallengeMenuWidget::OnNewGamePressed(UITouchButton::ButtonState state) {
 		(*it)(LOAD_CHALLENGE_LEVEL);
 		it++;
 	}
+}
+
+void ChallengeMenuWidget::RegisterChangeLeaderboardListener(IChangeLeaderboardListener* changeLeaderboardListener) {
+    m_changeLeaderboardListener = changeLeaderboardListener;
+}
+
+void ChallengeMenuWidget::OnLeftLeaderboardPressed(UITouchButton::ButtonState state) {
+    m_changeLeaderboardListener->OnLeftArrowPressed();
+}
+
+void ChallengeMenuWidget::OnRightLeaderboardPressed(UITouchButton::ButtonState state) {
+    m_changeLeaderboardListener->OnRightArrowPressed();
 }

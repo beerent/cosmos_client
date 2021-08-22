@@ -12,6 +12,12 @@
 
 #include <vector>
 
+class IChangeLeaderboardListener {
+public:
+    virtual void OnLeftArrowPressed() = 0;
+    virtual void OnRightArrowPressed() = 0;
+};
+
 class ChallengeMenuWidget : public IUserProfileDisplayListener {
 public:
 	enum MenuItems { LOAD_MAIN_MENU, LOAD_CHALLENGE_LEVEL };
@@ -23,6 +29,8 @@ public:
 	void Release();
 	void RegisterForChallengeMenuItemSelectedEvent(onChallengeMenuItemSelectedCallBack callback);
 	void UnregisterForChallengeMenuItemSelectedEvent(onChallengeMenuItemSelectedCallBack callback);
+    
+    void RegisterChangeLeaderboardListener(IChangeLeaderboardListener* changeLeaderboardListener);
     
     void AddNewGameButton();
 
@@ -42,6 +50,8 @@ private:
 
 	UIComponentFactory* m_uiComponentFactory;
 	UIComponent* m_parentComponent;
+    
+    IChangeLeaderboardListener* m_changeLeaderboardListener;
 
 	UILabel* m_home;
     UILabel* m_userBestScore;
@@ -65,6 +75,9 @@ private:
     UILabel* m_leaderboardEntry8;
     UILabel* m_leaderboardEntry9;
     
+    UILabel* m_leftLeaderboardArrow;
+    UILabel* m_rightLeaderboardArrow;
+    
     int m_maxPointsSize;
     
     bool m_waitingForLeaderboard;
@@ -85,10 +98,18 @@ private:
     void AddEmptyLeaderboard();
 	void AddLeaderboardLoading();
     void TakeDownLeaderboardLoading();
+    void AddLeftLeaderboardArrow();
+    void TakeDownLeftLeaderboardArrow();
+    void AddRightLeaderboardArrow();
+    void TakeDownRightLeaderboardArrow();
+    
     void SetLeaderboardEntry(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, int postition);
     void SetLeaderboardString(const std::string& leaderboardString, int position);
     std::string ChallengeLeaderboardEntryToString(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, int position);
 
 	void OnHomePressed(UITouchButton::ButtonState state);
 	void OnNewGamePressed(UITouchButton::ButtonState state);
+    
+    void OnLeftLeaderboardPressed(UITouchButton::ButtonState state);
+    void OnRightLeaderboardPressed(UITouchButton::ButtonState state);
 };

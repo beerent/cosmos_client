@@ -16,6 +16,7 @@ void UIStateChallengeMainMenu::OnEnterState() {
 	ChallengeMenuWidget::onChallengeMenuItemSelectedCallBack callback;
 	callback.bind(this, &UIStateChallengeMainMenu::OnChallengeMainMenuItemSelected);
 	m_challengeMenuWidget->RegisterForChallengeMenuItemSelectedEvent(callback);
+    m_challengeMenuWidget->RegisterChangeLeaderboardListener(this);
 
 	BaseStateDepricated::OnEnterState();
 	SubmitLoadChallengeLeaderboardRequest();
@@ -65,6 +66,16 @@ const ChallengeLeaderboard& UIStateChallengeMainMenu::GetNextLeaderboard() {
     return m_leaderboards[m_currentLeaderboardIndex];
 }
 
+const ChallengeLeaderboard& UIStateChallengeMainMenu::GetPreviousLeaderboard() {
+    if (m_currentLeaderboardIndex > 0) {
+        m_currentLeaderboardIndex--;
+    } else {
+        m_currentLeaderboardIndex = m_leaderboards.size() - 1;
+    }
+
+    return m_leaderboards[m_currentLeaderboardIndex];
+}
+
 void UIStateChallengeMainMenu::SubmitGuestLoginRequest() {
     m_authenticator.SetUser(IEngine::getEngine()->GetUserProvider()->GetUser());
     
@@ -103,4 +114,16 @@ void UIStateChallengeMainMenu::RegisterTimers() {
 
 void UIStateChallengeMainMenu::DeregisterTimers() {
     m_timer.DeregisterTimer(Timer::TimerType::CHALLENGE_LEADERBOARD_CHANGE_TIMER);
+}
+
+void UIStateChallengeMainMenu::OnLeftArrowPressed() {
+    DeregisterTimers();
+    RegisterTimers();
+    m_challengeMenuWidget->SetLeaderboardContents(GetPreviousLeaderboard());
+}
+
+void UIStateChallengeMainMenu::OnRightArrowPressed() {
+    DeregisterTimers();
+    RegisterTimers();
+    m_challengeMenuWidget->SetLeaderboardContents(GetNextLeaderboard());
 }
