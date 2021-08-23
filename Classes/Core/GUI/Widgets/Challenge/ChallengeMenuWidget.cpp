@@ -3,7 +3,13 @@
 #include <IEngine.h>
 
 const glm::vec3 dropShadowColor(0.0f, 0.0f, 0.0f);
-const glm::vec3 GREEN_TEXT_COLOR(0.0f / 255.0f, 255.0f / 255.0f, 128.0f / 255.0f);
+const glm::vec3 YELLOW_TEXT_COLOR(255.0f, 255.0f, 0.0f);
+const glm::vec3 PURPLE_TEXT_COLOR(255.0f, 0.0f, 255.0f);
+const glm::vec3 BLUE_TEXT_COLOR(0, 1, 1);
+const glm::vec3 WHITE_TEXT_COLOR(255.0f, 255.0f, 255.0f);
+const glm::vec3 GREEN_TEXT_COLOR(0.0f, 255.0f, 0.0f);
+
+const std::vector<glm::vec3> LEADERBOARD_COLORS = {WHITE_TEXT_COLOR, GREEN_TEXT_COLOR, PURPLE_TEXT_COLOR, BLUE_TEXT_COLOR, YELLOW_TEXT_COLOR};
 
 ChallengeMenuWidget::ChallengeMenuWidget(UIComponentFactory *uiComponentFactory, UIComponent *parentComponent) : IUserProfileDisplayListener(uiComponentFactory, parentComponent),
       m_home(nullptr), m_userBestScore(nullptr), m_leaderboard(nullptr), m_newGameButton(nullptr), m_currentUsername(nullptr), m_waitingForLeaderboard(false), m_loadingLabel(nullptr), m_maxPointsSize(0), m_leftLeaderboardArrow(nullptr), m_rightLeaderboardArrow(nullptr), m_changeLeaderboardListener(nullptr) {
@@ -21,8 +27,6 @@ void ChallengeMenuWidget::Init() {
 	AddLeaderboardTitle();
     AddEmptyLeaderboard();
 	AddLeaderboardLoading();
-    AddLeftLeaderboardArrow();
-    AddRightLeaderboardArrow();
     m_parentComponent->setVisible(true);
 }
 
@@ -154,8 +158,8 @@ void ChallengeMenuWidget::TakeDownLeaderboardLoading() {
 }
 
 void ChallengeMenuWidget::AddLeftLeaderboardArrow() {
-    m_leftLeaderboardArrow = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 180, 60, UIComponent::ANCHOR_TOP_CENTER, "       <--");
-    m_leftLeaderboardArrow->setDropShadowColor(dropShadowColor);
+    m_leftLeaderboardArrow = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 180, 60, UIComponent::ANCHOR_TOP_CENTER, "       << ");
+    m_leftLeaderboardArrow->setDropShadowColor(WHITE_TEXT_COLOR);
     m_leftLeaderboardArrow->setY(22.0);
     m_leftLeaderboardArrow->setX(-300.0);
     
@@ -171,8 +175,8 @@ void ChallengeMenuWidget::TakeDownLeftLeaderboardArrow() {
 }
 
 void ChallengeMenuWidget::AddRightLeaderboardArrow() {
-    m_rightLeaderboardArrow = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 180, 60, UIComponent::ANCHOR_TOP_CENTER, "-->       ");
-    m_rightLeaderboardArrow->setDropShadowColor(dropShadowColor);
+    m_rightLeaderboardArrow = m_uiComponentFactory->createUILabel("KYCHeaderLabelArchetype", 180, 60, UIComponent::ANCHOR_TOP_CENTER, " >>       ");
+    m_rightLeaderboardArrow->setDropShadowColor(WHITE_TEXT_COLOR);
     m_rightLeaderboardArrow->setY(22.0);
     m_rightLeaderboardArrow->setX(300.0);
     
@@ -225,35 +229,48 @@ void ChallengeMenuWidget::AddEmptyLeaderboard() {
     m_leaderboardEntry9->setDropShadowColor(dropShadowColor); m_leaderboardEntry9->setY(basePadding + ( rowPadding * (1 + 9))); m_leaderboard->addChild(m_leaderboardEntry9);
 }
 
-void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& leaderboard) {
+void ChallengeMenuWidget::SetLeaderboardContents(const ChallengeLeaderboard& leaderboard, int colorIndex) {
+    while (colorIndex >= LEADERBOARD_COLORS.size()) {
+        colorIndex = colorIndex - LEADERBOARD_COLORS.size();
+    }
+    
+    const glm::vec3 leaderboardColor = LEADERBOARD_COLORS[colorIndex];
+    
     TakeDownLeaderboardLoading();
+    
+    if (ShouldAddArrows())
+    {
+        AddLeftLeaderboardArrow();
+        AddRightLeaderboardArrow();
+    }
 
     const std::string& title = leaderboard.GetTitle();
     m_leaderboardTitle->setTextString(title);
+    m_leaderboardTitle->setColor(leaderboardColor);
     
 	for (int i = 0; i < leaderboard.Size(); i++) {
         const ChallengeLeaderboardEntry challengeLeaderboardEntry = leaderboard.GetEntryInPlace(i);
-        SetLeaderboardEntry(challengeLeaderboardEntry, i);
+        SetLeaderboardEntry(challengeLeaderboardEntry, leaderboardColor, i);
 	}
 }
 
-void ChallengeMenuWidget::SetLeaderboardEntry(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, int position) {
+void ChallengeMenuWidget::SetLeaderboardEntry(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, glm::vec3 leaderboardColor, int position) {
     const std::string leaderboardString = ChallengeLeaderboardEntryToString(challengeLeaderboardEntry, position);
-    SetLeaderboardString(leaderboardString, position);
+    SetLeaderboardString(leaderboardString, leaderboardColor, position);
 }
 
-void ChallengeMenuWidget::SetLeaderboardString(const std::string& leaderboardString, int position) {
+void ChallengeMenuWidget::SetLeaderboardString(const std::string& leaderboardString, glm::vec3 leaderboardColor, int position) {
     switch (position) {
-        case 0: m_leaderboardEntry0->setTextString(leaderboardString); break;
-        case 1: m_leaderboardEntry1->setTextString(leaderboardString); break;
-        case 2: m_leaderboardEntry2->setTextString(leaderboardString); break;
-        case 3: m_leaderboardEntry3->setTextString(leaderboardString); break;
-        case 4: m_leaderboardEntry4->setTextString(leaderboardString); break;
-        case 5: m_leaderboardEntry5->setTextString(leaderboardString); break;
-        case 6: m_leaderboardEntry6->setTextString(leaderboardString); break;
-        case 7: m_leaderboardEntry7->setTextString(leaderboardString); break;
-        case 8: m_leaderboardEntry8->setTextString(leaderboardString); break;
-        case 9: m_leaderboardEntry9->setTextString(leaderboardString); break;
+        case 0: m_leaderboardEntry0->setTextString(leaderboardString); m_leaderboardEntry0->setColor(leaderboardColor); break;
+        case 1: m_leaderboardEntry1->setTextString(leaderboardString); m_leaderboardEntry1->setColor(leaderboardColor); break;
+        case 2: m_leaderboardEntry2->setTextString(leaderboardString); m_leaderboardEntry2->setColor(leaderboardColor); break;
+        case 3: m_leaderboardEntry3->setTextString(leaderboardString); m_leaderboardEntry3->setColor(leaderboardColor); break;
+        case 4: m_leaderboardEntry4->setTextString(leaderboardString); m_leaderboardEntry4->setColor(leaderboardColor); break;
+        case 5: m_leaderboardEntry5->setTextString(leaderboardString); m_leaderboardEntry5->setColor(leaderboardColor); break;
+        case 6: m_leaderboardEntry6->setTextString(leaderboardString); m_leaderboardEntry6->setColor(leaderboardColor); break;
+        case 7: m_leaderboardEntry7->setTextString(leaderboardString); m_leaderboardEntry7->setColor(leaderboardColor); break;
+        case 8: m_leaderboardEntry8->setTextString(leaderboardString); m_leaderboardEntry8->setColor(leaderboardColor); break;
+        case 9: m_leaderboardEntry9->setTextString(leaderboardString); m_leaderboardEntry9->setColor(leaderboardColor); break;
     }
 }
 
@@ -337,4 +354,8 @@ void ChallengeMenuWidget::OnLeftLeaderboardPressed(UITouchButton::ButtonState st
 
 void ChallengeMenuWidget::OnRightLeaderboardPressed(UITouchButton::ButtonState state) {
     m_changeLeaderboardListener->OnRightArrowPressed();
+}
+
+bool ChallengeMenuWidget::ShouldAddArrows() const {
+    return  m_leftLeaderboardArrow == nullptr || m_rightLeaderboardArrow == nullptr;
 }

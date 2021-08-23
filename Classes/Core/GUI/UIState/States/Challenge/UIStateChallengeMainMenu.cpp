@@ -49,7 +49,7 @@ void UIStateChallengeMainMenu::OnLeaderboardLoaded(const ChallengeLeaderboardLoa
 	if (result.Success()) {
         m_timer.SetTimerTime(Timer::TimerType::CHALLENGE_LEADERBOARD_CHANGE_TIMER, leaderboardChangeTimerMs);
         m_leaderboards = result.GetLeaderboards();
-		m_challengeMenuWidget->SetLeaderboardContents(GetNextLeaderboard());
+		m_challengeMenuWidget->SetLeaderboardContents(GetNextLeaderboard(), m_currentLeaderboardIndex);
         RegisterTimers();
 	} else {
 		m_challengeMenuWidget->SetLeaderboardContentsLoadFailed();
@@ -103,7 +103,7 @@ void UIStateChallengeMainMenu::OnTimerEvent(Timer::TimerType type) {
     switch(type)
     {
         case Timer::TimerType::CHALLENGE_LEADERBOARD_CHANGE_TIMER:
-            m_challengeMenuWidget->SetLeaderboardContents(GetNextLeaderboard());
+            m_challengeMenuWidget->SetLeaderboardContents(GetNextLeaderboard(), m_currentLeaderboardIndex);
             break;
     }
 }
@@ -118,12 +118,10 @@ void UIStateChallengeMainMenu::DeregisterTimers() {
 
 void UIStateChallengeMainMenu::OnLeftArrowPressed() {
     DeregisterTimers();
-    RegisterTimers();
-    m_challengeMenuWidget->SetLeaderboardContents(GetPreviousLeaderboard());
+    m_challengeMenuWidget->SetLeaderboardContents(GetPreviousLeaderboard(), m_currentLeaderboardIndex);
 }
 
 void UIStateChallengeMainMenu::OnRightArrowPressed() {
     DeregisterTimers();
-    RegisterTimers();
-    m_challengeMenuWidget->SetLeaderboardContents(GetNextLeaderboard());
+    m_challengeMenuWidget->SetLeaderboardContents(GetNextLeaderboard(), m_currentLeaderboardIndex);
 }

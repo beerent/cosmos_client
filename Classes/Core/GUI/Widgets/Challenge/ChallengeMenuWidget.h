@@ -34,7 +34,7 @@ public:
     
     void AddNewGameButton();
 
-	void SetLeaderboardContents(const ChallengeLeaderboard& leaderboard);
+	void SetLeaderboardContents(const ChallengeLeaderboard& leaderboard, int colorIndex);
 	void SetLeaderboardContentsLoadFailed();
     
     void WaitingForLeaderboard() {
@@ -103,8 +103,8 @@ private:
     void AddRightLeaderboardArrow();
     void TakeDownRightLeaderboardArrow();
     
-    void SetLeaderboardEntry(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, int postition);
-    void SetLeaderboardString(const std::string& leaderboardString, int position);
+    void SetLeaderboardEntry(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, glm::vec3 leaderboardColor, int postition);
+    void SetLeaderboardString(const std::string& leaderboardString, glm::vec3 leaderboardColor, int position);
     std::string ChallengeLeaderboardEntryToString(const ChallengeLeaderboardEntry& challengeLeaderboardEntry, int position);
 
 	void OnHomePressed(UITouchButton::ButtonState state);
@@ -112,4 +112,5 @@ private:
     
     void OnLeftLeaderboardPressed(UITouchButton::ButtonState state);
     void OnRightLeaderboardPressed(UITouchButton::ButtonState state);
+    bool ShouldAddArrows() const;
 };
